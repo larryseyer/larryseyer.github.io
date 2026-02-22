@@ -2,46 +2,57 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://larryseyer.com/</loc>
+    <lastmod>2026-02-22</lastmod>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://larryseyer.com/pages/work.html</loc>
+    <lastmod>2026-02-22</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://larryseyer.com/pages/projects.html</loc>
+    <lastmod>2026-02-22</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://larryseyer.com/pages/live.html</loc>
+    <lastmod>2026-02-22</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://larryseyer.com/pages/connect.html</loc>
+    <lastmod>2026-02-22</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://larryseyer.com/pages/projects/otto.html</loc>
+    <lastmod>2026-02-22</lastmod>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://larryseyer.com/pages/projects/jtf-news.html</loc>
+    <lastmod>2026-02-22</lastmod>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://larryseyer.com/pages/projects/grim.html</loc>
+    <lastmod>2026-02-22</lastmod>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://larryseyer.com/pages/projects/icandy.html</loc>
+    <lastmod>2026-02-22</lastmod>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://larryseyer.com/pages/projects/showswitcher.html</loc>
+    <lastmod>2026-02-22</lastmod>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://larryseyer.com/pages/projects/midi2button.html</loc>
+    <lastmod>2026-02-22</lastmod>
     <priority>0.7</priority>
   </url>
 </urlset>
