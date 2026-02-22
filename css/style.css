@@ -254,6 +254,16 @@ main {
   color: var(--color-accent);
 }
 
+.badge--released {
+  border-color: #22c55e;
+  color: #22c55e;
+}
+
+.badge--maintained {
+  border-color: #3b82f6;
+  color: #3b82f6;
+}
+
 /* Buttons */
 .btn {
   display: inline-block;
