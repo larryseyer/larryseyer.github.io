@@ -1,6 +1,12 @@
 // Larry Seyer - Main JavaScript
 
 document.addEventListener('DOMContentLoaded', () => {
+  // Set current year in footer
+  const yearSpan = document.getElementById('year');
+  if (yearSpan) {
+    yearSpan.textContent = new Date().getFullYear();
+  }
+
   // Mobile navigation
   const navToggle = document.querySelector('.nav-toggle');
   const nav = document.querySelector('.nav');
