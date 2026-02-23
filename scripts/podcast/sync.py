@@ -188,8 +188,15 @@ def upload_to_internet_archive(
     # Get authenticated session
     session = get_ia_session()
 
-    # File key within the item
-    file_key = f"{video_id}.mp3"
+    # Create a clean filename from the episode title
+    # Remove "- The Larry Seyer Show" suffix and create slug
+    episode_name = title.replace(" - The Larry Seyer Show", "").strip()
+    # Convert to lowercase, replace spaces with hyphens, remove special chars
+    slug = re.sub(r'[^a-z0-9\-]', '', episode_name.lower().replace(' ', '-'))
+    slug = re.sub(r'-+', '-', slug).strip('-')  # Clean up multiple hyphens
+    # Add date prefix for uniqueness and sorting (YYYY-MM-DD-title)
+    date_prefix = pub_date.strftime("%Y-%m-%d")
+    file_key = f"{date_prefix}-{slug}.mp3"
 
     # Clean description for metadata (remove problematic characters)
     clean_description = ""
