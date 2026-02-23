@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+     xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd"
+     xmlns:atom="http://www.w3.org/2005/Atom"
+     xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>The Larry Seyer Show</title>
+    <link>https://larryseyer.com</link>
+    <description>Grammy-winning recording engineer Larry Seyer discusses music production, recording techniques, and shares stories from his legendary career working with artists like George Strait, Lyle Lovett, and many more.</description>
+    <language>en-us</language>
+    <copyright>Copyright 2025 Larry Seyer</copyright>
+    <lastBuildDate>Sun, 23 Feb 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://larryseyer.com/podcast/feed.xml" rel="self" type="application/rss+xml"/>
+
+    <!-- Apple Podcasts / iTunes metadata -->
+    <itunes:author>Larry Seyer</itunes:author>
+    <itunes:summary>Grammy-winning recording engineer Larry Seyer discusses music production, recording techniques, and shares stories from his legendary career working with artists like George Strait, Lyle Lovett, and many more.</itunes:summary>
+    <itunes:type>episodic</itunes:type>
+    <itunes:owner>
+      <itunes:name>Larry Seyer</itunes:name>
+      <itunes:email>larry@larryseyer.com</itunes:email>
+    </itunes:owner>
+    <itunes:explicit>no</itunes:explicit>
+    <itunes:category text="Music">
+      <itunes:category text="Music Commentary"/>
+    </itunes:category>
+    <itunes:image href="https://larryseyer.com/podcast/artwork.png"/>
+
+    <!-- Episodes will be added here by the sync script -->
+    <!-- This is a placeholder feed - run the sync workflow to populate -->
+
+  </channel>
+</rss>
