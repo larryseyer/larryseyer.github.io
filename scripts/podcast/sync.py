@@ -27,18 +27,16 @@ from pathlib import Path
 from typing import Optional
 from xml.etree import ElementTree as ET
 
-import boto3
+import internetarchive
 import requests
-from botocore.config import Config
 from feedgen.feed import FeedGenerator
 
 # Configuration
-YOUTUBE_CHANNEL_ID = "UCTjKRQNMHOdeHrJNqrhj5rA"
-YOUTUBE_RSS_URL = f"https://www.youtube.com/feeds/videos.xml?channel_id={YOUTUBE_CHANNEL_ID}"
+YOUTUBE_PLAYLIST_ID = "PLERHNuNGxdhDruG-FMI7RONbW-1PoCDKt"
+YOUTUBE_RSS_URL = f"https://www.youtube.com/feeds/videos.xml?playlist_id={YOUTUBE_PLAYLIST_ID}"
 BACKFILL_START_DATE = datetime(2024, 1, 1, tzinfo=timezone.utc)
 
 # Internet Archive settings
-IA_S3_ENDPOINT = "https://s3.us.archive.org"
 IA_ITEM_ID = "larry-seyer-show-podcast"  # Will be created on first upload
 
 # Podcast metadata
@@ -73,8 +71,8 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 
-def get_ia_credentials() -> tuple[str, str]:
-    """Get Internet Archive S3 credentials from environment."""
+def get_ia_session():
+    """Get an authenticated Internet Archive session."""
     access_key = os.environ.get("IA_ACCESS_KEY")
     secret_key = os.environ.get("IA_SECRET_KEY")
 
@@ -84,20 +82,9 @@ def get_ia_credentials() -> tuple[str, str]:
             "Set IA_ACCESS_KEY and IA_SECRET_KEY environment variables."
         )
 
-    return access_key, secret_key
-
-
-def get_ia_client():
-    """Create boto3 client for Internet Archive S3 API."""
-    access_key, secret_key = get_ia_credentials()
-
-    return boto3.client(
-        "s3",
-        endpoint_url=IA_S3_ENDPOINT,
-        aws_access_key_id=access_key,
-        aws_secret_access_key=secret_key,
-        config=Config(signature_version="s3v4")
-    )
+    # Create session with S3 credentials
+    config = {"s3": {"access": access_key, "secret": secret_key}}
+    return internetarchive.get_session(config=config)
 
 
 def load_episodes() -> list[dict]:
@@ -117,54 +104,43 @@ def save_episodes(episodes: list[dict]) -> None:
         json.dump(episodes, f, indent=2, default=str)
 
 
-def fetch_youtube_feed() -> list[dict]:
-    """Fetch and parse YouTube RSS feed."""
-    logger.info(f"Fetching YouTube feed: {YOUTUBE_RSS_URL}")
+def fetch_youtube_playlist() -> list[dict]:
+    """Fetch all videos from YouTube playlist using yt-dlp."""
+    playlist_url = f"https://www.youtube.com/playlist?list={YOUTUBE_PLAYLIST_ID}"
+    logger.info(f"Fetching YouTube playlist: {playlist_url}")
 
-    response = requests.get(YOUTUBE_RSS_URL, timeout=30)
-    response.raise_for_status()
+    # Use yt-dlp to get playlist metadata (no download)
+    cmd = [
+        "yt-dlp",
+        "--flat-playlist",
+        "--dump-json",
+        playlist_url
+    ]
 
-    # Parse XML
-    root = ET.fromstring(response.content)
-
-    # YouTube Atom feed namespaces
-    ns = {
-        "atom": "http://www.w3.org/2005/Atom",
-        "yt": "http://www.youtube.com/xml/schemas/2015",
-        "media": "http://search.yahoo.com/mrss/"
-    }
+    result = subprocess.run(cmd, capture_output=True, text=True, check=True)
 
     videos = []
-    for entry in root.findall("atom:entry", ns):
-        video_id = entry.find("yt:videoId", ns).text
-        title = entry.find("atom:title", ns).text
-        published = entry.find("atom:published", ns).text
+    for line in result.stdout.strip().split("\n"):
+        if not line:
+            continue
+        try:
+            data = json.loads(line)
+            video_id = data.get("id")
+            title = data.get("title", "")
 
-        # Parse media group for description and thumbnail
-        media_group = entry.find("media:group", ns)
-        description = ""
-        thumbnail = ""
-        if media_group is not None:
-            desc_elem = media_group.find("media:description", ns)
-            if desc_elem is not None and desc_elem.text:
-                description = desc_elem.text
-            thumb_elem = media_group.find("media:thumbnail", ns)
-            if thumb_elem is not None:
-                thumbnail = thumb_elem.get("url", "")
+            # For flat playlist, we get minimal info - we'll get more when processing
+            videos.append({
+                "video_id": video_id,
+                "title": title,
+                "description": "",  # Will be fetched during processing
+                "thumbnail": data.get("thumbnails", [{}])[-1].get("url", "") if data.get("thumbnails") else "",
+                "published": None,  # Will be fetched during processing
+                "url": f"https://www.youtube.com/watch?v={video_id}"
+            })
+        except json.JSONDecodeError:
+            continue
 
-        # Parse published date
-        pub_date = datetime.fromisoformat(published.replace("Z", "+00:00"))
-
-        videos.append({
-            "video_id": video_id,
-            "title": title,
-            "description": description,
-            "thumbnail": thumbnail,
-            "published": pub_date,
-            "url": f"https://www.youtube.com/watch?v={video_id}"
-        })
-
-    logger.info(f"Found {len(videos)} videos in feed")
+    logger.info(f"Found {len(videos)} videos in playlist")
     return videos
 
 
@@ -209,38 +185,47 @@ def upload_to_internet_archive(
     """Upload audio file to Internet Archive and return URL."""
     logger.info(f"Uploading to Internet Archive: {audio_file.name}")
 
-    client = get_ia_client()
+    # Get authenticated session
+    session = get_ia_session()
 
     # File key within the item
     file_key = f"{video_id}.mp3"
 
-    # Metadata headers for Internet Archive
-    metadata = {
-        "x-archive-meta-mediatype": "audio",
-        "x-archive-meta-collection": "opensource_audio",
-        "x-archive-meta-title": title,
-        "x-archive-meta-creator": PODCAST_AUTHOR,
-        "x-archive-meta-date": pub_date.strftime("%Y-%m-%d"),
-        "x-archive-meta-description": description[:1000] if description else "",
-        "x-archive-meta-subject": "podcast;music;recording;larry seyer",
-        "x-archive-meta-licenseurl": "https://creativecommons.org/licenses/by-nc/4.0/",
-    }
+    # Clean description for metadata (remove problematic characters)
+    clean_description = ""
+    if description:
+        clean_description = description[:500].replace("\n", " ").replace("\r", " ")
 
-    # Read file and upload
-    with open(audio_file, "rb") as f:
-        file_content = f.read()
+    # Metadata for Internet Archive
+    metadata = {
+        "mediatype": "audio",
+        "collection": "opensource_audio",
+        "title": f"{PODCAST_TITLE} - {title}",
+        "creator": PODCAST_AUTHOR,
+        "date": pub_date.strftime("%Y-%m-%d"),
+        "description": clean_description,
+        "subject": ["podcast", "music", "recording", "larry seyer", "the larry seyer show"],
+        "licenseurl": "https://creativecommons.org/licenses/by-nc/4.0/",
+    }
 
     # Upload with retry logic
     max_retries = 3
     for attempt in range(max_retries):
         try:
-            client.put_object(
-                Bucket=IA_ITEM_ID,
-                Key=file_key,
-                Body=file_content,
-                ContentType="audio/mpeg",
-                Metadata={k.replace("x-archive-meta-", ""): v for k, v in metadata.items()}
+            # Get or create the item
+            item = session.get_item(IA_ITEM_ID)
+
+            # Upload file
+            responses = item.upload(
+                files={file_key: str(audio_file)},
+                metadata=metadata,
+                retries=3,
+                verbose=True
             )
+            # Check responses
+            for response in responses:
+                if response.status_code not in [200, 201]:
+                    raise Exception(f"Upload failed with status {response.status_code}")
             break
         except Exception as e:
             if attempt < max_retries - 1:
@@ -342,27 +327,44 @@ def process_video(video: dict, episodes: list[dict]) -> Optional[dict]:
         temp_path = Path(temp_dir)
 
         try:
-            # Extract audio
+            # Extract audio (also gets full metadata)
             audio_file, metadata = extract_audio(video_id, temp_path)
             file_size = audio_file.stat().st_size
             duration = metadata.get("duration", 0)
+
+            # Get metadata from yt-dlp (more complete than playlist data)
+            title = metadata.get("title", video["title"])
+            description = metadata.get("description", "")
+            thumbnail = metadata.get("thumbnail", video.get("thumbnail", ""))
+
+            # Parse upload date from yt-dlp metadata (format: YYYYMMDD)
+            upload_date_str = metadata.get("upload_date", "")
+            if upload_date_str:
+                pub_date = datetime.strptime(upload_date_str, "%Y%m%d").replace(tzinfo=timezone.utc)
+            else:
+                pub_date = datetime.now(timezone.utc)
+
+            # Skip videos before the backfill start date (Jan 2024)
+            if pub_date < BACKFILL_START_DATE:
+                logger.info(f"Skipping video from {pub_date.strftime('%Y-%m-%d')} (before Jan 2024): {title}")
+                return None
 
             # Upload to Internet Archive
             audio_url = upload_to_internet_archive(
                 audio_file,
                 video_id,
-                video["title"],
-                video["description"],
-                video["published"]
+                title,
+                description,
+                pub_date
             )
 
             # Create episode entry
             episode = {
                 "video_id": video_id,
-                "title": video["title"],
-                "description": video["description"],
-                "thumbnail": video.get("thumbnail", ""),
-                "published": video["published"].isoformat(),
+                "title": title,
+                "description": description,
+                "thumbnail": thumbnail,
+                "published": pub_date.isoformat(),
                 "youtube_url": video["url"],
                 "audio_url": audio_url,
                 "file_size": file_size,
@@ -404,8 +406,8 @@ def main():
     episodes = load_episodes()
     logger.info(f"Loaded {len(episodes)} existing episodes")
 
-    # Fetch YouTube feed
-    videos = fetch_youtube_feed()
+    # Fetch YouTube playlist (all videos)
+    videos = fetch_youtube_playlist()
 
     # Filter videos based on mode
     if args.video_id:
@@ -414,8 +416,8 @@ def main():
             logger.error(f"Video not found in feed: {args.video_id}")
             sys.exit(1)
     elif args.backfill:
-        videos = [v for v in videos if v["published"] >= BACKFILL_START_DATE]
-        logger.info(f"Backfill mode: {len(videos)} videos from 2024 onward")
+        # Process all videos - date filtering happens in process_video()
+        logger.info(f"Backfill mode: processing {len(videos)} videos (will filter by date during processing)")
     else:
         # Only process videos not already in episodes
         processed_ids = {ep["video_id"] for ep in episodes}
