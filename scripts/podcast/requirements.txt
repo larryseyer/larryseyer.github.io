@@ -1,5 +1,0 @@
-# YouTube to Apple Podcasts Sync Dependencies
-yt-dlp>=2024.1.0
-internetarchive>=4.0.0
-feedgen>=1.0.0
-requests>=2.31.0
