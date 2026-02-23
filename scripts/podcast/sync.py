@@ -196,11 +196,14 @@ def upload_to_internet_archive(
     if description:
         clean_description = description[:500].replace("\n", " ").replace("\r", " ")
 
+    # Clean up episode title (remove redundant "- The Larry Seyer Show" suffix)
+    episode_title = title.replace(" - The Larry Seyer Show", "").strip()
+
     # Metadata for Internet Archive
     metadata = {
         "mediatype": "audio",
         "collection": "opensource_audio",
-        "title": f"{PODCAST_TITLE} - {title}",
+        "title": f"{PODCAST_TITLE}: {episode_title}",
         "creator": PODCAST_AUTHOR,
         "date": pub_date.strftime("%Y-%m-%d"),
         "description": clean_description,
