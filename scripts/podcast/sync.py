@@ -175,12 +175,12 @@ def extract_audio(video_id: str, output_dir: Path) -> tuple[Path, dict]:
     output_template = str(output_dir / f"{video_id}.%(ext)s")
     url = f"https://www.youtube.com/watch?v={video_id}"
 
-    # yt-dlp command for 128kbps MP3
+    # yt-dlp command for 320kbps stereo MP3 (highest quality)
     cmd = [
         "yt-dlp",
         "--extract-audio",
         "--audio-format", "mp3",
-        "--audio-quality", "128K",
+        "--audio-quality", "0",  # 0 = best quality (320kbps for MP3)
         "--output", output_template,
         "--print-json",
         "--no-playlist",
