@@ -98,6 +98,33 @@
       font-weight: 500;
       margin-bottom: var(--space-xs);
     }
+    .speaker-body .white-paper-quote {
+      border-left: 3px solid var(--color-accent);
+      background: var(--color-surface);
+      padding: var(--space-sm) var(--space-md);
+      margin: var(--space-md) 0;
+      position: relative;
+    }
+    .speaker-body .white-paper-quote::before,
+    .speaker-body .white-paper-quote::after {
+      font-family: var(--font-display);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--color-accent);
+      display: block;
+    }
+    .speaker-body .white-paper-quote::before {
+      content: "Begin quote \2014 JTF News white paper";
+      margin-bottom: var(--space-sm);
+    }
+    .speaker-body .white-paper-quote::after {
+      content: "End quote";
+      margin-top: var(--space-sm);
+    }
+    .speaker-body .white-paper-quote > h4:first-child { margin-top: 0; }
+    .speaker-body .white-paper-quote > p:last-child { margin-bottom: 0; }
     .scorecard {
       display: grid;
       grid-template-columns: 1fr;
@@ -1289,6 +1316,7 @@
         <div class="speaker-label">Larry</div>
         <div class="speaker-body">
           <p>Rating calibration is described in detail on the website - you ignored it. you said &quot;the system decides what enters the pipeline&quot; which is true, but it is RULE BASED!!! Again failure. I believe you did not even read the white paper:</p>
+          <div class="white-paper-quote">
           <h4>The Methodology</h4>
           <p>Two sources. Different owners. Strip the adjectives. State the facts. Stop.</p>
           <p>This is not journalism. It is data.</p>
@@ -1423,6 +1451,7 @@
           <p>Because the world needs a place where facts stand alone.</p>
           <h4>Launch</h4>
           <p>When the code runs. When two sources speak. We start. No fanfare.</p>
+          </div>
         </div>
       </div>
       <div class="chat-message speaker-assistant">
