@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TS207FNV53"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-TS207FNV53');
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="The Vector Compressor White Paper - the 24-coordinate character morph engine, the six mechanisms of compression, the transparent origin, and morphing by crossing rather than blending.">
+  <meta property="og:title" content="Vector Compressor White Paper - Larry Seyer">
+  <meta property="og:description" content="One mathematical model, 24 coordinates, eight classic characters - and every stable compressor in between.">
+  <meta property="og:image" content="https://larryseyer.com/images/og-image.png">
+  <meta property="og:url" content="https://larryseyer.com/pages/whitepapers/vector-compressor-whitepaper.html">
+  <meta property="og:type" content="article">
+  <meta name="twitter:card" content="summary_large_image">
+  <title>Vector Compressor White Paper - Larry Seyer</title>
+  <link rel="stylesheet" href="../../css/style.css">
+  <link rel="icon" type="image/x-icon" href="../../favicon.ico">
+  <link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="container">
+      <a href="../../index.html" class="logo">Larry Seyer</a>
+      <button class="nav-toggle" aria-label="Toggle navigation">&#9776;</button>
+      <nav class="nav">
+        <a href="../work.html">Work</a>
+        <a href="../projects.html" class="active">Projects</a>
+        <a href="../live.html">Live</a>
+        <a href="../connect.html">Connect</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- White Paper Hero -->
+    <section class="project-hero">
+      <div class="container">
+        <span class="badge badge--active">White Paper</span>
+        <h1>Vector Compressor White Paper</h1>
+        <p>How a single mathematical model, governed by a continuous vector of 24 numbers, reaches eight classic compressor characters &mdash; and every stable point between them.</p>
+        <p class="mt-lg"><a href="../projects/vector-compressor.html">&larr; Back to Vector Compressor</a></p>
+      </div>
+    </section>
+
+    <!-- The Engine -->
+    <section class="section">
+      <div class="container">
+        <h2>The 24-Coordinate Character Morph Engine</h2>
+        <p>Most "vintage" compressors are really a folder of separate programs. The Vector Compressor is the opposite: a single mathematical model whose entire behavior is governed by a continuous vector of 24 numbers. Each classic character &mdash; a smooth tube optical unit, a punchy fast character, a big-iron vari-mu &mdash; is not a separate program but a single <em>point</em> in that 24-dimensional space. The space between any two points is filled in by interpolating the coordinates, and because the result is one set of coefficients fed to one engine, every intermediate position is itself a real, stable compressor.</p>
+      </div>
+    </section>
+
+    <!-- Why a vector -->
+    <section class="section">
+      <div class="container">
+        <h2>Why a Vector, Not a Menu</h2>
+        <p>The design starts from a claim about completeness: every audible thing a compressor does decomposes into exactly six mechanisms.</p>
+        <ul class="features">
+          <li><strong>Detection</strong> - what the gain responds to (peak versus average, transient weighting, feed-forward versus feedback, spectral tilt)</li>
+          <li><strong>Static transfer curve</strong> - the steady-state map from input to gain reduction (ratio, the way ratio can harden as you push it, knee width and knee elasticity)</li>
+          <li><strong>Temporal response</strong> - how gain reduction evolves in time (attack and release, dual-slope recovery, history- and velocity-driven modulation)</li>
+          <li><strong>Gain-cell realization</strong> - how the computed reduction becomes actual gain, including the nonlinear "feel" of the cell itself</li>
+          <li><strong>Coloration</strong> - the harmonic and transformer signature the path adds</li>
+          <li><strong>Stereo coupling</strong> - how the two channels link, and by what law</li>
+        </ul>
+        <p class="mt-lg">Twenty-four coordinates span all six. Any compressor whose character lives inside those six mechanisms is therefore a reachable point in the space.</p>
+      </div>
+    </section>
+
+    <!-- Transparent origin -->
+    <section class="section">
+      <div class="container">
+        <h2>The Transparent Origin</h2>
+        <p>One coordinate vector is special: the zero vector. Set every coordinate to zero and you get a perfectly transparent, feed-forward, log-domain compressor &mdash; exactly the ratio, knee, and times you dial, with no harmonics, no transformer, no program-dependent surprises. This "Ideal" point is the natural origin of the space, not a tuned preset. Every modeled character is then expressed as that origin plus a displacement. This is the "no arbitrary constants" property: every number in every character has a physical referent, and transparency falls out for free as the place where all the displacements go to zero.</p>
+      </div>
+    </section>
+
+    <!-- Crossing not blending -->
+    <section class="section">
+      <div class="container">
+        <h2>Morphing Means Crossing, Not Blending</h2>
+        <p>Because the engine never branches into a different topology, the gaps between character families are genuinely crossable. The feedback path is always present, with a coefficient that can fall to zero (pure feed-forward). The release network is always a parallel set of cells whose effective times are modulated by recent gain-reduction history &mdash; turn the memory term down and the breathing optical tail collapses into a clean, single-stage release. The ratio can be fixed or can climb with level. The coloration bypasses to a straight wire.</p>
+        <p>So a morph from a smooth optical character to a punchy fast one is not two engines fading past each other; it is memory fading out, release stages collapsing, ratio climbing, knee hardening, and times dropping &mdash; and the midpoint is a real "fast-ish, slight-memory, medium-ratio" compressor that no manufacturer ever built.</p>
+      </div>
+    </section>
+
+    <!-- Steering -->
+    <section class="section">
+      <div class="container">
+        <h2>Steering the Space</h2>
+        <p>The five familiar controls stay visible on every character and read that character's real values; the morph animates them as you turn the knob. Grab one and it holds an absolute value while you keep morphing &mdash; letting you put a big-iron character's transformer and curve behind a fast character's attack, another genuine point in the same 24-space. Three perceptual macros (Punch, Density, Intensity) move whole groups of coordinates along intuitive axes, and a master Intensity knob simply scales the whole displacement from the transparent origin &mdash; a single "how much character" control that falls straight out of the origin-vector architecture.</p>
+        <p class="mt-lg"><a href="../projects/vector-compressor.html">&larr; Back to Vector Compressor</a></p>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; <span id="year">2025</span> Larry Seyer. All rights reserved.</p>
+      <div class="social-links">
+        <a href="https://github.com/larryseyer" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="https://www.youtube.com/larryseyer" target="_blank" rel="noopener noreferrer">YouTube</a>
+        <a href="https://open.spotify.com/artist/43rLqZlw7co7eyccfN9zRj" target="_blank" rel="noopener noreferrer">Spotify</a>
+        <a href="https://www.linkedin.com/in/larryseyer" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../../js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TS207FNV53"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-TS207FNV53');
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="The OTTO White Paper - a four-player, playback-only rhythm-generation instrument. First principles, modes and styles, energy and feel, and real-time discipline.">
+  <meta property="og:title" content="OTTO White Paper - Larry Seyer">
+  <meta property="og:description" content="A live drum arrangement instrument: four independent players, role-bearing pattern playback, energy-driven feel, and strict real-time discipline.">
+  <meta property="og:image" content="https://larryseyer.com/images/og-image.png">
+  <meta property="og:url" content="https://larryseyer.com/pages/whitepapers/otto-whitepaper.html">
+  <meta property="og:type" content="article">
+  <meta name="twitter:card" content="summary_large_image">
+  <title>OTTO White Paper - Larry Seyer</title>
+  <link rel="stylesheet" href="../../css/style.css">
+  <link rel="icon" type="image/x-icon" href="../../favicon.ico">
+  <link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="container">
+      <a href="../../index.html" class="logo">Larry Seyer</a>
+      <button class="nav-toggle" aria-label="Toggle navigation">&#9776;</button>
+      <nav class="nav">
+        <a href="../work.html">Work</a>
+        <a href="../projects.html" class="active">Projects</a>
+        <a href="../live.html">Live</a>
+        <a href="../connect.html">Connect</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- White Paper Hero -->
+    <section class="project-hero">
+      <div class="container">
+        <span class="badge badge--active">White Paper</span>
+        <h1>OTTO White Paper</h1>
+        <p>A four-player, playback-only rhythm-generation instrument &mdash; played, not programmed. In four words: a live drum arrangement instrument.</p>
+        <p class="mt-lg"><a href="../projects/otto.html">&larr; Back to OTTO</a></p>
+      </div>
+    </section>
+
+    <!-- What OTTO Is -->
+    <section class="section">
+      <div class="container">
+        <h2>What OTTO Is</h2>
+        <p>OTTO is a four-player, playback-only rhythm-generation instrument. It plays pre-existing MIDI patterns through kits, where a kit may use sampled voices, procedurally-synthesized voices, or a mix of both. Each of the four players is fully independent &mdash; its own mode, its own kit, its own pattern, its own timeline lane, its own mixer channel &mdash; and live performance is treated as a first-class use case alongside studio work. OTTO is both a standalone product and an embeddable engine: the same compiled code serves both, with the difference expressed only as configuration, never as a separate build.</p>
+        <p>The shortest description is four words: <strong>a live drum arrangement instrument.</strong> <em>Live</em> is why energy and tempo react in real time. <em>Drum</em> is why there is no audio recording or waveform editing and why the four player roles are all rhythm-section roles. <em>Arrangement</em> is why "pills" exist as the playback unit and why each player's lane is independent. <em>Instrument</em> is why OTTO is played rather than programmed.</p>
+      </div>
+    </section>
+
+    <!-- First Principles -->
+    <section class="section">
+      <div class="container">
+        <h2>The First Principles</h2>
+        <ul class="features">
+          <li><strong>Playback-only.</strong> OTTO does not record audio or capture MIDI, and it does not generate MIDI at runtime. The real-time audio thread reads pre-resolved configurations and pre-existing MIDI files and emits sound. Everything else is worker- or message-thread work.</li>
+          <li><strong>Patterns are role-bearing playback units.</strong> A "pill" placed on a lane carries a pattern, a phrase role, and an energy level. Pills are the sole playback authority &mdash; no pill covering a lane means designed silence, with no fallback pattern.</li>
+          <li><strong>Four independent players.</strong> Each player owns its mode, kit, pattern lane, mixer channel, and timeline. The four lanes are independent arrangements that happen to share a single transport clock.</li>
+          <li><strong>Signed, transport-shaped time.</strong> Bar 1 is the first measure; the ruler skips 0 (a tape-machine convention), and negative bars are first-class positions. Pre-roll is simply the cursor sitting at bar -1.</li>
+          <li><strong>Pro-audio convention is the silent tiebreaker.</strong> When a consumer shortcut and a pro-audio convention diverge, the convention wins.</li>
+          <li><strong>An instrument, not a workstation.</strong> No waveform surgery, no track recording, no stitching of takes. The user's gesture vocabulary is musical.</li>
+          <li><strong>One engine, two lives.</strong> The standalone product and the embedded-engine product are the same binary, differing only by configuration.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Modes, Styles, Library -->
+    <section class="section">
+      <div class="container">
+        <h2>Modes, Styles, and the Library</h2>
+        <p>A player can fill one of four roles: Drums, Percs (auxiliary percussion), Shakers, and Hands (hand percussion such as claps and snaps). Each mode owns its own catalog of Styles, and the four catalogs are deliberately disjoint &mdash; no Style name appears in more than one mode. A Style is a coherent pattern collection containing a fixed 36-file set: four section-tagged patterns (Intro, Verse, Chorus, Bridge) plus 32 fills. Cross-mode arrangements are assembled by the user, one Style per player, never enforced by the engine.</p>
+        <p>Internally, OTTO uses a single expanded articulation layout for all drum MIDI. The general drum-map convention exists only transiently at the import boundary; a translator stage converts imported material into the expanded layout before anything reaches the library. After import, the engine retains no general-map data and never converts back.</p>
+      </div>
+    </section>
+
+    <!-- Sound Generation -->
+    <section class="section">
+      <div class="container">
+        <h2>Sound Generation</h2>
+        <p>Each player runs two parallel audio paths simultaneously: a <strong>sampler path</strong> that plays sample-mapping files referencing audio on disk, and a <strong>synth path</strong> that procedurally generates voices. A per-note mask decides, per articulation, whether each note dispatches to the sampler or the synth &mdash; a kit may send its kick to the sampler and its hat to the synth in the same moment. Drum kits are built from a large pool of single-element primitive definitions that an off-line tool composes into complete kits at content-build time; the runtime treats a composed kit as one cohesive unit.</p>
+      </div>
+    </section>
+
+    <!-- Energy and Feel -->
+    <section class="section">
+      <div class="container">
+        <h2>Energy and Feel</h2>
+        <p>Energy levels are a per-pill performance modifier that changes how a pattern is performed without altering the pattern file. Seven named levels &mdash; Asleep, Chilled, Relaxed, Normal, Alert, Excited, Energetic &mdash; each carry per-element velocity scaling, per-element timing offset, articulation choices, and a tempo-offset percentage. Crucially, this is dispatch-time transformation of events that already exist; no new MIDI is invented at play time. The seven slot definitions are remembered per song, so editing what "Excited" means in one song does not change it in another.</p>
+      </div>
+    </section>
+
+    <!-- Mixer -->
+    <section class="section">
+      <div class="container">
+        <h2>The Mixer and Output Routing</h2>
+        <p>There is exactly one shared mixer, with channels allocated per mode rather than per player &mdash; two players in the same mode sum into the same element channels. The mixer resolves into a fixed table of stereo slots: banks of per-element channels for each mode, a set of effect returns, and per-player sub-buses, summing into a master bus that carries a transparent limiter on by default. The mixer is a steady-state signal graph whose topology is fixed at session load; the runtime touches parameter values, never routing topology. An output router then maps mixer outputs to physical output pairs using three strategies &mdash; a stereo sum, a per-player split, or a per-element split &mdash; without ever altering the underlying mixer table.</p>
+      </div>
+    </section>
+
+    <!-- Threading -->
+    <section class="section">
+      <div class="container">
+        <h2>Threading and Real-Time Discipline</h2>
+        <p>OTTO's concurrency is a contract among three threads meeting at well-defined seams. The <strong>audio thread</strong> fills the output buffer every block and may never allocate, lock, log, or perform file I/O. The <strong>message thread</strong> handles user gestures and orchestration. <strong>Worker threads</strong> handle disk I/O, parsing, import-time generation, and long compute. State crosses between threads only through three named mechanisms: an atomic snapshot for single values, a single-producer/single-consumer queue for event-shaped state, and a double-buffered configuration swap for broad changes such as a new kit or a re-routed mixer. When a real-time problem appears, it is fixed at the root rather than masked by a downstream workaround.</p>
+      </div>
+    </section>
+
+    <!-- Timing -->
+    <section class="section">
+      <div class="container">
+        <h2>Timing Philosophy</h2>
+        <p>Timing accuracy outranks cosmetic smoothness: a dropped UI frame is acceptable, a late transport event is not. Under externally-driven tempo, OTTO never silently overrides the external authority to smooth a discontinuity &mdash; an audible glitch is preferable to inaudible drift the listener cannot diagnose. Per-event dispatch is sample-accurate; configuration changes are block-accurate, taking effect at the next block boundary.</p>
+      </div>
+    </section>
+
+    <!-- Tempo and Sync -->
+    <section class="section">
+      <div class="container">
+        <h2>Tempo and Sync</h2>
+        <p>OTTO recognizes several tempo sources: internal (OTTO owns transport), host-driven (the plugin host owns it), incoming or outgoing clock synchronization, and a peer-to-peer network tempo protocol. The user's chosen source is the authority, and the engine surfaces the consequence in the UI rather than overriding it. A global tempo, modulated by the lead player's energy offset, becomes the playback rate when OTTO owns transport; under an external authority, energy still shapes velocity and feel but not the playback rate.</p>
+      </div>
+    </section>
+
+    <!-- Commercial Model -->
+    <section class="section">
+      <div class="container">
+        <h2>Commercial Model</h2>
+        <p>The full content bundle ships complete on every install regardless of tier; purchasing unlocks access to content already present rather than downloading new data. Locked content is refused at the picker and at load time &mdash; the audio thread never encounters it &mdash; so entitlement is invisible to playback. The interface keeps the same shape across tiers: locked controls render visibly disabled in place rather than hidden, and an upgrade prompt appears only when the user reaches for one. OTTO commits to no coercive upsell, no interruption of musical work, and no telemetry without consent.</p>
+        <p class="mt-lg"><a href="../projects/otto.html">&larr; Back to OTTO</a></p>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; <span id="year">2025</span> Larry Seyer. All rights reserved.</p>
+      <div class="social-links">
+        <a href="https://github.com/larryseyer" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="https://www.youtube.com/larryseyer" target="_blank" rel="noopener noreferrer">YouTube</a>
+        <a href="https://open.spotify.com/artist/43rLqZlw7co7eyccfN9zRj" target="_blank" rel="noopener noreferrer">Spotify</a>
+        <a href="https://www.linkedin.com/in/larryseyer" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../../js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TS207FNV53"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-TS207FNV53');
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="The Vector Reverb - a single living algorithmic reverb whose every coefficient is derived from measurements of real acoustic spaces, morphing smoothly between room characters.">
+  <meta property="og:title" content="Vector Reverb - Larry Seyer">
+  <meta property="og:description" content="A living algorithmic reverb built from measurements of real acoustic spaces - the realism of measured rooms with the flexibility of an algorithm.">
+  <meta property="og:image" content="https://larryseyer.com/images/og-image.png">
+  <meta property="og:url" content="https://larryseyer.com/pages/projects/vector-reverb.html">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <title>Vector Reverb - Larry Seyer</title>
+  <link rel="stylesheet" href="../../css/style.css">
+  <link rel="icon" type="image/x-icon" href="../../favicon.ico">
+  <link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="container">
+      <a href="../../index.html" class="logo">Larry Seyer</a>
+      <button class="nav-toggle" aria-label="Toggle navigation">&#9776;</button>
+      <nav class="nav">
+        <a href="../work.html">Work</a>
+        <a href="../projects.html" class="active">Projects</a>
+        <a href="../live.html">Live</a>
+        <a href="../connect.html">Connect</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- Project Hero -->
+    <section class="project-hero">
+      <div class="container">
+        <span class="badge badge--active">In Development</span>
+        <h1>Vector Reverb</h1>
+        <p>A single living algorithmic reverb whose every coefficient is derived from measurements of real acoustic spaces &mdash; morphing smoothly between room characters, and even reaching spaces no real room could physically be.</p>
+      </div>
+    </section>
+
+    <!-- The Problem Section -->
+    <section class="section">
+      <div class="container">
+        <h2>The Problem</h2>
+        <p>Reverb has always forced a trade. Convolution reproduces a real space with stunning realism but freezes it: one static impulse response replayed identically forever, carrying the room's character but also its capture noise, modal ringing, and the perceptual stiffness of a decay that never changes &mdash; and every instance costs a full set of transforms and a separate memory footprint.</p>
+        <p>Algorithmic reverb is alive and cheap, but it is conventionally voiced from invented numbers that correspond to no real space, and critical listeners often judge it the lesser sound. You are left choosing between realism without flexibility, or flexibility without realism &mdash; and if you want a real hall's envelopment on four sends at once, you pay for it four times over.</p>
+      </div>
+    </section>
+
+    <!-- Key Features Section -->
+    <section class="section">
+      <div class="container">
+        <h2>Key Features</h2>
+        <ul class="features">
+          <li><strong>Measured, not invented</strong> - Every engine coefficient is interpolated from measurements taken from real impulse responses &mdash; the realism of measured spaces, without the frozen stiffness of a static recording</li>
+          <li><strong>A surveyed character space</strong> - Drawn from a large library of professional captures organized into four families &mdash; halls, plates, rooms, and chambers &mdash; each capture serving as both a morph anchor and a recallable preset</li>
+          <li><strong>One macro knob</strong> - A "grand master" control travels a curated path through the space, coordinating orthogonal sub-controls beneath it; coefficient interpolation only, so traversal is click-free</li>
+          <li><strong>Affordable true multichannel</strong> - One shared, diffused late tail is a property of the room, while all position dependence lives in a lightweight directional early-reflection stage</li>
+          <li><strong>Genuine measured spatialization</strong> - Built from multichannel captures of real performance spaces, driving measured decorrelation and position-dependent reverberation instead of synthesized width</li>
+          <li><strong>Immersive-ready</strong> - A native 7-channel internal field with fold-downs to stereo, 5.0, 7.0, and parametric binaural &mdash; one decode path, so the stereo monitor and the immersive outputs never diverge</li>
+          <li><strong>Independent voicing</strong> - Decay Rate, Predelay, Brightness, and Stereo Width ride on top of the morph and pin to absolute values when grabbed, plus a Character control for living, modulated tails</li>
+          <li><strong>Far lighter than convolution</strong> - One shared engine and multiple sends replace multiple partitioned-convolution instances, collapsing many impulse-response footprints into a single coefficient set</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- White Paper Link -->
+    <section class="section">
+      <div class="container">
+        <h2>Read the Overview</h2>
+        <p class="mb-md">How real impulse responses become coordinates in a continuous character space &mdash; and how one living engine can travel beyond the spaces that physically exist.</p>
+        <a href="../whitepapers/vector-reverb-overview.html" class="btn">Read the Vector Reverb Overview</a>
+      </div>
+    </section>
+
+    <!-- Part of Section -->
+    <section class="section">
+      <div class="container">
+        <h2>Part of the OTTO / IDA Signal Path</h2>
+        <p>The Vector Reverb is one of the space and dynamics modules built for the OTTO and IDA engines. Explore the companions:</p>
+        <p class="mt-lg">
+          <a href="vector-compressor.html" class="btn btn--outline">Vector Compressor</a>
+          <a href="tapecolor.html" class="btn btn--outline">TapeColor</a>
+          <a href="otto.html" class="btn btn--outline">OTTO</a>
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; <span id="year">2025</span> Larry Seyer. All rights reserved.</p>
+      <div class="social-links">
+        <a href="https://github.com/larryseyer" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="https://www.youtube.com/larryseyer" target="_blank" rel="noopener noreferrer">YouTube</a>
+        <a href="https://open.spotify.com/artist/43rLqZlw7co7eyccfN9zRj" target="_blank" rel="noopener noreferrer">Spotify</a>
+        <a href="https://www.linkedin.com/in/larryseyer" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../../js/main.js"></script>
+</body>
+</html>

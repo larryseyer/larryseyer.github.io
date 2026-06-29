@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TS207FNV53"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-TS207FNV53');
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="The Vector Reverb Overview - a measured character space for reverberation, one living engine, the position-independence keystone, and reaching spaces that cannot physically exist.">
+  <meta property="og:title" content="Vector Reverb Overview - Larry Seyer">
+  <meta property="og:description" content="Reverberation behavior as a point in a continuous character space whose coordinates are measured from real impulse responses, rendered by a single living engine.">
+  <meta property="og:image" content="https://larryseyer.com/images/og-image.png">
+  <meta property="og:url" content="https://larryseyer.com/pages/whitepapers/vector-reverb-overview.html">
+  <meta property="og:type" content="article">
+  <meta name="twitter:card" content="summary_large_image">
+  <title>Vector Reverb Overview - Larry Seyer</title>
+  <link rel="stylesheet" href="../../css/style.css">
+  <link rel="icon" type="image/x-icon" href="../../favicon.ico">
+  <link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="container">
+      <a href="../../index.html" class="logo">Larry Seyer</a>
+      <button class="nav-toggle" aria-label="Toggle navigation">&#9776;</button>
+      <nav class="nav">
+        <a href="../work.html">Work</a>
+        <a href="../projects.html" class="active">Projects</a>
+        <a href="../live.html">Live</a>
+        <a href="../connect.html">Connect</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section class="project-hero">
+      <div class="container">
+        <span class="badge badge--active">Overview</span>
+        <h1>Vector Reverb Overview</h1>
+        <p>Reverberation behavior represented as a point in a continuous character space whose coordinates are measured from real impulse responses, then rendered by a single living engine.</p>
+        <p class="mt-lg"><a href="../projects/vector-reverb.html">&larr; Back to Vector Reverb</a></p>
+      </div>
+    </section>
+
+    <!-- A measured character space -->
+    <section class="section">
+      <div class="container">
+        <h2>A Measured Character Space for Reverberation</h2>
+        <p>Artificial reverberation has historically come in two forms. Convolution reproduces a measured space with high realism but cannot vary it &mdash; a single impulse response replays identically on every block, carrying the room's character along with its capture artifacts, modal ringing, and the stiffness of a decay that never breathes. Algorithmic reverberation is living and inexpensive but is usually voiced from invented parameters that correspond to no real space, and is widely judged the inferior sound. The Vector Reverb proposes a third form: reverberation behavior as a point in a continuous character space whose coordinates are <em>measured from real impulse responses</em>, rendered by a single living engine.</p>
+      </div>
+    </section>
+
+    <!-- From recordings to coordinates -->
+    <section class="section">
+      <div class="container">
+        <h2>From Recordings to Coordinates</h2>
+        <p>A library of professionally captured spaces supplies the tonal and temporal axes. Each capture is analyzed &mdash; not replayed &mdash; and reduced to a compact perceptual vector: pre-delay, broadband and per-band decay time, high-frequency damping, the rate at which discrete echoes build into a diffuse field, spectral centroid and tilt, clarity, and inter-channel coherence. Each measured space becomes an anchor coordinate.</p>
+        <p>Because the coordinates are extracted rather than invented, the system inherits the realism that makes measured spaces convincing while discarding the frozen artifacts that make a static recording sound stiff. Analysis of the library shows the obvious thing acousticians expect: size and tone vary independently &mdash; decay length and brightness are effectively uncorrelated &mdash; which is the formal justification for steering the space with orthogonal macro controls rather than a single slider.</p>
+      </div>
+    </section>
+
+    <!-- One living engine -->
+    <section class="section">
+      <div class="container">
+        <h2>One Living Engine</h2>
+        <p>Underneath the character space sits a single stateful algorithm: a modulated feedback delay network for the diffuse tail, fed by an input-diffusion stage and preceded by a directional early-reflection stage. Intermediate positions in the space are produced by interpolating the engine's coefficients along a path that threads the anchors in a perceptually smooth order &mdash; never by crossfading recordings or outputs. Stability is guaranteed by keeping the interpolated feedback contractive at every point on the path, so the decay always remains bounded, and parameter motion is smoothed so rapid macro moves never zipper. A slow, decorrelated modulation gives the tail living movement so a long decay never sounds static, while density comes from diffusion rather than modulation.</p>
+      </div>
+    </section>
+
+    <!-- Position independence -->
+    <section class="section">
+      <div class="container">
+        <h2>The Position-Independence Keystone</h2>
+        <p>The engine's spatial power comes from a single acoustic fact: the late diffuse field of a room is essentially independent of where the source and listener stand &mdash; after the mixing time, the reverberant field is a property of the room's volume and absorption. All position dependence lives in the early reflections: their timing, direction, and the direct-to-reverberant balance. So the diffuse tail is computed once per space and shared across every source, while a lightweight directional early stage, rendered per source position, carries all the position dependence. This makes correct, fully spatial multichannel rendering computationally affordable &mdash; exactly the property that lets one engine place many sources inside one space at performance scale.</p>
+      </div>
+    </section>
+
+    <!-- Reaching spaces -->
+    <section class="section">
+      <div class="container">
+        <h2>Reaching Spaces That Cannot Exist</h2>
+        <p>Because the engine renders from coefficients rather than from a recording, it is not bound by physics the way a real room is. Real spaces absorb high frequencies as they decay, so the "long and bright" region of the character space is physically empty &mdash; no real hall can sustain a long, brilliant tail. The algorithm has no such constraint and can render that region directly, reaching reverberation characters that convolution of the source library simply cannot produce. The captures are not replaced; they become the surveyed coordinates of a space the engine can travel beyond.</p>
+      </div>
+    </section>
+
+    <!-- Why it matters -->
+    <section class="section">
+      <div class="container">
+        <h2>Why It Matters in Practice</h2>
+        <p>One shared engine with multiple sends replaces multiple independent convolution instances, each running its own block-rate transforms over its own recording &mdash; collapsing many memory footprints into a single coefficient set. The result is the realism of measured spaces, the flexibility and low cost of an algorithm, and a single gesture that makes the whole space playable.</p>
+        <p class="mt-lg"><a href="../projects/vector-reverb.html">&larr; Back to Vector Reverb</a></p>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; <span id="year">2025</span> Larry Seyer. All rights reserved.</p>
+      <div class="social-links">
+        <a href="https://github.com/larryseyer" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="https://www.youtube.com/larryseyer" target="_blank" rel="noopener noreferrer">YouTube</a>
+        <a href="https://open.spotify.com/artist/43rLqZlw7co7eyccfN9zRj" target="_blank" rel="noopener noreferrer">Spotify</a>
+        <a href="https://www.linkedin.com/in/larryseyer" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../../js/main.js"></script>
+</body>
+</html>
