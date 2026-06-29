@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TS207FNV53"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-TS207FNV53');
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="The Vector Compressor - a single dynamics engine that morphs continuously through eight classic compressor characters along one signal path, for OTTO and IDA.">
+  <meta property="og:title" content="Vector Compressor - Larry Seyer">
+  <meta property="og:description" content="One dynamics engine that morphs continuously through eight classic compressor characters - a 24-coordinate character map, one Character knob.">
+  <meta property="og:image" content="https://larryseyer.com/images/og-image.png">
+  <meta property="og:url" content="https://larryseyer.com/pages/projects/vector-compressor.html">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <title>Vector Compressor - Larry Seyer</title>
+  <link rel="stylesheet" href="../../css/style.css">
+  <link rel="icon" type="image/x-icon" href="../../favicon.ico">
+  <link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="container">
+      <a href="../../index.html" class="logo">Larry Seyer</a>
+      <button class="nav-toggle" aria-label="Toggle navigation">&#9776;</button>
+      <nav class="nav">
+        <a href="../work.html">Work</a>
+        <a href="../projects.html" class="active">Projects</a>
+        <a href="../live.html">Live</a>
+        <a href="../connect.html">Connect</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- Project Hero -->
+    <section class="project-hero">
+      <div class="container">
+        <span class="badge badge--active">In Development</span>
+        <h1>Vector Compressor</h1>
+        <p>A single, always-stereo dynamics engine that morphs continuously through eight classic compressor characters along one signal path &mdash; a 24-coordinate character map, steered by one Character knob.</p>
+      </div>
+    </section>
+
+    <!-- The Problem Section -->
+    <section class="section">
+      <div class="container">
+        <h2>The Problem</h2>
+        <p>Analog-modeling compressors almost always ship as a menu of discrete emulations: a smooth optical unit, a punchy fast unit, a warm vari-mu unit &mdash; each a separate signal path you select with a switch. You get the voices the designer chose to model and nothing in between. Worse, running several of those models at once means several detectors, several sets of smeared transients, phase error where their outputs are blended, and several times the CPU.</p>
+        <p>There has never been a clean way to ask: what lives halfway between a fast, aggressive character and a slow, gluey one? In a menu of fixed models, that question has no answer &mdash; the space between the presets simply doesn't exist.</p>
+      </div>
+    </section>
+
+    <!-- Key Features Section -->
+    <section class="section">
+      <div class="container">
+        <h2>Key Features</h2>
+        <ul class="features">
+          <li><strong>One engine, one signal path</strong> - Never multiple models crossfading their audio; the morph interpolates <em>coefficients</em>, not outputs, so there is no double-detection, transient smear, or phase error</li>
+          <li><strong>A continuous Character knob</strong> - Travels through eight reference voices: a transparent origin, a punchy fast character, two optical characters, a clean vari-mu warmth, two big-iron vari-mu characters, and a hybrid mastering character</li>
+          <li><strong>A transparent "Ideal" origin</strong> - The literal zero of the space: perfectly clean, exactly the ratio, knee, and times you dial, with zero added harmonics &mdash; every character is that origin plus a displacement</li>
+          <li><strong>24 character coordinates</strong> - Spanning six mechanisms (detection, transfer curve, temporal response, gain-cell realization, coloration, and stereo coupling), covering every audible degree of freedom a compressor has</li>
+          <li><strong>Always-visible controls</strong> - Threshold, Ratio, Attack, Release, and Knee on every character; grab one to hold an absolute value across the morph and reach hybrid characters that never shipped in hardware</li>
+          <li><strong>Full stereo toolkit</strong> - Global Mid/Side mode, basis-paired Width/Balance, a frequency-dependent stereo-link crossover, a parametric detection-side EQ, external-key support, and lookahead</li>
+          <li><strong>Living analog behavior</strong> - A stateful transformer model with low-end bloom, a harmonic stage that growls only when the unit is working, and a continuous Drift/Age control that makes every instance slightly different</li>
+          <li><strong>Perceptual macros</strong> - Punch, Density, and Intensity drive whole groups of coordinates along ear-meaningful axes, atop fixed 4&times; linear-phase oversampling and a proven-stable feedback solver</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- White Paper Link -->
+    <section class="section">
+      <div class="container">
+        <h2>Read the White Paper</h2>
+        <p class="mb-md">How a single mathematical model reaches eight classic compressor characters &mdash; and every stable point in between &mdash; from one transparent origin.</p>
+        <a href="../whitepapers/vector-compressor-whitepaper.html" class="btn">Read the Vector Compressor White Paper</a>
+      </div>
+    </section>
+
+    <!-- Part of Section -->
+    <section class="section">
+      <div class="container">
+        <h2>Part of the OTTO / IDA Signal Path</h2>
+        <p>The Vector Compressor is the bus and master dynamics engine inside OTTO and an opt-in option in IDA. Explore the companion modules:</p>
+        <p class="mt-lg">
+          <a href="tapecolor.html" class="btn btn--outline">TapeColor</a>
+          <a href="vector-reverb.html" class="btn btn--outline">Vector Reverb</a>
+          <a href="otto.html" class="btn btn--outline">OTTO</a>
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; <span id="year">2025</span> Larry Seyer. All rights reserved.</p>
+      <div class="social-links">
+        <a href="https://github.com/larryseyer" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="https://www.youtube.com/larryseyer" target="_blank" rel="noopener noreferrer">YouTube</a>
+        <a href="https://open.spotify.com/artist/43rLqZlw7co7eyccfN9zRj" target="_blank" rel="noopener noreferrer">Spotify</a>
+        <a href="https://www.linkedin.com/in/larryseyer" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../../js/main.js"></script>
+</body>
+</html>

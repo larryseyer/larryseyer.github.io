@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TS207FNV53"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-TS207FNV53');
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="The IDA White Paper - a reference architecture for time-domain looping built on six first principles: a loop is an idea, time is a concept, and the instrument trusts the musician.">
+  <meta property="og:title" content="IDA White Paper - Larry Seyer">
+  <meta property="og:description" content="A reference architecture for time-domain looping: retroactive capture, symbolic time, and a recursive structure that unifies loops, phrases, and performances.">
+  <meta property="og:image" content="https://larryseyer.com/images/og-image.png">
+  <meta property="og:url" content="https://larryseyer.com/pages/whitepapers/ida-whitepaper.html">
+  <meta property="og:type" content="article">
+  <meta name="twitter:card" content="summary_large_image">
+  <title>IDA White Paper - Larry Seyer</title>
+  <link rel="stylesheet" href="../../css/style.css">
+  <link rel="icon" type="image/x-icon" href="../../favicon.ico">
+  <link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="container">
+      <a href="../../index.html" class="logo">Larry Seyer</a>
+      <button class="nav-toggle" aria-label="Toggle navigation">&#9776;</button>
+      <nav class="nav">
+        <a href="../work.html">Work</a>
+        <a href="../projects.html" class="active">Projects</a>
+        <a href="../live.html">Live</a>
+        <a href="../connect.html">Connect</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- White Paper Hero -->
+    <section class="project-hero">
+      <div class="container">
+        <span class="badge badge--active">White Paper</span>
+        <h1>IDA White Paper</h1>
+        <p>A reference architecture for time-domain audio and video looping &mdash; built from the conviction that on any computer there is no true time, only the best disciplined approximation.</p>
+        <p class="mt-lg"><a href="../projects/ida.html">&larr; Back to IDA</a></p>
+      </div>
+    </section>
+
+    <!-- A Different Kind of Looper -->
+    <section class="section">
+      <div class="container">
+        <h2>A Different Kind of Looper</h2>
+        <p>IDA begins from a single uncomfortable truth: on any computer there is no true time, only the best disciplined approximation. Every other decision in IDA follows from taking that seriously. Where a traditional looper counts audio samples and bolts time-correction on top, IDA <em>thinks in music</em> and only produces numbers at the very edge, where sound must physically leave a speaker.</p>
+        <p>The result is a complete production environment that spans the entire signal path &mdash; from physical input, through capture and looping and arrangement and mixing, to physical output &mdash; without the friction loopers have always carried.</p>
+      </div>
+    </section>
+
+    <!-- Six First Principles -->
+    <section class="section">
+      <div class="container">
+        <h2>Six First Principles</h2>
+        <ul class="features">
+          <li><strong>A loop is an idea, not a recording.</strong> It is a musical thought captured so it can be heard again.</li>
+          <li><strong>Ideas are worth repeating.</strong> Repetition is the point of the instrument, and it must stay musically alive rather than mechanical.</li>
+          <li><strong>A phrase is the unit of musical thought; a loop is just one mechanism a phrase may use.</strong> A phrase is a complete utterance with its own role, intent, entrance, and resolution, and may hold several loops, one-shot material, and silence.</li>
+          <li><strong>Time is a concept, not a number.</strong> The engine manipulates time symbolically and renders to numbers only at the last possible moment.</li>
+          <li><strong>The instrument trusts the musician.</strong> Its job is to anticipate what you likely want, offer it, and then disappear &mdash; never to second-guess or protect you from your own choices.</li>
+          <li><strong>It is a complete production environment, input to output.</strong> Capture, conditioning, looping, arrangement, and mixing are all in scope, because the creative act spans the whole path.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Time as a Concept -->
+    <section class="section">
+      <div class="container">
+        <h2>Time as a Concept</h2>
+        <p>Inside IDA, a position is never "47.832 milliseconds." It is a musical reference &mdash; "the downbeat of bar 1 of this phrase, in this phrase's own meter and tempo." These symbolic positions are <em>exact because they are defined exactly</em>, the way mathematics handles an irrational number symbolically rather than rounding it. Numerical time appears only at the membrane &mdash; the boundary between the digital engine and physical reality.</p>
+        <p>This dissolves problems that have plagued digital audio for decades:</p>
+        <ul class="features">
+          <li><strong>No shared tick grid.</strong> Odd tuplets and unusual subdivisions are simply structural relationships, not numbers forced onto a grid.</li>
+          <li><strong>No accumulated drift.</strong> The hundredth repetition of a loop is defined identically to the first, so it stays perfectly aligned forever.</li>
+          <li><strong>Polymetric and polytemporal music is free.</strong> A four-beat groove, a seven-beat ostinato, and a free, unmetered melodic line can all live inside one phrase, each in its own time domain, meeting only at the phrase's boundaries.</li>
+          <li><strong>Micro-timing is preserved exactly.</strong> Swing, feel, and deliberate push-or-pull are kept at substrate precision, never quantized or smoothed.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- The Master Clock -->
+    <section class="section">
+      <div class="container">
+        <h2>The Master Clock</h2>
+        <p>Because no hardware clock can be trusted as the master, IDA keeps a single software-level reference &mdash; a Logical Master Clock &mdash; that sits above every audio, video, and CPU clock and treats each as an imperfect source to be measured and corrected. It disciplines itself against the best timing source available, from high-precision network or satellite references down to the computer's own monotonic clock for solo, offline work.</p>
+        <p>Every hardware clock carries a continuously refreshed calibration record, and the clock's discipline history is saved with the session, so a recording made today remains archivally valid and reconstructable years from now.</p>
+      </div>
+    </section>
+
+    <!-- Tape -->
+    <section class="section">
+      <div class="container">
+        <h2>Tape: Everything Is Always Recorded</h2>
+        <p>The pivot of the whole system is the <strong>tape</strong> &mdash; an append-only, never-edited, always-running capture that begins the moment a source is assigned. You never arm recording before the creative moment; the moment is already on tape. A footswitch is a <em>time bookmark, not a capture trigger</em>, so you can reach backward and grab the phrase you just played &mdash; even the pickup note before it. Capture is therefore retroactive, imprecise timing carries no penalty, and every take is preserved losslessly.</p>
+        <p>Tapes are local, append-only, and sacred: nothing is ever silently erased, and tape integrity survives even an abrupt power loss. Every signal type is a tape &mdash; audio, MIDI, video, control gestures, parameter automation, and system events all share one uniform, timestamped format.</p>
+      </div>
+    </section>
+
+    <!-- Constituents -->
+    <section class="section">
+      <div class="container">
+        <h2>Constituents: One Recursive Structure</h2>
+        <p>Above the tape, every musical object is a <strong>Constituent</strong> &mdash; a loop, a phrase, a section, a song, and a whole set list are the same kind of thing at different scales, sharing one recursive structure. Constituents hold references, not audio data; all the heavy data lives on tape.</p>
+        <p>They are immutable, so edits are copy-on-write: trimming a boundary or changing an effect produces a new version while the old one survives, which makes deep undo, branching alternatives, and "what would this sound like" trivial. A phrase keeps its identity across every revision &mdash; "the verse" stays the verse through fifteen rewrites.</p>
+      </div>
+    </section>
+
+    <!-- Repetition and Arrangement -->
+    <section class="section">
+      <div class="container">
+        <h2>Repetition and Arrangement</h2>
+        <p>Every loop's playback is described by five independent axes &mdash; <strong>trigger, cardinality, phase, mutation, and termination</strong> &mdash; whose defaults handle the common cases and whose combinations produce living, evolving music. Mutation exists to sustain a performer's engagement invisibly, not to show off.</p>
+        <p>Arrangement happens at the phrase level and above, using the very same gestures at every scale: a section arranges phrases, a song arranges sections, a set arranges songs. Phrases carry a <strong>role</strong> (verse, chorus, fill), which lets them be swapped in and out for structured improvisation &mdash; two performances can share a song's shape while differing in the exact phrases that fill each role. Phrases placed on the arrangement timeline are references, not frozen renders, so one set of phrases can feed many arrangements.</p>
+      </div>
+    </section>
+
+    <!-- Two Mixers -->
+    <section class="section">
+      <div class="container">
+        <h2>Two Mixers Around the Tape</h2>
+        <p>IDA is symmetric: a full creative mixer on each side of the tape. Both are modality-agnostic, handling live audio, live MIDI, live video, and file input/output as equally first-class signals &mdash; so importing a file is just a tape that already exists, and exporting is just playback aimed at a file. Audio is always stereo, end to end.</p>
+        <p>Each input channel chooses, independently, whether the performer hears it and whether it is captured, and whether capture bakes in processing or keeps the dry signal plus a recoverable parameter track. Every channel and bus carries an always-present EQ and compressor &mdash; one click from enabling, for live work &mdash; plus an unlimited, freely ordered effects chain mixing built-in and industry-standard hosted effects. A parallel direct layer bypasses the tape entirely for low-latency monitoring, and a dedicated Control Room section governs monitor level, dim, mono, and solo listening.</p>
+      </div>
+    </section>
+
+    <!-- Built to Last -->
+    <section class="section">
+      <div class="container">
+        <h2>Built to Last and to Fail Gracefully</h2>
+        <p>IDA sizes itself once at startup, choosing a fidelity tier to match the hardware it finds &mdash; from high-end desktop workstations down to older, battery-powered, or modest mobile machines &mdash; without the performer ever thinking about it. Three rules never break, on any tier: <strong>audio output never glitches, tape integrity is never compromised, and degradation is always announced, never silent.</strong> Hosted effects run in isolated processes so a plugin crash can never glitch the engine.</p>
+        <p>Sessions are saved as a self-contained, versioned archive whose symbolic content &mdash; dry tapes, parameter tracks, structure, and arrangement &mdash; is preserved unconditionally and remains openable, editable, and re-renderable for decades. For ensembles, audio always stays local and only lightweight coordination crosses the network, so even a total network loss degrades gracefully to a clean solo recording.</p>
+        <p class="mt-lg"><a href="../projects/ida.html">&larr; Back to IDA</a></p>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; <span id="year">2025</span> Larry Seyer. All rights reserved.</p>
+      <div class="social-links">
+        <a href="https://github.com/larryseyer" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="https://www.youtube.com/larryseyer" target="_blank" rel="noopener noreferrer">YouTube</a>
+        <a href="https://open.spotify.com/artist/43rLqZlw7co7eyccfN9zRj" target="_blank" rel="noopener noreferrer">Spotify</a>
+        <a href="https://www.linkedin.com/in/larryseyer" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../../js/main.js"></script>
+</body>
+</html>
