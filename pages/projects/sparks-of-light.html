@@ -11,14 +11,14 @@
   </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Flourish - a standalone macOS visualizer that turns live MIDI and audio into real-time particle and note graphics for live performance and streaming capture.">
-  <meta property="og:title" content="Flourish - Larry Seyer">
+  <meta name="description" content="Sparks of Light - a standalone macOS visualizer that turns live MIDI and audio into real-time particle and note graphics for live performance and streaming capture.">
+  <meta property="og:title" content="Sparks of Light - Larry Seyer">
   <meta property="og:description" content="A standalone macOS visualizer that turns live MIDI and audio into real-time particle and note graphics for live performance and streaming capture.">
   <meta property="og:image" content="https://larryseyer.com/images/og-image.png">
-  <meta property="og:url" content="https://larryseyer.com/pages/projects/flourish.html">
+  <meta property="og:url" content="https://larryseyer.com/pages/projects/sparks-of-light.html">
   <meta property="og:type" content="website">
   <meta name="twitter:card" content="summary_large_image">
-  <title>Flourish - Larry Seyer</title>
+  <title>Sparks of Light - Larry Seyer</title>
   <link rel="stylesheet" href="../../css/style.css">
   <link rel="icon" type="image/x-icon" href="../../favicon.ico">
   <link rel="apple-touch-icon" href="../../apple-touch-icon.png">
@@ -43,7 +43,7 @@
     <section class="project-hero">
       <div class="container">
         <span class="badge badge--active">Active Development</span>
-        <h1>Flourish</h1>
+        <h1>Sparks of Light</h1>
         <p>A standalone macOS visualizer that turns live MIDI, audio, and MIDI/audio files into real-time particle and note graphics &mdash; built for live performance and streaming capture.</p>
       </div>
     </section>
@@ -52,7 +52,7 @@
     <section class="section">
       <div class="container">
         <h2>The Problem</h2>
-        <p>Performers and streamers want music-reactive visuals without wiring up a browser, a game engine, or a tangle of plugins. Flourish is a single native app: plug in a controller or feed it audio, choose a style, and capture the window. No web stack, no separate browser, no sidecar processes &mdash; just a self-contained app that follows the music.</p>
+        <p>Performers and streamers want music-reactive visuals without wiring up a browser, a game engine, or a tangle of plugins. Sparks of Light is a single native app: plug in a controller or feed it audio, choose a style, and capture the window. No web stack, no separate browser, no sidecar processes &mdash; just a self-contained app that follows the music.</p>
       </div>
     </section>
 
@@ -61,12 +61,17 @@
       <div class="container">
         <h2>Key Features</h2>
         <ul class="features">
-          <li><strong>Five visual styles</strong> - Flying Particles, Falling Notes, Piano Roll Bars, Burst, and Gem Particles with bloom, smoke, rays, and wind</li>
-          <li><strong>Four unified note sources</strong> - Live MIDI input, audio-to-MIDI conversion, MIDI file playback with auto-reload, and audio file playback</li>
+          <li><strong>Five visual styles</strong> - Flying Particles, Falling Notes, Piano Roll Bars, Burst, and Gem Particles (hexagonal gems with bloom, smoke, streaklets, rays, and wind turbulence)</li>
+          <li><strong>Four note sources, one pipeline</strong> - Live MIDI (CoreMIDI, hot-pluggable), audio-to-MIDI via an embedded BasicPitch model, MIDI file playback, and audio file playback, all funneling through a single lock-free engine</li>
           <li><strong>On-screen 88-key piano</strong> - Click to play and drag for glissando, useful for auditioning during capture rehearsals</li>
+          <li><strong>Source override</strong> - Force Both, MIDI-only, or Audio-only on the fly, so live playing and audio transcription never fight each other during capture</li>
+          <li><strong>Audio-to-MIDI cleanup</strong> - Noise gate (threshold + confidence), monophonic mode, and key-range and melody-range filters for clean transcription</li>
           <li><strong>Three colour modes</strong> - Pitch-class hue, fixed colour, or a configurable velocity gradient</li>
-          <li><strong>Deep per-style tuning</strong> - Speed, gravity, scatter, lifetime, trail, brightness, blend mode, bloom passes, and per-gem wind, turbulence, smoke, and rays</li>
-          <li><strong>Capture-friendly</strong> - Vsync'd rendering, chroma-key background option, full-screen toggle, and toggleable settings, transport, and debug panels</li>
+          <li><strong>Deep per-style tuning</strong> - Speed, gravity, scatter, lifetime, trail, brightness, blend mode, and post-process bloom, plus per-gem wind, turbulence, smoke, and rays</li>
+          <li><strong>Transport with loop &amp; auto-reload</strong> - Play, pause, stop, loop, and scrub loaded files; MIDI files auto-reload when you re-export them from a DAW</li>
+          <li><strong>Unified live settings panel</strong> (&#8984;,) - Every control in one place, live-tuned and persisted; device management snaps back and tells you why when the hardware refuses a change</li>
+          <li><strong>OSC control</strong> - Every visual control is drivable over OSC, and the app can snapshot its own state for recall</li>
+          <li><strong>Built for OBS</strong> - Vsync'd OpenGL rendering, chroma-green background for keying, full-screen toggle, and toggleable settings, transport, and debug panels</li>
           <li><strong>Self-contained</strong> - Native Apple Silicon, no web calls, no cloud, no login &mdash; the whole experience runs locally</li>
         </ul>
       </div>
@@ -77,7 +82,7 @@
       <div class="container">
         <h2>Screenshots</h2>
         <div class="screenshots">
-          <img src="../../images/projects/flourish-visualizer.png" alt="Flourish visualizer rendering colorful note particles drifting toward the on-screen 88-key piano">
+          <img src="../../images/projects/sparks-of-light-visualizer.png" alt="Sparks of Light visualizer rendering colorful note particles drifting toward the on-screen 88-key piano">
         </div>
       </div>
     </section>
