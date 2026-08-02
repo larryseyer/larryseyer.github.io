@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TS207FNV53"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-TS207FNV53');
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="VectorMorph - a sampling engine that gives multisampled instruments continuous response instead of stepped velocity layers. Proven in OTTO and Vector Sampler, and available for commercial license from Larry Seyer / Automagic Art.">
+  <meta property="og:title" content="VectorMorph - Licensed Technology - Larry Seyer">
+  <meta property="og:description" content="Continuous response for multisampled instruments, without crossfades, layer seams, or the machine-gun effect. Available for commercial license.">
+  <meta property="og:image" content="https://larryseyer.com/images/og-image.png">
+  <meta property="og:url" content="https://larryseyer.com/pages/projects/vectormorph.html">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <title>VectorMorph - Licensed Technology - Larry Seyer</title>
+  <link rel="canonical" href="https://larryseyer.com/pages/projects/vectormorph.html">
+  <link rel="stylesheet" href="../../css/style.css">
+  <link rel="icon" type="image/x-icon" href="../../favicon.ico">
+  <link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="container">
+      <a href="../../index.html" class="logo">Larry Seyer</a>
+      <button class="nav-toggle" aria-label="Toggle navigation">&#9776;</button>
+      <nav class="nav">
+        <a href="../work.html">Work</a>
+        <a href="../projects.html" class="active">Projects</a>
+        <a href="../live.html">Live</a>
+        <a href="../connect.html">Connect</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- Project Hero -->
+    <section class="project-hero">
+      <div class="container">
+        <span class="badge badge--active">Licensed Technology</span>
+        <h1>VectorMorph</h1>
+        <p>A sampling engine that makes a multisampled instrument respond continuously instead of in steps. It powers my own instruments, and it is available to license for yours.</p>
+      </div>
+    </section>
+
+    <!-- The Problem -->
+    <section class="section">
+      <div class="container">
+        <h2>The Problem It Solves</h2>
+        <p>A real instrument does not simply get louder when you play it harder. It changes character &mdash; the stick bites, the head speaks differently, the cymbal opens up. Sample libraries capture this by recording the instrument at several dynamic levels, and I have spent decades recording those layers.</p>
+        <p>Every sampler then does the same disappointing thing with them: it picks one, or crossfades two. Crossfading does not produce the tone in between. It produces two different recordings playing at once, which is a different sound entirely, and the seam is audible. Play a sustained roll and you also hear the other half of the problem &mdash; the same handful of samples cycling, the machine-gun effect that every drum programmer knows and works around.</p>
+      </div>
+    </section>
+
+    <!-- What it delivers -->
+    <section class="section">
+      <div class="container">
+        <h2>What It Delivers</h2>
+        <p>VectorMorph does not crossfade, and it does not synthesize. Where a real recording exists, you hear that recording, untouched. Everywhere in between, the engine produces the tone that genuinely belongs at that point &mdash; derived from the real recordings around it rather than mixed from two of them.</p>
+        <p>The effect on a player is immediate. The instrument stops behaving like a set of samples with boundaries and starts behaving like an instrument.</p>
+        <ul class="features">
+          <li><strong>Continuous response</strong> - Velocity, strike zone, and hi-hat openness are physically continuous on a real instrument, so they are continuous here rather than stepped into layers</li>
+          <li><strong>No audible layer seams</strong> - No crossfade artifacts and no pitch seam where one layer hands over to the next</li>
+          <li><strong>No machine-gun effect</strong> - Repeated notes vary inherently rather than cycling a fixed set of round-robins, so sustained rolls and fast passages hold up</li>
+          <li><strong>Real recordings throughout</strong> - Nothing is synthesized from parameters, nothing is neural, and nothing is resampled from a second room. Every operand is a real take</li>
+          <li><strong>Works with the library you already have</strong> - The engine is built to sit over existing multisampled material rather than requiring the instrument be recorded again</li>
+          <li><strong>Validated by ear</strong> - Every engine was signed off by listening to it, on real instruments, before it was called done</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Heritage -->
+    <section class="section">
+      <div class="container">
+        <h2>Where the Name Comes From</h2>
+        <p>The "vector" is the position in the morph space, and the idea descends from the vector synthesis of the Sequential Prophet VS and the Korg Wavestation &mdash; travelling between corner sounds by moving a point around. Those machines did it with oscillators. VectorMorph applies the same instinct to real recorded material, which is a considerably harder problem and a much more useful one.</p>
+        <p>The first instrument built on it is the Larry Seyer Acoustic Drums library, the same library I have been recording and programming since the Gigasampler days.</p>
+      </div>
+    </section>
+
+    <!-- Where it runs -->
+    <section class="section">
+      <div class="container">
+        <h2>Proven In</h2>
+        <p>VectorMorph is a self-contained engine with no dependency on any one product, which is what makes it portable to someone else's instrument. It runs in:</p>
+        <ul class="features">
+          <li><strong><a href="otto.html">OTTO</a></strong> - Uses it to play its drum library with continuous velocity and zone response</li>
+          <li><strong><a href="vector-sampler.html">Vector Sampler</a></strong> - The instrument built around it, generalizing it past drums</li>
+          <li><strong><a href="ida.html">IDA</a></strong> - Inherits it by embedding OTTO complete</li>
+        </ul>
+        <p class="mt-lg">The <a href="louis.html">LOUIS</a> effects plugins share the same design philosophy &mdash; travel continuously through a space rather than pick from a menu of presets &mdash; but they are effects, and they reach it by their own means rather than by running this engine.</p>
+        <p class="mt-lg">
+          <a href="otto.html" class="btn btn--outline">OTTO</a>
+          <a href="vector-sampler.html" class="btn btn--outline">Vector Sampler</a>
+          <a href="louis.html" class="btn btn--outline">LOUIS</a>
+        </p>
+      </div>
+    </section>
+
+    <!-- Who it is for -->
+    <section class="section">
+      <div class="container">
+        <h2>Who It Is For</h2>
+        <p>The problem VectorMorph solves is not specific to drums, or to my libraries. It belongs to anyone whose instrument is built from real recordings at discrete levels &mdash; which is very nearly everyone who samples acoustic instruments:</p>
+        <ul class="features">
+          <li><strong>Instrument and plugin developers</strong> - Give an existing sampler engine continuous response without re-recording the source material</li>
+          <li><strong>Sample library developers</strong> - Let a library play the way it was heard in the room, rather than the way the layer boundaries allow</li>
+          <li><strong>Game and interactive audio</strong> - Continuous dynamic response matters more where performance is generated rather than performed, and where repetition is constant</li>
+          <li><strong>Instrument manufacturers</strong> - Electronic and hybrid instruments whose expressiveness is limited by the playback engine rather than by the controller</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Licensing -->
+    <section class="section">
+      <div class="container">
+        <h2>Licensing VectorMorph</h2>
+        <p>VectorMorph is proprietary technology developed by Larry Seyer for Automagic Art, and it is <strong>available for commercial license</strong>. I would rather this technology be used widely and properly than sit inside my own products alone &mdash; it solves a problem the whole sampling world has lived with for thirty years, and it should not stay in one place.</p>
+        <p>Licensing is by agreement, shaped to what a project actually needs &mdash; integration into an existing engine, adaptation to a particular instrument or library, or development done together. Terms are discussed directly rather than pulled off a price list, because no two of those are the same piece of work.</p>
+
+        <h3>Attribution</h3>
+        <p>Every license carries one requirement that is not negotiable: <strong>credit</strong>. A product built on this engine says so, crediting <em>VectorMorph by Larry Seyer / Automagic Art</em>.</p>
+        <p>That is not vanity. It is how someone who hears the difference in your instrument can find out what produced it, and go and find the other tools built on the same idea. Attribution is the discovery path, and it is the reason the technology can spread on its own merits.</p>
+
+        <h3>Unlicensed Use</h3>
+        <p>The engine, its method, and its implementations are protected by copyright and other intellectual property law, and no rights are granted by this page or by access to any repository. Use of the technology requires a license. If you want to build on it, get in touch &mdash; the answer is far more likely to be yes than no.</p>
+
+        <p class="mt-lg">
+          <a href="../connect.html" class="btn">Enquire About Licensing</a>
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; <span id="year">2025</span> Larry Seyer. All rights reserved.</p>
+      <div class="social-links">
+        <a href="https://github.com/larryseyer" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="https://www.youtube.com/larryseyer" target="_blank" rel="noopener noreferrer">YouTube</a>
+        <a href="https://www.facebook.com/LarrySeyerOfficialPage" target="_blank" rel="noopener noreferrer">Facebook</a>
+        <a href="https://rumble.com/c/larryseyer" target="_blank" rel="noopener noreferrer">Rumble</a>
+        <a href="https://open.spotify.com/artist/43rLqZlw7co7eyccfN9zRj" target="_blank" rel="noopener noreferrer">Spotify</a>
+        <a href="https://music.apple.com/us/artist/larry-seyer/20363332" target="_blank" rel="noopener noreferrer">Apple Music</a>
+        <a href="https://music.amazon.com/artists/B00137FA36/larry-seyer" target="_blank" rel="noopener noreferrer">Amazon Music</a>
+        <a href="https://music.youtube.com/@larryseyer" target="_blank" rel="noopener noreferrer">YouTube Music</a>
+        <a href="https://www.linkedin.com/in/larryseyer" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../../js/main.js"></script>
+</body>
+</html>
