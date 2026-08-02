@@ -11,15 +11,15 @@
   </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Vector Tape - a fully algorithmic analog-tape coloration module for OTTO and IDA, adding warmth, saturation, and gentle movement across the master and category buses.">
-  <meta property="og:title" content="Vector Tape - Larry Seyer">
-  <meta property="og:description" content="A fully algorithmic analog-tape coloration module for OTTO and IDA - warmth, saturation, and gentle tape movement, per-bus.">
+  <meta name="description" content="LOUIS - a standalone effects plugin suite from AutomagicArt. The Vector engines built for OTTO and IDA, packaged as VST3, AU, CLAP, and AUv3 plugins for any DAW.">
+  <meta property="og:title" content="LOUIS - Larry Seyer">
+  <meta property="og:description" content="A standalone effects plugin suite - the Vector engines from OTTO and IDA, packaged for any DAW.">
   <meta property="og:image" content="https://larryseyer.com/images/og-image.png">
-  <meta property="og:url" content="https://larryseyer.com/pages/projects/vector-tape.html">
+  <meta property="og:url" content="https://larryseyer.com/pages/projects/louis.html">
   <meta property="og:type" content="website">
   <meta name="twitter:card" content="summary_large_image">
-  <title>Vector Tape - Larry Seyer</title>
-  <link rel="canonical" href="https://larryseyer.com/pages/projects/vector-tape.html">
+  <title>LOUIS - Larry Seyer</title>
+  <link rel="canonical" href="https://larryseyer.com/pages/projects/louis.html">
   <link rel="stylesheet" href="../../css/style.css">
   <link rel="icon" type="image/x-icon" href="../../favicon.ico">
   <link rel="apple-touch-icon" href="../../apple-touch-icon.png">
@@ -44,47 +44,56 @@
     <section class="project-hero">
       <div class="container">
         <span class="badge badge--active">In Development</span>
-        <h1>Vector Tape</h1>
-        <p>A fully algorithmic analog-tape coloration module for OTTO and IDA &mdash; the warmth, saturation, and gentle movement of classic reel-to-reel tape, applied where you want it.</p>
+        <h1>LOUIS</h1>
+        <p>The effects engines built for OTTO and IDA, packaged as standalone plugins for any DAW &mdash; the same processing, the same voicing, outside the instrument that first needed it.</p>
       </div>
     </section>
 
-    <!-- The Problem Section -->
+    <!-- The Idea -->
     <section class="section">
       <div class="container">
         <h2>The Idea</h2>
-        <p>Tape gives a mix glue, warmth, and a subtle sense of motion that purely digital signal paths lack. Vector Tape models that behavior algorithmically &mdash; no samples, no convolution &mdash; and runs not as a single effect on the master but as five always-on instances: one on the master bus and one on each of the four category buses (Drums, Percs, Shakers, Hands). Each section of the kit can be colored independently before everything glues together at the master.</p>
-        <p>It is built as a shared module so OTTO and IDA behave identically, and it follows the same strict real-time rules as the host engine &mdash; no allocations, locks, logging, or file I/O on the audio thread.</p>
+        <p>OTTO and IDA grew their own effects because nothing off the shelf did quite the right thing &mdash; a compressor that travels continuously between characters instead of offering a menu of them, a reverb derived from measurements of real spaces, a tape stage that models the magnetics rather than sampling the result. Those engines were built for a drum instrument, but nothing about them is drum-specific.</p>
+        <p>LOUIS is that work made available on its own: the same engines, unmodified, wrapped so they load on any track in any session. Nothing is reimplemented for the standalone versions &mdash; they compile the same source OTTO does, so a mix built with one behaves identically in the other.</p>
       </div>
     </section>
 
-    <!-- Key Features Section -->
+    <!-- The Suite -->
     <section class="section">
       <div class="container">
-        <h2>Key Features</h2>
+        <h2>The Suite</h2>
         <ul class="features">
-          <li><strong>Magnetic-saturation modeling</strong> - A physically-modeled tape-magnetization stage produces musical harmonic saturation and soft compression that intensifies as you push the input harder</li>
-          <li><strong>Selectable tape character</strong> - Multiple generic machine and tape-formulation profiles, each shifting saturation depth, frequency emphasis, and noise character</li>
-          <li><strong>Tape-speed emphasis EQ</strong> - A per-machine filter cascade (head-bump low end, high-frequency roll-off, optional resonance) whose voicing shifts with the selected tape speed</li>
-          <li><strong>Wow and flutter</strong> - Subtle pitch and timing movement from modeled transport instability, available free-running or synced to project tempo</li>
-          <li><strong>Authentic noise behavior</strong> - Modeled hiss and program-dependent modulation noise that ducks with the signal envelope, tuned per profile</li>
-          <li><strong>Tape-stop effect</strong> - A triggered, musical pitch-and-filter slow-down and restart with no clicks</li>
-          <li><strong>Quality tiers and level matching</strong> - Selectable processing quality with loudness-matched input/output gain, so you hear coloration, not just a volume change</li>
+          <li><strong>Vector Compressor</strong> - A single always-stereo dynamics engine that morphs continuously through eight classic compressor characters along one signal path</li>
+          <li><strong>Vector Reverb</strong> - A living algorithmic reverb whose coefficients derive from measurements of real acoustic spaces, reaching rooms that could not physically exist</li>
+          <li><strong>Vector Tape</strong> - Algorithmic analog-tape coloration: magnetic saturation, tape-speed emphasis, wow and flutter, and program-dependent noise</li>
+          <li><strong>Vector Dist</strong> - A distortion in its own right, with a character sweep running from fuzz through grind and crunch to warm</li>
         </ul>
+        <p class="mt-lg">Built as VST3, AU, CLAP, and AUv3 for macOS, Windows, and iOS.</p>
       </div>
     </section>
 
-    <!-- Part of Section -->
+    <!-- Companions -->
     <section class="section">
       <div class="container">
-        <h2>Part of the OTTO / IDA Signal Path</h2>
-        <p>Vector Tape is one of several effects modules built for the OTTO and IDA engines. The same engine is also packaged as a standalone VST3, AU, CLAP, and AUv3 plugin in <a href="louis.html">LOUIS</a>, so it can be used on any track in any DAW.</p>
+        <h2>Read More</h2>
+        <p>Three of the four engines are documented in depth on their own pages, written from the perspective of the OTTO and IDA signal path they were designed inside:</p>
         <p class="mt-lg">
           <a href="vector-compressor.html" class="btn btn--outline">Vector Compressor</a>
           <a href="vector-reverb.html" class="btn btn--outline">Vector Reverb</a>
-          <a href="louis.html" class="btn btn--outline">LOUIS</a>
-          <a href="otto.html" class="btn btn--outline">OTTO</a>
+          <a href="vector-tape.html" class="btn btn--outline">Vector Tape</a>
         </p>
+        <p class="mt-lg">
+          <a href="otto.html" class="btn btn--outline">OTTO</a>
+          <a href="ida.html" class="btn btn--outline">IDA</a>
+        </p>
+      </div>
+    </section>
+
+    <!-- Licensing Section -->
+    <section class="section">
+      <div class="container">
+        <h2>Licensing</h2>
+        <p>LOUIS is commercial, proprietary software &mdash; licensed, not sold. Music you make with it is yours, and no royalty is owed on it.</p>
       </div>
     </section>
   </main>
