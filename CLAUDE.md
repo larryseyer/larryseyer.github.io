@@ -59,10 +59,25 @@ python3 -m http.server 8000
 
 ## GitHub Repository Links
 
-Projects link to these repos:
-- OTTO: https://github.com/larryseyer/OTTO
+Projects link to these repos. All are public — verify with
+`gh repo view <owner/name> --json visibility` before adding a link, because a private or
+deleted repo 404s for visitors:
+
 - JTF News: https://github.com/larryseyer/jtfnews
-- GRIM: https://github.com/larryseyer/GRIM-for-Reaper
+- JTF News iOS app: https://github.com/larryseyer/jtfnewsapp
 - iCandy: https://github.com/larryseyer/iCandy
 - ShowSwitcher: https://github.com/larryseyer/companion-module-generic-showswitcher
 - MIDI2Button: https://github.com/larryseyer/midi2button
+- ACIM Daily Minute: https://github.com/larryseyer/ACIMDailyMinuteApp
+
+**Do not link OTTO, IDA, or GRIM to GitHub.** OTTO and IDA are private and
+`larryseyer/GRIM-for-Reaper` does not exist; all three are proprietary products and their
+pages carry a Licensing section instead of a source link.
+
+## Licensing Claims
+
+The product family moved from AGPLv3 to proprietary on 2026-08-01. Before writing or editing
+any licensing sentence on a project page, read that project's `LICENSE` file and match it. The
+"versions released before 2026 remain under the AGPLv3" sentences on the OTTO and IDA pages are
+deliberate — those grants cannot be revoked, and removing them would make the pages inaccurate
+again in the other direction.
