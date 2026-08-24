@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Direction C — Stage Light — Larry Seyer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Public+Sans:wght@400;500;600&family=Azeret+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --void:#0a0713;
+  --panel:#130e21;
+  --panel-2:#1a1430;
+  --edge:#2c2246;
+  --text:#f1ecff;
+  --dim:#9c92bd;
+  --mag:#ff3d92;
+  --cyan:#3ddcff;
+  --spot:#ffb648;
+  --pad:clamp(1.25rem,5vw,4rem);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+body{
+  background:var(--void);color:var(--text);
+  font-family:'Public Sans',system-ui,sans-serif;line-height:1.6;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:2px solid var(--cyan);outline-offset:3px}
+.wrap{max-width:1180px;margin:0 auto;padding:0 var(--pad);position:relative;z-index:2}
+.mono{font-family:'Azeret Mono',monospace;text-transform:uppercase;letter-spacing:.2em;font-size:.68rem}
+
+/* two-source wash: magenta from house left, cyan from house right */
+.wash{position:fixed;inset:0;z-index:0;pointer-events:none}
+.wash::before,.wash::after{content:"";position:absolute;width:110vmax;height:110vmax;border-radius:50%;filter:blur(90px);opacity:.18}
+.wash::before{background:radial-gradient(circle,var(--mag),transparent 62%);top:-58vmax;left:-40vmax}
+.wash::after{background:radial-gradient(circle,var(--cyan),transparent 62%);top:-40vmax;right:-45vmax}
+
+/* ---------- header ---------- */
+.top{position:sticky;top:0;z-index:40;background:rgba(10,7,19,.72);backdrop-filter:blur(14px);border-bottom:1px solid var(--edge)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;height:66px;gap:1rem}
+.brand{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:1.15rem;letter-spacing:-.02em}
+.brand i{font-style:normal;background:linear-gradient(90deg,var(--mag),var(--cyan));-webkit-background-clip:text;background-clip:text;color:transparent}
+.top nav{display:flex;gap:1.7rem}
+.top nav a{font-family:'Azeret Mono',monospace;font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;color:var(--dim);transition:color .18s}
+.top nav a:hover{color:var(--text)}
+.top .live-pill{display:flex;align-items:center;gap:.5rem;border:1px solid var(--edge);border-radius:100px;padding:.35rem .8rem;font-family:'Azeret Mono',monospace;font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--dim)}
+.pulse{width:7px;height:7px;border-radius:50%;background:var(--mag);box-shadow:0 0 0 0 rgba(255,61,146,.6);animation:p 2.2s infinite}
+@keyframes p{70%{box-shadow:0 0 0 9px rgba(255,61,146,0)}100%{box-shadow:0 0 0 0 rgba(255,61,146,0)}}
+@media(max-width:900px){.top .live-pill{display:none}}
+
+
+/* ---------- hero ---------- */
+.hero{position:relative;padding:clamp(3.5rem,9vw,6.5rem) 0 clamp(8.5rem,20vh,13rem);overflow:hidden}
+.spectrum{position:absolute;left:0;right:0;bottom:0;height:min(26vh,190px);z-index:1;opacity:.9;
+  -webkit-mask-image:linear-gradient(180deg,transparent,#000 42%);mask-image:linear-gradient(180deg,transparent,#000 42%)}
+.spectrum canvas{width:100%;height:100%;display:block}
+.hero .wrap{position:relative;z-index:2}
+.kicker{display:inline-flex;align-items:center;gap:.55rem;white-space:nowrap;max-width:100%;border:1px solid var(--edge);border-radius:100px;padding:.4rem .95rem;font-family:'Azeret Mono',monospace;font-size:.63rem;letter-spacing:.2em;text-transform:uppercase;color:var(--dim);margin-bottom:1.8rem}
+.kicker b{color:var(--spot);font-weight:500}
+.hero h1{
+  font-family:'Bricolage Grotesque',sans-serif;font-weight:800;
+  font-size:clamp(2.9rem,8.4vw,6.4rem);line-height:.94;letter-spacing:-.035em;max-width:16ch;
+}
+.hero h1 .lit{background:linear-gradient(100deg,var(--mag) 0%,#bf5cff 46%,var(--cyan) 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{margin-top:1.8rem;max-width:54ch;font-size:clamp(1.02rem,1.6vw,1.2rem);color:#c4bce0}
+.cta{display:flex;flex-wrap:wrap;gap:.75rem;margin-top:2.2rem}
+.btn{border-radius:100px;padding:.85rem 1.6rem;font-family:'Azeret Mono',monospace;font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;border:1px solid var(--edge);transition:.18s;color:var(--text)}
+.btn:hover{border-color:var(--cyan);color:var(--cyan)}
+.btn--lit{background:linear-gradient(100deg,var(--mag),#c93cff);border-color:transparent;color:#fff;font-weight:500}
+.btn--lit:hover{filter:brightness(1.12);color:#fff;border-color:transparent}
+
+/* ---------- credit ticker ---------- */
+.ticker{border-top:1px solid var(--edge);border-bottom:1px solid var(--edge);overflow:hidden;background:rgba(19,14,33,.6);position:relative;z-index:2}
+.ticker__row{display:flex;gap:3rem;padding:.95rem 0;white-space:nowrap;animation:slide 34s linear infinite;width:max-content}
+@keyframes slide{to{transform:translateX(-50%)}}
+.ticker span{font-family:'Azeret Mono',monospace;font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;color:var(--dim)}
+.ticker span b{color:var(--spot);font-weight:400}
+
+/* ---------- sections ---------- */
+section.blk{padding:clamp(3.2rem,8vw,6rem) 0;position:relative;z-index:2}
+.sec-head{margin-bottom:2.6rem}
+.sec-head .mono{color:var(--mag);display:block;margin-bottom:.9rem}
+.sec-head h2{font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:clamp(1.8rem,4.4vw,2.9rem);letter-spacing:-.03em;line-height:1.02;max-width:20ch}
+.sec-head p{color:var(--dim);max-width:52ch;margin-top:.9rem}
+
+/* practice cards with a moving spotlight */
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(258px,1fr));gap:1.1rem}
+.lit-card{
+  position:relative;border:1px solid var(--edge);border-radius:16px;padding:1.8rem 1.5rem;
+  background:var(--panel);overflow:hidden;transition:border-color .2s,transform .2s;
+}
+.lit-card:hover{border-color:#453567;transform:translateY(-3px)}
+.lit-card::before{
+  content:"";position:absolute;width:280px;height:280px;border-radius:50%;
+  background:radial-gradient(circle,rgba(255,61,146,.22),transparent 68%);
+  left:var(--mx,50%);top:var(--my,0%);transform:translate(-50%,-50%);
+  opacity:0;transition:opacity .25s;pointer-events:none;
+}
+.lit-card:hover::before{opacity:1}
+.lit-card h3{font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:1.3rem;letter-spacing:-.02em;margin-bottom:.6rem;position:relative}
+.lit-card p{color:var(--dim);font-size:.93rem;position:relative}
+.lit-card .n{font-family:'Azeret Mono',monospace;font-size:.62rem;letter-spacing:.2em;color:var(--cyan);display:block;margin-bottom:1.1rem;position:relative}
+
+/* project tiles */
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.2rem}
+.tile{border:1px solid var(--edge);border-radius:18px;overflow:hidden;background:var(--panel);display:flex;flex-direction:column;transition:.22s}
+.tile:hover{border-color:var(--mag);box-shadow:0 18px 50px -22px rgba(255,61,146,.5)}
+.tile__shot{aspect-ratio:16/10;overflow:hidden;position:relative;background:#0b0814}
+.tile__shot img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease,filter .3s}
+.tile:hover .tile__shot img{transform:scale(1.04)}
+.tile__shot::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 42%,rgba(10,7,19,.9));pointer-events:none}
+.tile__body{padding:1.3rem 1.35rem 1.6rem}
+.tile .tag{font-family:'Azeret Mono',monospace;font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--cyan);display:block;margin-bottom:.55rem}
+.tile h3{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:1.55rem;letter-spacing:-.03em;margin-bottom:.45rem}
+.tile p{color:var(--dim);font-size:.9rem}
+
+/* live block */
+.stage{
+  position:relative;border-radius:22px;overflow:hidden;border:1px solid var(--edge);
+  display:grid;grid-template-columns:1.1fr .9fr;align-items:stretch;
+}
+@media(max-width:860px){.stage{grid-template-columns:1fr}}
+.stage__img{position:relative;min-height:300px}
+.stage__img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:42% 35%;
+  filter:saturate(.92) contrast(1.04)}
+.stage__img::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(90deg,rgba(255,61,146,.10),transparent 34%),
+             linear-gradient(90deg,transparent 22%,rgba(19,14,33,.5) 56%,var(--panel) 90%)}
+@media(max-width:860px){.stage__img::after{background:linear-gradient(180deg,transparent 35%,rgba(19,14,33,.5) 70%,var(--panel) 96%)}}
+.stage__copy{background:var(--panel);padding:clamp(1.6rem,4vw,2.8rem);display:flex;flex-direction:column;justify-content:center}
+.stage__copy h2{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(1.6rem,3.6vw,2.4rem);letter-spacing:-.03em;line-height:1.02;margin-bottom:.9rem}
+.stage__copy p{color:var(--dim)}
+.where{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.5rem}
+.where a{border:1px solid var(--edge);border-radius:100px;padding:.55rem 1rem;font-family:'Azeret Mono',monospace;font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);transition:.18s}
+.where a:hover{border-color:var(--cyan);color:var(--cyan)}
+
+/* kits */
+.kits{
+  border-radius:22px;padding:clamp(1.7rem,4vw,3rem);
+  background:linear-gradient(115deg,rgba(255,61,146,.14),rgba(61,220,255,.1)),var(--panel);
+  border:1px solid var(--edge);display:flex;gap:1.6rem;flex-wrap:wrap;align-items:center;justify-content:space-between;
+}
+.kits h2{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(1.6rem,3.6vw,2.4rem);letter-spacing:-.03em;line-height:1.04}
+.kits p{color:var(--dim);max-width:50ch;margin-top:.7rem;font-size:.95rem}
+
+footer{border-top:1px solid var(--edge);padding:2.6rem 0 3.6rem;position:relative;z-index:2}
+.f-links{display:flex;flex-wrap:wrap;gap:.4rem 1.4rem;font-family:'Azeret Mono',monospace;font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;color:var(--dim);margin-bottom:1.3rem}
+.f-links a:hover{color:var(--mag)}
+footer small{font-family:'Azeret Mono',monospace;font-size:.62rem;letter-spacing:.14em;color:#6d6590}
+
+@media(max-width:760px){
+  .top .wrap{flex-wrap:wrap;height:auto;padding-top:.7rem;padding-bottom:.45rem;gap:.45rem}
+  .top nav{order:3;width:100%;overflow-x:auto;gap:1.3rem;padding-bottom:.3rem;scrollbar-width:none}
+  .top nav::-webkit-scrollbar{display:none}
+  .top nav a{white-space:nowrap;font-size:.6rem;letter-spacing:.12em}
+  .kicker{display:block;white-space:normal;border:0;padding:0;border-radius:0;line-height:1.8;margin-bottom:1.3rem}
+}
+</style>
+</head>
+<body>
+<div class="wash" aria-hidden="true"></div>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#">Larry <i>Seyer</i></a>
+    <nav>
+      <a href="#work">Work</a><a href="#projects">Projects</a><a href="#live">Live</a><a href="#kits">Drum Kits</a><a href="#connect">Connect</a>
+    </nav>
+    <span class="live-pill"><i class="pulse"></i> Streaming Thursdays</span>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <!-- SIGNATURE: a live spectrum lit by the same two colors as his stage rig -->
+    <div class="spectrum" aria-hidden="true"><canvas id="spec" width="1800" height="420"></canvas></div>
+    <div class="wrap">
+      <p class="kicker">Nine Grammys <b>&middot;</b> Bastrop, Texas <b>&middot;</b> Since 1971</p>
+      <h1>I spent fifty years <span class="lit">making records sound right.</span> Now I build the tools.</h1>
+      <p>Twenty years of Asleep At The Wheel records taught me exactly where the software gets in the
+        way. So I write my own &mdash; drum instruments you play instead of program, loopers that behave on
+        a stage, visuals that move with the take.</p>
+      <div class="cta">
+        <a class="btn btn--lit" href="#projects">See the tools</a>
+        <a class="btn" href="#live">Watch the show</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker__row">
+      <span>Asleep At The Wheel <b>&mdash;</b> 1986&ndash;2007</span><span>9 <b>&times;</b> Grammy Award</span>
+      <span>Platinum records</span><span>Film &amp; TV post</span><span>Surround &amp; immersive</span>
+      <span>Live broadcast audio</span><span>REAPER <b>&middot;</b> Pro Tools <b>&middot;</b> Logic</span>
+      <span>Asleep At The Wheel <b>&mdash;</b> 1986&ndash;2007</span><span>9 <b>&times;</b> Grammy Award</span>
+      <span>Platinum records</span><span>Film &amp; TV post</span><span>Surround &amp; immersive</span>
+      <span>Live broadcast audio</span><span>REAPER <b>&middot;</b> Pro Tools <b>&middot;</b> Logic</span>
+    </div>
+  </div>
+
+  <section class="blk" id="work">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="mono">What I do</span>
+        <h2>Three practices that keep feeding each other.</h2>
+        <p>The records tell me what the software is missing. The software makes the next record faster.
+          The show is where both get tested in public.</p>
+      </div>
+      <div class="grid3">
+        <article class="lit-card">
+          <span class="n">Records</span>
+          <h3>Tracking, mixing, mastering</h3>
+          <p>Albums, singles, film, and television post. Pro Tools, REAPER, and Logic, with surround and
+            immersive work when a project asks for it.</p>
+        </article>
+        <article class="lit-card">
+          <span class="n">Software</span>
+          <h3>Instruments and utilities</h3>
+          <p>C++ and JUCE for the plugins, Lua and JSFX inside REAPER. Built in the room where they get
+            used, then shipped once they survive a real session.</p>
+        </article>
+        <article class="lit-card">
+          <span class="n">Live</span>
+          <h3>Streams and broadcast audio</h3>
+          <p>Multi-camera switching, low-latency monitoring, and the automation that lets one person run
+            a clean show without a crew.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="blk" id="projects">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="mono">In build</span>
+        <h2>Tools that came out of real sessions.</h2>
+      </div>
+      <div class="tiles">
+        <a class="tile" href="#">
+          <div class="tile__shot"><img src="../../images/projects/otto-players.png" alt="OTTO drum instrument interface"></div>
+          <div class="tile__body">
+            <span class="tag">Instrument &middot; Active</span>
+            <h3>OTTO</h3>
+            <p>Four drummers you play instead of program. Organic tempo, human placement, arrangement
+              that follows the song instead of the grid.</p>
+          </div>
+        </a>
+        <a class="tile" href="#">
+          <div class="tile__shot"><img src="../../images/projects/grim-gui.png" alt="GRIM loop station interface"></div>
+          <div class="tile__body">
+            <span class="tag">REAPER &middot; Active</span>
+            <h3>GRIM</h3>
+            <p>Scene-based looping built for a stage. Every scene lands on the beat you asked for, with
+              no rescue click in front of an audience.</p>
+          </div>
+        </a>
+        <a class="tile" href="#">
+          <div class="tile__shot"><img src="../../images/projects/sparks-of-light-visualizer.png" alt="Sparks of Light visualizer"></div>
+          <div class="tile__body">
+            <span class="tag">macOS &middot; Active</span>
+            <h3>Sparks of Light</h3>
+            <p>Live MIDI and audio turned into particles and notes on screen, in time, with no render
+              step in between.</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="blk" id="live">
+    <div class="wrap">
+      <div class="stage">
+        <div class="stage__img"><img src="assets/ls-studio-wide.jpg" alt="Larry Seyer playing guitar in his studio, surrounded by keyboards and a wall of guitars"></div>
+        <div class="stage__copy">
+          <span class="mono" style="color:var(--mag);display:block;margin-bottom:.8rem">The Larry Seyer Show</span>
+          <h2>One broadcast, three platforms, no crew.</h2>
+          <p>Audio engineering, software, and the occasional guitar. The stream goes out to YouTube,
+            Facebook, and Rumble at once &mdash; watch wherever you already are. Long-form conversations land
+            on the podcast feed a few days later.</p>
+          <div class="where">
+            <a href="#">YouTube</a><a href="#">Facebook</a><a href="#">Rumble</a><a href="#">Spotify</a><a href="#">RSS</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="blk" id="kits">
+    <div class="wrap">
+      <div class="kits">
+        <div>
+          <h2>Five acoustic drum kits. Free, and they stay free.</h2>
+          <p>Recorded, edited, and programmed by hand &mdash; the same library composers have leaned on since
+            the GigaStudio days. SFZ format, so any free player will load them. Use them on your own
+            releases, commercial included.</p>
+        </div>
+        <a class="btn btn--lit" href="#">Get the kits</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer id="connect">
+  <div class="wrap">
+    <div class="f-links">
+      <a href="#">GitHub</a><a href="#">YouTube</a><a href="#">Facebook</a><a href="#">Rumble</a>
+      <a href="#">Spotify</a><a href="#">Apple Music</a><a href="#">Amazon Music</a><a href="#">LinkedIn</a>
+    </div>
+    <small>&copy; 2026 Larry Seyer &nbsp;&middot;&nbsp; Bastrop, Texas</small>
+  </div>
+</footer>
+
+<script>
+var reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+
+// spotlight follows the cursor across each card
+document.querySelectorAll('.lit-card').forEach(function(el){
+  el.addEventListener('pointermove',function(e){
+    var r=el.getBoundingClientRect();
+    el.style.setProperty('--mx',(e.clientX-r.left)+'px');
+    el.style.setProperty('--my',(e.clientY-r.top)+'px');
+  });
+});
+
+// spectrum ridge — slow, musical, lit magenta to cyan
+var c=document.getElementById('spec'),x=c.getContext('2d');
+var N=96,ph=[];for(var i=0;i<N;i++)ph.push(Math.random()*Math.PI*2);
+function frame(t){
+  var w=c.width,h=c.height;
+  x.clearRect(0,0,w,h);
+  var bw=w/N;
+  for(var i=0;i<N;i++){
+    var tilt=Math.pow(1-i/N,1.25);           // spectrum falls off with frequency
+    var s=reduce?.55:(0.5+0.5*Math.sin(t/1100+ph[i]+i*0.14));
+    var a=(0.14+tilt*0.86)*s*h*0.92;
+    var g=x.createLinearGradient(0,h,0,h-a);
+    g.addColorStop(0,'rgba(255,61,146,.10)');
+    g.addColorStop(.55,'rgba(255,182,72,.42)');
+    g.addColorStop(1,'rgba(61,220,255,.85)');
+    x.fillStyle=g;
+    x.fillRect(i*bw+bw*.18,h-a,bw*.64,a);
+  }
+  if(!reduce)requestAnimationFrame(frame);
+}
+requestAnimationFrame(frame);
+</script>
+</body>
+</html>

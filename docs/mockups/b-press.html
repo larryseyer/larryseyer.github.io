@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Direction B — The Press — Larry Seyer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800&family=Libre+Franklin:wght@400;500;600;700&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#f2ecdf;
+  --paper-2:#e8dfcd;
+  --ink:#191510;
+  --indigo:#22304f;
+  --brick:#b23a2a;
+  --ochre:#c0872a;
+  --rule:#c9bda6;
+  --pad:clamp(1.25rem,5vw,4rem);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+body{
+  background:var(--paper);color:var(--ink);
+  font-family:'Libre Franklin',system-ui,sans-serif;line-height:1.62;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
+/* paper tooth */
+body::before{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:1;opacity:.35;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E");
+}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:2px solid var(--brick);outline-offset:3px}
+.wrap{max-width:1160px;margin:0 auto;padding:0 var(--pad);position:relative;z-index:2}
+
+.display{font-family:'Big Shoulders Display',sans-serif;font-weight:800;text-transform:uppercase;line-height:.82;letter-spacing:.005em}
+.util{font-family:'Courier Prime',monospace;text-transform:uppercase;letter-spacing:.18em;font-size:.72rem}
+
+/* ---------- header ---------- */
+.top{border-bottom:3px double var(--ink);background:var(--paper);position:sticky;top:0;z-index:30}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;height:62px;gap:1rem}
+.brand{font-family:'Big Shoulders Display',sans-serif;font-weight:800;text-transform:uppercase;font-size:1.5rem;letter-spacing:.04em}
+.top nav{display:flex;gap:1.5rem}
+.top nav a{font-family:'Courier Prime',monospace;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;padding-bottom:2px;border-bottom:2px solid transparent}
+.top nav a:hover{border-color:var(--brick);color:var(--brick)}
+
+
+/* ---------- the bill (hero poster) ---------- */
+.bill{padding:clamp(2rem,5vw,3.4rem) 0 clamp(2.5rem,6vw,4rem)}
+.poster{
+  border:2px solid var(--ink);
+  padding:clamp(1.2rem,3vw,2.2rem);
+  background:
+    repeating-linear-gradient(0deg,transparent 0 38px,rgba(34,48,79,.035) 38px 39px),
+    var(--paper-2);
+  position:relative;
+}
+.poster::after{ /* corner registration marks */
+  content:"";position:absolute;inset:8px;border:1px solid var(--rule);pointer-events:none;
+}
+.line{display:block;text-align:center;position:relative}
+.line--sm{font-family:'Courier Prime',monospace;text-transform:uppercase;letter-spacing:.36em;font-size:clamp(.6rem,1.5vw,.78rem);color:var(--indigo);padding:.5rem 0}
+.rule{height:2px;background:var(--ink);margin:.7rem 0}
+.rule--thin{height:1px;background:var(--rule)}
+.name{
+  font-family:'Big Shoulders Display',sans-serif;font-weight:800;text-transform:uppercase;
+  text-align:center;color:var(--indigo);line-height:.8;letter-spacing:-.005em;
+  position:relative;
+}
+.name .a{font-size:clamp(3.6rem,15.5vw,10.5rem);display:block}
+.name .b{font-size:clamp(4.6rem,20.5vw,14rem);display:block;color:var(--brick)}
+/* misregistration ghost — the press ran slightly out of alignment */
+.name .b::before{
+  content:"Seyer";position:absolute;left:0;right:0;color:var(--ochre);
+  transform:translate(4px,3px);opacity:.55;z-index:-1;
+}
+.name .b{position:relative;isolation:isolate}
+.tag{
+  text-align:center;font-family:'Courier Prime',monospace;text-transform:uppercase;
+  letter-spacing:.3em;font-size:clamp(.62rem,1.6vw,.8rem);padding:.8rem 0 .2rem;
+}
+.tag b{color:var(--brick)}
+.billing{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--rule);
+  border:1px solid var(--rule);margin-top:1.4rem;
+}
+.billing div{background:var(--paper-2);padding:1rem .9rem;text-align:center}
+.billing b{display:block;font-family:'Big Shoulders Display',sans-serif;font-weight:700;text-transform:uppercase;font-size:clamp(1rem,2.4vw,1.35rem);letter-spacing:.03em}
+.billing span{font-family:'Courier Prime',monospace;font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:#6a6255;display:block;margin-top:.25rem}
+@media(max-width:640px){.billing{grid-template-columns:1fr}}
+
+.intro{display:grid;grid-template-columns:1.35fr .65fr;gap:clamp(1.5rem,4vw,3rem);margin-top:clamp(2rem,5vw,3.2rem);align-items:start}
+@media(max-width:820px){.intro{grid-template-columns:1fr}}
+.intro p{font-size:clamp(1.02rem,1.5vw,1.18rem);max-width:60ch}
+.intro p+p{margin-top:1rem}
+.dropcap::first-letter{
+  font-family:'Big Shoulders Display',sans-serif;font-weight:800;float:left;
+  font-size:4.6rem;line-height:.72;padding:.06em .12em 0 0;color:var(--brick);
+}
+.stamp{
+  border:2px solid var(--brick);color:var(--brick);padding:1rem;transform:rotate(-2.2deg);
+  text-align:center;font-family:'Big Shoulders Display',sans-serif;font-weight:800;
+  text-transform:uppercase;line-height:.9;
+}
+.stamp b{display:block;font-size:3.6rem}
+.stamp span{font-family:'Courier Prime',monospace;font-size:.6rem;letter-spacing:.22em;font-weight:400}
+
+/* ---------- section headers ---------- */
+section{padding:clamp(2.8rem,7vw,5rem) 0}
+.head{display:flex;align-items:flex-end;gap:1rem;border-bottom:3px double var(--ink);padding-bottom:.7rem;margin-bottom:2rem;flex-wrap:wrap}
+.head h2{font-family:'Big Shoulders Display',sans-serif;font-weight:800;text-transform:uppercase;font-size:clamp(1.9rem,5vw,3.2rem);line-height:.85;letter-spacing:.01em}
+.head span{font-family:'Courier Prime',monospace;font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:#6a6255;margin-left:auto;padding-bottom:.35rem}
+
+/* ---------- columns ---------- */
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:clamp(1.4rem,3vw,2.4rem)}
+.col h3{font-family:'Big Shoulders Display',sans-serif;font-weight:700;text-transform:uppercase;font-size:1.5rem;letter-spacing:.02em;margin-bottom:.5rem}
+.col .kicker{font-family:'Courier Prime',monospace;font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--brick);display:block;margin-bottom:.6rem}
+.col p{font-size:.96rem;color:#453f36}
+.col{border-top:2px solid var(--ink);padding-top:1rem}
+
+/* ---------- stubs (projects) ---------- */
+.stubs{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:1.4rem}
+.stub{
+  border:1px solid var(--ink);background:var(--paper-2);display:flex;flex-direction:column;
+  transition:transform .18s ease,box-shadow .18s ease;
+}
+.stub:hover{transform:translate(-3px,-3px);box-shadow:6px 6px 0 var(--indigo)}
+.stub__top{display:flex;align-items:center;justify-content:space-between;padding:.55rem .8rem;border-bottom:1px dashed var(--ink);font-family:'Courier Prime',monospace;font-size:.6rem;letter-spacing:.18em;text-transform:uppercase}
+.stub__top em{font-style:normal;color:var(--brick)}
+.stub__shot{aspect-ratio:16/10;overflow:hidden;border-bottom:1px solid var(--ink);background:#111}
+.stub__shot img{width:100%;height:100%;object-fit:cover}
+.stub__body{padding:1.1rem .95rem 1.4rem}
+.stub h3{font-family:'Big Shoulders Display',sans-serif;font-weight:800;text-transform:uppercase;font-size:1.9rem;line-height:.9;margin-bottom:.45rem}
+.stub p{font-size:.9rem;color:#453f36}
+
+/* ---------- marquee band ---------- */
+.band{background:var(--indigo);color:var(--paper);padding:clamp(2.4rem,6vw,4rem) 0;position:relative;z-index:2}
+.band .head{border-color:var(--paper)}
+.band .head span{color:#a9b6cf}
+.band-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(1.5rem,4vw,3rem);align-items:center}
+@media(max-width:820px){.band-grid{grid-template-columns:1fr}}
+.band img{border:2px solid var(--paper);width:100%;aspect-ratio:16/10;object-fit:cover;object-position:55% 30%}
+.band p{color:#dbd4c4}
+.tix{display:flex;flex-wrap:wrap;gap:.55rem;margin-top:1.4rem}
+.tix a{border:1px solid var(--paper);padding:.55rem 1rem;font-family:'Courier Prime',monospace;font-size:.68rem;letter-spacing:.16em;text-transform:uppercase}
+.tix a:hover{background:var(--ochre);border-color:var(--ochre);color:var(--ink)}
+
+/* ---------- kits ---------- */
+.kits{border:2px solid var(--ink);padding:clamp(1.4rem,4vw,2.6rem);display:flex;gap:1.6rem;flex-wrap:wrap;align-items:center;justify-content:space-between;background:var(--paper-2)}
+.kits h2{font-family:'Big Shoulders Display',sans-serif;font-weight:800;text-transform:uppercase;font-size:clamp(1.8rem,4.5vw,2.8rem);line-height:.88}
+.kits p{max-width:52ch;margin-top:.6rem;color:#453f36;font-size:.96rem}
+.press-btn{
+  background:var(--brick);color:var(--paper);padding:.9rem 1.7rem;
+  font-family:'Courier Prime',monospace;font-weight:700;font-size:.74rem;letter-spacing:.18em;text-transform:uppercase;
+  border:2px solid var(--ink);box-shadow:4px 4px 0 var(--ink);transition:.14s;display:inline-block;
+}
+.press-btn:hover{transform:translate(2px,2px);box-shadow:2px 2px 0 var(--ink);color:var(--paper)}
+
+/* ---------- footer ---------- */
+footer{border-top:3px double var(--ink);padding:2.4rem 0 3.4rem}
+.f-links{display:flex;flex-wrap:wrap;gap:.4rem 1.3rem;font-family:'Courier Prime',monospace;font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;margin-bottom:1.2rem}
+.f-links a:hover{color:var(--brick)}
+footer small{font-family:'Courier Prime',monospace;font-size:.64rem;letter-spacing:.14em;color:#6a6255}
+
+@media(max-width:760px){
+  .top .wrap{flex-wrap:wrap;height:auto;padding-top:.65rem;padding-bottom:.4rem;gap:.4rem}
+  .top nav{display:flex;order:3;width:100%;overflow-x:auto;gap:1.3rem;padding-bottom:.3rem;scrollbar-width:none}
+  .top nav::-webkit-scrollbar{display:none}
+  .top nav a{white-space:nowrap;font-size:.6rem;letter-spacing:.12em}
+}
+
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#">Larry Seyer</a>
+    <nav>
+      <a href="#work">Work</a><a href="#projects">Projects</a><a href="#live">Live</a><a href="#kits">Drum Kits</a><a href="#connect">Connect</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <!-- SIGNATURE: the hero is a printed bill, set the way a show poster is set. -->
+  <section class="bill">
+    <div class="wrap">
+      <div class="poster">
+        <span class="line line--sm">Bastrop, Texas &nbsp;&middot;&nbsp; Est. 1971</span>
+        <div class="rule"></div>
+        <div class="name">
+          <span class="a">Larry</span>
+          <span class="b">Seyer</span>
+        </div>
+        <div class="rule rule--thin" style="margin-top:1.1rem"></div>
+        <p class="tag">Rhymes with <b>fire</b> &nbsp;&middot;&nbsp; Nine Grammys &nbsp;&middot;&nbsp; Still building</p>
+        <div class="billing">
+          <div><b>Records</b><span>Tracking &middot; Mixing &middot; Mastering</span></div>
+          <div><b>Software</b><span>Instruments for people who record</span></div>
+          <div><b>Live</b><span>Streams, cameras, broadcast audio</span></div>
+        </div>
+      </div>
+
+      <div class="intro">
+        <div>
+          <p class="dropcap">From 1986 through 2007 I engineered nearly every Asleep At The Wheel record.
+            That work brought home nine Grammys and a wall of platinum, and it taught me the thing this
+            whole site runs on: the gear is only worth what it does for the take.</p>
+          <p>These days the bench looks different. I still cut records, and I still play &mdash; but most weeks
+            I am writing the software I wished existed twenty years ago. Drum instruments you play instead
+            of program. Loopers that behave on a stage. Tools built in the room where they get used.</p>
+          <a class="press-btn" href="#projects" style="margin-top:1.4rem">See what I&rsquo;m building</a>
+        </div>
+        <aside class="stamp">
+          <b>9&times;</b>
+          <span>Grammy Awards<br>for engineering</span>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section id="work">
+    <div class="wrap">
+      <div class="head"><h2>The bench</h2><span>Three practices, one room</span></div>
+      <div class="cols">
+        <article class="col">
+          <span class="kicker">Since 1971</span>
+          <h3>Records</h3>
+          <p>Tracking, mixing, and mastering for albums, singles, and film. Pro Tools, REAPER, and Logic,
+            with surround and immersive work when a project asks for it.</p>
+        </article>
+        <article class="col">
+          <span class="kicker">Since the DAW got fast enough</span>
+          <h3>Software</h3>
+          <p>C++ and JUCE for the plugins, Lua and JSFX inside REAPER. Every tool here exists because a
+            session needed it and nothing on the shelf would do.</p>
+        </article>
+        <article class="col">
+          <span class="kicker">Every week</span>
+          <h3>Live production</h3>
+          <p>Multi-camera streaming, low-latency broadcast audio, and the automation that lets one person
+            run a clean show without a crew.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="wrap">
+      <div class="head"><h2>Now in build</h2><span>Six tools &middot; all in use</span></div>
+      <div class="stubs">
+        <a class="stub" href="#">
+          <div class="stub__top"><span>No. 01 &middot; Instrument</span><em>Active</em></div>
+          <div class="stub__shot"><img src="../../images/projects/otto-players.png" alt="OTTO drum instrument interface"></div>
+          <div class="stub__body">
+            <h3>Otto</h3>
+            <p>Four drummers you play instead of program. Organic tempo, human placement, arrangement
+              that follows the song instead of the grid.</p>
+          </div>
+        </a>
+        <a class="stub" href="#">
+          <div class="stub__top"><span>No. 02 &middot; REAPER</span><em>Active</em></div>
+          <div class="stub__shot"><img src="../../images/projects/grim-gui.png" alt="GRIM loop station interface"></div>
+          <div class="stub__body">
+            <h3>Grim</h3>
+            <p>Scene-based looping built for a stage. Every scene lands on the beat you asked for, every
+              time, with no rescue click.</p>
+          </div>
+        </a>
+        <a class="stub" href="#">
+          <div class="stub__top"><span>No. 03 &middot; macOS</span><em>Active</em></div>
+          <div class="stub__shot"><img src="../../images/projects/sparks-of-light-visualizer.png" alt="Sparks of Light visualizer"></div>
+          <div class="stub__body">
+            <h3>Sparks of Light</h3>
+            <p>Live MIDI and audio turned into particles and notes on screen, in time, with no render step
+              in between.</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<section class="band" id="live">
+  <div class="wrap">
+    <div class="head"><h2>The Larry Seyer Show</h2><span>Live &middot; three platforms at once</span></div>
+    <div class="band-grid">
+      <img src="assets/ls-studio-wide.jpg" alt="Larry Seyer performing live">
+      <div>
+        <p>Audio engineering, software, and the occasional guitar. The stream goes out to YouTube,
+          Facebook, and Rumble at the same time, so watch wherever you already are. Long-form
+          conversations land on the podcast feed a few days after.</p>
+        <div class="tix">
+          <a href="#">YouTube</a><a href="#">Facebook</a><a href="#">Rumble</a><a href="#">Spotify</a><a href="#">RSS</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="kits">
+  <div class="wrap">
+    <div class="kits">
+      <div>
+        <h2>Five acoustic kits.<br>Free, and they stay free.</h2>
+        <p>Recorded, edited, and programmed by hand &mdash; the same library composers have leaned on since
+          the GigaStudio days. SFZ format, so any free player will load them. Use them on your own
+          releases, commercial included.</p>
+      </div>
+      <a class="press-btn" href="#">Get the kits</a>
+    </div>
+  </div>
+</section>
+
+<footer id="connect">
+  <div class="wrap">
+    <div class="f-links">
+      <a href="#">GitHub</a><a href="#">YouTube</a><a href="#">Facebook</a><a href="#">Rumble</a>
+      <a href="#">Spotify</a><a href="#">Apple Music</a><a href="#">Amazon Music</a><a href="#">LinkedIn</a>
+    </div>
+    <small>&copy; 2026 Larry Seyer &nbsp;&middot;&nbsp; Bastrop, Texas</small>
+  </div>
+</footer>
+</body>
+</html>

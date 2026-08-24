@@ -1,4 +1,5 @@
 User-agent: *
 Disallow: /homepage/
+Disallow: /docs/
 
 Sitemap: https://larryseyer.com/sitemap.xml

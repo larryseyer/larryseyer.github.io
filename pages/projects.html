@@ -33,6 +33,7 @@
         <a href="work.html">Work</a>
         <a href="projects.html" class="active">Projects</a>
         <a href="live.html">Live</a>
+        <a href="kits.html">Drum Kits</a>
         <a href="connect.html">Connect</a>
       </nav>
     </div>
@@ -42,115 +43,41 @@
     <!-- Page Hero -->
     <section class="hero">
       <div class="container">
-        <h1>Projects</h1>
-        <p>Tools built to solve real problems</p>
+        <p class="kicker">Eighteen projects <b>&middot;</b> All of them in use</p>
+        <h1>Tools built to <span class="lit">solve real problems.</span></h1>
+        <p>Nothing here started as a product idea. Each one started as something a session needed that
+          nothing on the shelf would do.</p>
       </div>
     </section>
 
-    <!-- Projects Grid Section -->
+    <!-- Instruments -->
     <section class="section">
       <div class="container">
-        <div class="card-grid">
-          <!-- OTTO -->
-          <a href="projects/otto.html" class="card-link">
-            <article class="card">
-              <span class="badge badge--active">Active Development</span>
+        <div class="sec-head">
+          <span class="label">Instruments</span>
+          <h2>Things you play.</h2>
+        </div>
+        <div class="tiles">
+          <a href="projects/otto.html" class="tile">
+            <div class="tile__shot">
+              <img src="../images/projects/otto-players.png" alt="OTTO Players view - four independent drum players, each with its own kit and energy level">
+            </div>
+            <div class="tile__body">
+              <span class="tag">Active Development</span>
               <h3>OTTO</h3>
               <p>Organic Tempo and Time Orchestrator. A four-player drum-arrangement instrument, played not programmed.</p>
-            </article>
+            </div>
           </a>
-
-          <!-- IDA -->
-          <a href="projects/ida.html" class="card-link">
-            <article class="card">
-              <span class="badge badge--active">Active Development</span>
+          <a href="projects/ida.html" class="tile">
+            <div class="tile__shot">
+              <img src="../images/projects/ida-interface.png" alt="IDA interface - input mixer, per-phrase tape lanes for audio, MIDI, video, and lyric, and an output mixer">
+            </div>
+            <div class="tile__body">
+              <span class="tag">Active Development</span>
               <h3>IDA</h3>
               <p>Idea Development Arranger. Looping as the capture and repetition of musical ideas.</p>
-            </article>
+            </div>
           </a>
-
-          <!-- JTF News -->
-          <a href="projects/jtf-news.html" class="card-link">
-            <article class="card">
-              <span class="badge badge--active">Active Development</span>
-              <h3>JTF News</h3>
-              <p>Just The Facts news aggregation. AI-curated, bias-filtered headlines.</p>
-            </article>
-          </a>
-
-          <!-- GRIM -->
-          <a href="projects/grim.html" class="card-link">
-            <article class="card">
-              <span class="badge badge--active">Active Development</span>
-              <h3>GRIM</h3>
-              <p>Scene-based loop station for REAPER. Professional live looping.</p>
-            </article>
-          </a>
-
-          <!-- iCandy -->
-          <a href="projects/icandy.html" class="card-link">
-            <article class="card">
-              <span class="badge badge--released">Released</span>
-              <h3>iCandy</h3>
-              <p>Dark theme for REAPER. Elegant, eye-friendly interface design.</p>
-            </article>
-          </a>
-
-          <!-- ShowSwitcher -->
-          <a href="projects/showswitcher.html" class="card-link">
-            <article class="card">
-              <span class="badge badge--maintained">Maintained</span>
-              <h3>ShowSwitcher</h3>
-              <p>Automated camera switching. Intelligent multi-camera production.</p>
-            </article>
-          </a>
-
-          <!-- MIDI2Button -->
-          <a href="projects/midi2button.html" class="card-link">
-            <article class="card">
-              <span class="badge badge--released">Released</span>
-              <h3>MIDI2Button</h3>
-              <p>MIDI to keyboard trigger module. Hardware bridge for software control.</p>
-            </article>
-          </a>
-
-          <!-- Sparks of Light -->
-          <a href="projects/sparks-of-light.html" class="card-link">
-            <article class="card">
-              <span class="badge badge--active">Active Development</span>
-              <h3>Sparks of Light</h3>
-              <p>macOS visualizer turning live MIDI and audio into real-time particle and note graphics.</p>
-            </article>
-          </a>
-
-          <!-- ACIM Daily Minute -->
-          <a href="projects/acim.html" class="card-link">
-            <article class="card">
-              <span class="badge badge--released">Released</span>
-              <h3>ACIM Daily Minute</h3>
-              <p>A contemplative daily reader for A Course in Miracles, across iPhone, iPad, Mac, and Watch.</p>
-            </article>
-          </a>
-
-          <!-- VectorMorph -->
-          <a href="projects/vectormorph.html" class="card-link">
-            <article class="card">
-              <span class="badge badge--active">Licensed Technology</span>
-              <h3>VectorMorph</h3>
-              <p>Continuous response for multisampled instruments. Proven in OTTO and Vector Sampler, and available to license.</p>
-            </article>
-          </a>
-
-          <!-- LOUIS -->
-          <a href="projects/louis.html" class="card-link">
-            <article class="card">
-              <span class="badge badge--active">In Development</span>
-              <h3>LOUIS</h3>
-              <p>The Vector effects engines from OTTO and IDA, as standalone VST3, AU, CLAP, and AUv3 plugins.</p>
-            </article>
-          </a>
-
-          <!-- Vector Sampler -->
           <a href="projects/vector-sampler.html" class="card-link">
             <article class="card">
               <span class="badge badge--active">In Development</span>
@@ -158,26 +85,91 @@
               <p>A sample-player instrument built to play between an instrument's dynamic layers, not switch across them.</p>
             </article>
           </a>
+        </div>
+      </div>
+    </section>
 
-          <!-- Vector Amp -->
-          <a href="projects/vector-amp.html" class="card-link">
+    <!-- On stage and in REAPER -->
+    <section class="section">
+      <div class="container">
+        <div class="sec-head">
+          <span class="label">On stage &amp; in REAPER</span>
+          <h2>Things that have to survive a live room.</h2>
+        </div>
+        <div class="tiles mb-md">
+          <a href="projects/grim.html" class="tile">
+            <div class="tile__shot">
+              <img src="../images/projects/grim-gui.png" alt="GRIM scene-based loop station running inside REAPER">
+            </div>
+            <div class="tile__body">
+              <span class="tag">Active Development</span>
+              <h3>GRIM</h3>
+              <p>Scene-based loop station for REAPER. Professional live looping.</p>
+            </div>
+          </a>
+          <a href="projects/sparks-of-light.html" class="tile">
+            <div class="tile__shot">
+              <img src="../images/projects/sparks-of-light-visualizer.png" alt="Sparks of Light turning live MIDI into particles and notes on screen">
+            </div>
+            <div class="tile__body">
+              <span class="tag">Active Development</span>
+              <h3>Sparks of Light</h3>
+              <p>macOS visualizer turning live MIDI and audio into real-time particle and note graphics.</p>
+            </div>
+          </a>
+          <a href="projects/icandy.html" class="tile">
+            <div class="tile__shot">
+              <img src="../images/projects/icandy-screen1.png" alt="iCandy dark theme applied to the REAPER interface">
+            </div>
+            <div class="tile__body">
+              <span class="tag">Released</span>
+              <h3>iCandy</h3>
+              <p>Dark theme for REAPER. Elegant, eye-friendly interface design.</p>
+            </div>
+          </a>
+        </div>
+        <div class="card-grid">
+          <a href="projects/showswitcher.html" class="card-link">
             <article class="card">
-              <span class="badge badge--active">In Development</span>
-              <h3>Vector Amp</h3>
-              <p>Guitar amplifier and speaker solved together, competing on feel and response rather than static tone.</p>
+              <span class="badge badge--maintained">Maintained</span>
+              <h3>ShowSwitcher</h3>
+              <p>Automated camera switching. Intelligent multi-camera production.</p>
             </article>
           </a>
-
-          <!-- Vector Tape -->
-          <a href="projects/vector-tape.html" class="card-link">
+          <a href="projects/midi2button.html" class="card-link">
             <article class="card">
-              <span class="badge badge--active">In Development</span>
-              <h3>Vector Tape</h3>
-              <p>Algorithmic analog-tape coloration module for OTTO and IDA. Warmth, saturation, and movement.</p>
+              <span class="badge badge--released">Released</span>
+              <h3>MIDI2Button</h3>
+              <p>MIDI to keyboard trigger module. Hardware bridge for software control.</p>
             </article>
           </a>
+        </div>
+      </div>
+    </section>
 
-          <!-- Vector Compressor -->
+    <!-- The Vector engines -->
+    <section class="section">
+      <div class="container">
+        <div class="sec-head">
+          <span class="label">The Vector engines</span>
+          <h2>One family of processors, shared across everything else.</h2>
+          <p>These started inside OTTO and IDA. They are being pulled out into plugins anyone can load.</p>
+        </div>
+        <div class="card-grid">
+          <a href="projects/louis.html" class="card-link">
+            <article class="card">
+              <span class="badge badge--active">In Development</span>
+              <h3>LOUIS</h3>
+              <p>The Vector effects engines from OTTO and IDA, as standalone VST3, AU, CLAP, and AUv3 plugins.</p>
+            </article>
+          </a>
+          <a href="projects/vectormorph.html" class="card-link">
+            <article class="card">
+              <span class="badge badge--active">Licensed Technology</span>
+              <h3>VectorMorph</h3>
+              <p>Continuous response for multisampled instruments. Proven in OTTO and Vector Sampler, and available to license.</p>
+            </article>
+          </a>
           <a href="projects/vector-compressor.html" class="card-link">
             <article class="card">
               <span class="badge badge--active">In Development</span>
@@ -185,8 +177,6 @@
               <p>A new approach to compression. One engine morphs continuously through eight classic compressor characters.</p>
             </article>
           </a>
-
-          <!-- Vector Reverb -->
           <a href="projects/vector-reverb.html" class="card-link">
             <article class="card">
               <span class="badge badge--active">In Development</span>
@@ -194,8 +184,46 @@
               <p>A new approach to reverb. A living algorithm built from measurements of real acoustic spaces.</p>
             </article>
           </a>
+          <a href="projects/vector-amp.html" class="card-link">
+            <article class="card">
+              <span class="badge badge--active">In Development</span>
+              <h3>Vector Amp</h3>
+              <p>Guitar amplifier and speaker solved together, competing on feel and response rather than static tone.</p>
+            </article>
+          </a>
+          <a href="projects/vector-tape.html" class="card-link">
+            <article class="card">
+              <span class="badge badge--active">In Development</span>
+              <h3>Vector Tape</h3>
+              <p>Algorithmic analog-tape coloration module for OTTO and IDA. Warmth, saturation, and movement.</p>
+            </article>
+          </a>
+        </div>
+      </div>
+    </section>
 
-          <!-- DartyDarts -->
+    <!-- Everything else -->
+    <section class="section">
+      <div class="container">
+        <div class="sec-head">
+          <span class="label">Away from the studio</span>
+          <h2>The rest of it.</h2>
+        </div>
+        <div class="card-grid">
+          <a href="projects/jtf-news.html" class="card-link">
+            <article class="card">
+              <span class="badge badge--active">Active Development</span>
+              <h3>JTF News</h3>
+              <p>Just The Facts news aggregation. AI-curated, bias-filtered headlines.</p>
+            </article>
+          </a>
+          <a href="projects/acim.html" class="card-link">
+            <article class="card">
+              <span class="badge badge--released">Released</span>
+              <h3>ACIM Daily Minute</h3>
+              <p>A contemplative daily reader for A Course in Miracles, across iPhone, iPad, Mac, and Watch.</p>
+            </article>
+          </a>
           <a href="projects/dartydarts.html" class="card-link">
             <article class="card">
               <span class="badge badge--active">In Development</span>
@@ -203,8 +231,6 @@
               <p>Scoring and game software for darts, with Bluetooth board support and real match statistics.</p>
             </article>
           </a>
-
-          <!-- Ra's Pyramid -->
           <a href="https://raspyramid.com" class="card-link" target="_blank" rel="noopener noreferrer">
             <article class="card">
               <span class="badge badge--released">Live</span>
