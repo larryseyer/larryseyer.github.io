@@ -602,6 +602,19 @@ p .btn {
   transform: translateY(-3px);
 }
 
+.screenshots figure {
+  margin: 0;
+}
+
+.screenshots figcaption {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
+  margin-top: 0.7rem;
+}
+
 /* Project tiles - a card with a screenshot on top */
 .tiles {
   display: grid;
