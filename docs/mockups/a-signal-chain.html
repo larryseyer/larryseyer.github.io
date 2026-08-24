@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Direction A — Signal Chain — Larry Seyer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --field:#10161a;
+  --panel:#182126;
+  --panel-2:#1e2a30;
+  --rail:#0a0f12;
+  --edge:#2b3a41;
+  --ink:#e7edef;
+  --ink-dim:#8fa3ac;
+  --oxide:#d9502f;
+  --oxide-hot:#f0663f;
+  --meter:#5cc6b4;
+  --legend:#c8d6da;
+  --strip:76px;
+  --pad:clamp(1.25rem,4vw,3.5rem);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+body{
+  background:var(--field);
+  color:var(--ink);
+  font-family:'IBM Plex Sans',system-ui,sans-serif;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:2px solid var(--oxide-hot);outline-offset:3px}
+
+/* ---------- channel strip rail (signature) ---------- */
+.strip{
+  position:fixed;left:0;top:0;bottom:0;width:var(--strip);
+  background:var(--rail);
+  border-right:1px solid var(--edge);
+  z-index:50;
+  display:flex;flex-direction:column;align-items:center;
+  padding:14px 0;
+}
+.strip__label{
+  font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.22em;
+  color:var(--ink-dim);text-transform:uppercase;
+}
+.strip__track{
+  position:relative;flex:1;width:6px;margin:16px 0;
+  background:linear-gradient(#0d1417,#050809);
+  border:1px solid var(--edge);border-radius:3px;
+}
+.strip__cap{
+  position:absolute;left:50%;width:34px;height:22px;
+  transform:translate(-50%,-50%);
+  background:linear-gradient(#3b4b53,#1a2429);
+  border:1px solid #55686f;border-radius:3px;
+  box-shadow:0 6px 12px rgba(0,0,0,.6);
+  transition:top 90ms linear;
+  top:0;
+}
+.strip__cap::after{content:"";position:absolute;left:4px;right:4px;top:50%;height:2px;background:var(--oxide);transform:translateY(-50%)}
+.strip__ticks{position:absolute;inset:0;left:14px;width:20px;pointer-events:none}
+.strip__ticks i{position:absolute;left:0;width:8px;height:1px;background:var(--edge)}
+.strip__meter{width:10px;height:120px;background:#050809;border:1px solid var(--edge);border-radius:2px;position:relative;overflow:hidden}
+.strip__meter b{position:absolute;left:0;right:0;bottom:0;background:linear-gradient(#e0563a,#d1b23c 40%,var(--meter));height:20%;transition:height 120ms ease-out}
+
+/* ---------- shell ---------- */
+.shell{margin-left:var(--strip)}
+.wrap{max-width:1180px;margin:0 auto;padding:0 var(--pad)}
+
+/* ---------- header ---------- */
+.top{
+  position:sticky;top:0;z-index:40;
+  background:rgba(16,22,26,.86);backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--edge);
+}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;height:64px;gap:1rem}
+.brand{font-family:'Saira Condensed',sans-serif;font-weight:700;font-size:1.15rem;letter-spacing:.12em;text-transform:uppercase}
+.brand span{color:var(--oxide)}
+.top nav{display:flex;gap:1.6rem;font-family:'IBM Plex Mono',monospace;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-dim)}
+.top nav a{padding:.35rem 0;border-bottom:1px solid transparent;transition:color .18s,border-color .18s}
+.top nav a:hover{color:var(--ink);border-color:var(--oxide)}
+
+
+/* ---------- hero ---------- */
+.hero{padding:clamp(3.5rem,9vw,7rem) 0 clamp(2.5rem,6vw,4.5rem);position:relative}
+.eyebrow{
+  font-family:'IBM Plex Mono',monospace;font-size:.7rem;letter-spacing:.3em;
+  text-transform:uppercase;color:var(--oxide);margin-bottom:1.6rem;
+  display:flex;align-items:center;gap:.75rem;
+}
+.eyebrow::after{content:"";height:1px;flex:1;max-width:180px;background:linear-gradient(90deg,var(--oxide),transparent)}
+.hero h1{
+  font-family:'Saira Condensed',sans-serif;font-weight:700;
+  font-size:clamp(3.4rem,12vw,8.5rem);line-height:.86;letter-spacing:-.01em;
+  text-transform:uppercase;
+}
+.hero h1 em{font-style:normal;display:block;color:transparent;-webkit-text-stroke:2px var(--legend)}
+.rhymes{
+  font-family:'IBM Plex Mono',monospace;font-size:.78rem;letter-spacing:.24em;
+  color:var(--ink-dim);text-transform:uppercase;margin-top:1.1rem;
+}
+.rhymes b{color:var(--oxide);font-weight:500}
+.hero p.lede{
+  margin-top:2rem;max-width:56ch;font-size:clamp(1.02rem,1.6vw,1.24rem);color:#b9c8ce;
+}
+.hero-actions{display:flex;flex-wrap:wrap;gap:.75rem;margin-top:2.2rem}
+.btn{
+  font-family:'IBM Plex Mono',monospace;font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;
+  padding:.85rem 1.5rem;border:1px solid var(--edge);color:var(--ink);
+  transition:background .18s,border-color .18s,color .18s;
+}
+.btn:hover{border-color:var(--oxide);color:var(--oxide-hot)}
+.btn--solid{background:var(--oxide);border-color:var(--oxide);color:#140b07;font-weight:500}
+.btn--solid:hover{background:var(--oxide-hot);border-color:var(--oxide-hot);color:#140b07}
+
+/* scope / waveform */
+.scope{margin-top:3rem;border:1px solid var(--edge);background:linear-gradient(#0c1215,#131c21);position:relative}
+.scope canvas{display:block;width:100%;height:170px}
+.scope__tag{
+  position:absolute;top:8px;left:12px;font-family:'IBM Plex Mono',monospace;
+  font-size:.62rem;letter-spacing:.2em;color:var(--ink-dim);text-transform:uppercase;
+}
+
+/* ---------- spec bar ---------- */
+.specs{border-top:1px solid var(--edge);border-bottom:1px solid var(--edge);background:var(--panel)}
+.specs .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:0}
+.spec{padding:1.6rem 1.4rem;border-right:1px solid var(--edge)}
+.spec:last-child{border-right:0}
+.spec b{display:block;font-family:'Saira Condensed',sans-serif;font-size:2.4rem;line-height:1;font-weight:700}
+.spec span{font-family:'IBM Plex Mono',monospace;font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-dim);display:block;margin-top:.5rem}
+@media(max-width:760px){.specs .wrap{grid-template-columns:repeat(2,1fr)}.spec:nth-child(2){border-right:0}.spec:nth-child(-n+2){border-bottom:1px solid var(--edge)}}
+
+/* ---------- sections ---------- */
+section.band{padding:clamp(3.5rem,8vw,6.5rem) 0;border-bottom:1px solid var(--edge)}
+.stage-head{display:flex;align-items:baseline;gap:1.2rem;margin-bottom:2.6rem;flex-wrap:wrap}
+.stage-num{
+  font-family:'IBM Plex Mono',monospace;font-size:.68rem;letter-spacing:.22em;
+  color:var(--oxide);text-transform:uppercase;border:1px solid var(--oxide);padding:.3rem .6rem;
+}
+.stage-head h2{
+  font-family:'Saira Condensed',sans-serif;font-weight:600;text-transform:uppercase;
+  font-size:clamp(1.6rem,3.4vw,2.4rem);letter-spacing:.02em;line-height:1;
+}
+.stage-head p{color:var(--ink-dim);font-size:.94rem;max-width:44ch;margin-left:auto}
+
+/* modules */
+.modules{display:grid;grid-template-columns:repeat(auto-fit,minmax(255px,1fr));gap:1px;background:var(--edge);border:1px solid var(--edge)}
+.module{background:var(--panel);padding:1.9rem 1.6rem;transition:background .2s}
+.module:hover{background:var(--panel-2)}
+.module h3{font-family:'Saira Condensed',sans-serif;text-transform:uppercase;font-size:1.28rem;letter-spacing:.03em;font-weight:600;margin-bottom:.7rem}
+.module p{color:var(--ink-dim);font-size:.92rem}
+.knob{width:38px;height:38px;border-radius:50%;background:radial-gradient(circle at 34% 28%,#4a5c64,#141c20 72%);border:1px solid #55686f;position:relative;margin-bottom:1.3rem}
+.knob::after{content:"";position:absolute;left:50%;top:5px;width:2px;height:12px;background:var(--oxide);transform-origin:50% 14px;transform:translateX(-50%) rotate(-38deg)}
+.module:nth-child(2) .knob::after{transform:translateX(-50%) rotate(12deg)}
+.module:nth-child(3) .knob::after{transform:translateX(-50%) rotate(55deg)}
+
+/* projects */
+.rack{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.25rem}
+.unit{border:1px solid var(--edge);background:var(--panel);display:flex;flex-direction:column;transition:border-color .2s,transform .2s}
+.unit:hover{border-color:#476069;transform:translateY(-3px)}
+.unit__shot{aspect-ratio:16/10;overflow:hidden;background:#0a0f12;border-bottom:1px solid var(--edge)}
+.unit__shot img{width:100%;height:100%;object-fit:cover;filter:saturate(.9)}
+.unit__body{padding:1.35rem 1.4rem 1.6rem}
+.unit__meta{display:flex;align-items:center;gap:.7rem;margin-bottom:.7rem}
+.dot{width:6px;height:6px;background:var(--meter);border-radius:50%;box-shadow:0 0 8px var(--meter)}
+.unit__meta span{font-family:'IBM Plex Mono',monospace;font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-dim)}
+.unit h3{font-family:'Saira Condensed',sans-serif;text-transform:uppercase;font-size:1.5rem;letter-spacing:.03em;margin-bottom:.5rem}
+.unit p{color:var(--ink-dim);font-size:.9rem}
+
+/* live */
+.live{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(1.5rem,4vw,3.5rem);align-items:center}
+@media(max-width:860px){.live{grid-template-columns:1fr}}
+.live__photo{border:1px solid var(--edge);overflow:hidden;position:relative}
+.live__photo img{width:100%;aspect-ratio:16/9;object-fit:cover;object-position:55% 30%}
+.onair{
+  position:absolute;top:14px;left:14px;background:var(--oxide);color:#140b07;
+  font-family:'IBM Plex Mono',monospace;font-size:.6rem;letter-spacing:.24em;
+  text-transform:uppercase;padding:.35rem .7rem;font-weight:500;
+}
+.chan{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1.6rem}
+.chan a{
+  font-family:'IBM Plex Mono',monospace;font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;
+  border:1px solid var(--edge);padding:.6rem 1rem;color:var(--ink-dim);transition:.18s;
+}
+.chan a:hover{border-color:var(--oxide);color:var(--ink)}
+
+/* kits */
+.kits{display:flex;gap:1.5rem;align-items:center;flex-wrap:wrap;justify-content:space-between;
+  border:1px solid var(--edge);background:linear-gradient(120deg,var(--panel),#101a1e);padding:clamp(1.6rem,4vw,2.8rem)}
+.kits h2{font-family:'Saira Condensed',sans-serif;text-transform:uppercase;font-size:clamp(1.5rem,3.2vw,2.2rem);line-height:1}
+.kits p{color:var(--ink-dim);max-width:48ch;margin-top:.7rem;font-size:.95rem}
+
+/* footer */
+footer{padding:3rem 0 4rem;color:var(--ink-dim)}
+.f-links{display:flex;flex-wrap:wrap;gap:.4rem 1.4rem;font-family:'IBM Plex Mono',monospace;font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;margin-bottom:1.6rem}
+.f-links a:hover{color:var(--oxide)}
+footer small{font-family:'IBM Plex Mono',monospace;font-size:.66rem;letter-spacing:.12em}
+@media(max-width:640px){:root{--strip:0px}.strip{display:none}}
+
+@media(max-width:760px){
+  .top .wrap{flex-wrap:wrap;height:auto;padding-top:.65rem;padding-bottom:.4rem;gap:.4rem}
+  .top nav{display:flex;order:3;width:100%;overflow-x:auto;gap:1.3rem;padding-bottom:.3rem;scrollbar-width:none}
+  .top nav::-webkit-scrollbar{display:none}
+  .top nav a{white-space:nowrap;font-size:.6rem;letter-spacing:.12em}
+}
+
+</style>
+</head>
+<body>
+
+<!-- SIGNATURE: the page is a channel strip. Fader tracks scroll, meter tracks section. -->
+<aside class="strip" aria-hidden="true">
+  <span class="strip__label">CH<br>01</span>
+  <div class="strip__track" id="track">
+    <div class="strip__ticks"><i style="top:10%"></i><i style="top:30%"></i><i style="top:50%"></i><i style="top:70%"></i><i style="top:90%"></i></div>
+    <div class="strip__cap" id="cap"></div>
+  </div>
+  <div class="strip__meter"><b id="meter"></b></div>
+  <span class="strip__label" style="margin-top:12px">OUT</span>
+</aside>
+
+<div class="shell">
+
+  <header class="top">
+    <div class="wrap">
+      <a class="brand" href="#">Larry<span>&nbsp;/&nbsp;</span>Seyer</a>
+      <nav>
+        <a href="#work">Work</a><a href="#projects">Projects</a><a href="#live">Live</a><a href="#kits">Drum Kits</a><a href="#connect">Connect</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="wrap">
+        <p class="eyebrow">Bastrop, Texas &nbsp;·&nbsp; Engineering since 1971</p>
+        <h1>Larry<em>Seyer</em></h1>
+        <p class="rhymes">Rhymes with <b>fire</b></p>
+        <p class="lede">Nine Grammys came from twenty years of Asleep At The Wheel records. The tools on this
+          site came from the same bench &mdash; software I build because the session needed it and nothing on the
+          shelf did the job.</p>
+        <div class="hero-actions">
+          <a class="btn btn--solid" href="#projects">See the tools</a>
+          <a class="btn" href="#work">The engineering work</a>
+        </div>
+
+        <div class="scope">
+          <span class="scope__tag">Input &nbsp;/&nbsp; live</span>
+          <canvas id="wave" width="1600" height="340"></canvas>
+        </div>
+      </div>
+    </section>
+
+    <div class="specs">
+      <div class="wrap">
+        <div class="spec"><b>9</b><span>Grammy Awards</span></div>
+        <div class="spec"><b>55</b><span>Years behind the desk</span></div>
+        <div class="spec"><b>4</b><span>Age he started playing</span></div>
+        <div class="spec"><b>5</b><span>Tools in active build</span></div>
+      </div>
+    </div>
+
+    <section class="band" id="work">
+      <div class="wrap">
+        <div class="stage-head">
+          <span class="stage-num">Stage 01</span>
+          <h2>What I do</h2>
+          <p>Three practices, one bench. Each one feeds the next.</p>
+        </div>
+        <div class="modules">
+          <article class="module">
+            <div class="knob"></div>
+            <h3>Records</h3>
+            <p>Tracking, mixing, and mastering for albums, singles, and film. Pro Tools, REAPER, Logic.
+              Surround and immersive when the project calls for it.</p>
+          </article>
+          <article class="module">
+            <div class="knob"></div>
+            <h3>Software</h3>
+            <p>Instruments and utilities for people who record. C++ and JUCE for the plugins, Lua and
+              JSFX for REAPER, whatever fits for the rest.</p>
+          </article>
+          <article class="module">
+            <div class="knob"></div>
+            <h3>Live production</h3>
+            <p>Multi-camera streaming, low-latency broadcast audio, and the automation that keeps a
+              one-person show running clean.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="band" id="projects">
+      <div class="wrap">
+        <div class="stage-head">
+          <span class="stage-num">Stage 02</span>
+          <h2>Tools in build</h2>
+          <p>Everything here started as a problem in a real session.</p>
+        </div>
+        <div class="rack">
+          <a class="unit" href="#">
+            <div class="unit__shot"><img src="../../images/projects/otto-players.png" alt="OTTO drum instrument interface"></div>
+            <div class="unit__body">
+              <div class="unit__meta"><i class="dot"></i><span>Active &nbsp;·&nbsp; Instrument</span></div>
+              <h3>OTTO</h3>
+              <p>Four drummers you play instead of program. Organic tempo, human placement, arrangement
+                that follows the song.</p>
+            </div>
+          </a>
+          <a class="unit" href="#">
+            <div class="unit__shot"><img src="../../images/projects/grim-gui.png" alt="GRIM loop station interface"></div>
+            <div class="unit__body">
+              <div class="unit__meta"><i class="dot"></i><span>Active &nbsp;·&nbsp; REAPER</span></div>
+              <h3>GRIM</h3>
+              <p>Scene-based looping built for a stage, not a demo. Every scene lands on the beat you
+                asked for.</p>
+            </div>
+          </a>
+          <a class="unit" href="#">
+            <div class="unit__shot"><img src="../../images/projects/sparks-of-light-visualizer.png" alt="Sparks of Light visualizer"></div>
+            <div class="unit__body">
+              <div class="unit__meta"><i class="dot"></i><span>Active &nbsp;·&nbsp; macOS</span></div>
+              <h3>Sparks of Light</h3>
+              <p>Live MIDI and audio turned into particles and notes on screen, in time, with no render
+                step in between.</p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="band" id="live">
+      <div class="wrap">
+        <div class="stage-head">
+          <span class="stage-num">Stage 03</span>
+          <h2>The Larry Seyer Show</h2>
+          <p>One broadcast, three platforms. Pick whichever one you already use.</p>
+        </div>
+        <div class="live">
+          <div class="live__photo">
+            <span class="onair">On air</span>
+            <img src="assets/ls-studio-wide.jpg" alt="Larry Seyer performing live">
+          </div>
+          <div>
+            <p style="color:#b9c8ce">Audio engineering, software, and the occasional guitar. Streams go out
+              simultaneously to YouTube, Facebook, and Rumble, and the long-form conversations land on the
+              podcast feed a few days later.</p>
+            <div class="chan">
+              <a href="#">YouTube</a><a href="#">Facebook</a><a href="#">Rumble</a><a href="#">Spotify</a><a href="#">RSS</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="band" id="kits">
+      <div class="wrap">
+        <div class="kits">
+          <div>
+            <h2>Five acoustic drum kits. Free.</h2>
+            <p>Recorded, edited, and programmed by hand &mdash; the same library composers have used since
+              the GigaStudio days. SFZ format, so any free player will load them. Free to use in your own
+              releases, commercial included.</p>
+          </div>
+          <a class="btn btn--solid" href="#">Get the kits</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="connect">
+    <div class="wrap">
+      <div class="f-links">
+        <a href="#">GitHub</a><a href="#">YouTube</a><a href="#">Facebook</a><a href="#">Rumble</a>
+        <a href="#">Spotify</a><a href="#">Apple Music</a><a href="#">Amazon Music</a><a href="#">LinkedIn</a>
+      </div>
+      <small>&copy; 2026 Larry Seyer &nbsp;·&nbsp; Bastrop, Texas</small>
+    </div>
+  </footer>
+</div>
+
+<script>
+// Fader + meter follow scroll position through the page.
+var cap=document.getElementById('cap'),meter=document.getElementById('meter');
+function follow(){
+  var max=document.body.scrollHeight-innerHeight;
+  var p=max>0?Math.min(1,scrollY/max):0;
+  cap.style.top=(p*100)+'%';
+  meter.style.height=(18+p*70)+'%';
+}
+addEventListener('scroll',follow,{passive:true});follow();
+
+// Waveform scope: a settled, slowly breathing envelope. Not a busy toy.
+var c=document.getElementById('wave'),x=c.getContext('2d');
+var reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+var bars=180,seed=[];
+for(var i=0;i<bars;i++){
+  var t=i/bars;
+  var env=Math.sin(t*Math.PI)*0.75+0.25;
+  seed.push(env*(0.35+Math.abs(Math.sin(i*1.7))*0.4+Math.abs(Math.sin(i*0.31))*0.3));
+}
+function draw(ts){
+  var w=c.width,h=c.height,mid=h/2;
+  x.clearRect(0,0,w,h);
+  x.strokeStyle='rgba(92,198,180,.16)';x.lineWidth=1;
+  x.beginPath();x.moveTo(0,mid);x.lineTo(w,mid);x.stroke();
+  var bw=w/bars;
+  for(var i=0;i<bars;i++){
+    var m=reduce?1:1+Math.sin(ts/900+i*0.09)*0.12;
+    var a=seed[i]*m*mid*0.92;
+    x.fillStyle=i%9===0?'#d9502f':'rgba(200,214,218,.55)';
+    x.fillRect(i*bw+bw*0.22,mid-a,bw*0.56,a*2);
+  }
+  if(!reduce)requestAnimationFrame(draw);
+}
+requestAnimationFrame(draw);
+</script>
+</body>
+</html>

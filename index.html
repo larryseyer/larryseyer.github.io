@@ -11,9 +11,9 @@
   </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Larry Seyer - Grammy-winning audio engineer, software developer, and AI innovator. Bridging decades of sonic mastery with cutting-edge technology.">
+  <meta name="description" content="Larry Seyer - Grammy-winning audio engineer and software developer. Fifty years of records, and the instruments and tools built out of them.">
   <meta property="og:title" content="Larry Seyer - Audio Engineer & Software Developer">
-  <meta property="og:description" content="Grammy-winning audio engineer, software developer, and AI innovator. Bridging decades of sonic mastery with cutting-edge technology.">
+  <meta property="og:description" content="Grammy-winning audio engineer and software developer. Fifty years of records, and the instruments and tools built out of them.">
   <meta property="og:image" content="https://larryseyer.com/images/og-image.png">
   <meta property="og:url" content="https://larryseyer.com/">
   <meta property="og:type" content="website">
@@ -34,6 +34,7 @@
         <a href="/pages/work.html">Work</a>
         <a href="/pages/projects.html">Projects</a>
         <a href="/pages/live.html">Live</a>
+        <a href="/pages/kits.html">Drum Kits</a>
         <a href="/pages/connect.html">Connect</a>
       </nav>
     </div>
@@ -41,42 +42,158 @@
 
   <main>
     <!-- Hero Section -->
-    <section class="hero">
+    <section class="hero hero--spectrum">
+      <div class="spectrum" aria-hidden="true"><canvas id="spectrum" width="1800" height="420"></canvas></div>
       <div class="container">
-        <h1>Larry Seyer</h1>
-        <p>Audio engineer. Software developer. Bridging decades of sonic mastery with AI innovation.</p>
+        <p class="kicker">Nine Grammys <b>&middot;</b> Bastrop, Texas <b>&middot;</b> Since 1971</p>
+        <h1>I spent fifty years <span class="lit">making records sound right.</span> Now I build the tools.</h1>
+        <p>Twenty years of Asleep At The Wheel records taught me exactly where the software gets in the
+          way. So I write my own &mdash; drum instruments you play instead of program, loopers that behave on
+          a stage, visuals that move with the take.</p>
+        <p>
+          <a href="/pages/projects.html" class="btn">See the tools</a>
+          <a href="/pages/live.html" class="btn btn--outline">Watch the show</a>
+        </p>
       </div>
     </section>
+
+    <!-- Credit ticker -->
+    <div class="ticker" aria-hidden="true">
+      <div class="ticker__row">
+        <span>Asleep At The Wheel <b>&mdash;</b> 1986&ndash;2007</span><span>9 <b>&times;</b> Grammy Award</span>
+        <span>Platinum records</span><span>Film &amp; TV post</span><span>Surround &amp; immersive</span>
+        <span>Live broadcast audio</span><span>REAPER <b>&middot;</b> Pro Tools <b>&middot;</b> Logic</span>
+        <span>Asleep At The Wheel <b>&mdash;</b> 1986&ndash;2007</span><span>9 <b>&times;</b> Grammy Award</span>
+        <span>Platinum records</span><span>Film &amp; TV post</span><span>Surround &amp; immersive</span>
+        <span>Live broadcast audio</span><span>REAPER <b>&middot;</b> Pro Tools <b>&middot;</b> Logic</span>
+      </div>
+    </div>
 
     <!-- Capabilities Section -->
     <section class="section">
       <div class="container">
-        <h2>Capabilities</h2>
+        <div class="sec-head">
+          <span class="label">What I do</span>
+          <h2>Three practices that keep feeding each other.</h2>
+          <p>The records tell me what the software is missing. The software makes the next record faster.
+            The show is where both get tested in public.</p>
+        </div>
         <div class="card-grid">
           <a href="/pages/work.html" class="card-link">
             <article class="card">
-              <h3>Audio Engineering</h3>
-              <p>Grammy-winning precision. 50+ years crafting sound for artists who demand excellence.</p>
+              <h3>Tracking, mixing, mastering</h3>
+              <p>Albums, singles, film, and television post. Pro Tools, REAPER, and Logic, with surround
+                and immersive work when a project asks for it.</p>
             </article>
           </a>
           <a href="/pages/projects.html" class="card-link">
             <article class="card">
-              <h3>Software Development</h3>
-              <p>Building tools that solve real problems. Python, TypeScript, REAPER scripting.</p>
-            </article>
-          </a>
-          <a href="/pages/projects.html" class="card-link">
-            <article class="card">
-              <h3>AI & Audio Innovation</h3>
-              <p>Exploring the intersection of machine learning and sound design.</p>
+              <h3>Instruments and utilities</h3>
+              <p>C++ and JUCE for the plugins, Lua and JSFX inside REAPER. Built in the room where they
+                get used, then shipped once they survive a real session.</p>
             </article>
           </a>
           <a href="/pages/live.html" class="card-link">
             <article class="card">
-              <h3>Live Production</h3>
-              <p>Real-time streaming, multi-camera systems, professional broadcast quality.</p>
+              <h3>Streams and broadcast audio</h3>
+              <p>Multi-camera switching, low-latency monitoring, and the automation that lets one person
+                run a clean show without a crew.</p>
             </article>
           </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Current Focus Section -->
+    <section class="section">
+      <div class="container">
+        <div class="sec-head">
+          <span class="label">In build</span>
+          <h2>Tools that came out of real sessions.</h2>
+        </div>
+        <div class="tiles">
+          <a href="/pages/projects/otto.html" class="tile">
+            <div class="tile__shot">
+              <img src="/images/projects/otto-players.png" alt="OTTO Players view - four independent drum players, each with its own kit and energy level">
+            </div>
+            <div class="tile__body">
+              <span class="tag">Instrument &middot; Active</span>
+              <h3>OTTO</h3>
+              <p>Four drummers you play instead of program. Organic tempo, human placement, arrangement
+                that follows the song instead of the grid.</p>
+            </div>
+          </a>
+          <a href="/pages/projects/ida.html" class="tile">
+            <div class="tile__shot">
+              <img src="/images/projects/ida-interface.png" alt="IDA interface - input mixer, per-phrase tape lanes for audio, MIDI, video, and lyric, and an output mixer">
+            </div>
+            <div class="tile__body">
+              <span class="tag">Instrument &middot; Active</span>
+              <h3>IDA</h3>
+              <p>Idea Development Arranger. Looping treated as what it actually is &mdash; capturing a musical
+                idea and repeating it until it becomes the arrangement.</p>
+            </div>
+          </a>
+          <a href="/pages/projects/grim.html" class="tile">
+            <div class="tile__shot">
+              <img src="/images/projects/grim-gui.png" alt="GRIM scene-based loop station running inside REAPER">
+            </div>
+            <div class="tile__body">
+              <span class="tag">REAPER &middot; Active</span>
+              <h3>GRIM</h3>
+              <p>Scene-based looping built for a stage. Every scene lands on the beat you asked for, with
+                no rescue click in front of an audience.</p>
+            </div>
+          </a>
+          <a href="/pages/projects/jtf-news.html" class="tile">
+            <div class="tile__shot tile__shot--logo">
+              <img src="/images/projects/jtf-news-logo.svg" alt="JTF News logo">
+            </div>
+            <div class="tile__body">
+              <span class="tag">Web &amp; iOS &middot; Active</span>
+              <h3>JTF News</h3>
+              <p>Just The Facts. News aggregation that strips the framing off a story and leaves you the
+                reporting underneath.</p>
+            </div>
+          </a>
+          <a href="/pages/projects/sparks-of-light.html" class="tile">
+            <div class="tile__shot">
+              <img src="/images/projects/sparks-of-light-visualizer.png" alt="Sparks of Light turning live MIDI into particles and notes on screen">
+            </div>
+            <div class="tile__body">
+              <span class="tag">macOS &middot; Active</span>
+              <h3>Sparks of Light</h3>
+              <p>Live MIDI and audio turned into particles and notes on screen, in time, with no render
+                step in between.</p>
+            </div>
+          </a>
+        </div>
+        <p class="mt-lg">
+          <a href="/pages/projects.html" class="btn btn--outline">Every project</a>
+        </p>
+      </div>
+    </section>
+
+    <!-- The Show -->
+    <section class="section">
+      <div class="container">
+        <div class="stage">
+          <div class="stage__img">
+            <img src="/images/ls-studio-wide.jpg" alt="Larry Seyer playing guitar in his studio, surrounded by keyboards, controllers, and a wall of guitars">
+          </div>
+          <div class="stage__copy">
+            <span class="label">The Larry Seyer Show</span>
+            <h2>One broadcast, three platforms, no crew.</h2>
+            <p>Audio engineering, software, and the occasional guitar. The stream goes out to YouTube,
+              Facebook, and Rumble at once &mdash; watch wherever you already are. Long-form conversations land
+              on the podcast feed a few days later.</p>
+            <div class="pills">
+              <a href="https://www.youtube.com/larryseyer" target="_blank" rel="noopener noreferrer">YouTube</a>
+              <a href="https://www.facebook.com/LarrySeyerOfficialPage" target="_blank" rel="noopener noreferrer">Facebook</a>
+              <a href="https://rumble.com/c/larryseyer" target="_blank" rel="noopener noreferrer">Rumble</a>
+              <a href="/pages/live.html">All of it</a>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -84,53 +201,27 @@
     <!-- Philosophy Section -->
     <section class="section">
       <div class="container">
-        <h2>Philosophy</h2>
+        <div class="sec-head">
+          <span class="label">How I work</span>
+        </div>
         <blockquote class="quote">
-          "No compromise. Every project gets the same attention to detail—whether it's a Grammy-winning album or a weekend experiment."
+          "No compromise. Every project gets the same attention to detail&mdash;whether it's a Grammy-winning
+          album or a weekend experiment."
         </blockquote>
       </div>
     </section>
 
-    <!-- Current Focus Section -->
+    <!-- Free Drum Kits -->
     <section class="section">
       <div class="container">
-        <h2>Current Focus</h2>
-        <div class="card-grid">
-          <a href="/pages/projects/otto.html" class="card-link">
-            <article class="card">
-              <span class="badge badge--active">Active</span>
-              <h3>OTTO</h3>
-              <p>Organic Tempo and Time Orchestrator. A four-player drum-arrangement instrument, played not programmed.</p>
-            </article>
-          </a>
-          <a href="/pages/projects/ida.html" class="card-link">
-            <article class="card">
-              <span class="badge badge--active">Active</span>
-              <h3>IDA</h3>
-              <p>Idea Development Arranger. Looping as the capture and repetition of musical ideas.</p>
-            </article>
-          </a>
-          <a href="/pages/projects/jtf-news.html" class="card-link">
-            <article class="card">
-              <span class="badge badge--active">Active</span>
-              <h3>JTF News</h3>
-              <p>Just The Facts news aggregation. AI-curated, bias-filtered headlines.</p>
-            </article>
-          </a>
-          <a href="/pages/projects/grim.html" class="card-link">
-            <article class="card">
-              <span class="badge badge--active">Active</span>
-              <h3>GRIM</h3>
-              <p>Scene-based loop station for REAPER. Professional live looping.</p>
-            </article>
-          </a>
-          <a href="/pages/projects/sparks-of-light.html" class="card-link">
-            <article class="card">
-              <span class="badge badge--active">Active</span>
-              <h3>Sparks of Light</h3>
-              <p>macOS visualizer turning live MIDI and audio into real-time particle and note graphics.</p>
-            </article>
-          </a>
+        <div class="band">
+          <div>
+            <h2>Five acoustic drum kits. Free, and they stay free.</h2>
+            <p>Recorded, edited, and programmed by hand &mdash; the same library composers have leaned on since
+              the GigaStudio days. SFZ format, so any free player will load them. Use them on your own
+              releases, commercial included.</p>
+          </div>
+          <a href="/pages/kits.html" class="btn">Get the kits</a>
         </div>
       </div>
     </section>
@@ -139,7 +230,7 @@
   <!-- Footer -->
   <footer class="footer">
     <div class="container">
-      <p>&copy; <span id="year">2025</span> Larry Seyer. All rights reserved.</p>
+      <p>&copy; <span id="year">2026</span> Larry Seyer &nbsp;&middot;&nbsp; Bastrop, Texas</p>
       <div class="social-links">
         <a href="https://github.com/larryseyer" target="_blank" rel="noopener noreferrer">GitHub</a>
         <a href="https://www.youtube.com/larryseyer" target="_blank" rel="noopener noreferrer">YouTube</a>
@@ -154,6 +245,6 @@
     </div>
   </footer>
 
-  <script src="js/main.js"></script>
+  <script src="/js/main.js"></script>
 </body>
 </html>

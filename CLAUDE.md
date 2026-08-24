@@ -4,11 +4,24 @@ This repository hosts the personal website for Larry Seyer, served via GitHub Pa
 
 ## Design System
 
-The site uses **"The Architect"** design system:
-- True black (#000000) background with amber (#f59e0b) accent
-- Space Grotesk for headlines, Inter for body, JetBrains Mono for code
-- Sharp corners, generous whitespace, minimal decoration
-- Professional, no-compromise aesthetic
+The site uses the **"Stage Light"** design system, replacing the earlier black-and-amber
+"Architect" system. The palette comes from the show's own lighting rig:
+
+- Near-black violet ground (#0a0713) under a fixed two-source wash — magenta (#ff3d92) from
+  house left, cyan (#3ddcff) from house right, warm spot (#ffb648) between them
+- Bricolage Grotesque for headlines, Public Sans for body, Azeret Mono for labels and data
+- Rounded corners, pill buttons, cards that light up under the cursor
+
+Every page shares one stylesheet. The class vocabulary is small and consistent, so a change
+in `css/style.css` reaches all 31 pages — prefer that to per-page markup edits.
+
+Components beyond the basics: `.kicker` (eyebrow), `.lit` (gradient phrase inside a heading),
+`.sec-head` + `.label` (section heading), `.tiles`/`.tile` (card with a screenshot),
+`.stage` (photo beside copy), `.band` (wide CTA), `.specs`/`.spec` (numbers strip),
+`.pills` (link row), `.ticker` (credit marquee), `.spectrum` (hero canvas analyzer).
+
+Mobile drops the nav into a horizontal scroll row. `.nav-toggle` is in the markup on every
+page but is hidden by CSS — there is no dropdown menu to maintain.
 
 ## Structure
 
@@ -18,24 +31,31 @@ The site uses **"The Architect"** design system:
 ├── css/
 │   └── style.css                 # Design system (CSS custom properties)
 ├── js/
-│   └── main.js                   # Navigation and scroll animations
+│   └── main.js                   # Active nav, card spotlight, hero spectrum canvas
 ├── images/
+│   ├── ls-studio-wide.jpg        # Studio photo, hero/stage blocks
+│   ├── ls-portrait.jpg           # Portrait crop, unused spare
 │   └── projects/                 # Project screenshots and logos
 ├── pages/
 │   ├── work.html                 # Credentials and expertise
-│   ├── projects.html             # Projects hub
+│   ├── projects.html             # Projects hub, grouped by kind
 │   ├── live.html                 # The Larry Seyer Show + podcast
+│   ├── kits.html                 # Free SFZ drum kits + signup
 │   ├── connect.html              # Social and contact links
-│   └── projects/
-│       ├── otto.html             # OTTO - Organic Tempo and Time Orchestrator
-│       ├── jtf-news.html         # JTF News - Just The Facts
-│       ├── grim.html             # GRIM - Scene-based loop station
-│       ├── icandy.html           # iCandy - REAPER theme
-│       ├── showswitcher.html     # ShowSwitcher - Camera automation
-│       └── midi2button.html      # MIDI2Button - MIDI trigger module
+│   ├── projects/                 # One page per project
+│   └── whitepapers/              # Long-form technical documents
 └── docs/
-    └── plans/                    # Design and implementation plans
+    ├── plans/                    # Design and implementation plans
+    └── mockups/                  # Design directions (A, B, C). C is the one built.
 ```
+
+`docs/` is served by GitHub Pages but excluded in `robots.txt`.
+
+## Known Loose Ends
+
+- `pages/projects/tapecolor.html` is an orphan: titled "Vector Tape", superseded by
+  `pages/projects/vector-tape.html`. Nothing links to it and it is not in the sitemap.
+  Left in place pending a decision to delete it.
 
 ## Customization
 
