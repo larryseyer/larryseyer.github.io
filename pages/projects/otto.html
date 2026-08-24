@@ -11,9 +11,9 @@
   </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="OTTO - Organic Tempo and Time Orchestrator. A four-player drum-arrangement instrument that breathes like a real drummer through an energy-driven feel system. By Larry Seyer.">
+  <meta name="description" content="OTTO - Organic Tempo and Time Orchestrator. A four-player drum-arrangement instrument that breathes like a real drummer through an energy-driven feel system. Free to download. By Larry Seyer.">
   <meta property="og:title" content="OTTO - Larry Seyer">
-  <meta property="og:description" content="Organic Tempo and Time Orchestrator. A four-player drum-arrangement instrument that breathes like a real drummer - played, not programmed.">
+  <meta property="og:description" content="Organic Tempo and Time Orchestrator. A four-player drum-arrangement instrument that breathes like a real drummer - played, not programmed. Free to download.">
   <meta property="og:image" content="https://larryseyer.com/images/og-image.png">
   <meta property="og:url" content="https://larryseyer.com/pages/projects/otto.html">
   <meta property="og:type" content="website">
@@ -22,6 +22,29 @@
   <link rel="stylesheet" href="../../css/style.css">
   <link rel="icon" type="image/x-icon" href="../../favicon.ico">
   <link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+
+  <!-- OTTO free / pricing / notify styles. Neutral values that inherit your palette;
+       move into css/style.css whenever you like. -->
+  <style>
+    .project-hero__free { font-size: 1.15rem; margin-top: 1rem; }
+    .project-hero__platforms { opacity: .75; letter-spacing: .04em; margin-top: .5rem; font-size: .95rem; }
+    .notify-form { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 1.25rem; max-width: 520px; }
+    .notify-form input { flex: 1 1 260px; padding: .75rem 1rem; border: 1px solid rgba(128,128,128,.5); border-radius: 6px; font-size: 1rem; background: transparent; color: inherit; }
+    .notify-form input:focus { outline: 2px solid currentColor; outline-offset: 1px; }
+    .notify-note { font-size: .9rem; opacity: .7; margin-top: .5rem; }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0; }
+    .pricing { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.25rem; margin-top: 1.5rem; }
+    .pricing__tier { border: 1px solid rgba(128,128,128,.35); border-radius: 10px; padding: 1.5rem; display: flex; flex-direction: column; }
+    .pricing__tier--featured { border-width: 2px; border-color: currentColor; }
+    .pricing__tier h3 { margin-top: 0; }
+    .pricing__price { font-size: 2rem; font-weight: 700; margin: .25rem 0 1rem; }
+    .pricing__price small { font-size: .95rem; font-weight: 400; opacity: .7; }
+    .pricing__tier .features { flex: 1 1 auto; }
+    .pricing__note { font-size: .9rem; opacity: .75; margin-top: 1rem; }
+    .video-embed { position: relative; width: 100%; max-width: 900px; margin: 1.5rem auto 0; aspect-ratio: 16 / 9; }
+    .video-embed iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; border-radius: 10px; }
+    .video-caption { font-size: .9rem; opacity: .7; text-align: center; margin-top: .75rem; }
+  </style>
 </head>
 <body>
   <!-- Header -->
@@ -46,6 +69,39 @@
         <span class="badge badge--active">Active Development</span>
         <h1>OTTO</h1>
         <p>Organic Tempo and Time Orchestrator. A four-player drum-arrangement instrument that breathes like a real drummer &mdash; played, not programmed.</p>
+
+        <p class="project-hero__free"><strong>OTTO is free.</strong> Launching December 2026 &mdash; the app and 100 kit-and-pattern combinations are yours at no cost, the full engine, nothing held back.</p>
+        <p class="project-hero__platforms">Mac &middot; Windows &middot; Linux &middot; iOS &nbsp;|&nbsp; Standalone, VST3, CLAP &amp; AUv3</p>
+
+        <!-- PRE-LAUNCH: notify-me capture. Fully handled by the script at the
+             bottom of this page. Set your list endpoint there (one line). -->
+        <form class="notify-form" id="notify-form" novalidate>
+          <label for="notify-email" class="sr-only">Email address</label>
+          <input type="email" id="notify-email" name="email" placeholder="you@example.com" autocomplete="email" required>
+          <button type="submit" class="btn" id="notify-submit">Notify me when OTTO ships</button>
+        </form>
+        <p class="notify-note" id="notify-note">Free at launch, December 2026. One email when it&rsquo;s ready &mdash; no spam, no list-selling.</p>
+
+        <!-- AT LAUNCH: replace the form + note above with a direct download.
+        <a href="DOWNLOAD_URL" class="btn">Download OTTO &mdash; Free</a> -->
+      </div>
+    </section>
+
+    <!-- Demo Video Section -->
+    <section class="section">
+      <div class="container">
+        <h2>Hear It</h2>
+        <p class="mb-md">Screenshots can&rsquo;t show you the one thing that matters &mdash; how OTTO feels. This walkthrough shows what it sounds like and how it&rsquo;s played.</p>
+        <div class="video-embed">
+          <iframe
+            src="https://www.youtube.com/embed/t2UAavUbUOw?rel=0"
+            title="OTTO demo &mdash; Larry Seyer"
+            loading="lazy"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen></iframe>
+        </div>
+        <p class="video-caption">An early build &mdash; the sound and workflow are here; the interface keeps evolving toward launch.</p>
       </div>
     </section>
 
@@ -69,6 +125,19 @@
           <li><strong>Built for the stage</strong>Strict real-time discipline keeps timing rock-solid; OTTO is played live, not programmed</li>
           <li><strong>One engine, two lives</strong>The same code runs as a standalone instrument or an embeddable engine</li>
           <li><strong>Flexible output routing</strong>A stereo sum, a per-player split, or a per-element split, all from one shared mixer</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Platforms & Formats Section -->
+    <section class="section">
+      <div class="container">
+        <h2>Platforms &amp; Formats</h2>
+        <p class="mb-md">One instrument, everywhere you work &mdash; on the desktop, on stage, and inside your DAW.</p>
+        <ul class="features">
+          <li><strong>Operating systems</strong>macOS, Windows, Linux, and iOS &mdash; the same OTTO on every device</li>
+          <li><strong>Standalone</strong>Run OTTO on its own, no host required &mdash; built for the stage</li>
+          <li><strong>Plugin formats</strong>Load it in your DAW as VST3, CLAP, or AUv3</li>
         </ul>
       </div>
     </section>
@@ -138,13 +207,62 @@
       </div>
     </section>
 
+    <!-- Pricing Section -->
+    <section class="section">
+      <div class="container">
+        <h2>Pricing</h2>
+        <p class="mb-md">The app is free and the engine is never crippled. Start with 100 combinations at no cost, then unlock the full library when you want more.</p>
+
+        <div class="pricing">
+
+          <!-- Free tier -->
+          <div class="pricing__tier">
+            <h3>Free</h3>
+            <p class="pricing__price">$0 <small>forever</small></p>
+            <ul class="features">
+              <li>The OTTO app on Mac, Windows, Linux, and iOS</li>
+              <li>10 acoustic drum kits and 10 drum patterns</li>
+              <li>Any pattern plays any kit &mdash; 100 combinations</li>
+              <li>The complete engine: four players, energy feel, arrangement, mixer, and FX &mdash; nothing held back</li>
+            </ul>
+          </div>
+
+          <!-- Full unlock -->
+          <div class="pricing__tier pricing__tier--featured">
+            <h3>Full Unlock</h3>
+            <p class="pricing__price">$129</p>
+            <ul class="features">
+              <li>All 113 kits in the Larry Seyer Acoustic Drum Library &mdash; recorded and mixed by a nine-time Grammy winner, from the engineer who helped launch the sample revolution with GigaPiano</li>
+              <li>The full synth drum system</li>
+              <li>Every drum pattern</li>
+              <li>All Vector FX modules</li>
+            </ul>
+            <p class="pricing__note">One payment for everything in OTTO today. As the library grows, new kit packs are available any time.</p>
+          </div>
+
+          <!-- Kit packs -->
+          <div class="pricing__tier">
+            <h3>Kit Packs</h3>
+            <p class="pricing__price">$14.95 <small>/ 10 kits</small></p>
+            <ul class="features">
+              <li>Grow your library a pack at a time</li>
+              <li>Every kit plays with every pattern</li>
+              <li>A low-friction way in if you&rsquo;re not ready for the full unlock</li>
+            </ul>
+          </div>
+
+        </div>
+
+        <p class="pricing__note">Pricing goes live when OTTO launches in December 2026 &mdash; get notified at the top of the page.</p>
+      </div>
+    </section>
+
     <!-- Licensing Section -->
     <section class="section">
       <div class="container">
         <h2>Licensing</h2>
-        <p>OTTO is commercial, proprietary software &mdash; licensed, not sold. Music you make with OTTO is yours, and no royalty is owed on it.</p>
-        <p>The included Larry Seyer Acoustic Drum Library is proprietary content. You may use it freely in your music productions, including commercial releases, but the sample files themselves may not be extracted or redistributed.</p>
-        <p>Versions of OTTO released before 2026 were distributed under the AGPLv3 and remain under it for anyone who received them.</p>
+        <p>OTTO is free to download and play. The app itself is commercial, proprietary software &mdash; licensed, not sold. Music you make with OTTO is yours, and no royalty is owed on it.</p>
+        <p>The Larry Seyer Acoustic Drum Library is proprietary content. You may use it freely in your music productions, including commercial releases, but the sample files themselves may not be extracted or redistributed.</p>
       </div>
     </section>
   </main>
@@ -168,5 +286,77 @@
   </footer>
 
   <script src="../../js/main.js"></script>
+
+  <!-- OTTO notify-list handler -->
+  <script>
+    (function () {
+      // ============================================================
+      //  OTTO notify-list configuration
+      //  1. Create a signup form at Formspree, Kit (ConvertKit),
+      //     Buttondown, or a Google Form.
+      //  2. Paste its POST endpoint URL into NOTIFY_ENDPOINT below.
+      //
+      //  If NOTIFY_ENDPOINT is left empty, the form still works: it
+      //  opens the visitor's email app addressed to NOTIFY_FALLBACK_EMAIL,
+      //  so no signup is ever silently lost. Confirm that address is
+      //  the one you want the list requests to reach.
+      // ============================================================
+      var NOTIFY_ENDPOINT = "";                              // e.g. "https://formspree.io/f/xxxxxxxx"
+      var NOTIFY_FALLBACK_EMAIL = "larry@larryseyer.com";    // confirm / change this
+
+      var form = document.getElementById("notify-form");
+      if (!form) return;
+      var input = document.getElementById("notify-email");
+      var button = document.getElementById("notify-submit");
+      var note = document.getElementById("notify-note");
+
+      function setNote(msg) { if (note) { note.textContent = msg; } }
+
+      function validEmail(value) {
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+      }
+
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        var email = (input.value || "").trim();
+
+        if (!validEmail(email)) {
+          setNote("Please enter a valid email address.");
+          input.focus();
+          return;
+        }
+
+        // No list service wired up yet: hand off to the visitor's email app.
+        if (!NOTIFY_ENDPOINT) {
+          var subject = encodeURIComponent("Notify me when OTTO ships");
+          var body = encodeURIComponent("Please add me to the OTTO launch list: " + email);
+          window.location.href = "mailto:" + NOTIFY_FALLBACK_EMAIL + "?subject=" + subject + "&body=" + body;
+          setNote("Opening your email app to confirm \u2014 thanks!");
+          return;
+        }
+
+        var originalLabel = button.textContent;
+        button.disabled = true;
+        button.textContent = "Adding you\u2026";
+
+        fetch(NOTIFY_ENDPOINT, {
+          method: "POST",
+          headers: { "Content-Type": "application/json", "Accept": "application/json" },
+          body: JSON.stringify({ email: email })
+        })
+        .then(function (res) {
+          if (!res.ok) { throw new Error("Request failed"); }
+          form.innerHTML = "";
+          setNote("You're on the list. I'll email you the moment OTTO ships \u2014 thank you.");
+          if (typeof gtag === "function") { gtag("event", "otto_notify_signup"); }
+        })
+        .catch(function () {
+          button.disabled = false;
+          button.textContent = originalLabel;
+          setNote("Something went wrong \u2014 please try again, or reach me via the Connect page.");
+        });
+      });
+    })();
+  </script>
 </body>
 </html>
