@@ -473,6 +473,13 @@ main {
   color: var(--color-accent-3);
 }
 
+/* Shipping imminently - filled, so it reads louder than the other states. */
+.badge--soon {
+  border-color: transparent;
+  background: linear-gradient(100deg, var(--color-accent), #c93cff);
+  color: #fff;
+}
+
 /* Buttons */
 .btn {
   display: inline-block;
@@ -676,6 +683,10 @@ p .btn {
   text-transform: uppercase;
   color: var(--color-accent-2);
   margin-bottom: 0.55rem;
+}
+
+.tile .tag--soon {
+  color: var(--color-accent);
 }
 
 .tile h3 {

@@ -11,15 +11,15 @@
   </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="VectorAmp - a co-solved circuit model of guitar amplifier and speaker, built to compete on feel and dynamic response rather than static tone accuracy. In development from Automagic Art.">
-  <meta property="og:title" content="VectorAmp - Larry Seyer">
-  <meta property="og:description" content="A co-solved circuit model of amplifier and speaker, built to compete on feel and response rather than static tone.">
+  <meta name="description" content="VectorDist - a distortion in its own right, with one continuous character sweep running from fuzz through grind and crunch to warm. Part of the LOUIS plugin suite. In development from Automagic Art.">
+  <meta property="og:title" content="VectorDist - Larry Seyer">
+  <meta property="og:description" content="A distortion with one continuous character sweep, from fuzz through grind and crunch to warm.">
   <meta property="og:image" content="https://larryseyer.com/images/og-image.png">
-  <meta property="og:url" content="https://larryseyer.com/pages/projects/vector-amp.html">
+  <meta property="og:url" content="https://larryseyer.com/pages/projects/vector-dist.html">
   <meta property="og:type" content="website">
   <meta name="twitter:card" content="summary_large_image">
-  <title>VectorAmp - Larry Seyer</title>
-  <link rel="canonical" href="https://larryseyer.com/pages/projects/vector-amp.html">
+  <title>VectorDist - Larry Seyer</title>
+  <link rel="canonical" href="https://larryseyer.com/pages/projects/vector-dist.html">
   <link rel="stylesheet" href="../../css/style.css">
   <link rel="icon" type="image/x-icon" href="../../favicon.ico">
   <link rel="apple-touch-icon" href="../../apple-touch-icon.png">
@@ -45,8 +45,9 @@
     <section class="project-hero">
       <div class="container">
         <span class="badge badge--active">In Development</span>
-        <h1>VectorAmp</h1>
-        <p>A guitar amplifier model that solves the amplifier and the speaker together, because in a real rig they are not two things in a row &mdash; they are arguing with each other.</p>
+        <h1>VectorDist</h1>
+        <p>A distortion in its own right, with a character sweep running from fuzz through grind and
+          crunch to warm.</p>
       </div>
     </section>
 
@@ -54,32 +55,38 @@
     <section class="section">
       <div class="container">
         <h2>The Idea</h2>
-        <p>Static tone is a solved problem. Profiling, neural capture, and impulse responses all reproduce one amplifier at one knob setting well enough that a blind comparison is not reliable. Competing on that is a losing position, and the remaining differences are argued about more often than they are heard.</p>
-        <p>What no capture reproduces is the conversation. A speaker's impedance is not a resistor &mdash; it has a resonance peak in the low end and a rising slope up top, and it pushes back against the output transformer and power tubes in both directions. An impulse response captures what the speaker put out. It cannot capture the argument that produced it. That argument is where feel lives.</p>
+        <p>Most distortion plugins hand you a row of buttons: fuzz, grind, crunch, warm. You audition
+          them one at a time and settle for whichever is closest. The interesting sounds are almost
+          always somewhere between two of them, and a row of buttons is exactly the wrong shape for
+          finding those.</p>
+        <p>VectorDist takes the approach the rest of the suite is built on and applies it to
+          distortion: one engine, one continuous sweep, and every point along it is a usable voicing.
+          Fuzz sits at one end and warm at the other, with grind and crunch on the way through &mdash; but
+          the sweep is the instrument, not the four labels printed on it.</p>
       </div>
     </section>
 
-    <!-- What it models -->
+    <!-- Where it sits -->
     <section class="section">
       <div class="container">
-        <h2>What It Models</h2>
-        <ul class="features">
-          <li><strong>Reactive load interaction</strong>Amplifier and speaker solved together, bidirectionally, rather than one after the other</li>
-          <li><strong>Power supply sag</strong>Rectifier behavior and supply droop on time constants of tens to hundreds of milliseconds; the bloom and squish of a hard-pushed amp</li>
-          <li><strong>Bias excursion and blocking distortion</strong>Grid conduction shifts the operating point and the stage then recovers, which is the sputter you hear when a power section is slammed. Almost nobody models it</li>
-          <li><strong>Presence and resonance as feedback phenomena</strong>They change loop gain and damping, not just frequency response. Modeled as tone controls they are simply wrong</li>
-        </ul>
+        <h2>Where It Sits</h2>
+        <p>VectorDist is a distortion, not an amplifier. <a href="vector-amp.html">VectorAmp</a> solves
+          a guitar amplifier and its speaker together, because in a real rig those two are arguing with
+          each other. VectorDist has no cabinet and no opinion about what is plugged into it &mdash; it is
+          a colour you put on any track in the session.</p>
+        <p>The two are built to be used together or apart.</p>
       </div>
     </section>
 
-    <!-- Family -->
+    <!-- Part of the Family -->
     <section class="section">
       <div class="container">
         <h2>Part of the Family</h2>
-        <p>VectorAmp is part of the <a href="louis.html">LOUIS</a> plugin suite, sharing its real-time architecture with <a href="otto.html">OTTO</a> and <a href="ida.html">IDA</a>.</p>
+        <p>VectorDist is part of the <a href="louis.html">LOUIS</a> plugin suite, sharing its real-time
+          architecture with <a href="otto.html">OTTO</a> and <a href="ida.html">IDA</a>.</p>
         <p class="mt-lg">
           <a href="louis.html" class="btn btn--outline">LOUIS</a>
-          <a href="vector-sampler.html" class="btn btn--outline">VectorSampler</a>
+          <a href="vector-amp.html" class="btn btn--outline">VectorAmp</a>
           <a href="vector-tape.html" class="btn btn--outline">VectorTape</a>
         </p>
       </div>
@@ -89,7 +96,8 @@
     <section class="section">
       <div class="container">
         <h2>Licensing</h2>
-        <p>VectorAmp will be commercial, proprietary software &mdash; licensed, not sold. Its source is not publicly available. Music you make with it will be yours, with no royalty owed on it.</p>
+        <p>VectorDist will be commercial, proprietary software &mdash; licensed, not sold. Its source is not
+          publicly available. Music you make with it will be yours, with no royalty owed on it.</p>
       </div>
     </section>
   </main>
@@ -97,7 +105,7 @@
   <!-- Footer -->
   <footer class="footer">
     <div class="container">
-      <p>&copy; <span id="year">2025</span> Larry Seyer. All rights reserved.</p>
+      <p>&copy; <span id="year">2026</span> Larry Seyer. All rights reserved.</p>
       <div class="social-links">
         <a href="https://github.com/larryseyer" target="_blank" rel="noopener noreferrer">GitHub</a>
         <a href="https://www.youtube.com/larryseyer" target="_blank" rel="noopener noreferrer">YouTube</a>
