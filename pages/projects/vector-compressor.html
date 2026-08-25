@@ -45,7 +45,7 @@
       <div class="container">
         <span class="badge badge--active">In Development</span>
         <h1>VectorComp</h1>
-        <p><strong>A new approach to compression.</strong> A single, always-stereo dynamics engine that morphs continuously through eight classic compressor characters along one signal path &mdash; a 24-coordinate character map, steered by one Character knob. Not another menu of emulations, but one engine that travels the whole space between them.</p>
+        <p>A single always-stereo dynamics engine that morphs continuously through eight classic compressor characters along one signal path &mdash; a 24-coordinate character map, steered by one Character knob. One engine that travels the whole space between those eight, rather than a menu of fixed points in it.</p>
       </div>
     </section>
 
@@ -54,7 +54,7 @@
       <div class="container">
         <h2>The Problem</h2>
         <p>Analog-modeling compressors almost always ship as a menu of discrete emulations: a smooth optical unit, a punchy fast unit, a warm vari-mu unit &mdash; each a separate signal path you select with a switch. You get the voices the designer chose to model and nothing in between. Worse, running several of those models at once means several detectors, several sets of smeared transients, phase error where their outputs are blended, and several times the CPU.</p>
-        <p>There has never been a clean way to ask: what lives halfway between a fast, aggressive character and a slow, gluey one? In a menu of fixed models, that question has no answer &mdash; the space between the presets simply doesn't exist.</p>
+        <p>Which leaves an obvious question with nowhere to go: what lives halfway between a fast, aggressive character and a slow, gluey one? In a menu of fixed models that question has no answer, because the space between the presets was never built.</p>
       </div>
     </section>
 
@@ -66,11 +66,11 @@
           <li><strong>One engine, one signal path</strong>Never multiple models crossfading their audio; the morph interpolates <em>coefficients</em>, not outputs, so there is no double-detection, transient smear, or phase error</li>
           <li><strong>A continuous Character knob</strong>Travels through eight reference voices: a transparent origin, a punchy fast character, two optical characters, a clean vari-mu warmth, two big-iron vari-mu characters, and a hybrid mastering character</li>
           <li><strong>A transparent "Ideal" origin</strong>The literal zero of the space: perfectly clean, exactly the ratio, knee, and times you dial, with zero added harmonics &mdash; every character is that origin plus a displacement</li>
-          <li><strong>24 character coordinates</strong>Spanning six mechanisms (detection, transfer curve, temporal response, gain-cell realization, coloration, and stereo coupling), covering every audible degree of freedom a compressor has</li>
+          <li><strong>24 character coordinates</strong>Spanning six mechanisms (detection, transfer curve, temporal response, gain-cell realization, coloration, and stereo coupling), covering the degrees of freedom that turn out to be audible</li>
           <li><strong>Always-visible controls</strong>Threshold, Ratio, Attack, Release, and Knee on every character; grab one to hold an absolute value across the morph and reach hybrid characters that never shipped in hardware</li>
           <li><strong>Full stereo toolkit</strong>Global Mid/Side mode, basis-paired Width/Balance, a frequency-dependent stereo-link crossover, a parametric detection-side EQ, external-key support, and lookahead</li>
           <li><strong>Living analog behavior</strong>A stateful transformer model with low-end bloom, a harmonic stage that growls only when the unit is working, and a continuous Drift/Age control that makes every instance slightly different</li>
-          <li><strong>Perceptual macros</strong>Punch, Density, and Intensity drive whole groups of coordinates along ear-meaningful axes, atop fixed 4&times; linear-phase oversampling and a proven-stable feedback solver</li>
+          <li><strong>Perceptual macros</strong>Punch, Density, and Intensity drive whole groups of coordinates along ear-meaningful axes, atop fixed 4&times; linear-phase oversampling and a feedback solver that stays stable across the whole space</li>
         </ul>
       </div>
     </section>
