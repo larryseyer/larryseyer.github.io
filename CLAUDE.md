@@ -1,12 +1,6 @@
 # Larry Seyer GitHub Pages Website
 
-This repository hosts the personal website for Larry Seyer, served via GitHub Pages.
-
-⛔ **THE LIVE SITE IS `https://larryseyer.com` — NOT `larryseyer.github.io`.** The `CNAME` file sets
-the custom domain, so GitHub **301-redirects** every `larryseyer.github.io/...` URL to the matching
-`larryseyer.com/...` one. ⚠ **The repo must KEEP the name `larryseyer.github.io`** — a GitHub Pages
-*user* site is only served at the domain root when the repository is named `<username>.github.io`.
-The folder name is not the confusing part; the URL you verify against is.
+This repository hosts the personal website for Larry Seyer, served via GitHub Pages at `larryseyer.github.io`.
 
 ## Design System
 
@@ -82,17 +76,6 @@ python3 -m http.server 8000
 - Commit locally as work progresses
 - **Do NOT push until explicitly instructed** by the user
 - Main branch deploys automatically to GitHub Pages once pushed
-
-⛔ **VERIFY A PUBLISH AGAINST `larryseyer.com`, OR WITH `curl -L`.** A plain
-`curl https://larryseyer.github.io/<page>` returns the **301 redirect body**, which contains none of
-the page's content — so a `grep` for the text you just changed comes back with zero hits and reads
-exactly like a successful publish. That has already caused one false "it's live" once (2026-08-25).
-
-```bash
-curl -sL https://larryseyer.com/pages/kits.html | grep "the text you changed"
-```
-
-⚠ **Deployment is not instant** — allow ~45-60s after the push before the new content is served.
 
 ## GitHub Repository Links
 
