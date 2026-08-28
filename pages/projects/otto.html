@@ -28,11 +28,7 @@
   <style>
     .project-hero__free { font-size: 1.15rem; margin-top: 1rem; }
     .project-hero__platforms { opacity: .75; letter-spacing: .04em; margin-top: .5rem; font-size: .95rem; }
-    .notify-form { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 1.25rem; max-width: 520px; }
-    .notify-form input { flex: 1 1 260px; padding: .75rem 1rem; border: 1px solid rgba(128,128,128,.5); border-radius: 6px; font-size: 1rem; background: transparent; color: inherit; }
-    .notify-form input:focus { outline: 2px solid currentColor; outline-offset: 1px; }
     .notify-note { font-size: .9rem; opacity: .7; margin-top: .5rem; }
-    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0; }
     .pricing { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.25rem; margin-top: 1.5rem; }
     .pricing__tier { border: 1px solid rgba(128,128,128,.35); border-radius: 10px; padding: 1.5rem; display: flex; flex-direction: column; }
     .pricing__tier--featured { border-width: 2px; border-color: currentColor; }
@@ -73,14 +69,11 @@
         <p class="project-hero__free"><strong>OTTO is free.</strong> Launching December 2026. The app and 100 kit-and-pattern combinations cost nothing, and the engine underneath them is the whole engine.</p>
         <p class="project-hero__platforms">Mac &middot; Windows &middot; Linux &middot; iOS &nbsp;|&nbsp; Standalone, VST3, CLAP &amp; AUv3</p>
 
-        <!-- PRE-LAUNCH: notify-me capture. Fully handled by the script at the
-             bottom of this page. Set your list endpoint there (one line). -->
-        <form class="notify-form" id="notify-form" novalidate>
-          <label for="notify-email" class="sr-only">Email address</label>
-          <input type="email" id="notify-email" name="email" placeholder="you@example.com" autocomplete="email" required>
-          <button type="submit" class="btn" id="notify-submit">Notify me when OTTO ships</button>
-        </form>
-        <p class="notify-note" id="notify-note">Free at launch, December 2026. One email when it&rsquo;s ready &mdash; no spam, no list-selling.</p>
+        <!-- PRE-LAUNCH: notify-me capture. EmailOctopus embedded form, the same
+             list the drum-kit page feeds. Renders in place of this script tag.
+             Do not move this into <head> - it will not render there. -->
+        <script async src="https://eocampaign1.com/form/64c7ea96-8d4a-11f1-9c7e-d77562a1aae3.js" data-form="64c7ea96-8d4a-11f1-9c7e-d77562a1aae3"></script>
+        <p class="notify-note">Free at launch, December 2026. One email when it&rsquo;s ready &mdash; no spam, no list-selling.</p>
 
         <!-- AT LAUNCH: replace the form + note above with a direct download.
         <a href="DOWNLOAD_URL" class="btn">Download OTTO &mdash; Free</a> -->
@@ -287,76 +280,5 @@
 
   <script src="../../js/main.js"></script>
 
-  <!-- OTTO notify-list handler -->
-  <script>
-    (function () {
-      // ============================================================
-      //  OTTO notify-list configuration
-      //  1. Create a signup form at Formspree, Kit (ConvertKit),
-      //     Buttondown, or a Google Form.
-      //  2. Paste its POST endpoint URL into NOTIFY_ENDPOINT below.
-      //
-      //  If NOTIFY_ENDPOINT is left empty, the form still works: it
-      //  opens the visitor's email app addressed to NOTIFY_FALLBACK_EMAIL,
-      //  so no signup is ever silently lost. Confirm that address is
-      //  the one you want the list requests to reach.
-      // ============================================================
-      var NOTIFY_ENDPOINT = "";                              // e.g. "https://formspree.io/f/xxxxxxxx"
-      var NOTIFY_FALLBACK_EMAIL = "larry@larryseyer.com";    // confirm / change this
-
-      var form = document.getElementById("notify-form");
-      if (!form) return;
-      var input = document.getElementById("notify-email");
-      var button = document.getElementById("notify-submit");
-      var note = document.getElementById("notify-note");
-
-      function setNote(msg) { if (note) { note.textContent = msg; } }
-
-      function validEmail(value) {
-        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
-      }
-
-      form.addEventListener("submit", function (e) {
-        e.preventDefault();
-        var email = (input.value || "").trim();
-
-        if (!validEmail(email)) {
-          setNote("Please enter a valid email address.");
-          input.focus();
-          return;
-        }
-
-        // No list service wired up yet: hand off to the visitor's email app.
-        if (!NOTIFY_ENDPOINT) {
-          var subject = encodeURIComponent("Notify me when OTTO ships");
-          var body = encodeURIComponent("Please add me to the OTTO launch list: " + email);
-          window.location.href = "mailto:" + NOTIFY_FALLBACK_EMAIL + "?subject=" + subject + "&body=" + body;
-          setNote("Opening your email app to confirm \u2014 thanks!");
-          return;
-        }
-
-        var originalLabel = button.textContent;
-        button.disabled = true;
-        button.textContent = "Adding you\u2026";
-
-        fetch(NOTIFY_ENDPOINT, {
-          method: "POST",
-          headers: { "Content-Type": "application/json", "Accept": "application/json" },
-          body: JSON.stringify({ email: email })
-        })
-        .then(function (res) {
-          if (!res.ok) { throw new Error("Request failed"); }
-          form.innerHTML = "";
-          setNote("You're on the list. I'll email you the moment OTTO ships \u2014 thank you.");
-          if (typeof gtag === "function") { gtag("event", "otto_notify_signup"); }
-        })
-        .catch(function () {
-          button.disabled = false;
-          button.textContent = originalLabel;
-          setNote("Something went wrong \u2014 please try again, or reach me via the Connect page.");
-        });
-      });
-    })();
-  </script>
 </body>
 </html>
