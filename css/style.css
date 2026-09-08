@@ -397,6 +397,10 @@ main {
   margin-bottom: 0.35rem;
 }
 
+.card-grid--fill .card h3:last-child {
+  margin-bottom: 0;
+}
+
 .card {
   position: relative;
   border: 1px solid var(--color-border);
