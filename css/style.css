@@ -244,7 +244,7 @@ main {
 }
 
 .hero h1 {
-  max-width: 17ch;
+  max-width: min(17ch, 100%);
   margin-bottom: var(--space-md);
 }
 
@@ -380,6 +380,21 @@ main {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(258px, 1fr));
   gap: 1.1rem;
+}
+
+/* Keep short directory cards at a card's width instead of stretching
+   a two-item row across the whole measure. */
+.card-grid--fill {
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+}
+
+.card-grid--fill .card {
+  padding: 1.25rem 1.2rem;
+}
+
+.card-grid--fill .card h3 {
+  font-size: 1.12rem;
+  margin-bottom: 0.35rem;
 }
 
 .card {
@@ -978,6 +993,7 @@ p .btn {
   .nav {
     order: 3;
     width: 100%;
+    min-width: 0;
     overflow-x: auto;
     gap: 1.3rem;
     padding-bottom: 0.3rem;
