@@ -4,28 +4,33 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="color-scheme" content="dark">
-  <meta name="theme-color" content="#202124">
+  <meta name="theme-color" content="#0a0713">
   <meta name="robots" content="noindex, nofollow">
   <meta name="referrer" content="no-referrer">
-  <meta name="description" content="Larry Seyer Home Page">
-  <title>Larry Seyer Home Page</title>
+  <meta name="description" content="Larry Seyer start page">
+  <title>Larry Seyer</title>
   <link rel="icon" href="OfficialLogo.png" type="image/png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400&amp;family=Pontano+Sans&amp;family=Roboto+Condensed:wght@400;700&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&amp;family=Public+Sans:wght@400;500;600&amp;family=Azeret+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #202124;
-      --text: #aaa;
-      --text-muted: #999;
-      --text-heading: #ccc;
-      --text-title: #777;
-      --text-bright: #fff;
-      --border: #000;
-      --font-body: "Roboto Condensed", "Arial Narrow", sans-serif;
-      --font-display: "Felix Titling", "Playfair Display", serif;
-      --font-banner: "Playfair Display", serif;
-      --font-weather: "Pontano Sans", sans-serif;
+      --bg: #0a0713;
+      --surface: #130e21;
+      --surface-2: #1a1430;
+      --border: #2c2246;
+      --border-lit: #453567;
+      --text: #f1ecff;
+      --text-dim: #9c92bd;
+      --magenta: #ff3d92;
+      --magenta-hot: #ff5ea5;
+      --cyan: #3ddcff;
+      --gold: #ffb648;
+      --font-display: "Bricolage Grotesque", system-ui, sans-serif;
+      --font-body: "Public Sans", system-ui, sans-serif;
+      --font-mono: "Azeret Mono", ui-monospace, monospace;
+      --radius: 14px;
+      --pad: clamp(0.85rem, 2vw, 1.5rem);
     }
 
     *,
@@ -40,136 +45,193 @@
 
     body {
       margin: 0;
-      padding: 0;
-      width: 100%;
       min-width: 320px;
-      background-color: var(--bg);
+      background: var(--bg);
       color: var(--text);
-      font-size: 80%;
       font-family: var(--font-body);
+      font-size: 15px;
+      line-height: 1.45;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(70vmax 70vmax at 8% -12%, rgba(255, 61, 146, 0.17), transparent 62%),
+        radial-gradient(70vmax 70vmax at 96% -6%, rgba(61, 220, 255, 0.13), transparent 62%);
+    }
+
+    body > * {
+      position: relative;
+      z-index: 1;
     }
 
     a {
-      color: var(--text-muted);
+      color: var(--cyan);
       text-decoration: none;
     }
 
     a:hover {
-      color: var(--text-bright);
-      text-decoration: underline;
+      color: var(--magenta-hot);
     }
 
-    a:focus-visible {
-      outline: 1px solid var(--text-bright);
-      outline-offset: 2px;
-    }
-
-    h1,
-    h2,
-    h3 {
-      margin: 0.5em 0 0;
-      padding: 0;
-      font-family: var(--font-display);
-      color: var(--text-heading);
-    }
-
-    h1 {
-      font-size: 2.2em;
-      color: var(--text-title);
-    }
-
-    h2 {
-      color: var(--text);
-    }
-
-    p {
-      margin: 0 0 0.2em;
-      padding: 0;
+    a:focus-visible,
+    button:focus-visible,
+    input:focus-visible {
+      outline: 2px solid var(--cyan);
+      outline-offset: 3px;
     }
 
     img {
-      margin: 5px 0;
       max-width: 100%;
       height: auto;
     }
 
+    h1, h2, h3 {
+      margin: 0;
+      font-family: var(--font-display);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      color: var(--text);
+    }
+
+    h2 {
+      font-size: 1.05rem;
+      margin: 0 0 0.55rem;
+      color: var(--gold);
+    }
+
+    h3 {
+      font-size: 0.78rem;
+      font-family: var(--font-mono);
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      color: var(--text-dim);
+      margin: 0.95rem 0 0.35rem;
+    }
+
     ul {
-      margin: 0 0 0 25px;
+      margin: 0;
       padding: 0;
       list-style: none;
     }
 
     li {
-      margin: 0;
-      padding: 3px 0 0;
+      padding: 0.18rem 0;
     }
 
-    header {
+    .skip {
+      position: absolute;
+      left: -999px;
+      top: 0;
+    }
+
+    .skip:focus {
+      left: var(--pad);
+      top: 0.4rem;
+      z-index: 5;
+      background: var(--surface);
+      color: var(--text);
+      padding: 0.4rem 0.7rem;
+      border-radius: 8px;
+    }
+
+    .score {
+      display: block;
       width: 100%;
-      border-bottom: 1px solid var(--border);
-      padding: 0.4em 15px 0;
+      max-height: 72px;
+      object-fit: contain;
+      object-position: center;
+      padding: 0.4rem var(--pad) 0;
     }
 
-    .header-inner {
+    .mast {
       display: flex;
-      align-items: flex-start;
       justify-content: space-between;
-      gap: 1rem;
+      gap: 1.25rem;
+      align-items: start;
+      padding: 0.6rem var(--pad) 0.9rem;
     }
 
-    .header-logo {
-      padding: 0 20px;
-      margin: 0;
-      flex: 0 0 auto;
-    }
-
-    .header-title {
-      flex: 0 0 auto;
-      text-align: right;
-    }
-
-    .header-title h1 {
-      margin: 0 20px;
-      font-size: 40px;
-      font-family: var(--font-banner);
-      font-weight: 400;
-      color: var(--text-title);
-    }
-
-    #weather-data {
-      font-family: var(--font-weather);
-      padding-top: 2pt;
-      color: var(--text);
-      text-shadow: 2px 2px 1px #000;
-      width: 20%;
-      flex: 1 1 20%;
-    }
-
-    .weather-title {
-      font-size: 12pt;
-    }
-
-    .weather-data {
-      font-size: 8pt;
-      padding-left: 20pt;
-    }
-
-    #description::first-letter {
-      text-transform: uppercase;
-    }
-
-    #newsData {
-      width: 30%;
-      flex: 1 1 30%;
-      color: var(--text);
+    .brand {
+      display: flex;
+      gap: 0.85rem;
+      align-items: center;
       min-width: 0;
-      overflow: hidden;
-      overflow-wrap: anywhere;
+    }
+
+    .brand img {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      flex: 0 0 auto;
+    }
+
+    .brand h1 {
+      font-size: clamp(1.6rem, 3vw, 2.15rem);
+      font-weight: 800;
+    }
+
+    .lede {
+      margin: 0.2rem 0 0;
+      color: var(--text-dim);
+      font-size: 0.92rem;
+    }
+
+    .clock {
+      margin: 0.25rem 0 0;
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      color: var(--gold);
+    }
+
+    .mast-side {
+      display: grid;
+      grid-template-columns: minmax(160px, 240px) minmax(220px, 360px);
+      gap: 0.75rem;
+      min-width: 0;
+      flex: 1 1 520px;
+      max-width: 640px;
+    }
+
+    .panel {
+      background: rgba(19, 14, 33, 0.72);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 0.7rem 0.85rem;
+      min-width: 0;
+    }
+
+    .weather-title,
+    .news-kicker {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--text-dim);
+      margin: 0 0 0.3rem;
+    }
+
+    .weather-line {
+      font-size: 0.88rem;
+      color: var(--text);
+    }
+
+    .weather-line + .weather-line {
+      color: var(--text-dim);
+      font-size: 0.8rem;
     }
 
     #newsData h3 {
-      font-size: 1em;
-      margin: 0;
+      font-family: var(--font-display);
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: -0.02em;
+      margin: 0 0 0.25rem;
       display: -webkit-box;
       -webkit-box-orient: vertical;
       -webkit-line-clamp: 2;
@@ -177,381 +239,575 @@
     }
 
     #newsData p {
+      margin: 0 0 0.35rem;
+      color: var(--text-dim);
+      font-size: 0.82rem;
       display: -webkit-box;
       -webkit-box-orient: vertical;
-      -webkit-line-clamp: 3;
+      -webkit-line-clamp: 2;
       overflow: hidden;
     }
 
-    .credit {
-      clear: both;
-      background-color: var(--bg);
-      border-top: 4px solid var(--border);
-      margin: 0;
-      padding: 6px 15px;
-      text-align: right;
+    .find {
+      padding: 0 var(--pad) 1.35rem;
+    }
+
+    .find form {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .find input {
+      flex: 1;
+      min-width: 0;
+      appearance: none;
+      border: 1px solid var(--border);
+      background: var(--surface);
       color: var(--text);
+      font-family: var(--font-body);
+      font-size: 1rem;
+      border-radius: 999px;
+      padding: 0.7rem 1.1rem;
+    }
+
+    .find input::placeholder {
+      color: var(--text-dim);
+    }
+
+    .find input:focus {
+      border-color: var(--cyan);
+      box-shadow: 0 0 0 3px rgba(61, 220, 255, 0.15);
+    }
+
+    .find button {
+      appearance: none;
+      border: 0;
+      background: var(--magenta);
+      color: #fff;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 0.95rem;
+      border-radius: 999px;
+      padding: 0 1.15rem;
+      cursor: pointer;
+    }
+
+    .find button:hover {
+      background: var(--magenta-hot);
+    }
+
+    .hint {
+      margin: 0.45rem 0 0;
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: var(--text-dim);
     }
 
     .layout {
       display: grid;
-      grid-template-columns: 21% 46% 21%;
-      justify-content: space-between;
-      width: 100%;
-      padding: 0 20px;
-      background-color: var(--bg);
+      grid-template-columns: minmax(200px, 1fr) minmax(340px, 1.55fr) minmax(200px, 1fr);
+      gap: 1.25rem 1.5rem;
+      padding: 0 var(--pad) 1.5rem;
     }
 
     .col {
       min-width: 0;
-      padding: 0 0 1em;
     }
 
-    .icon-grid {
-      text-align: center;
+    .bench {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin: 0 0 1rem;
     }
 
-    .responsive-image {
-      max-width: 12.5%;
+    .bench a {
+      display: inline-flex;
+      align-items: center;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--text);
+      border-radius: 999px;
+      padding: 0.32rem 0.75rem;
+      font-family: var(--font-display);
+      font-size: 0.88rem;
+      font-weight: 600;
+    }
+
+    .bench a:hover {
+      color: var(--bg);
+      background: var(--cyan);
+      border-color: var(--cyan);
+    }
+
+    .launches {
+      margin-bottom: 0.35rem;
+    }
+
+    .icon-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+
+    .launch {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: calc(16.66% - 0.4rem);
+      min-width: 68px;
+      height: 62px;
+      padding: 0.4rem 0.45rem;
+      background: #221b38;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+    }
+
+    .launch img {
+      max-width: 100%;
+      max-height: 44px;
+      width: auto;
       height: auto;
       object-fit: contain;
-      vertical-align: middle;
     }
 
-    hr {
-      border: 0;
-      border-top: 1px solid var(--border);
+    .launch:hover {
+      border-color: var(--cyan);
+      box-shadow: 0 0 18px rgba(61, 220, 255, 0.16);
+      transform: translateY(-1px);
     }
 
     .link-row {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.35em 1em;
-      margin: 0.6em 0 0 10px;
+      gap: 0.35rem 0.9rem;
     }
 
-    .split {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0 1rem;
-      width: 90%;
-      margin: 0 auto;
-      text-align: center;
+    .cluster {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.15rem 0.7rem;
     }
 
-    .split.compact {
-      width: 80%;
-      margin: 0;
-      text-align: left;
+    .is-hidden {
+      display: none !important;
     }
 
     footer {
-      width: 100%;
       border-top: 1px solid var(--border);
-      color: var(--text);
-      padding: 10px;
+      padding: 0.7rem var(--pad) 1.1rem;
+      color: var(--text-dim);
+      font-size: 0.8rem;
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
     }
 
-    @media (max-width: 900px) {
+    footer a {
+      color: var(--text-dim);
+    }
+
+    @media (max-width: 980px) {
+      .mast {
+        flex-direction: column;
+      }
+
+      .mast-side {
+        grid-template-columns: 1fr 1fr;
+        max-width: none;
+        flex: 1 1 auto;
+        width: 100%;
+      }
+
       .layout {
         grid-template-columns: 1fr;
-        padding: 0 15px;
       }
 
       .col-main {
         order: -1;
       }
 
-      .header-inner {
-        display: grid;
-        grid-template-columns: auto 1fr;
-        grid-template-areas:
-          "logo weather"
-          "title title"
-          "news news";
-        gap: 0.35rem 1rem;
+      .hint {
+        display: none;
       }
 
-      .header-logo {
-        grid-area: logo;
-        padding: 0;
+      .launch {
+        width: calc(25% - 0.3rem);
       }
 
-      #weather-data {
-        grid-area: weather;
-        width: auto;
+      .score {
+        max-height: 44px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .brand img {
+        width: 56px;
+        height: 56px;
       }
 
-      #newsData {
-        grid-area: news;
-        width: auto;
-        min-width: 0;
-      }
-
-      .weather-data {
-        font-size: 10pt;
-        padding-left: 0;
-      }
-
-      .header-title {
-        grid-area: title;
-        text-align: center;
-        min-width: 0;
-      }
-
-      .header-title h1 {
-        font-size: clamp(18px, 5vw, 32px);
-        margin: 0;
-        line-height: 1.15;
-      }
-
-      .responsive-image {
-        max-width: 16.66%;
-      }
-
-      .split,
-      .split.compact {
+      .mast-side {
         grid-template-columns: 1fr;
-        width: 100%;
+      }
+
+      .launch {
+        width: calc(25% - 0.3rem);
+        height: 56px;
+      }
+
+      footer {
+        flex-direction: column;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .launch {
+        transform: none;
       }
     }
   </style>
 </head>
 <body>
+  <a class="skip" href="#q">Skip to search</a>
+
   <header>
-    <div class="header-inner">
-      <div class="header-logo">
-        <img src="OfficialLogo.png" alt="Larry Seyer" width="100" height="100">
+    <img class="score" src="StartHeader.png" alt="Larry Seyer — rhymes with Fire">
+    <div class="mast">
+      <div class="brand">
+        <img src="OfficialLogo.png" alt="" width="72" height="72">
+        <div>
+          <h1>Larry Seyer</h1>
+          <p class="lede">Records, tools, and a show with no crew.</p>
+          <p class="clock" id="clock" aria-live="polite"></p>
+        </div>
       </div>
-      <div id="weather-data" aria-live="polite">Loading weather...</div>
-      <div id="newsData" aria-live="polite">Loading news...</div>
-      <div class="header-title">
-        <h1>The Larry Seyer Show</h1>
+      <div class="mast-side">
+        <div class="panel" id="weather-data" aria-live="polite">Loading weather…</div>
+        <div class="panel" id="newsData" aria-live="polite">Loading news…</div>
       </div>
+    </div>
+    <div class="find">
+      <form id="search-form" action="https://www.startpage.com/do/dsearch" method="get" role="search">
+        <label class="skip" for="q">Filter this page or search the web</label>
+        <input id="q" name="query" type="search" placeholder="Filter this desk, or search the web" autocomplete="off" autofocus>
+        <button type="submit">Search</button>
+      </form>
+      <p class="hint">Type to filter. Enter searches Startpage. Esc clears.</p>
     </div>
   </header>
 
-  <p class="credit">&copy; <span data-year></span> Larry Seyer Music</p>
-
   <main class="layout">
-    <section class="col col-side" aria-labelledby="personal-heading">
-      <h2 id="personal-heading">Personal Stuff</h2>
-      <h3>Google</h3>
-      <ul>
-        <li><a href="https://admin.google.com/larryseyer.com/AdminHome?firsttime">Google Admin</a></li>
-        <li><a href="https://analytics.google.com/">Analytics</a></li>
-        <li><a href="https://calendar.google.com/calendar/render">Calendar</a></li>
-        <li><a href="https://fonts.google.com/?query=script">Fonts</a></li>
-        <li>
-          <a href="https://drive.google.com/?pli=1&amp;authuser=0#my-drive">Drive</a>
-          <a href="https://docs.google.com/document/u/0/">Docs</a>
-          <a href="https://docs.google.com/spreadsheets/u/0/">Sheets</a>
-        </li>
-        <li>
-          <a href="https://earth.google.com/web/">Earth</a>
-          <a href="https://voice.google.com/">Voice</a>
-          <a href="https://www.google.com/travel/flights/">Flights</a>
-        </li>
-        <li>
-          <a href="https://www.youtube.com/">YouTube</a>
-          <a href="https://www.youtube.com/larryseyer">Videos</a>
-        </li>
-      </ul>
-      <h3>Entertainment</h3>
-      <ul>
-        <li><a href="https://www.netflix.com/">Netflix</a></li>
-        <li><a href="https://www.paramountplus.com/home/">Paramount+</a></li>
-        <li><a href="https://my.upfaithandfamily.com/browse">UP Family</a></li>
-        <li><a href="https://watch.frndlytv.com/guide">Frndly TV</a></li>
-        <li><a href="https://www.disneyplus.com/">Disney+</a></li>
-        <li>
-          <a href="https://www.cdbaby.com/account">CD Baby</a>
-          <a href="https://members.cdbaby.com/Dashboard">Admin</a>
-        </li>
-        <li>
-          <a href="https://www.amazon.com/">Amazon Prime</a>
-          <a href="https://merch.amazon.com/dashboard">Merch</a>
-        </li>
-        <li><a href="https://www.amazon.com/gp/video/storefront">Prime Videos</a></li>
-      </ul>
-      <h3>Programming</h3>
-      <ul>
-        <li><a href="https://www.skool.com/vibecodeguild">Vibe Code Guild</a></li>
-        <li><a href="https://stackoverflow.com/">Stack Overflow</a></li>
-        <li><a href="https://lucid.app/documents#/dashboard">Lucid Chart</a></li>
-        <li><a href="https://github.com/TheAudioProgrammer/synth-plugin-book">Audio Programmer</a></li>
-        <li>
-          <a href="https://www.pianobook.co.uk/packs/">PianoBook</a>
-          <a href="https://www.pianobook.co.uk/profile/larryseyer/">Profile</a>
-        </li>
-        <li><a href="https://studiocode.dev/pacer-editor/#/">Nektar</a></li>
-        <li><a href="https://phosphoricons.com/?q=%22design%22">Phosphor Icons</a></li>
-        <li><a href="https://jtfnews.org/">JTF News</a></li>
-        <li><a href="https://www.acimdailyminute.org/">ACIM Daily Minute</a></li>
-        <li><a href="https://github.com/sponsors/larryseyer">GitHub Sponsors</a></li>
-      </ul>
+    <section class="col" data-group aria-labelledby="desk-heading">
+      <h2 id="desk-heading">Desk</h2>
+
+      <div data-group>
+        <h3>Google</h3>
+        <ul>
+          <li><a href="https://admin.google.com/larryseyer.com/AdminHome?firsttime">Google Admin</a></li>
+          <li><a href="https://analytics.google.com/">Analytics</a></li>
+          <li><a href="https://calendar.google.com/calendar/render">Calendar</a></li>
+          <li><a href="https://fonts.google.com/?query=script">Fonts</a></li>
+          <li class="cluster">
+            <a href="https://drive.google.com/?pli=1&amp;authuser=0#my-drive">Drive</a>
+            <a href="https://docs.google.com/document/u/0/">Docs</a>
+            <a href="https://docs.google.com/spreadsheets/u/0/">Sheets</a>
+          </li>
+          <li class="cluster">
+            <a href="https://earth.google.com/web/">Earth</a>
+            <a href="https://voice.google.com/">Voice</a>
+            <a href="https://www.google.com/travel/flights/">Flights</a>
+          </li>
+          <li class="cluster">
+            <a href="https://www.youtube.com/">YouTube</a>
+            <a href="https://www.youtube.com/larryseyer">The show</a>
+          </li>
+        </ul>
+      </div>
+
+      <div data-group>
+        <h3>Watch</h3>
+        <ul>
+          <li><a href="https://www.netflix.com/">Netflix</a></li>
+          <li><a href="https://www.paramountplus.com/home/">Paramount+</a></li>
+          <li><a href="https://my.upfaithandfamily.com/browse">UP Family</a></li>
+          <li><a href="https://watch.frndlytv.com/guide">Frndly TV</a></li>
+          <li><a href="https://www.disneyplus.com/">Disney+</a></li>
+          <li class="cluster">
+            <a href="https://www.cdbaby.com/account">CD Baby</a>
+            <a href="https://members.cdbaby.com/Dashboard">Admin</a>
+          </li>
+          <li class="cluster">
+            <a href="https://www.amazon.com/">Amazon</a>
+            <a href="https://merch.amazon.com/dashboard">Merch</a>
+            <a href="https://www.amazon.com/gp/video/storefront">Prime Video</a>
+          </li>
+        </ul>
+      </div>
+
+      <div data-group>
+        <h3>House</h3>
+        <ul>
+          <li class="cluster">
+            <a href="https://18292-1.portal.athenahealth.com/">Bastrop Family Health</a>
+            <a href="https://18292-1.portal.athenahealth.com/">Athena Health</a>
+          </li>
+          <li><a href="https://www.bluebonnetelectric.coop/My-Account/Dashboard">BlueBonnet Electric</a></li>
+          <li><a href="https://members.rccbi.com/webinq/Fds/texsch/FQStart.aspx">Texas Propane</a></li>
+          <li><a href="https://www.txtag.org/vector/account/home/accountOverview.do">TxTag</a></li>
+          <li><a href="https://www.callcentric.com/">CallCentric</a></li>
+          <li><a href="https://800notes.com/">800Notes</a></li>
+          <li><a href="https://www.namecheap.com/">Namecheap</a></li>
+          <li><a href="https://www.coinbase.com/dashboard">Coinbase</a></li>
+        </ul>
+      </div>
     </section>
 
-    <section class="col col-main" aria-labelledby="quicklinks-heading">
-      <div class="quicklinks">
-        <h2 id="quicklinks-heading">Quick Links</h2>
-        <nav class="icon-grid" aria-label="Quick links">
-          <a href="https://www.gmail.com/"><img src="Gmail_logo.png" alt="Gmail" class="responsive-image"></a>
-          <a href="https://www.startpage.com/"><img src="StartPageLogo.png" alt="Startpage" class="responsive-image"></a>
-          <a href="https://grok.com/"><img src="grok-icon.png" alt="Grok" class="responsive-image"></a>
-          <a href="https://claude.ai/new"><img src="Claude.png" alt="Claude" class="responsive-image"></a>
-          <a href="https://www.twitch.tv/larryseyer"><img src="twitch.png" alt="Twitch" class="responsive-image"></a>
-          <a href="https://rumble.com/c/c-996645"><img src="rumble.png" alt="Rumble" class="responsive-image"></a>
-          <a href="https://odysee.com/@LarrySeyer:a?"><img src="odysee.png" alt="Odysee" class="responsive-image"></a>
-          <a href="https://www.bankofamerica.com/"><img src="boa.png" alt="Bank of America" class="responsive-image"></a>
-          <a href="https://www.frostbank.com/"><img src="Frost.png" alt="Frost Bank" class="responsive-image"></a>
-          <a href="https://www.paypal.com/"><img src="PayPal.png" alt="PayPal" class="responsive-image"></a>
-          <a href="https://www.chase.com/"><img src="ChaseLogo.png" alt="Chase" class="responsive-image"></a>
-          <a href="https://cards.barclaycardus.com/"><img src="aadvantage.png" alt="Barclaycard AAdvantage" class="responsive-image"></a>
-          <a href="https://online.citi.com/US/JSO/loginpage/retarget.action?deepdrop=true&amp;checkAuth=Y"><img src="CitiCard.png" alt="Citi Card" class="responsive-image"></a>
-          <a href="https://simplifi.quicken.com/"><img src="Mint.png" alt="Quicken Simplifi" class="responsive-image"></a>
-          <a href="https://app.hydrawise.com/config/dashboard"><img src="hydra.png" alt="Hydrawise" class="responsive-image"></a>
-          <a href="https://app.simplenote.com/"><img src="SimpleNote.png" alt="Simplenote" class="responsive-image"></a>
-          <a href="https://citizenportal.ai/search?taxId=2306"><img src="CitizenPortal.png" alt="Citizen Portal" class="responsive-image"></a>
-          <a href="https://home.solari.com/"><img src="Solari-Report.png" alt="Solari Report" class="responsive-image"></a>
-          <a href="https://us13.admin.mailchimp.com/campaigns/#t:campaigns-list"><img src="MailChimp.png" alt="Mailchimp" class="responsive-image"></a>
-          <a href="https://x.com/"><img src="Twitter.png" alt="X" class="responsive-image"></a>
-          <a href="https://www.facebook.com/"><img src="Facebook.png" alt="Facebook" class="responsive-image"></a>
-          <a href="https://www.instagram.com/"><img src="IG.png" alt="Instagram" width="30" height="30" class="responsive-image"></a>
-          <a href="https://www.linkedin.com/in/larryseyer/"><img src="Linkedin.png" alt="LinkedIn" class="responsive-image"></a>
-          <a href="https://www.minds.com/newsfeed"><img src="minds.png" alt="Minds" class="responsive-image"></a>
-          <a href="https://substack.com/home"><img src="SubStack.png" alt="Substack" class="responsive-image"></a>
-          <a href="https://gettr.com/user/larryseyer"><img src="GETTR.png" alt="GETTR" class="responsive-image"></a>
-          <a href="https://coracle.social/notes"><img src="Coracle.png" alt="Coracle" class="responsive-image"></a>
-          <a href="https://bsky.app/profile/larryseyer.bsky.social"><img src="BlueSky.png" alt="Bluesky" class="responsive-image"></a>
-          <a href="https://truthsocial.com/@larryseyer"><img src="TruthSocial.png" alt="Truth Social" class="responsive-image"></a>
-          <a href="https://auth.zencoder.ai/profile?tab=usage"><img src="ZenCoder.svg" width="30" height="30" alt="Zencoder" class="responsive-image"></a>
-          <a href="https://app.devin.ai/"><img src="devin.png" width="30" height="30" alt="Devin" class="responsive-image"></a>
-          <a href="https://github.com/"><img src="github.png" width="30" height="30" alt="GitHub" class="responsive-image"></a>
-          <a href="https://studio.moises.ai/library/"><img src="Moises.png" width="30" height="30" alt="Moises" class="responsive-image"></a>
-          <a href="https://app.codegpt.co/en/agents/0b74e3c0-84e7-40ae-bcd9-3887d31c4b49"><img src="CodeGPT.png" width="30" height="30" alt="CodeGPT" class="responsive-image"></a>
-          <a href="https://suno.com/"><img src="Suno.png" alt="Suno" class="responsive-image"></a>
+    <section class="col col-main" data-group aria-labelledby="bench-heading">
+      <h2 id="bench-heading">On the bench</h2>
+      <nav class="bench" data-group aria-label="Larry's tools">
+        <a href="https://larryseyer.com/">Site</a>
+        <a href="https://larryseyer.com/pages/projects/otto.html">OTTO</a>
+        <a href="https://larryseyer.com/pages/projects/ida.html">IDA</a>
+        <a href="https://larryseyer.com/pages/projects/grim.html">GRIM</a>
+        <a href="https://larryseyer.com/pages/projects/vector-sampler.html">VectorSampler</a>
+        <a href="https://larryseyer.com/pages/projects/louis.html">LOUIS</a>
+        <a href="https://larryseyer.com/pages/projects/sparks-of-light.html">Sparks of Light</a>
+        <a href="https://larryseyer.com/pages/projects/icandy.html">iCandy</a>
+        <a href="https://jtfnews.org/">JTF News</a>
+        <a href="https://www.acimdailyminute.org/">ACIM Daily Minute</a>
+        <a href="https://larryseyer.com/pages/live.html">The show</a>
+        <a href="https://larryseyer.com/pages/kits.html">Drum kits</a>
+        <a href="https://github.com/larryseyer">GitHub</a>
+      </nav>
+
+      <div class="launches" data-group>
+        <h3>Mail and notes</h3>
+        <nav class="icon-row" aria-label="Mail and notes">
+          <a class="launch" href="https://www.gmail.com/" title="Gmail"><img src="Gmail_logo.png" alt="Gmail"></a>
+          <a class="launch" href="https://www.startpage.com/" title="Startpage"><img src="StartPageLogo.png" alt="Startpage"></a>
+          <a class="launch" href="https://app.simplenote.com/" title="Simplenote"><img src="SimpleNote.png" alt="Simplenote"></a>
+          <a class="launch" href="https://us13.admin.mailchimp.com/campaigns/#t:campaigns-list" title="Mailchimp"><img src="MailChimp.png" alt="Mailchimp"></a>
+          <a class="launch" href="https://github.com/" title="GitHub"><img src="github.png" width="30" height="30" alt="GitHub"></a>
         </nav>
       </div>
-      <hr>
-      <div class="news">
-        <h2>News</h2>
+
+      <div class="launches" data-group>
+        <h3>Agents</h3>
+        <nav class="icon-row" aria-label="Agents">
+          <a class="launch" href="https://grok.com/" title="Grok"><img src="grok-icon.png" alt="Grok"></a>
+          <a class="launch" href="https://claude.ai/new" title="Claude"><img src="Claude.png" alt="Claude"></a>
+          <a class="launch" href="https://chatgpt.com/" title="ChatGPT"><img src="chatgpt.png" alt="ChatGPT"></a>
+          <a class="launch" href="https://gemini.google.com/" title="Gemini"><img src="gemini.png" alt="Gemini"></a>
+          <a class="launch" href="https://www.perplexity.ai/" title="Perplexity"><img src="perplexity.png" alt="Perplexity"></a>
+          <a class="launch" href="https://app.devin.ai/" title="Devin"><img src="devin.png" width="30" height="30" alt="Devin"></a>
+          <a class="launch" href="https://auth.zencoder.ai/profile?tab=usage" title="Zencoder"><img src="ZenCoder.svg" width="30" height="30" alt="Zencoder"></a>
+          <a class="launch" href="https://app.codegpt.co/en/agents/0b74e3c0-84e7-40ae-bcd9-3887d31c4b49" title="CodeGPT"><img src="CodeGPT.png" width="30" height="30" alt="CodeGPT"></a>
+        </nav>
+      </div>
+
+      <div class="launches" data-group>
+        <h3>Sound</h3>
+        <nav class="icon-row" aria-label="Sound">
+          <a class="launch" href="https://studio.moises.ai/library/" title="Moises"><img src="Moises.png" width="30" height="30" alt="Moises"></a>
+          <a class="launch" href="https://suno.com/" title="Suno"><img src="Suno.png" alt="Suno"></a>
+        </nav>
+      </div>
+
+      <div class="launches" data-group>
+        <h3>Show</h3>
+        <nav class="icon-row" aria-label="Show">
+          <a class="launch" href="https://www.twitch.tv/larryseyer" title="Twitch"><img src="twitch.png" alt="Twitch"></a>
+          <a class="launch" href="https://rumble.com/c/c-996645" title="Rumble"><img src="rumble.png" alt="Rumble"></a>
+          <a class="launch" href="https://odysee.com/@LarrySeyer:a?" title="Odysee"><img src="odysee.png" alt="Odysee"></a>
+          <a class="launch" href="https://discord.com/channels/@me" title="Discord"><img src="discord.png" alt="Discord"></a>
+        </nav>
+      </div>
+
+      <div class="launches" data-group>
+        <h3>Money</h3>
+        <nav class="icon-row" aria-label="Money">
+          <a class="launch" href="https://www.bankofamerica.com/" title="Bank of America"><img src="boa.png" alt="Bank of America"></a>
+          <a class="launch" href="https://www.frostbank.com/" title="Frost Bank"><img src="Frost.png" alt="Frost Bank"></a>
+          <a class="launch" href="https://www.paypal.com/" title="PayPal"><img src="PayPal.png" alt="PayPal"></a>
+          <a class="launch" href="https://www.chase.com/" title="Chase"><img src="ChaseLogo.png" alt="Chase"></a>
+          <a class="launch" href="https://cards.barclaycardus.com/" title="Barclaycard AAdvantage"><img src="aadvantage.png" alt="Barclaycard AAdvantage"></a>
+          <a class="launch" href="https://online.citi.com/US/JSO/loginpage/retarget.action?deepdrop=true&amp;checkAuth=Y" title="Citi Card"><img src="CitiCard.png" alt="Citi Card"></a>
+          <a class="launch" href="https://simplifi.quicken.com/" title="Quicken Simplifi"><img src="Mint.png" alt="Quicken Simplifi"></a>
+        </nav>
+      </div>
+
+      <div class="launches" data-group>
+        <h3>Social</h3>
+        <nav class="icon-row" aria-label="Social">
+          <a class="launch" href="https://x.com/" title="X"><img src="Twitter.png" alt="X"></a>
+          <a class="launch" href="https://www.facebook.com/" title="Facebook"><img src="Facebook.png" alt="Facebook"></a>
+          <a class="launch" href="https://www.instagram.com/" title="Instagram"><img src="IG.png" width="30" height="30" alt="Instagram"></a>
+          <a class="launch" href="https://www.linkedin.com/in/larryseyer/" title="LinkedIn"><img src="Linkedin.png" alt="LinkedIn"></a>
+          <a class="launch" href="https://www.minds.com/newsfeed" title="Minds"><img src="minds.png" alt="Minds"></a>
+          <a class="launch" href="https://substack.com/home" title="Substack"><img src="SubStack.png" alt="Substack"></a>
+          <a class="launch" href="https://gettr.com/user/larryseyer" title="GETTR"><img src="GETTR.png" alt="GETTR"></a>
+          <a class="launch" href="https://coracle.social/notes" title="Coracle"><img src="Coracle.png" alt="Coracle"></a>
+          <a class="launch" href="https://bsky.app/profile/larryseyer.bsky.social" title="Bluesky"><img src="BlueSky.png" alt="Bluesky"></a>
+          <a class="launch" href="https://truthsocial.com/@larryseyer" title="Truth Social"><img src="TruthSocial.png" alt="Truth Social"></a>
+        </nav>
+      </div>
+
+      <div class="launches" data-group>
+        <h3>Town</h3>
+        <nav class="icon-row" aria-label="Town">
+          <a class="launch" href="https://app.hydrawise.com/config/dashboard" title="Hydrawise"><img src="hydra.png" alt="Hydrawise"></a>
+          <a class="launch" href="https://citizenportal.ai/search?taxId=2306" title="Citizen Portal"><img src="CitizenPortal.png" alt="Citizen Portal"></a>
+          <a class="launch" href="https://home.solari.com/" title="Solari Report"><img src="Solari-Report.png" alt="Solari Report"></a>
+        </nav>
+      </div>
+
+      <div data-group>
+        <h3>Read</h3>
         <nav class="link-row" aria-label="News">
           <a href="https://news.google.com/">Google News</a>
+          <a href="https://jtfnews.org/">JTF News</a>
           <a href="https://citizenfreepress.com/">Citizen Free Press</a>
           <a href="https://www.dailywire.com/">Daily Wire</a>
           <a href="https://home.solari.com/">Solari Report</a>
           <a href="https://freerepublic.com">Free Republic</a>
         </nav>
       </div>
-      <hr>
-      <div class="misclinks">
-        <h2>Misc Links</h2>
-        <div class="split">
-          <div>
-            <p><a href="https://www.coinbase.com/dashboard">Coinbase</a></p>
-            <p><a href="https://www.callcentric.com/">CallCentric</a></p>
-            <p><a href="https://kdp.amazon.com/en_US/bookshelf?ref_=NFD_TN_bs">Amazon Publishing</a></p>
-            <p><a href="https://www.amazon.com/Theres-Only-ONE-Here-lighthearted/dp/1984322915/">My Paperback</a></p>
-            <p><a href="https://18292-1.portal.athenahealth.com/">Bastrop Family Health</a></p>
-            <p><a href="https://18292-1.portal.athenahealth.com/">Athena Health</a></p>
-          </div>
-          <div>
-            <p><a href="https://800notes.com/">800Notes</a></p>
-            <p><a href="https://us13.admin.mailchimp.com/campaigns/#t:campaigns-list">Mailchimp</a></p>
-            <p><a href="https://www.bluebonnetelectric.coop/My-Account/Dashboard">BlueBonnet Electric</a></p>
-            <p><a href="https://members.rccbi.com/webinq/Fds/texsch/FQStart.aspx">Texas Propane</a></p>
-            <p><a href="https://www.txtag.org/vector/account/home/accountOverview.do">TxTag</a></p>
-            <p><a href="https://www.namecheap.com/">Namecheap</a></p>
-          </div>
-        </div>
-      </div>
     </section>
 
-    <section class="col col-side" aria-labelledby="web-heading">
-      <h2 id="web-heading">Web Stuff</h2>
-      <div class="split compact">
-        <div>
-          <a href="https://www.google.com/search?q=speed+test">Speed Test</a><br>
-          <a href="https://whatismyipaddress.com/">IP Address?</a><br>
-          <a href="https://ip-lookup.net/">IP V4?</a><br>
-          <a href="https://colormind.io/image/">ColorMind</a><br>
-        </div>
-        <div>
-          <a href="https://beautifier.io/">PHP Pretty</a><br>
-          <a href="https://www.cleancss.com/css-beautify/">CSS Pretty</a><br>
-          <a href="https://www.office.com/launch/powerpoint?ui=en-US&amp;rs=US&amp;auth=1">PowerPoint</a><br>
-          <a href="https://www.htaccessredirect.net/">.htaccess</a>
-        </div>
+    <section class="col" data-group aria-labelledby="room-heading">
+      <h2 id="room-heading">The room</h2>
+
+      <div data-group>
+        <h3>Sites</h3>
+        <ul>
+          <li><a href="https://larryseyer.com/">LarrySeyer.com</a></li>
+          <li><a href="https://larryseyer.com/pages/work.html">Work</a></li>
+          <li><a href="https://larryseyer.com/pages/projects.html">Projects</a></li>
+          <li><a href="https://raspyramid.com/">Ra's Pyramid</a></li>
+          <li class="cluster">
+            <a href="https://pmlmusic.com">PMLMusic</a>
+            <a href="https://anothermusicalfeast.org/">AMF</a>
+            <a href="https://www.mysitearea.com/?siteId=S2d2MFozMFBJdz09">BackEnd</a>
+          </li>
+          <li><a href="https://kdp.amazon.com/en_US/bookshelf?ref_=NFD_TN_bs">Amazon Publishing</a></li>
+          <li><a href="https://www.amazon.com/Theres-Only-ONE-Here-lighthearted/dp/1984322915/">There's Only ONE Here</a></li>
+        </ul>
       </div>
-      <h3>Websites</h3>
-      <ul>
-        <li><a href="https://larryseyer.com/">Larry Site</a></li>
-        <li><a href="https://raspyramid.com/">Ra's Site</a></li>
-        <li>
-          <a href="https://pmlmusic.com">PMLMusic - </a>
-          <a href="https://anothermusicalfeast.org/">AMF - </a>
-          <a href="https://www.mysitearea.com/?siteId=S2d2MFozMFBJdz09">BackEnd</a>
-        </li>
-      </ul>
-      <h3>Reaper</h3>
-      <ul>
-        <li>
-          <a href="https://forum.cockos.com/forumdisplay.php?f=20">Reaper</a>
-          <a href="https://forum.cockos.com/showthread.php?p=2369334#post2369334">Theme</a>
-          <a href="http://192.168.1.20:8080/">Remote</a>
-          <a href="https://www.reaper.fm/sdk/js/js.php">JSFX</a>
-        </li>
-        <li>
-          <a href="https://www.reaper.fm/sdk/walter/">Reaper Walter</a>
-          <a href="https://www.reaper.fm/sdk/reascript/reascripthelp.html">SDK</a>
-          <a href="https://mespotin.uber.space/Ultraschall/Reaper_Api_Documentation.html">Internals</a>
-        </li>
-        <li><a href="https://sfzformat.com/opcodes/">Sforzando Opcodes</a></li>
-        <li><a href="https://freesound.org/">FreeSounds</a></li>
-      </ul>
-      <h3>SHOW</h3>
-      <ul>
-        <li>
-          <a href="https://discord.com/channels/@me">Discord</a>
-          <a href="https://discord.com/channels/725420237259800607/918541904285671474">Chat</a>
-        </li>
-        <li><a href="https://www.speechchat.com/">SpeechChat</a></li>
-        <li>
-          <a href="https://restream.io/channel">ReStream</a>
-          <a href="https://chat.restream.io/chat">Chat</a>
-        </li>
-        <li>
-          <a href="https://www.twitch.tv/directory/following">Twitch</a>
-          <a href="https://www.twitch.tv/popout/moderator/larryseyer/chat?id=4">Chat</a>
-          <a href="https://twitch-tools.rootonline.de/followerlist_viewer.php">Followers</a>
-        </li>
-        <li><a href="https://kick.com/larryseyer">Kick</a></li>
-        <li>
-          <a href="https://obsproject.com/">OBS</a>
-          <a href="https://obsproject.com/forum/resources/">Plugins</a>
-          <a href="https://overlays.thefyrewire.com/widgets/triggerfyre/">TriggerFyre</a>
-        </li>
-        <li>
-          <a href="https://streamelements.com/dashboard/se-merch">Stream Elements</a>
-          <a href="https://streamelements.com/overlay/61b10a1ea75c6d5922f4f240/FoJSy2fIDUSFJ7N_ZZ3n97-JZn0qPkuza8ij6BDpZL5sC3FA">Overlay</a>
-        </li>
-        <li><a href="https://sso.teachable.com/secure/teachable_accounts/profile">Teachable</a></li>
-        <li><a href="https://www.streamersonglist.com/t/larryseyer/songs">Songlist</a></li>
-        <li><a href="https://unsplash.com/">Unsplash Photos</a></li>
-        <li><a href="https://www.tipeeestream.com/dashboard/">TipeeeStream</a></li>
-        <li>
-          <a href="https://dashboard.teespring.com/overview">TeeSpring</a>
-          <a href="https://the-larry-seyer-show-offic-shop.fourthwall.com/admin/dashboard">FourthWall</a>
-        </li>
-        <li><a href="https://www.buymeacoffee.com/dashboard">BuyMeCoffee</a></li>
-        <li><a href="https://studio.d-id.com/video-studio">D-ID</a></li>
-      </ul>
+
+      <div data-group>
+        <h3>Reaper</h3>
+        <ul>
+          <li class="cluster">
+            <a href="https://forum.cockos.com/forumdisplay.php?f=20">Forum</a>
+            <a href="https://forum.cockos.com/showthread.php?p=2369334#post2369334">Theme</a>
+            <a href="http://192.168.1.20:8080/">Remote</a>
+            <a href="https://www.reaper.fm/sdk/js/js.php">JSFX</a>
+          </li>
+          <li class="cluster">
+            <a href="https://www.reaper.fm/sdk/walter/">Walter</a>
+            <a href="https://www.reaper.fm/sdk/reascript/reascripthelp.html">SDK</a>
+            <a href="https://mespotin.uber.space/Ultraschall/Reaper_Api_Documentation.html">Internals</a>
+          </li>
+          <li><a href="https://larryseyer.com/pages/projects/icandy.html">iCandy theme</a></li>
+          <li><a href="https://sfzformat.com/opcodes/">SFZ opcodes</a></li>
+          <li><a href="https://freesound.org/">Freesound</a></li>
+        </ul>
+      </div>
+
+      <div data-group>
+        <h3>Code</h3>
+        <ul>
+          <li><a href="https://github.com/larryseyer">GitHub</a></li>
+          <li><a href="https://github.com/larryseyer/jtfnews">jtfnews</a></li>
+          <li><a href="https://github.com/larryseyer/jtfnewsapp">jtfnewsapp</a></li>
+          <li><a href="https://github.com/larryseyer/iCandy">iCandy</a></li>
+          <li><a href="https://github.com/larryseyer/companion-module-generic-showswitcher">ShowSwitcher</a></li>
+          <li><a href="https://github.com/larryseyer/midi2button">MIDI2Button</a></li>
+          <li><a href="https://github.com/larryseyer/ACIMDailyMinuteApp">ACIM Daily Minute</a></li>
+          <li><a href="https://github.com/sponsors/larryseyer">GitHub Sponsors</a></li>
+          <li><a href="https://www.skool.com/vibecodeguild">Vibe Code Guild</a></li>
+          <li><a href="https://stackoverflow.com/">Stack Overflow</a></li>
+          <li><a href="https://lucid.app/documents#/dashboard">Lucid Chart</a></li>
+          <li><a href="https://github.com/TheAudioProgrammer/synth-plugin-book">Audio Programmer</a></li>
+          <li class="cluster">
+            <a href="https://www.pianobook.co.uk/packs/">PianoBook</a>
+            <a href="https://www.pianobook.co.uk/profile/larryseyer/">Profile</a>
+          </li>
+          <li><a href="https://studiocode.dev/pacer-editor/#/">Nektar</a></li>
+          <li><a href="https://phosphoricons.com/?q=%22design%22">Phosphor Icons</a></li>
+        </ul>
+      </div>
+
+      <div data-group>
+        <h3>Show</h3>
+        <ul>
+          <li class="cluster">
+            <a href="https://www.youtube.com/larryseyer">YouTube</a>
+            <a href="https://www.facebook.com/LarrySeyerOfficialPage">Facebook</a>
+            <a href="https://rumble.com/c/larryseyer">Rumble</a>
+          </li>
+          <li class="cluster">
+            <a href="https://discord.com/channels/@me">Discord</a>
+            <a href="https://discord.com/channels/725420237259800607/918541904285671474">Chat</a>
+          </li>
+          <li><a href="https://www.speechchat.com/">SpeechChat</a></li>
+          <li class="cluster">
+            <a href="https://restream.io/channel">Restream</a>
+            <a href="https://chat.restream.io/chat">Chat</a>
+          </li>
+          <li class="cluster">
+            <a href="https://www.twitch.tv/directory/following">Twitch</a>
+            <a href="https://www.twitch.tv/popout/moderator/larryseyer/chat?id=4">Chat</a>
+            <a href="https://twitch-tools.rootonline.de/followerlist_viewer.php">Followers</a>
+          </li>
+          <li><a href="https://kick.com/larryseyer">Kick</a></li>
+          <li class="cluster">
+            <a href="https://obsproject.com/">OBS</a>
+            <a href="https://obsproject.com/forum/resources/">Plugins</a>
+            <a href="https://overlays.thefyrewire.com/widgets/triggerfyre/">TriggerFyre</a>
+          </li>
+          <li class="cluster">
+            <a href="https://streamelements.com/dashboard/se-merch">StreamElements</a>
+            <a href="https://streamelements.com/overlay/61b10a1ea75c6d5922f4f240/FoJSy2fIDUSFJ7N_ZZ3n97-JZn0qPkuza8ij6BDpZL5sC3FA">Overlay</a>
+          </li>
+          <li><a href="https://larryseyer.com/pages/projects/showswitcher.html">ShowSwitcher</a></li>
+          <li><a href="https://larryseyer.com/pages/projects/midi2button.html">MIDI2Button</a></li>
+          <li><a href="https://sso.teachable.com/secure/teachable_accounts/profile">Teachable</a></li>
+          <li><a href="https://www.streamersonglist.com/t/larryseyer/songs">Songlist</a></li>
+          <li><a href="https://unsplash.com/">Unsplash</a></li>
+          <li><a href="https://www.tipeeestream.com/dashboard/">TipeeeStream</a></li>
+          <li class="cluster">
+            <a href="https://dashboard.teespring.com/overview">TeeSpring</a>
+            <a href="https://the-larry-seyer-show-offic-shop.fourthwall.com/admin/dashboard">Fourthwall</a>
+          </li>
+          <li><a href="https://www.buymeacoffee.com/dashboard">Buy Me a Coffee</a></li>
+          <li><a href="https://studio.d-id.com/video-studio">D-ID</a></li>
+        </ul>
+      </div>
+
+      <div data-group>
+        <h3>Web</h3>
+        <ul>
+          <li class="cluster">
+            <a href="https://www.google.com/search?q=speed+test">Speed test</a>
+            <a href="https://whatismyipaddress.com/">IP address</a>
+            <a href="https://ip-lookup.net/">IPv4</a>
+          </li>
+          <li><a href="https://colormind.io/image/">ColorMind</a></li>
+          <li class="cluster">
+            <a href="https://beautifier.io/">PHP Pretty</a>
+            <a href="https://www.cleancss.com/css-beautify/">CSS Pretty</a>
+          </li>
+          <li><a href="https://www.office.com/launch/powerpoint?ui=en-US&amp;rs=US&amp;auth=1">PowerPoint</a></li>
+          <li><a href="https://www.htaccessredirect.net/">.htaccess</a></li>
+        </ul>
+      </div>
     </section>
   </main>
 
   <footer>
-    &copy; <span data-year></span> Larry Seyer Music
+    <span>&copy; <span data-year></span> Larry Seyer Music</span>
+    <a href="https://larryseyer.com/">larryseyer.com</a>
   </footer>
 
   <script>
@@ -561,11 +817,30 @@
       const ONE_HOUR = 60 * 60 * 1000;
       const weatherEl = document.getElementById("weather-data");
       const newsEl = document.getElementById("newsData");
+      const clockEl = document.getElementById("clock");
+      const searchForm = document.getElementById("search-form");
+      const queryInput = document.getElementById("q");
       const year = String(new Date().getFullYear());
+      const groups = Array.prototype.slice.call(document.querySelectorAll("[data-group]"));
 
       document.querySelectorAll("[data-year]").forEach(function (el) {
         el.textContent = year;
       });
+
+      function tickClock() {
+        const now = new Date();
+        clockEl.textContent = new Intl.DateTimeFormat("en-US", {
+          timeZone: "America/Chicago",
+          weekday: "short",
+          month: "short",
+          day: "numeric",
+          hour: "numeric",
+          minute: "2-digit"
+        }).format(now);
+      }
+
+      tickClock();
+      setInterval(tickClock, 30000);
 
       function readJson(key) {
         const raw = localStorage.getItem(key);
@@ -590,6 +865,21 @@
         return el;
       }
 
+      function weatherLabel(code) {
+        if (code === 0) return "Clear";
+        if (code === 1) return "Mainly clear";
+        if (code === 2) return "Partly cloudy";
+        if (code === 3) return "Overcast";
+        if (code <= 49) return "Fog";
+        if (code <= 59) return "Drizzle";
+        if (code <= 69) return "Rain";
+        if (code <= 79) return "Snow";
+        if (code <= 82) return "Rain showers";
+        if (code <= 86) return "Snow showers";
+        if (code <= 99) return "Thunderstorm";
+        return "";
+      }
+
       function renderWeather(data, fromCache) {
         weatherEl.replaceChildren();
         if (!data || data.temperature === undefined) {
@@ -597,19 +887,20 @@
           return;
         }
 
-        addText(weatherEl, "div", "weather-title", "Weather for Bastrop, TX:");
+        addText(weatherEl, "div", "weather-title", "Bastrop, TX" + (fromCache ? " *" : ""));
+        addText(weatherEl, "div", "weather-line", data.temperature + "°F  " + (data.description || ""));
         addText(
           weatherEl,
           "div",
-          "weather-data",
-          "Temperature: " + data.temperature + " °F" + (fromCache ? " *" : "")
+          "weather-line",
+          "Humidity " + data.humidity + "% · Wind " + data.windSpeed + " mph"
         );
-        const desc = addText(weatherEl, "div", "weather-data", data.description || "");
-        desc.id = "description";
-        addText(weatherEl, "div", "weather-data", "Humidity: " + data.humidity + "%");
-        addText(weatherEl, "div", "weather-data", "Wind Speed: " + data.windSpeed + " mph");
-        addText(weatherEl, "div", "weather-data", "Pressure: " + data.pressure + " millibars");
-        addText(weatherEl, "div", "weather-data", "Visibility: " + data.visibility + " miles");
+        addText(
+          weatherEl,
+          "div",
+          "weather-line",
+          data.pressure + " mb · " + data.visibility + " mi"
+        );
       }
 
       function weatherNeedsRefresh() {
@@ -629,19 +920,17 @@
       }
 
       function fetchWeather() {
-        const apiKey = "879293e33dc8e45b1e0f1e8d4012d983";
-        const lat = 30.0784;
-        const lon = -97.2744;
         const url =
-          "https://api.openweathermap.org/data/2.5/weather?lat=" +
-          lat +
-          "&lon=" +
-          lon +
-          "&appid=" +
-          apiKey +
-          "&units=imperial";
+          "https://api.open-meteo.com/v1/forecast?latitude=30.0784&longitude=-97.2744" +
+          "&current=temperature_2m,relative_humidity_2m,weather_code,wind_speed_10m,surface_pressure,visibility" +
+          "&temperature_unit=fahrenheit&wind_speed_unit=mph";
 
-        fetch(url)
+        const controller = new AbortController();
+        const timer = setTimeout(function () {
+          controller.abort();
+        }, 8000);
+
+        fetch(url, { signal: controller.signal })
           .then(function (response) {
             if (!response.ok) {
               throw new Error("Failed to fetch weather data");
@@ -649,13 +938,18 @@
             return response.json();
           })
           .then(function (data) {
+            const current = data.current || {};
+            const visibilityMiles =
+              current.visibility === undefined || current.visibility === null
+                ? "—"
+                : parseFloat((current.visibility * 0.000621371).toFixed(1));
             const weatherData = {
-              temperature: Math.round(data.main.temp),
-              description: data.weather[0].description,
-              humidity: data.main.humidity,
-              windSpeed: data.wind.speed,
-              pressure: data.main.pressure,
-              visibility: parseFloat((data.visibility * 0.000621371).toFixed(1))
+              temperature: Math.round(current.temperature_2m),
+              description: weatherLabel(current.weather_code),
+              humidity: current.relative_humidity_2m,
+              windSpeed: current.wind_speed_10m,
+              pressure: Math.round(current.surface_pressure),
+              visibility: visibilityMiles
             };
             localStorage.setItem("weatherData", JSON.stringify(weatherData));
             localStorage.setItem("lastWeatherFetch", String(Date.now()));
@@ -668,27 +962,29 @@
             if (cached) {
               renderWeather(cached, true);
             } else {
-              weatherEl.textContent = "Failed to fetch weather data";
+              weatherEl.textContent = "Weather unavailable";
             }
+          })
+          .finally(function () {
+            clearTimeout(timer);
           });
       }
 
       function renderNews(data, fromCache) {
         newsEl.replaceChildren();
         if (!Array.isArray(data) || data.length === 0) {
-          addText(newsEl, "p", "", "No news items available. Please wait for new updates.");
+          addText(newsEl, "p", "", "No news items available.");
           return;
         }
 
         const item = data[Math.floor(Math.random() * data.length)];
-        const wrap = document.createElement("div");
-        addText(wrap, "h3", "", (item.title || "") + (fromCache ? " *" : ""));
-        addText(wrap, "p", "", item.description || "");
-        const link = addText(wrap, "a", "", "Read more");
+        addText(newsEl, "div", "news-kicker", "Headline" + (fromCache ? " *" : ""));
+        addText(newsEl, "h3", "", item.title || "");
+        addText(newsEl, "p", "", item.description || "");
+        const link = addText(newsEl, "a", "", "Read more");
         link.href = item.url || "#";
         link.target = "_blank";
         link.rel = "noopener noreferrer";
-        newsEl.appendChild(wrap);
       }
 
       function newsNeedsRefresh() {
@@ -737,6 +1033,55 @@
             }
           });
       }
+
+      function linkHaystack(link) {
+        return (
+          (link.textContent || "") +
+          " " +
+          (link.getAttribute("title") || "") +
+          " " +
+          (link.getAttribute("href") || "")
+        ).toLowerCase();
+      }
+
+      function applyFilter(raw) {
+        const query = raw.trim().toLowerCase();
+        groups.forEach(function (group) {
+          const links = group.querySelectorAll("a");
+          let visible = 0;
+          links.forEach(function (link) {
+            const match = !query || linkHaystack(link).indexOf(query) !== -1;
+            link.classList.toggle("is-hidden", !match);
+            if (match) {
+              visible += 1;
+            }
+          });
+          group.classList.toggle("is-hidden", query !== "" && visible === 0);
+        });
+      }
+
+      queryInput.addEventListener("input", function () {
+        applyFilter(queryInput.value);
+      });
+
+      queryInput.addEventListener("keydown", function (event) {
+        if (event.key === "Escape") {
+          queryInput.value = "";
+          applyFilter("");
+        }
+      });
+
+      document.addEventListener("keydown", function (event) {
+        if (event.key === "/" && document.activeElement !== queryInput && !event.metaKey && !event.ctrlKey && !event.altKey) {
+          event.preventDefault();
+          queryInput.focus();
+          queryInput.select();
+        }
+      });
+
+      searchForm.addEventListener("submit", function () {
+        applyFilter("");
+      });
 
       if (weatherNeedsRefresh()) {
         fetchWeather();
