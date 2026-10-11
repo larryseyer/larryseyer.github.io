@@ -275,8 +275,8 @@ main {
   border-radius: 100px;
   padding: 0.4rem 0.95rem;
   font-family: var(--font-mono);
-  font-size: 0.63rem;
-  letter-spacing: 0.2em;
+  font-size: 0.58rem;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--color-text-secondary);
   margin-bottom: var(--space-md);
