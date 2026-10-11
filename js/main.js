@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Mark the current page in the nav, so no page has to hard-code it.
   const here = window.location.pathname.replace(/index\.html$/, '').replace(/\/$/, '');
   document.querySelectorAll('.nav a').forEach(link => {
+    if (link.getAttribute('href').includes('#')) return;
     const target = new URL(link.getAttribute('href'), window.location.href).pathname
       .replace(/index\.html$/, '')
       .replace(/\/$/, '');
