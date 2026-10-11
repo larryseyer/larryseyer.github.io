@@ -439,7 +439,8 @@ main {
 
 .card h3,
 .card p,
-.card .badge {
+.card .badge,
+.card figure {
   position: relative;
 }
 
@@ -626,6 +627,30 @@ p .btn {
 }
 
 .screenshots figcaption {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
+  margin-top: 0.7rem;
+}
+
+/* Modest figure inside a credentials card */
+.card-figure {
+  margin: 1.1rem 0 0;
+  position: relative;
+}
+
+.card-figure img {
+  display: block;
+  width: 100%;
+  max-width: 320px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background: #0b0814;
+}
+
+.card-figure figcaption {
   font-family: var(--font-mono);
   font-size: 0.62rem;
   letter-spacing: 0.2em;
