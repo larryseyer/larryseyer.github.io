@@ -1,8 +1,6 @@
 <!DOCTYPE html>
-<!-- saved from url=(0062)file:///Users/larryseyer/Desktop/omega-gear-engine-mockup.html -->
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
-<title>Simplified Omega-1 Alternative: Solid Meshing-Gear Generator Engine (Mockup v8)</title>
+<title>Solid Meshing-Gear Generator Engine (Mockup)</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
   :root{--bg:#0b0f14;--panel:#121922;--line:#243241;--txt:#d6e2ee;--dim:#8396a8;--acc:#4fc3f7;--fire:#ff8a3d;--ok:#5be37d;--bad:#ff5c5c;--cmp:#7c9cff;--hot:#ffd166}
@@ -102,20 +100,12 @@
 </head>
 <body>
 <header>
-  <h1>Solid Meshing-Gear Rotary Engine <small>simplified Omega-1 alternative — concept mockup v8 for review · twin-half generator drive · muffler encasing · wound-field generator (no magnets) · brushless power transfer · efficiency optimiser</small></h1>
+  <h1>Solid Meshing-Gear Rotary Engine <small>concept mockup for review · twin-half generator drive · muffler encasing · wound-field generator (no magnets) · brushless power transfer · efficiency optimiser</small></h1>
   <p class="caption">Two <b>solid</b> gears (laid out <b>east–west</b>, top-down view) mesh at the center and turn in opposite directions on their own <b>shafts</b>.
   Gas burns in the enlarged <b>Chamber A</b> on one side of the mesh and the expanding gas <b>pushes on the angled gear teeth</b>, spinning both gears apart.
   The deep tooth pockets carry leftover gas around the outside to the enlarged <b>Chamber B</b>, where the re-meshing teeth squeeze it (<b>skip-fire compression</b>).
   <b>Intake</b> and <b>exhaust</b> have <b>no separate valves</b>: a second <b>valve gear</b> on each shaft (one deck up, same size, locked in sync) uses its <b>ported teeth</b> to open and close the deck ports for both chambers. The <b>“Fire every N revs”</b> setting is the throttle.
   <b>Purpose: drive a generator.</b> v4 uses <b>two engine halves</b> flanking <b>one generator</b>: half&nbsp;A’s gears turn the <b>rotor</b>, the mirrored half&nbsp;B turns the <b>stator</b> the <b>opposite way</b>, and the two halves share a <b>common combustion chamber/port</b> so they fire together and stay in sync — <b>efficiency is the goal</b>.</p>
-  <span class="rev">v2 changes per Larry: bigger chambers (expandable volume) · labyrinth-style angled teeth (some leakage intentional) · hot-running housing clearance · “Fire every” = self-regulating throttle · east–west gear layout</span>
-  <span class="rev" style="color:#fff0c2;background:#ffd16614;border-color:#ffd16677">v3 adds: dual-shaft generator coupling (below the engine view) · rough energy model (chamber volume, fire-every N, fuel, residual compression → pressure, coast revs, rpm, power, efficiency) — <b>estimates, not CFD</b> · sliding gate valves <b>removed</b> → gear-tooth porting by a valve gear on each shaft</span>
-  <span class="rev" style="color:#d9f7ff;background:#4fc3f714;border-color:#4fc3f777">v4 per Larry: <b>twin counter-rotating engine halves</b> flank one generator · half&nbsp;A gears → <b>rotor</b> · half&nbsp;B gears → <b>stator</b>, opposite direction · <b>shared combustion chamber / crossover port</b> links the halves for firing &amp; timing sync · no belt, no gearbox · numbers remain <b>estimates</b></span>
-  <span class="rev" style="color:#ffe6da;background:#e8b9a014;border-color:#e8b9a077">v5 per Larry: <b>permanent muffler encasing</b> around the entire engine — both exhaust ports feed a <b>chambered hollow double wall</b> (baffles → noise down, no separate muffler/pipes, fewer parts) · <b>cooling fins</b> around the whole muffler skin for heat dissipation · intakes pass through the wall in sealed sleeves · one tailpipe</span>
-  <span class="rev" style="color:#ffe9c9;background:#c9874a14;border-color:#c9874a88">v6 per Larry: generator is <b>electromagnetic only</b> — <b>copper / aluminium wire windings</b> on both the rotor (DC field) and the stator (armature), <b>NO permanent magnets</b> · field fed with DC through slip rings · magnet-heat warning replaced by <b>winding thermal limits</b> · generator η trimmed for excitation loss (est.)</span>
-  <span class="rev" style="color:#dcffe6;background:#5be37d14;border-color:#5be37d77">v7 per Larry (long uptime, brushless): three ways to feed the copper field coils and take power off the counter-rotating rotor + stator — <b>(1) brushless exciter + rotary transformer (preferred)</b>, (2) capacitive coupler, (3) slip rings (backup / comparison) · efficiency / cost / uptime trade-offs shown as <b>estimates</b> · selectable in “Generator coupling”</span>
-  <span class="rev" style="color:#fff3c4;background:#ffd16614;border-color:#ffd16688">v8 per Larry (max lifetime · min fuel · max electrical power): <b>efficiency optimisation panel</b> — sweeps chamber size, fire-every N, fuel, residual squeeze and transfer option (brushless + HF converter on the sleeve preferred), ranks the levers by estimated gain, recommends a <b>high-efficiency preset</b> (one-click apply) and shows the peak overall efficiency the rough model can reach — <b>all estimates</b></span>
-  <span class="rev" style="color:#d9f2ff;background:#4fc3f714;border-color:#4fc3f788">v9: <b>Path forward</b> panel compares 4 architectures that beat ≈28% fuel→electric (gear engine + exhaust recovery, lean-burn gas/diesel genset, SOFC, free-piston linear generator) and gives a recommendation — <b>estimates</b></span>
 </header>
 <main>
   <div class="leftcol">
@@ -311,13 +301,13 @@
     <div class="card gencard">
       <h3>Generator coupling</h3>
       <div class="row"><label for="cpl">Arrangement</label><select id="cpl">
-        <option value="halves" selected="">Twin engine halves: A→rotor, B→stator (Larry, v4)</option>
+        <option value="halves" selected="">Twin engine halves: A→rotor, B→stator </option>
         <option value="twin">Twin direct-drive alternators (one per shaft)</option>
         <option value="contra">Counter-rotating dual-rotor generator</option>
         <option value="single">Single generator on Shaft 1</option>
         <option value="gearbox">Through a gearbox (comparison)</option>
       </select></div>
-      <p class="note" id="cplNote"><b>Larry’s v4 layout.</b> Engine half A’s CCW gear drives the wound <b>field rotor</b> (electromagnet, DC via slip rings) directly; the mirrored half B’s CW gear drives the wound <b>armature stator</b> shell the opposite way. Relative speed = <b>2× shaft rpm</b> with <b>no belt and no gearbox</b>. The halves share one <b>combustion chamber / crossover port</b>, so each ignition pushes both halves at the same instant → equal torque, firing timing kept in sync. Costs an extra bearing set (≈ 0.5%, est.) plus the field-in / power-out transfer chosen below (brushless preferred); wound-field excitation ≈ 1–3% (in generator η, est.). No permanent magnets. Power &amp; fuel ×2 (two halves, est.).</p>
+      <p class="note" id="cplNote"><b>Layout.</b> Engine half A’s CCW gear drives the wound <b>field rotor</b> (electromagnet, DC via slip rings) directly; the mirrored half B’s CW gear drives the wound <b>armature stator</b> shell the opposite way. Relative speed = <b>2× shaft rpm</b> with <b>no belt and no gearbox</b>. The halves share one <b>combustion chamber / crossover port</b>, so each ignition pushes both halves at the same instant → equal torque, firing timing kept in sync. Costs an extra bearing set (≈ 0.5%, est.) plus the field-in / power-out transfer chosen below (brushless preferred); wound-field excitation ≈ 1–3% (in generator η, est.). No permanent magnets. Power &amp; fuel ×2 (two halves, est.).</p>
       <div class="row" style="margin-top:8px"><label for="xfer">Field in / power out</label><select id="xfer">
         <option value="ex" selected="">1. Brushless exciter + rotary transformer (preferred)</option>
         <option value="cap">2. Capacitive coupler</option>
@@ -351,7 +341,7 @@
         <button id="play">Pause</button><button id="lbl">Hide labels</button><button id="fireNow">Fire now</button>
       </div>
     </div>
-    <div class="card q"><p><b>Larry:</b> v4 shows your layout — half&nbsp;A gears → rotor, half&nbsp;B gears → stator (opposite direction), shared chamber/port between them. Two things to confirm: (1) is the shared chamber the <b>only</b> link between the halves, or do you also want a light 1:1 cross-shaft / electronic phase lock as backup? (A gas link equalises pressure and firing instant, but doesn’t hard-lock angle the way a gear mesh does.) (2) Generator is now wound-field (no magnets): copper or aluminium wire? (3) Brushless transfer: OK to carry a small HF converter on the spinning stator sleeve (option 1), or would you rather keep all electronics stationary and accept a bigger low-frequency rotary transformer?</p></div>
+    <div class="card q"><p>V4 shows your layout — half&nbsp;A gears → rotor, half&nbsp;B gears → stator (opposite direction), shared chamber/port between them. Two things to confirm: (1) is the shared chamber the <b>only</b> link between the halves, or do you also want a light 1:1 cross-shaft / electronic phase lock as backup? (A gas link equalises pressure and firing instant, but doesn’t hard-lock angle the way a gear mesh does.) (2) Generator is now wound-field (no magnets): copper or aluminium wire? (3) Brushless transfer: OK to carry a small HF converter on the spinning stator sleeve (option 1), or would you rather keep all electronics stationary and accept a bigger low-frequency rotary transformer?</p></div>
   </aside>
 </main>
 <script>
@@ -406,7 +396,7 @@ const PA=1.013e5, VSW=0.80e-3, FIRE_ARC=155/360, COAST=0.5, FILL=0.85, ETA_COMB=
       BB0=0.05, TF=0.35, CW=2.5e-6, KLOAD=0.0371, RPM_MAX=9000;
 const CPL={
   halves:{name:'Twin engine halves: A → rotor, B → stator',ec:0.995,spin:true,eg:0.935,gr:2,halves:2,
-    note:'<b>Larry&rsquo;s v4 layout.</b> Engine half A&rsquo;s CCW gear drives the wound <b>field rotor</b> (electromagnet, DC via slip rings) directly; the mirrored half B&rsquo;s CW gear drives the wound <b>armature stator</b> shell the opposite way. Relative speed = <b>2&times; shaft rpm</b> with <b>no belt and no gearbox</b>. The halves share one <b>combustion chamber / crossover port</b>, so each ignition pushes both halves at the same instant &rarr; equal torque, firing timing kept in sync. Costs an extra bearing set (&asymp; 0.5%, est.) plus the field-in / power-out transfer chosen below (brushless preferred); wound-field excitation &asymp; 1&ndash;3% (in generator &eta;, est.). No permanent magnets. Power &amp; fuel &times;2 (two halves, est.).'},
+note:'<b>Layout.</b> Engine half A&rsquo;s CCW gear drives the wound <b>field rotor</b> (electromagnet, DC via slip rings) directly; the mirrored half B&rsquo;s CW gear drives the wound <b>armature stator</b> shell the opposite way. Relative speed = <b>2&times; shaft rpm</b> with <b>no belt and no gearbox</b>. The halves share one <b>combustion chamber / crossover port</b>, so each ignition pushes both halves at the same instant &rarr; equal torque, firing timing kept in sync. Costs an extra bearing set (&asymp; 0.5%, est.) plus the field-in / power-out transfer chosen below (brushless preferred); wound-field excitation &asymp; 1&ndash;3% (in generator &eta;, est.). No permanent magnets. Power &amp; fuel &times;2 (two halves, est.).'},
   twin:{name:'Twin direct-drive alternators',ec:0.995,eg:0.92,gr:1,
     note:'Each shaft drives its own identical wound-field alternator through a flexible coupling &mdash; <b>no gearbox</b>. Both turn at exactly the same rpm (locked by the mesh), opposite directions; outputs are rectified onto one DC bus. Reaction torques cancel at the frame. Coupling &eta; &asymp; 99.5%, generator &eta; &asymp; 92% incl. field excitation (est.).'},
   contra:{name:'Counter-rotating dual-rotor generator',ec:0.995,spin:true,eg:0.935,gr:2,
