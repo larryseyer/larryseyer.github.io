@@ -1,0 +1,1445 @@
+<!DOCTYPE html>
+<!-- saved from url=(0062)file:///Users/larryseyer/Desktop/omega-gear-engine-mockup.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>Simplified Omega-1 Alternative: Solid Meshing-Gear Generator Engine (Mockup v8)</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  :root{--bg:#0b0f14;--panel:#121922;--line:#243241;--txt:#d6e2ee;--dim:#8396a8;--acc:#4fc3f7;--fire:#ff8a3d;--ok:#5be37d;--bad:#ff5c5c;--cmp:#7c9cff;--hot:#ffd166}
+  *{box-sizing:border-box}
+  body{margin:0;background:radial-gradient(1200px 700px at 40% 30%,#132030 0%,var(--bg) 60%);color:var(--txt);font:14px/1.45 "Segoe UI",Roboto,Helvetica,Arial,sans-serif;min-height:100vh}
+  header{padding:18px 26px 10px;border-bottom:1px solid var(--line)}
+  h1{margin:0 0 6px;font-size:20px;letter-spacing:.3px}
+  h1 small{color:var(--dim);font-weight:400;font-size:13px;margin-left:8px}
+  .caption{margin:0;color:#b9c8d6;max-width:1250px}
+  .caption b{color:var(--acc);font-weight:600}
+  .rev{display:inline-block;margin-top:8px;font-size:12px;color:#ffd9a8;background:#ff8a3d14;border:1px solid #ff8a3d55;border-radius:6px;padding:4px 10px}
+  main{display:flex;gap:18px;padding:16px 26px 26px;flex-wrap:wrap}
+  .stage{align-self:flex-start;flex:1 1 820px;min-width:560px;background:linear-gradient(#0e151d,#0a1016);border:1px solid var(--line);border-radius:10px;position:relative;overflow:hidden}
+  .stage canvas{display:block;width:100%;height:auto}
+  .stage .tag{position:absolute;left:12px;top:10px;font:11px monospace;color:var(--dim);letter-spacing:1px}
+  aside{flex:0 1 350px;display:flex;flex-direction:column;gap:14px}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
+  .card h3{margin:0 0 10px;font-size:12px;letter-spacing:1.4px;text-transform:uppercase;color:var(--dim)}
+  .row{display:flex;justify-content:space-between;align-items:center;margin:5px 0;gap:8px}
+  .pill{font:600 11px monospace;padding:2px 8px;border-radius:20px;border:1px solid}
+  .open{color:var(--ok);border-color:var(--ok);background:#5be37d18}
+  .closed{color:var(--bad);border-color:var(--bad);background:#ff5c5c14}
+  .firep{color:var(--fire);border-color:var(--fire);background:#ff8a3d1c}
+  .skipp{color:var(--cmp);border-color:var(--cmp);background:#7c9cff18}
+  .mono{font-family:monospace}
+  label{color:var(--dim);font-size:13px}
+  input[type=range]{width:150px;accent-color:var(--acc)}
+  select,button{background:#0d141b;color:var(--txt);border:1px solid var(--line);border-radius:6px;padding:5px 10px;font:inherit;cursor:pointer}
+  button:hover{border-color:var(--acc)}
+  .btns{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+  ul{margin:0;padding-left:18px;color:#b9c8d6}
+  li{margin:3px 0}
+  .sw{display:inline-block;width:11px;height:11px;border-radius:2px;margin-right:7px;vertical-align:-1px}
+  .q{border-color:#3a5a2a;background:#141f14}
+  .q p{margin:0;color:#cfe8c6}
+  .note{font-size:12px;color:var(--dim);margin:6px 0 0}
+  /* primary throttle */
+  .throttle{border:2px solid var(--fire);background:linear-gradient(#1d1610,#141009);box-shadow:0 0 22px #ff8a3d22}
+  .throttle h3{color:var(--fire);font-size:13px}
+  .throttle .big{display:flex;align-items:baseline;gap:10px;margin:2px 0 8px}
+  .throttle .big .n{font:700 44px/1 monospace;color:#ffd0a6}
+  .throttle .big .u{color:#e7c9ad;font-size:14px}
+  .seg{display:grid;grid-template-columns:repeat(8,1fr);gap:4px}
+  .seg button{padding:8px 0;font:700 15px monospace;border-color:#5a3f28}
+  .seg button.on{background:var(--fire);color:#1a0f05;border-color:var(--fire)}
+  .seg-l{display:flex;justify-content:space-between;font-size:11px;color:#c9a585;margin-top:4px}
+  .bar{height:10px;border-radius:6px;background:#2a2016;overflow:hidden;flex:1}
+  .bar i{display:block;height:100%;background:linear-gradient(90deg,#ff8a3d,#ffd166);width:50%;transition:width .2s}
+  .est{display:inline-block;font:700 9.5px monospace;letter-spacing:1px;color:#1b1405;background:#ffd166;border-radius:4px;padding:1px 6px;margin-left:6px;vertical-align:2px;text-transform:none}
+  .model{border:2px solid #ffd16699;background:linear-gradient(#18170f,#121109)}
+  .model h3{color:var(--hot)}
+  .warn{margin:0 0 8px;font-size:11.5px;color:#e6cf93;background:#ffd16612;border:1px dashed #ffd16666;border-radius:6px;padding:5px 8px}
+  .model hr,.gencard hr{border:0;border-top:1px solid var(--line);margin:10px 0 8px}
+  .kv{display:grid;grid-template-columns:1fr auto;gap:3px 10px;align-items:center;font-size:13px}
+  .kv .v{font:600 13px monospace;text-align:right;padding:1px 4px;border-radius:4px}
+  .kv .big{font-size:16px;color:#ffe2a8}
+  .kv .sub{grid-column:1/-1;font-size:11px;color:var(--dim);margin:-2px 0 3px}
+  .dim2{color:var(--dim);font-size:12px}
+  .adv{margin:8px 0 0;font-size:12px;border-radius:6px;padding:6px 8px;background:#0d141b;border:1px solid var(--line);color:#cfe0ee}
+  .adv.good{border-color:#5be37d88;color:#bff2cc}.adv.warnc{border-color:#ffb46b99;color:#ffd9b0}.adv.bad{border-color:#ff5c5c99;color:#ffc2c2}
+  @keyframes pop{0%{background:#ffd16670;color:#1b1405}100%{background:transparent}}
+  .chg{animation:pop .9s ease-out}
+  .leftcol{flex:1 1 820px;min-width:560px;display:flex;flex-direction:column;gap:18px;align-self:flex-start}
+  .leftcol .stage{flex:none;min-width:0}
+  .cardgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:14px;align-items:start}
+  .wf{display:grid;grid-template-columns:150px 1fr 46px;gap:4px 8px;align-items:center;font-size:12px}
+  .wf .b{height:12px;background:#1a232c;border-radius:4px;overflow:hidden}
+  .wf .b i{display:block;height:100%;border-radius:4px;transition:width .25s}
+  .wf .p{font:600 12px monospace;text-align:right}
+  .wf .tot{color:#e8f1f8;font-weight:600}
+  .wf .loss{color:#c7a9a9}
+  .wf .bbl{color:#ffcf9a;font-weight:600}
+  select#cpl,select#xfer{max-width:210px}
+  .optp{border:2px solid #5be37d88;background:linear-gradient(#0f1a12,#0d1410)}
+  .pathfw{border:2px solid #4fc3f788;background:linear-gradient(#0f1820,#0d1218);margin-bottom:14px}.pathfw h3{color:#8fdcff}.pathfw .adv{font-size:12.5px;padding:8px 10px}
+  .optp h3{color:#8ff0aa}.optp h4{margin:0 0 8px;font-size:12px;color:#cfe0ee;font-weight:600}
+  .optctl{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center;margin:8px 0 12px;font-size:12.5px}
+  .optctl input[type=number]{width:70px;background:#0d141b;color:var(--txt);border:1px solid var(--line);border-radius:6px;padding:3px 6px}
+  .optgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px;align-items:start}
+  .preset{background:#0d141b;border:1px solid var(--line);border-radius:8px;padding:9px 11px;font-size:12px;margin-bottom:10px}
+  .preset.rec{border:2px solid #5be37d;box-shadow:0 0 18px #5be37d22;background:#0f1d14}
+  .presetrow{display:grid;grid-template-columns:1fr 1fr;gap:10px}.presetrow .preset .kv2{grid-template-columns:auto 1fr}
+  .preset .ph{display:flex;justify-content:space-between;align-items:center;gap:6px}
+  .preset .big2{font:700 24px monospace;color:#5be37d;margin:4px 0}.presetrow .big2{font-size:18px;color:#ffd166}
+  .preset .kv2{display:grid;grid-template-columns:auto 1fr;gap:1px 10px}.preset .kv2 span{color:var(--dim)}.preset .kv2 b{font-weight:600;font-family:monospace;font-size:11.5px}
+  .preset .set{margin-top:5px;color:#cfe8c6;font-size:11.5px}.preset button{margin-top:6px;padding:3px 10px;font-size:12px}
+  .lev .lr{display:grid;grid-template-columns:1fr 90px 54px;gap:8px;align-items:center;margin:4px 0;font-size:12px}
+  .lev .ln small{color:var(--dim)}.lev .lb{height:10px;background:#1a232c;border-radius:5px;overflow:hidden}.lev .lb i{display:block;height:100%}
+  .lev .lp{font:600 12px monospace;text-align:right;color:#ffe2a8}
+  .optnotes{margin-top:10px}
+  .xft{width:100%;border-collapse:collapse;font-size:12px;color:#c3d0dc}
+  .xft th,.xft td{border:1px solid var(--line);padding:5px 7px;vertical-align:top;text-align:left}
+  .xft th{color:#4fc3f7;font-weight:600;background:#0d141b}
+  .xft td:first-child{color:var(--dim);white-space:nowrap}
+  .tagline{display:inline-block;font:600 10px monospace;letter-spacing:1px;color:#1a0f05;background:var(--hot);border-radius:4px;padding:1px 6px;margin-left:6px;vertical-align:2px}
+</style>
+</head>
+<body>
+<header>
+  <h1>Solid Meshing-Gear Rotary Engine <small>simplified Omega-1 alternative — concept mockup v8 for review · twin-half generator drive · muffler encasing · wound-field generator (no magnets) · brushless power transfer · efficiency optimiser</small></h1>
+  <p class="caption">Two <b>solid</b> gears (laid out <b>east–west</b>, top-down view) mesh at the center and turn in opposite directions on their own <b>shafts</b>.
+  Gas burns in the enlarged <b>Chamber A</b> on one side of the mesh and the expanding gas <b>pushes on the angled gear teeth</b>, spinning both gears apart.
+  The deep tooth pockets carry leftover gas around the outside to the enlarged <b>Chamber B</b>, where the re-meshing teeth squeeze it (<b>skip-fire compression</b>).
+  <b>Intake</b> and <b>exhaust</b> have <b>no separate valves</b>: a second <b>valve gear</b> on each shaft (one deck up, same size, locked in sync) uses its <b>ported teeth</b> to open and close the deck ports for both chambers. The <b>“Fire every N revs”</b> setting is the throttle.
+  <b>Purpose: drive a generator.</b> v4 uses <b>two engine halves</b> flanking <b>one generator</b>: half&nbsp;A’s gears turn the <b>rotor</b>, the mirrored half&nbsp;B turns the <b>stator</b> the <b>opposite way</b>, and the two halves share a <b>common combustion chamber/port</b> so they fire together and stay in sync — <b>efficiency is the goal</b>.</p>
+  <span class="rev">v2 changes per Larry: bigger chambers (expandable volume) · labyrinth-style angled teeth (some leakage intentional) · hot-running housing clearance · “Fire every” = self-regulating throttle · east–west gear layout</span>
+  <span class="rev" style="color:#fff0c2;background:#ffd16614;border-color:#ffd16677">v3 adds: dual-shaft generator coupling (below the engine view) · rough energy model (chamber volume, fire-every N, fuel, residual compression → pressure, coast revs, rpm, power, efficiency) — <b>estimates, not CFD</b> · sliding gate valves <b>removed</b> → gear-tooth porting by a valve gear on each shaft</span>
+  <span class="rev" style="color:#d9f7ff;background:#4fc3f714;border-color:#4fc3f777">v4 per Larry: <b>twin counter-rotating engine halves</b> flank one generator · half&nbsp;A gears → <b>rotor</b> · half&nbsp;B gears → <b>stator</b>, opposite direction · <b>shared combustion chamber / crossover port</b> links the halves for firing &amp; timing sync · no belt, no gearbox · numbers remain <b>estimates</b></span>
+  <span class="rev" style="color:#ffe6da;background:#e8b9a014;border-color:#e8b9a077">v5 per Larry: <b>permanent muffler encasing</b> around the entire engine — both exhaust ports feed a <b>chambered hollow double wall</b> (baffles → noise down, no separate muffler/pipes, fewer parts) · <b>cooling fins</b> around the whole muffler skin for heat dissipation · intakes pass through the wall in sealed sleeves · one tailpipe</span>
+  <span class="rev" style="color:#ffe9c9;background:#c9874a14;border-color:#c9874a88">v6 per Larry: generator is <b>electromagnetic only</b> — <b>copper / aluminium wire windings</b> on both the rotor (DC field) and the stator (armature), <b>NO permanent magnets</b> · field fed with DC through slip rings · magnet-heat warning replaced by <b>winding thermal limits</b> · generator η trimmed for excitation loss (est.)</span>
+  <span class="rev" style="color:#dcffe6;background:#5be37d14;border-color:#5be37d77">v7 per Larry (long uptime, brushless): three ways to feed the copper field coils and take power off the counter-rotating rotor + stator — <b>(1) brushless exciter + rotary transformer (preferred)</b>, (2) capacitive coupler, (3) slip rings (backup / comparison) · efficiency / cost / uptime trade-offs shown as <b>estimates</b> · selectable in “Generator coupling”</span>
+  <span class="rev" style="color:#fff3c4;background:#ffd16614;border-color:#ffd16688">v8 per Larry (max lifetime · min fuel · max electrical power): <b>efficiency optimisation panel</b> — sweeps chamber size, fire-every N, fuel, residual squeeze and transfer option (brushless + HF converter on the sleeve preferred), ranks the levers by estimated gain, recommends a <b>high-efficiency preset</b> (one-click apply) and shows the peak overall efficiency the rough model can reach — <b>all estimates</b></span>
+  <span class="rev" style="color:#d9f2ff;background:#4fc3f714;border-color:#4fc3f788">v9: <b>Path forward</b> panel compares 4 architectures that beat ≈28% fuel→electric (gear engine + exhaust recovery, lean-burn gas/diesel genset, SOFC, free-piston linear generator) and gives a recommendation — <b>estimates</b></span>
+</header>
+<main>
+  <div class="leftcol">
+  <div class="stage">
+    <div class="tag">TOP-DOWN SCHEMATIC · EAST–WEST GEARS · NOT TO SCALE · NOT A PHYSICS SIM</div>
+    <canvas id="c" width="2552" height="1892"></canvas>
+  </div>
+  <div class="stage">
+    <div class="tag">SIDE ELEVATION (LOOKING NORTH) · ENGINE HALVES ↔ GENERATOR COUPLING · SCHEMATIC · NUMBERS = ESTIMATES</div>
+    <canvas id="g" width="2552" height="1452"></canvas>
+  </div>
+  <div class="stage">
+    <div class="tag" style="top:auto;bottom:8px;right:12px;left:auto">BRUSHLESS POWER-TRANSFER OPTIONS · SCHEMATIC · NUMBERS = ESTIMATES</div>
+    <canvas id="xf" width="2552" height="968"></canvas>
+    <div style="padding:4px 16px 34px">
+      <table class="xft">
+        <tbody><tr><th></th><th>1. Brushless exciter + rotary transformer <span class="est">PREFERRED</span></th><th>2. Capacitive coupler</th><th>3. Slip rings (backup)</th></tr>
+        <tr><td>Field coils fed by</td><td>Stationary exciter field → exciter armature on rotor → rotating diode bridge → DC into copper field (classic brushless alternator)</td><td>HF driver on frame → capacitive plates → rectifier on rotor → DC field</td><td>AVR → 2 brushes / rings → DC field</td></tr>
+        <tr><td>Power out of spinning stator</td><td>Spinning HF converter on stator sleeve → <b>rotary transformer</b> (contactless, air gap) → frame</td><td>Spinning HF inverter → capacitive plates → frame</td><td>3 brushes / rings carry 3-phase AC</td></tr>
+        <tr><td>Output-path η <span class="est">EST.</span></td><td>≈ 96–98%</td><td>≈ 90–95%</td><td>≈ 98.5–99.5%</td></tr>
+        <tr><td>Relative cost <span class="est">EST.</span></td><td>Medium–high (custom transformer + spinning converter)</td><td>High (kW-class capacitive links still niche)</td><td>Low (off-the-shelf)</td></tr>
+        <tr><td>Uptime / service <span class="est">EST.</span></td><td>No wear parts besides bearings; ≈ 20,000–50,000 h between service</td><td>Contactless; ≈ 20,000–40,000 h; plate gap must stay tight and clean</td><td>Brushes ≈ 2,000–8,000 h; carbon dust, ring wear</td></tr>
+        <tr><td>Main risks</td><td>Electronics &amp; diodes ride on spinning parts (balance, g-load, heat from muffler jacket)</td><td>Low power density, high voltage on plates, EMI</td><td>Brush wear limits long-uptime goal</td></tr>
+      </tbody></table>
+      <p class="note">Why a spinning HF converter in option 1: a rotary transformer sized for the raw low-frequency generator output would be big and heavy; converting to high frequency (≈ 10–100 kHz) on the stator sleeve first keeps it compact (est.). The exciter works because the rotor turns relative to the stationary frame, independent of the counter-rotating stator.</p>
+    </div>
+  </div>
+  <div class="card pathfw" id="pathPanel">
+    <h3>Path forward — beating ≈28% fuel→electric <span class="est">ESTIMATES · Oct 2026 REVIEW</span></h3>
+    <p class="warn">The gear engine’s ≈28% is a rough-model estimate, not a test result. Gear/rotary engines with deliberate tooth leakage usually measure lower than modelled, so prove it on a dyno before adding anything. Bands below are fuel (LHV) → net electricity at a few-to-tens-of-kW scale.</p>
+    <table class="xft">
+      <tbody><tr><th>Architecture</th><th>Electric η (est.)</th><th>Moving parts / life</th><th>Relative cost</th><th>Dual-shaft counter-rotate?</th></tr>
+      <tr><td>A. Gear engine + exhaust recovery</td><td>≈28% base → <b>29–33%</b> (TEG in muffler wall +0.5–1.5 pt; exhaust turbine / turbo-compound +2–4; small ORC +3–5). CHP heat use gives 75–85% total but no extra electricity.</td><td>Very low parts in the engine itself; ORC/turbo add many. Life unproven (bearings, hot clearances, valve-gear porting).</td><td>Medium–high (custom prototype + R&amp;D)</td><td><b>Yes</b>, it was built around it</td></tr>
+      <tr><td>B. Lean-burn gas / turbo-diesel genset (CHP grade)</td><td>10–25 kW: <b>30–34%</b> (Yanmar CP25 gas 33.3%, CP10 31.5%; Kubota 10 kW diesel ≈29–31%). 50–150 kW: <b>35–40%</b>. MW class 42–49%.</td><td>Many parts, but mature and mass-made. 6k–10k h service intervals; industrial gas engines 40k–80k h to overhaul.</td><td><b>Lowest</b>: about $0.3–0.8k/kWe diesel; $2–4k/kWe gas micro-CHP installed</td><td>Possible only on opposed-piston twin-crank engines; small gain (&lt;1–2 pt), so not worth it</td></tr>
+      <tr><td>C. Solid-oxide fuel cell + built-in reformer</td><td><b>50–60%</b> (Ene-Farm Type S 55% (53% on LPG); BlueGen up to 57%, ≈60% measured in the field)</td><td>Fewest moving parts (blower and water pump only). Stack life about 12 years (≈90k h). Slow start; best running 24/7 at steady baseload.</td><td><b>Highest</b>: about $8–20k/kWe, sold in 0.7–1.5 kW units you can link together</td><td><b>No</b>: no shaft</td></tr>
+      <tr><td>D. Free-piston linear generator</td><td><b>38–46%</b> (Mainspring rates 46% net AC; Aquarius projects 40–42%)</td><td>Very low: about 1–2 moving pistons per cylinder, no crank or valves. Long life is claimed; control electronics take the place of the crank.</td><td>High / not public. Mostly 100–250 kW commercial units; DIY is hard</td><td><b>Linear analogue</b>: opposed pistons move apart in counter-motion, which balances it like the twin-half idea</td></tr>
+    </tbody></table>
+    <div class="adv good" style="margin-top:10px"><b>Recommendation:</b> <b>(1) Benchmark with B now.</b> A lean-burn gas CHP-grade genset (or a variable-speed diesel/inverter set) gives a proven 31–34% at 10–25 kW, or 35–40% at 50 kW and up, for the lowest $/kW. That is already 10–30% less fuel per kWh than 28%. <b>(2) Use C for 24/7 baseload</b> if the budget allows: 55% cuts fuel per kWh by ≈49% vs 28%. <b>(3) Gear engine:</b> build a dyno prototype first, and only add the muffler-wall TEG or an exhaust turbine once it measures ≥28%. <b>(4) If you want to invent:</b> move R&amp;D toward D, the free-piston linear generator. It meets all four goals (efficiency, low parts, long life, counter-moving balance) better than the gear engine.</div>
+    <p class="note">Microturbines were checked and dropped: they have one moving part on air bearings and 60k–80k h life, but only 26–29% at 30–65 kW (Capstone C65 28–29%), so they don’t beat the target. Fuel per kWh electric: 28% → 3.6 kWh · 33% → 3.0 · 40% → 2.5 · 55% → 1.8 (est.).</p>
+  </div>
+  <div class="card optp" id="optPanel">
+    <h3>Efficiency optimisation — max lifetime · min fuel · max electrical power <span class="est">ESTIMATE · ROUGH MODEL</span></h3>
+    <p class="warn">Brute-force sweep of the rough lumped energy model above (chamber size × fire-every N × fuel × residual squeeze × transfer option, hot clearance, current coupling). It ranks <b>trends</b>; the % numbers are model estimates, not test or CFD results.</p>
+    <div class="optctl">
+      <label>Lifetime: max shaft rpm <input id="oRpm" type="number" min="1500" max="9000" step="250" value="5000"></label>
+      <label>Min electrical power <input id="oPmin" type="number" min="0" max="60" step="0.5" value="5"> kW</label>
+      <label><input type="checkbox" id="oBrushless" checked=""> brushless only (exciter + HF converter on sleeve)</label>
+      <label><input type="checkbox" id="oFuelLock" checked=""> keep current fuel</label>
+      <button id="oRun">Re-run sweep</button><span class="dim2" id="oStat"> 20,592 combinations swept (est.)</span>
+    </div>
+    <div class="optgrid">
+      <div>
+        <div class="preset rec" id="pRec"><div class="ph"><b>High-efficiency preset</b><span class="est">RECOMMENDED</span></div>
+   <div class="big2">η ≈ 28.4%</div>
+   <div class="kv2"><span>Electrical</span><b>≈ 13.0 kW</b><span>Fuel</span><b>≈ 292 g/kWh · 3.80 kg/h</b><span>Shaft speed</span><b>≈ 4,135 rpm</b><span>Peak pressure</span><b>≈ 39 bar</b></div>
+   <div class="set">Gasoline · 200 cc · fire every 7 · squeeze 4.00:1 · Brushless exciter + rotary xfmr</div>
+   <div class="dim2" style="margin-top:3px">limits: ≤ 5,000 rpm (lifetime), ≥ 5.0 kW · vs default η ≈ 22.0% / 6.0 kW → +29% efficiency (est.)</div>
+   <button data-apply="rec">Apply</button></div>
+        <div class="presetrow"><div class="preset" id="pEff"><div class="ph"><b>Peak η (no limits)</b></div>
+   <div class="big2">η ≈ 29.5%</div>
+   <div class="kv2"><span>Electrical</span><b>≈ 13.9 kW</b><span>Fuel</span><b>≈ 455 g/kWh · 6.32 kg/h</b><span>Shaft speed</span><b>≈ 4,276 rpm</b><span>Peak pressure</span><b>≈ 39 bar</b></div>
+   <div class="set">Ethanol (E100) · 200 cc · fire every 7 · squeeze 4.00:1 · Slip rings (backup)</div>
+   <div class="dim2" style="margin-top:3px">any fuel / transfer; ignores the rpm &amp; power limits</div>
+   <button data-apply="Peak η (no limits)">Apply</button></div><div class="preset" id="pPow"><div class="ph"><b>Max power</b></div>
+   <div class="big2">η ≈ 23.8%</div>
+   <div class="kv2"><span>Electrical</span><b>≈ 61.6 kW</b><span>Fuel</span><b>≈ 563 g/kWh · 34.71 kg/h</b><span>Shaft speed</span><b>≈ 9,000 rpm (cap)</b><span>Peak pressure</span><b>≈ 39 bar</b></div>
+   <div class="set">Ethanol (E100) · 150 cc · fire every 2 · squeeze 4.00:1 · Slip rings (backup)</div>
+   <div class="dim2" style="margin-top:3px">any fuel / transfer; pinned at the 9,000 rpm cap — shortest life, lower η</div>
+   <button data-apply="Max power">Apply</button></div></div>
+        <p class="note" id="oPeak"><b style="color:#ffd166">Peak overall fuel→electric efficiency reachable in this rough model: ≈ 29.5%</b> (Ethanol (E100), Slip rings (backup)). Recommended brushless / rpm-limited preset: ≈ 28.4%. <i>Estimates only.</i></p>
+      </div>
+      <div>
+        <h4>Levers ranked by estimated gain <span class="dim2">(vs. default settings: 150&nbsp;cc, fire every 3, current fuel, 2.0:1, brushless, hot)</span></h4>
+        <div id="oLev" class="lev"><div class="lr"><span class="ln">1. Residual-gas squeeze<br><small>2.0 → 4.00 : 1</small></span><span class="lb"><i style="width:100%;background:linear-gradient(90deg,#5be37d,#ffd166)"></i></span><span class="lp">+29.0%</span></div><div class="lr"><span class="ln">2. Fire every N (match coast)<br><small>3 → 7</small></span><span class="lb"><i style="width:50.593235805112194%;background:linear-gradient(90deg,#5be37d,#ffd166)"></i></span><span class="lp">+14.7%</span></div><div class="lr"><span class="ln">3. Chamber + fire-every together<br><small>150 cc / 3 → 200 cc / 7</small></span><span class="lb"><i style="width:35.42729331957855%;background:linear-gradient(90deg,#5be37d,#ffd166)"></i></span><span class="lp">+10.3%</span></div><div class="lr"><span class="ln">4. Hot-running clearance (warm up first)<br><small>cold → hot fit</small></span><span class="lb"><i style="width:35.362842905153386%;background:linear-gradient(90deg,#5be37d,#ffd166)"></i></span><span class="lp">+10.3%</span></div><div class="lr"><span class="ln">5. Transfer: brushless vs capacitive<br><small>brushless + HF on sleeve</small></span><span class="lb"><i style="width:14.505422216144385%;background:linear-gradient(90deg,#5be37d,#ffd166)"></i></span><span class="lp">+4.2%</span></div><div class="lr"><span class="ln">6. Chamber size<br><small>150 → 200 cc</small></span><span class="lb"><i style="width:12.856460796149637%;background:linear-gradient(90deg,#5be37d,#ffd166)"></i></span><span class="lp">+3.7%</span></div><div class="lr"><span class="ln">7. Fuel<br><small>Gasoline → Gasoline (locked)</small></span><span class="lb"><i style="width:0%;background:linear-gradient(90deg,#5be37d,#ffd166)"></i></span><span class="lp">+0.0%</span></div><div class="lr"><span class="ln">8. Transfer: brushless vs slip rings<br><small>chosen for lifetime</small></span><span class="lb"><i style="width:6.791931984032047%;background:#ff8a3d"></i></span><span class="lp">-2.0%*</span></div><div class="dim2" style="margin-top:4px">* negative = brushless costs ≈ 2.0% vs slip rings, accepted for brush-free uptime (est.). Default → recommended overall: <b style="color:#5be37d">+29%</b> efficiency, 6.0 → 13.0 kW (est.).</div></div>
+        <p class="note">“Gain” = how much overall fuel→electric efficiency the recommended preset loses if that one lever is put back to default (relative %, est.). Levers interact: chamber size and fire-every N only pay off <i>together</i> (bigger chamber needs more coast revs).</p>
+      </div>
+      <div>
+        <h4>Sweep map: overall η vs chamber size × fire-every N <span class="dim2" id="oMapLbl">(Gasoline, 4.00:1, Brushless exciter + rotary xfmr)</span></h4>
+        <canvas id="oMap" width="726" height="550" style="width:100%;height:auto"></canvas>
+        <p class="note">Brighter = more efficient (est.). White ring = recommended; grey cells = stalls, below min power, or over the rpm limit.</p>
+      </div>
+    </div>
+    <ul class="dim2 optnotes">
+      <li><b>Lifetime levers not in the energy model:</b> brushless transfer (no brush wear), rpm cap (bearing life roughly ∝ 1/rpm), hot-running fit (no rubbing seals), winding hot-spot below insulation class, field current only as high as needed.</li>
+      <li><b>Min fuel:</b> ranked by fuel <i>energy</i> per kWh (= overall η). By <i>mass</i>, ethanol uses more kg per kWh than gasoline/propane even when its η is slightly higher.</li>
+      <li>Best points sit at the edge of the slider ranges (2× chamber, 4:1 squeeze); the model is untested beyond them, so treat “more” as a direction to test, not a promise.</li>
+    </ul>
+  </div>
+  <div class="cardgrid">
+    <div class="card" style="border-color:#4fd1c588">
+      <h3 style="color:#7fe7dc">Valve deck — gear-tooth porting</h3>
+      <canvas id="deck" width="660" height="598" style="width:100%;height:auto"></canvas>
+      <ul style="margin-top:6px;font-size:12.5px">
+        <li><b>No gate valves.</b> Each shaft carries a 2nd gear — a <b>valve gear</b> (VG1, VG2) one deck above its power gear: same size, same teeth, same rpm, keyed to the shaft so it can never drift out of sync.</li>
+        <li>VG1 and VG2 mesh with each other like the power gears, sealing the deck midline.</li>
+        <li>Most tooth gaps are <b>blind</b> (closed floor = valve shut). A short sector of <b>through-cut “ported” teeth</b> lets gas through when it sweeps a port in the deck plate.</li>
+        <li><span class="sw" style="background:#5be37d"></span>VG1 ported teeth → <b>intake</b> port into Chamber A (0°–40°).<br><span class="sw" style="background:#ff5c5c"></span>VG2 ported teeth → <b>exhaust</b> port out of Chamber B (200°–330°).</li>
+        <li>Re-timing = re-index the valve gear on its shaft spline. No cams, springs, or extra shafts.</li>
+        <li class="dim2">Why stacked on the shaft: a separate 1:1 valve gear meshing alongside would have to be the same size as the power gear and would collide with the chambers; coaxial stacking gives exact sync with zero added backlash.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Port timing (per rev of Gear 1)</h3>
+      <canvas id="dial" width="660" height="374" style="width:100%;height:auto"></canvas>
+      <ul style="margin-top:6px">
+        <li><span class="sw" style="background:#5be37d"></span>0°–40° intake open (Chamber A) — VG1 ported teeth over port</li>
+        <li><span class="sw" style="background:#ff8a3d"></span>45° fire (on fire revs only)</li>
+        <li><span class="sw" style="background:#ffb46b55"></span>45°–200° expansion on teeth</li>
+        <li><span class="sw" style="background:#ff5c5c"></span>200°–330° exhaust open (Chamber B) — VG2 ported teeth over port</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Design notes (v2)</h3>
+      <ul>
+        <li><b>Labyrinth teeth:</b> angled faces + deep pockets + tip groove make a winding leak path. Blow-by is <i>reduced, not eliminated</i> — a little leakage is intentional (no rubbing seals, no lubrication-starved contact).</li>
+        <li><b>Hot-running clearance:</b> housing bore is sized so the gap is correct at operating temperature after thermal growth. Cold, it is deliberately looser.</li>
+        <li>Solid gears, no hollow rotors, no gate or poppet valves: 4 gears on 2 shafts (2 power gears + 2 valve gears) — still only 2 rotating assemblies.</li>
+        <li>Skip-fire: non-firing revs re-compress leftover gas in Chamber B.</li>
+        <li><b>Efficiency trade (v3):</b> blow-by past the labyrinth teeth and the hot-running clearance cost some efficiency (see the orange row in “Where the fuel energy goes”) — but they <b>simplify sealing</b> enormously: no apex/face seals, no seal lubrication, no seal wear.</li>
+        <li><b>Generator drive:</b> both shafts turn at identical rpm in opposite directions (locked by the mesh), so they can drive the generator directly — no gearbox.</li>
+        <li><b>v4 twin halves:</b> a second, mirrored gear pair (half&nbsp;B) sits on the far side of the generator. Half&nbsp;A’s CCW gear is coaxial with the <b>rotor</b>; half&nbsp;B’s CW gear is coaxial with the <b>stator</b> — so the counter-rotation comes straight from the gears, no belt.</li>
+        <li><b>v6 wound-field generator (no magnets):</b> rotor = DC <b>field winding</b> (copper or aluminium wire on laminated iron poles); stator = 3-phase <b>armature winding</b>. Because both parts spin, slip rings carry DC field current in and AC power out. Output voltage is set by the field current (built-in regulation; field off = generator off, even while spinning). Costs ≈ 1–3% excitation power (est.).</li>
+        <li><b>Winding thermal limits:</b> class F insulation ≈ 155&nbsp;°C, class H ≈ 180&nbsp;°C hot-spot; copper resistance rises ≈ 0.4%/°C (more loss when hot). Aluminium wire is lighter/cheaper but has ≈ 61% of copper’s conductivity → needs ≈ 1.6× the cross-section or runs hotter. Inside the hot muffler jacket, keep hot-spot below the insulation class (insulated inner wall and/or cooling air).</li>
+        <li><b>v8 efficiency optimiser:</b> sweeps every lever through the rough model; biggest wins are residual-gas squeeze and matching a bigger chamber with a longer fire-every N (let the gas fully expand). Brushless costs a little efficiency vs slip rings but is kept for lifetime. Estimates.</li>
+        <li><b>v7 brushless transfer (long uptime):</b> preferred = brushless exciter (field in) + rotary transformer with a spinning HF converter (power out). Capacitive coupler and slip rings shown for comparison; see the options panel under the side view. Figures are estimates.</li>
+        <li><b>v5 muffler encasing:</b> the whole engine (both halves + generator) sits inside a permanent hollow double wall. Exhaust ports dump straight into it; perforated baffles divide the cavity into chambers so the pulses lose energy before the single tailpipe. Cooling fins cover the entire outer skin. Replaces a separate muffler + exhaust pipework.</li>
+        <li><b>Shared chamber / port:</b> both halves burn in one common chamber (crossover port between them). One ignition pressurises both halves at the same instant → equal push, same firing timing → the halves stay in step.</li>
+      </ul>
+    </div>
+  </div>
+  </div>
+  <aside>
+    <div class="card throttle">
+      <h3>Throttle — Fire every <span class="tagline">SELF-REGULATING</span></h3>
+      <div class="big"><span class="n" id="nBig">3</span><span class="u" id="nUnit">revs per ignition</span></div>
+      <div class="seg" id="seg"><button title="Fire every 1 rev" class="">1</button><button title="Fire every 2 revs" class="">2</button><button title="Fire every 3 revs" class="on">3</button><button title="Fire every 4 revs" class="">4</button><button title="Fire every 5 revs" class="">5</button><button title="Fire every 6 revs" class="">6</button><button title="Fire every 7 revs" class="">7</button><button title="Fire every 8 revs" class="">8</button></div>
+      <div class="seg-l"><span>▲ more power / speed</span><span>less power / speed ▼</span></div>
+      <div class="row" style="margin-top:10px"><span style="width:92px">Elec. power</span><div class="bar"><i id="pwrBar" style="width: 19.625%;"></i></div><span class="mono" id="pwr" style="width:72px;text-align:right">5.99 kW</span></div>
+      <div class="row"><span style="width:92px">Shaft speed</span><div class="bar"><i id="spdBar" style="width: 31.1892%;"></i></div><span class="mono" id="rpm" style="width:72px;text-align:right">2,807 rpm</span></div>
+      <div class="dim2" style="text-align:right;margin-top:-2px">bars &amp; numbers = rough estimate (see Energy estimate)</div>
+      <p class="note">The engine regulates itself: firing more often (lower N) adds energy more often, so shaft speed and power climb until they settle; firing less often lets it slow and settle lower. No butterfly valve needed — the ignition interval <i>is</i> the throttle.</p>
+    </div>
+    <div class="card model">
+      <h3>Energy estimate <span class="est">ESTIMATE · NOT CFD</span></h3>
+      <p class="warn">Rough lumped energy model (ideal-gas expansion + loss factors). Good for comparing settings and trends — not a prediction. Real numbers need test-rig data or CFD.</p>
+      <div class="row"><label for="vol"><b style="color:#ffd166">Chamber A/B size</b></label><input id="vol" type="range" min="1" max="2" step="0.05" value="1.5"></div>
+      <div class="row"><span class="dim2">= <b class="mono" id="ccTxt" style="color:#ffe2a8">150 cc</b> per chamber</span><label style="font-size:12px"><input type="checkbox" id="autoVol"> auto-size to N</label></div>
+      <div class="row"><label for="vref">1× (v1) chamber =</label><span class="dim2"><input id="vref" type="number" min="25" max="1000" step="5" value="100" style="width:66px;background:#0d141b;color:var(--txt);border:1px solid var(--line);border-radius:6px;padding:3px 6px"> cc</span></div>
+      <div class="row"><label for="fuel">Fuel</label><select id="fuel">
+        <option value="gasoline" selected="">Gasoline</option>
+        <option value="ethanol">Ethanol (E100)</option>
+        <option value="propane">Propane / LPG</option>
+        <option value="methane">Natural gas (methane)</option>
+        <option value="hydrogen">Hydrogen (stoich.)</option>
+        <option value="h2lean">Hydrogen (lean λ≈2)</option>
+      </select></div>
+      <div class="row"><label for="rc">Residual-gas compression</label><input id="rc" type="range" min="1" max="4" step="0.1" value="2"></div>
+      <div class="row"><span class="dim2">re-meshing squeeze (Chamber B → A)</span><span class="mono" id="rcTxt">2.0 : 1</span></div>
+      <hr>
+      <div class="kv">
+        <span>Peak pressure (A)</span><span class="v chg" id="mPk">≈ 19.1 bar</span>
+        <span><b>Residual pressure</b></span><span class="v big chg" id="mRes">≈ 4.0 bar</span>
+        <span class="sub">left in gas at end of the firing rev's expansion (45°→200°)</span>
+        <span><b>Coast revs needed</b></span><span class="v big chg" id="mCoast">≈ 1.7 revs</span>
+        <span class="sub chg" id="mSug">→ suggest “fire every 3” for this chamber (now 3)</span>
+        <span>Vented at (end of expansion)</span><span class="v chg" id="mEnd">≈ 1.2 bar</span>
+        <span>Energy per fire</span><span class="v chg" id="mQ">≈ 872 J</span>
+        <span><b>Shaft speed</b> (each)</span><span class="v big chg" id="mRpm">≈ 2,807 rpm</span>
+        <span>Shaft power (both)</span><span class="v chg" id="mShaft">≈ 6.64 kW</span>
+        <span><b>Electrical power</b></span><span class="v big chg" id="mElec">≈ 5.99 kW</span>
+        <span>Thermal η (indicated)</span><span class="v chg" id="mEth">≈ 25.6%</span>
+        <span>Mechanical η</span><span class="v chg" id="mEm">≈ 95.2%</span>
+        <span>Coupling × generator η</span><span class="v chg" id="mEg">≈ 90.2%</span>
+        <span><b>Overall fuel → electric</b></span><span class="v big chg" id="mEo">≈ 22.0%</span>
+        <span>Fuel use</span><span class="v chg" id="mFuel">≈ 2.26 kg/h · 376 g/kWh</span>
+      </div>
+      <div class="btns"><button id="applySug">Apply suggested “fire every”</button></div>
+      <p class="adv good" id="mAdv">Good match: fire-every 3 lets the gas expand close to atmosphere before venting — efficient for this 150 cc chamber (est.).</p>
+      <details style="margin-top:8px"><summary class="dim2" style="cursor:pointer">Model assumptions (all rough)</summary>
+        <ul class="dim2" style="margin-top:6px;font-size:11.5px">
+          <li>Gear pair ~200 mm tip dia, 50 mm face → tooth-pocket displacement ≈ 0.8 L/rev (both gears).</li>
+          <li>Firing rev expands gas over 45°→200° (43% of that); each coast rev adds ~50% more expansion volume (rest vented/leaked).</li>
+          <li>Charge = chamber volume × compression ratio of fresh mixture at 85% fill, 95% burned; constant-volume burn; polytropic expansion (γ ≈ 1.30–1.34). Net work counted against 1 atm on the back of the teeth, minus compression work.</li>
+          <li>“Coast revs needed” = revs until gas drops to ~1.3 bar abs (little useful push left below that).</li>
+          <li>Wall heat + finite burn keep ~68–80% of ideal work (bigger chamber = less surface per volume = better).</li>
+          <li>Blow-by ≈ 5% of charge at hot clearance; ×2.4 cold; ×1.6 hydrogen; rises at low rpm and with long coast holds.</li>
+          <li>Friction: bearings + mesh ≈ 0.35 N·m + windage (no rubbing seals). Generator = resistive load sized for ≈3,000 rpm at the default settings; 9,000 rpm cap.</li>
+          <li>Twin-half mode (v4): each half modelled as one copy of this engine (same chamber size per half, shared chamber = both halves’ volume) → power &amp; fuel ×2, efficiencies unchanged except coupling (≈99%, slip rings + bearings, no belt) and generator at 2× relative speed. Sync loss from the gas-only link is not modelled.</li>
+          <li>Generator (all modes, v6): wound-field, no permanent magnets → generator η lowered ≈ 2 points vs PM for field excitation (est.). Winding temperature effects not modelled.</li>
+          <li>Rotating power transfer (v7): output path ≈ 97% brushless exciter + rotary transformer, ≈ 93% capacitive, ≈ 99% slip rings (applied to modes where the stator spins); stationary-stator modes only see the field-feed factor. All est.</li>
+        </ul></details>
+    </div>
+    <div class="card gencard">
+      <h3>Generator coupling</h3>
+      <div class="row"><label for="cpl">Arrangement</label><select id="cpl">
+        <option value="halves" selected="">Twin engine halves: A→rotor, B→stator (Larry, v4)</option>
+        <option value="twin">Twin direct-drive alternators (one per shaft)</option>
+        <option value="contra">Counter-rotating dual-rotor generator</option>
+        <option value="single">Single generator on Shaft 1</option>
+        <option value="gearbox">Through a gearbox (comparison)</option>
+      </select></div>
+      <p class="note" id="cplNote"><b>Larry’s v4 layout.</b> Engine half A’s CCW gear drives the wound <b>field rotor</b> (electromagnet, DC via slip rings) directly; the mirrored half B’s CW gear drives the wound <b>armature stator</b> shell the opposite way. Relative speed = <b>2× shaft rpm</b> with <b>no belt and no gearbox</b>. The halves share one <b>combustion chamber / crossover port</b>, so each ignition pushes both halves at the same instant → equal torque, firing timing kept in sync. Costs an extra bearing set (≈ 0.5%, est.) plus the field-in / power-out transfer chosen below (brushless preferred); wound-field excitation ≈ 1–3% (in generator η, est.). No permanent magnets. Power &amp; fuel ×2 (two halves, est.).</p>
+      <div class="row" style="margin-top:8px"><label for="xfer">Field in / power out</label><select id="xfer">
+        <option value="ex" selected="">1. Brushless exciter + rotary transformer (preferred)</option>
+        <option value="cap">2. Capacitive coupler</option>
+        <option value="sr">3. Slip rings (backup)</option>
+      </select></div>
+      <p class="note" id="xfNote"><b>Preferred (brushless).</b> Field: stationary exciter → rotating diodes → copper field. Output: spinning HF converter + rotary transformer off the stator. Output path ≈ 97% (est.); no brushes → long uptime.</p>
+    </div>
+    <div class="card">
+      <h3>Where the fuel energy goes <span class="est">ESTIMATE</span></h3>
+      <div class="wf" id="wf"><span class="tot">Fuel energy in</span><div class="b"><i id="wf_in" style="background: rgb(143, 179, 209); width: 100%;"></i></div><span class="p chg" id="wfp_in">100.0%</span><span class="loss">− exhaust heat / cycle limit</span><div class="b"><i id="wf_exh" style="background: rgb(107, 74, 74); width: 62.1919%;"></i></div><span class="p chg" id="wfp_exh">62.2%</span><span class="loss">− wall heat &amp; finite burn</span><div class="b"><i id="wf_wall" style="background: rgb(122, 79, 79); width: 10.5863%;"></i></div><span class="p chg" id="wfp_wall">10.6%</span><span class="bbl">− blow-by (hot clearance)</span><div class="b"><i id="wf_bb" style="background: rgb(255, 138, 61); width: 1.57595%;"></i></div><span class="p chg" id="wfp_bb">1.6%</span><span class="tot">= indicated (thermal η)</span><div class="b"><i id="wf_ind" style="background: rgb(255, 180, 107); width: 25.6459%;"></i></div><span class="p chg" id="wfp_ind">25.6%</span><span class="loss">− friction (bearings, mesh, air)</span><div class="b"><i id="wf_fr" style="background: rgb(122, 79, 79); width: 1.22339%;"></i></div><span class="p chg" id="wfp_fr">1.2%</span><span class="tot">= shaft output (all gears)</span><div class="b"><i id="wf_sh" style="background: rgb(255, 209, 102); width: 24.4225%;"></i></div><span class="p chg" id="wfp_sh">24.4%</span><span class="loss">− coupling / belt / gearbox</span><div class="b"><i id="wf_cp" style="background: rgb(122, 79, 79); width: 0.851123%;"></i></div><span class="p chg" id="wfp_cp">0.9%</span><span class="loss">− generator</span><div class="b"><i id="wf_gn" style="background: rgb(122, 79, 79); width: 1.53214%;"></i></div><span class="p chg" id="wfp_gn">1.5%</span><span class="tot">= electrical out</span><div class="b"><i id="wf_el" style="background: rgb(91, 227, 125); width: 22.0392%;"></i></div><span class="p chg" id="wfp_el">22.0%</span></div>
+      <p class="note" id="bbNote" style="color:#ffcf9a">Blow-by + clearance cost here ≈ 1.4 points of overall efficiency (22.0% vs ≈ 23.4% if perfectly sealed) — estimate, HOT clearance.</p>
+      <p class="note">Blow-by and the hot-running clearance cost some efficiency, but they <b>simplify sealing</b>: no rubbing tip/face seals, no seal oiling, nothing to wear in. Cold start leaks more until the housing grows to its hot fit.</p>
+    </div>
+    <div class="card">
+      <h3>Live status</h3>
+      <div class="row"><span>Gear 1 angle</span><span class="mono" id="ang">214°</span></div>
+      <div class="row"><span>Revolution #</span><span class="mono" id="rev">4</span></div>
+      <div class="row"><span>This revolution</span><span class="pill skipp" id="mode">SKIP</span></div>
+      <div class="row"><span>Phase</span><span class="mono" id="phase">Exhaust via VG2 teeth</span></div>
+      <div class="row"><span>Intake port</span><span class="pill closed" id="inP">CLOSED</span></div>
+      <div class="row"><span>Exhaust port</span><span class="pill open" id="exP">OPEN</span></div>
+      <div class="row"><span>Chamber volume</span><span class="mono" id="volTxt">1.5× v1 · 150 cc</span></div>
+      <div class="row"><span>Housing clearance</span><span class="mono" id="clrTxt">HOT (target gap)</span></div>
+    </div>
+    <div class="card">
+      <h3>View / playback</h3>
+      <div class="row"><label for="clr">Housing clearance at</label>
+        <select id="clr"><option value="hot" selected="">Hot (running)</option><option value="cold">Cold (start-up)</option></select></div>
+      <div class="row"><label for="spd">Animation speed</label><input id="spd" type="range" min="0.2" max="3" step="0.05" value="1"></div>
+      <div class="btns">
+        <button id="play">Pause</button><button id="lbl">Hide labels</button><button id="fireNow">Fire now</button>
+      </div>
+    </div>
+    <div class="card q"><p><b>Larry:</b> v4 shows your layout — half&nbsp;A gears → rotor, half&nbsp;B gears → stator (opposite direction), shared chamber/port between them. Two things to confirm: (1) is the shared chamber the <b>only</b> link between the halves, or do you also want a light 1:1 cross-shaft / electronic phase lock as backup? (A gas link equalises pressure and firing instant, but doesn’t hard-lock angle the way a gear mesh does.) (2) Generator is now wound-field (no magnets): copper or aluminium wire? (3) Brushless transfer: OK to carry a small HF converter on the spinning stator sleeve (option 1), or would you rather keep all electronics stationary and accept a bigger low-frequency rotary transformer?</p></div>
+  </aside>
+</main>
+<script>
+(()=>{
+const cv=document.getElementById('c'),ctx=cv.getContext('2d');
+const W=1160,H=860;
+function fit(){const d=window.devicePixelRatio||1;cv.width=W*d;cv.height=H*d;ctx.setTransform(d,0,0,d,0,0);}
+fit();window.addEventListener('resize',fit);
+
+// ---- geometry (east-west: Gear 1 west, Gear 2 east) ----
+const Z=12, R=110, m=2*R/Z, Ro=R+m, Rr=R-1.5*m, P=2*Math.PI/Z;   // deeper pockets (root 1.5m below pitch vs 1.25m in v1)
+const CX=500, CY=H/2;
+const G1={x:CX-R,y:CY}, G2={x:CX+R,y:CY};
+const GAP_HOT=4, GAP_COLD=11;          // exaggerated for visibility
+const HOUSE={x0:CX-R-Ro-60,x1:CX+R+Ro+60,y0:CY-345,y1:CY+345};
+// ---- valve gears (VG1 on shaft 1, VG2 on shaft 2, one deck up, same size/teeth as power gears) ----
+const D2R=Math.PI/180, PORT_R0=Rr+16, PORT_R1=Ro-4;
+const VIN={port:Math.atan2(-92,78), wp:16*D2R, ws:24*D2R, mid:20};   // deck port angle seen from G1; open 0..40 deg
+const VEX={port:Math.atan2(92,-78), wp:14*D2R, ws:116*D2R, mid:265}; // seen from G2; open 200..330 deg
+// sector centre in world angle for a given gear-1 position cyc (deg): VG1 turns with phi1 (= -travel), VG2 with phi2 (= +travel)
+const vinCentre=cyc=>VIN.port+(VIN.mid-cyc)*D2R, vexCentre=cyc=>VEX.port+(cyc-VEX.mid)*D2R;
+function annSector(c,cx,cy,r0,r1,a0,a1){c.beginPath();c.arc(cx,cy,r1,a0,a1);c.arc(cx,cy,r0,a1,a0,true);c.closePath();}
+
+// ---- state ----
+let phi=0, travel=0, omega=1.2;
+let pA=0.15,pB=0.05,flash=0,running=true,labels=true,lastFireRev=-1,forceFire=false;
+let N=3, gap=GAP_HOT, volS=1.5;
+const ch1=new Array(Z).fill(0), ch2=new Array(Z).fill(0);
+const leaks=[]; // intentional blow-by particles
+const spd=document.getElementById('spd'), volEl=document.getElementById('vol'), autoVol=document.getElementById('autoVol'), clrEl=document.getElementById('clr');
+document.getElementById('play').onclick=e=>{running=!running;e.target.textContent=running?'Pause':'Play';};
+document.getElementById('lbl').onclick=e=>{labels=!labels;e.target.textContent=labels?'Hide labels':'Show labels';};
+document.getElementById('fireNow').onclick=()=>{forceFire=true;};
+// throttle buttons
+const seg=document.getElementById('seg');
+for(let k=1;k<=8;k++){const b=document.createElement('button');b.textContent=k;b.title='Fire every '+k+' rev'+(k>1?'s':'');b.onclick=()=>setN(k);seg.appendChild(b);}
+function setN(k){N=k;[...seg.children].forEach((b,i)=>b.className=(i+1===k)?'on':'');
+  document.getElementById('nBig').textContent=k;document.getElementById('nUnit').textContent=k===1?'rev per ignition (every rev)':'revs per ignition';}
+setN(3);
+const BASE=4.2; // rad/s of Gear 1 animation scale (illustrative)
+
+// ================= ROUGH ENERGY MODEL — ESTIMATE ONLY, NOT CFD =================
+const FUELS={
+  gasoline:{name:'Gasoline',e:3.42,lhv:43.4,g:1.30,leak:1.0,burn:1.00},
+  ethanol:{name:'Ethanol (E100)',e:3.40,lhv:26.8,g:1.30,leak:1.0,burn:1.02},
+  propane:{name:'Propane / LPG',e:3.43,lhv:46.4,g:1.30,leak:1.0,burn:1.00},
+  methane:{name:'Natural gas',e:3.40,lhv:50.0,g:1.31,leak:1.05,burn:0.97},
+  hydrogen:{name:'Hydrogen',e:3.19,lhv:120,g:1.30,leak:1.6,burn:1.03},
+  h2lean:{name:'Hydrogen (lean)',e:1.88,lhv:120,g:1.34,leak:1.6,burn:1.00}
+}; // e = kJ per litre of premixed charge at ~1 atm (MJ/m^3); lhv = MJ/kg
+const PA=1.013e5, VSW=0.80e-3, FIRE_ARC=155/360, COAST=0.5, FILL=0.85, ETA_COMB=0.95, P_TH=1.3e5,
+      BB0=0.05, TF=0.35, CW=2.5e-6, KLOAD=0.0371, RPM_MAX=9000;
+const CPL={
+  halves:{name:'Twin engine halves: A → rotor, B → stator',ec:0.995,spin:true,eg:0.935,gr:2,halves:2,
+    note:'<b>Larry&rsquo;s v4 layout.</b> Engine half A&rsquo;s CCW gear drives the wound <b>field rotor</b> (electromagnet, DC via slip rings) directly; the mirrored half B&rsquo;s CW gear drives the wound <b>armature stator</b> shell the opposite way. Relative speed = <b>2&times; shaft rpm</b> with <b>no belt and no gearbox</b>. The halves share one <b>combustion chamber / crossover port</b>, so each ignition pushes both halves at the same instant &rarr; equal torque, firing timing kept in sync. Costs an extra bearing set (&asymp; 0.5%, est.) plus the field-in / power-out transfer chosen below (brushless preferred); wound-field excitation &asymp; 1&ndash;3% (in generator &eta;, est.). No permanent magnets. Power &amp; fuel &times;2 (two halves, est.).'},
+  twin:{name:'Twin direct-drive alternators',ec:0.995,eg:0.92,gr:1,
+    note:'Each shaft drives its own identical wound-field alternator through a flexible coupling &mdash; <b>no gearbox</b>. Both turn at exactly the same rpm (locked by the mesh), opposite directions; outputs are rectified onto one DC bus. Reaction torques cancel at the frame. Coupling &eta; &asymp; 99.5%, generator &eta; &asymp; 92% incl. field excitation (est.).'},
+  contra:{name:'Counter-rotating dual-rotor generator',ec:0.995,spin:true,eg:0.935,gr:2,
+    note:'Shaft 1 spins the wound field rotor; Shaft 2 spins the stator shell the other way through a 1:1 timing belt. Relative speed = <b>2&times; shaft rpm</b>, so a smaller generator gets more efficient &mdash; still <b>no gearbox</b>. Costs a belt + slip rings (&asymp; 1.5%, est.).'},
+  single:{name:'Single generator on Shaft 1',ec:0.995*0.9925,eg:0.92,gr:1,
+    note:'Simplest hardware: one generator on Shaft 1; Shaft 2 idles in a bearing and its half of the torque crosses the gear mesh (&asymp; 1.5% loss on that half, est.). Still direct drive, but reaction torque no longer cancels.'},
+  gearbox:{name:'Through a gearbox',ec:0.96,eg:0.925,gr:3,
+    note:'For comparison only: a summing gearbox (3:1 step-up) to one fast generator. The gearbox costs &asymp; 4% (est.) and adds oil, weight and noise &mdash; the counter-rotating shafts make it unnecessary.'}
+};
+const XF={
+  ex:{short:'Brushless exciter + rotary xfmr',name:'Brushless exciter + rotary transformer',spin:0.97,stat:0.995,eta:'96–98%',cost:'medium–high',up:'≈ 20k–50k h (bearings only)',risk:'risk: electronics on spinning parts',
+      note:'<b>Preferred (brushless).</b> Field: stationary exciter &rarr; rotating diodes &rarr; copper field. Output: spinning HF converter + rotary transformer off the stator. Output path &asymp; 97% (est.); no brushes &rarr; long uptime.'},
+  cap:{short:'Capacitive coupler',name:'Capacitive coupler',spin:0.93,stat:0.99,eta:'90–95%',cost:'high',up:'≈ 20k–40k h (gap/dirt sensitive)',risk:'risk: power density, plate voltage, EMI',
+      note:'Contactless plates for field in and power out; needs HF electronics on both sides. Output path &asymp; 93% (est.).'},
+  sr:{short:'Slip rings (backup)',name:'Slip rings + brushes',spin:0.99,stat:1,eta:'98.5–99.5%',cost:'low',up:'brushes ≈ 2k–8k h',risk:'risk: brush wear, carbon dust',
+      note:'Backup / comparison: most efficient and cheapest (&asymp; 99%, est.) but brushes wear &mdash; conflicts with the long-uptime goal.'}
+};
+const genEta=(c,rpm)=>c.eg-0.07*Math.max(0,1-rpm*c.gr/1800); // wound-field machines lose eff. at low speed (est.); eg includes ~1-3% field excitation
+function model(o){
+  const F=FUELS[o.fuel],g=F.g,V=o.Vcc*1e-6,rc=o.rc,C0=CPL[o.mode],XO=XF[o.xfer||'ex'],C={...C0,ec:C0.ec*(C0.spin?XO.spin:XO.stat)};
+  const Q=V*rc*F.e*1e6*FILL;                       // J of fuel energy trapped per fire
+  const p0=PA*Math.pow(rc,g);                       // after residual-gas squeeze
+  const pPk=p0+(g-1)*Q*ETA_COMB/V;                  // constant-volume burn
+  const V1=V+FIRE_ARC*VSW;                          // end of firing-rev expansion
+  const pRes=pPk*Math.pow(V/V1,g);
+  const Vth=V*Math.pow(pPk/P_TH,1/g);
+  const coast=Math.max(0,(Vth-V1)/(COAST*VSW));
+  const Nsug=Math.min(8,Math.max(1,Math.ceil(coast-0.05)+1));
+  const Vatm=V*Math.pow(pPk/PA,1/g);
+  const Vend=Math.min(V+VSW*(FIRE_ARC+COAST*(o.N-1)),Vatm);
+  const pEnd=pPk*Math.pow(V/Vend,g);
+  const Wexp=(pPk*V-pEnd*Vend)/(g-1)-PA*(Vend-V);
+  const Wcmp=Math.max(0,(p0*V-PA*V*rc)/(g-1)-PA*(V*rc-V));
+  const Wid=Math.max(0,Wexp-Wcmp), etaIdeal=Wid/Q;
+  const heatF=Math.min(0.85,(1-0.28*Math.cbrt(150/o.Vcc))*F.burn);
+  let rpm=3000,bb=BB0,Wind=0;
+  for(let i=0;i<60;i++){
+    bb=Math.min(0.45,Math.max(0.01,BB0*(o.cold?2.4:1)*F.leak*Math.sqrt(3000/Math.max(rpm,400))*(1+0.06*(Math.min(o.N,Nsug)-1))));
+    Wind=Wid*heatF*(1-bb);
+    const a=CW,b=KLOAD/C.ec,c=TF-Wind/(2*Math.PI*o.N);
+    const om=c<0?(-b+Math.sqrt(b*b-4*a*c))/(2*a):0;
+    rpm=0.5*rpm+0.5*om*60/(2*Math.PI);
+  }
+  let gov=false; if(rpm>RPM_MAX){rpm=RPM_MAX;gov=true;}
+  const ok=rpm>=250; if(!ok)rpm=0;
+  const om=rpm*2*Math.PI/60;
+  const Pgen=KLOAD*om*om, Pshaft=Pgen/C.ec, Pfric=TF*om+CW*om*om*om, Pind=Pshaft+Pfric;
+  const fires=Wind>0?Pind/Wind:0, Pfuel=fires*Q, eg=genEta(C,rpm), Pel=Pgen*eg;
+  const R={ok,gov,Q,p0,pPk,pRes,pEnd,coast,Nsug,etaIdeal,heatF,bb,rpm,Pfuel,Pind,Pfric,Pshaft,Pgen,Pel,eg,ec:C.ec,
+    etaTh:Pfuel?Pind/Pfuel:0, etaM:Pind?Pshaft/Pind:0, etaO:Pfuel?Pel/Pfuel:0,
+    fuelKgH:Pfuel/(F.lhv*1e6)*3600, torque:om?Pshaft/2/om:0, N:o.N, Vcc:o.Vcc, mode:o.mode, fuel:o.fuel};
+  // same engine with perfect sealing (for the blow-by cost callout)
+  R.etaSealed=ok?R.etaO/(1-bb):0;
+  // twin engine halves: each half = one copy of the engine above (estimate); efficiencies unchanged
+  const h=C.halves||1; R.halves=h;
+  if(h>1){for(const k of ['Pfuel','Pind','Pfric','Pshaft','Pgen','Pel','fuelKgH'])R[k]*=h;}
+  R.torque=om?R.Pshaft/(2*h)/om:0; // per gear
+  return R;
+}
+let M=null, Mkey='', Pmax=1;
+const targetOmega=()=>M&&M.ok?Math.max(0.1,Math.min(1.45,0.53*M.rpm/3000))*BASE:0.06*BASE;
+
+function rr(x,y,w,h,r){ctx.beginPath();ctx.moveTo(x+r,y);ctx.arcTo(x+w,y,x+w,y+h,r);ctx.arcTo(x+w,y+h,x,y+h,r);ctx.arcTo(x,y+h,x,y,r);ctx.arcTo(x,y,x+w,y,r);ctx.closePath();}
+const pol=(c,r,a)=>[c.x+r*Math.cos(a),c.y+r*Math.sin(a)];
+// Labyrinth-style tooth: angled leading face, grooved tip, stepped trailing face, deep root pocket.
+function gearPath(c,rot,s){
+  const Rm=R-0.35*m; // labyrinth step radius
+  ctx.beginPath();
+  for(let i=0;i<Z;i++){
+    const b=rot+i*P, A=f=>b+s*f*P;
+    const pts=[[Rr,-0.5],[Rr,-0.32],[Ro,-0.10],[Ro,-0.04],[Ro-5,-0.02],[Ro-5,0.04],[Ro,0.06],[Ro,0.14],[Rm,0.22],[Rm,0.28],[Rr,0.36],[Rr,0.5]];
+    pts.forEach(([r,f],j)=>{const [x,y]=pol(c,r,A(f));(i===0&&j===0)?ctx.moveTo(x,y):ctx.lineTo(x,y);});
+  }
+  ctx.closePath();
+}
+function heat(p){const r=Math.round(60+195*Math.min(1,p*1.3)),g=Math.round(70+110*Math.min(1,p)),b=Math.round(120*(1-p)+30);return `rgb(${r},${g},${b})`;}
+function drawGear(c,rot,dirSign){
+  const gr=ctx.createRadialGradient(c.x-30,c.y-40,10,c.x,c.y,Ro);
+  gr.addColorStop(0,'#6f8396');gr.addColorStop(.6,'#45576a');gr.addColorStop(1,'#2c3a48');
+  gearPath(c,rot,dirSign);ctx.fillStyle=gr;ctx.fill();ctx.lineWidth=1.5;ctx.strokeStyle='#9fb6c9';ctx.lineJoin='round';ctx.stroke();
+  ctx.strokeStyle='rgba(200,220,240,.12)';ctx.lineWidth=1;
+  for(const rad of [Rr-12,Rr-28,46]){ctx.beginPath();ctx.arc(c.x,c.y,rad,0,7);ctx.stroke();}
+  ctx.strokeStyle='rgba(79,195,247,.85)';ctx.lineWidth=3;ctx.beginPath();
+  ctx.moveTo(...pol(c,34,rot));ctx.lineTo(...pol(c,Rr-8,rot));ctx.stroke();
+  ctx.beginPath();ctx.arc(c.x,c.y,22,0,7);ctx.fillStyle='#1a232c';ctx.fill();ctx.strokeStyle='#cfd8e0';ctx.lineWidth=2;ctx.stroke();
+  ctx.beginPath();ctx.arc(c.x,c.y,13,0,7);
+  const sg=ctx.createRadialGradient(c.x-4,c.y-4,1,c.x,c.y,13);sg.addColorStop(0,'#e9eef3');sg.addColorStop(1,'#7d8b98');ctx.fillStyle=sg;ctx.fill();
+  ctx.save();ctx.translate(c.x,c.y);ctx.rotate(rot);ctx.fillStyle='#1a232c';ctx.fillRect(10,-3,8,6);ctx.restore();
+  // rotation arrow (outer side)
+  ctx.save();ctx.strokeStyle='rgba(79,195,247,.55)';ctx.fillStyle='rgba(79,195,247,.75)';ctx.lineWidth=2.5;
+  const ar=Ro+gap+30, base=c===G1?Math.PI:0;
+  const a0=base-0.45, a1=base+0.45;
+  ctx.beginPath();ctx.arc(c.x,c.y,ar,a0,a1);ctx.stroke();
+  const tip=dirSign<0?a0:a1;
+  const [tx,ty]=pol(c,ar,tip);
+  ctx.translate(tx,ty);ctx.rotate(tip+(dirSign<0?-Math.PI/2:Math.PI/2));ctx.beginPath();ctx.moveTo(9,0);ctx.lineTo(-5,-7);ctx.lineTo(-5,7);ctx.closePath();ctx.fill();
+  ctx.restore();
+}
+function label(text,sub,tx,ty,px,py,col,sub2){
+  if(!labels)return;
+  col=col||'#9fd7f5';
+  ctx.strokeStyle=col;ctx.globalAlpha=.75;ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(px,py);ctx.lineTo(tx,ty);ctx.stroke();ctx.globalAlpha=1;
+  ctx.beginPath();ctx.arc(px,py,3,0,7);ctx.fillStyle=col;ctx.fill();
+  ctx.font='600 13px Segoe UI,Arial';ctx.fillStyle=col;
+  const left=tx<px;ctx.textAlign=left?'right':'left';const ox=left?-6:6;
+  ctx.fillText(text,tx+ox,ty-2);
+  ctx.font='11px Segoe UI,Arial';ctx.fillStyle='#93a6b8';
+  if(sub)ctx.fillText(sub,tx+ox,ty+12);
+  if(sub2)ctx.fillText(sub2,tx+ox,ty+25);
+  ctx.textAlign='left';
+}
+function normDeg(a){a=a*180/Math.PI;a%=360;if(a<0)a+=360;return a;}
+function inArc(d,lo,hi){return d>=lo&&d<=hi;}
+function arrowHead(x,y,ang,sz,col){ctx.save();ctx.translate(x,y);ctx.rotate(ang);ctx.fillStyle=col;ctx.beginPath();ctx.moveTo(sz,0);ctx.lineTo(-sz*.6,-sz*.6);ctx.lineTo(-sz*.6,sz*.6);ctx.closePath();ctx.fill();ctx.restore();}
+
+// ---- tooth detail inset (labyrinth + hot clearance) ----
+function inset(x,y,w,h){
+  ctx.save();
+  rr(x,y,w,h,10);ctx.fillStyle='rgba(9,14,20,.94)';ctx.fill();ctx.strokeStyle='#ffd16688';ctx.lineWidth=1.2;ctx.stroke();
+  ctx.font='600 12px Segoe UI,Arial';ctx.fillStyle='#ffd166';ctx.fillText('DETAIL: LABYRINTH TOOTH + HOT CLEARANCE',x+12,y+20);
+  ctx.beginPath();rr(x+4,y+28,w-8,h-32,8);ctx.clip();
+  // magnified: housing wall at top, two teeth below
+  const k=2.6, wallY=y+62, g=gap*k*0.8, tipY=wallY+g;
+  ctx.fillStyle='#2a3644';ctx.fillRect(x,y+28,w,wallY-(y+28));
+  ctx.strokeStyle='rgba(255,255,255,.06)';for(let q=x-80;q<x+w;q+=9){ctx.beginPath();ctx.moveTo(q,y+28);ctx.lineTo(q+34,wallY);ctx.stroke();}
+  ctx.strokeStyle='#4a5d70';ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(x,wallY);ctx.lineTo(x+w,wallY);ctx.stroke();
+  const depth=78, pitch=118, x0=x+28;
+  ctx.beginPath();ctx.moveTo(x,tipY+depth);
+  for(let t=0;t<2;t++){
+    const bx=x0+t*pitch;
+    const pts=[[0,depth],[16,depth],[44,0],[52,0],[55,8],[63,8],[66,0],[76,0],[86,depth*0.42],[94,depth*0.42],[104,depth],[118,depth]];
+    pts.forEach(([dx,dy])=>ctx.lineTo(bx+dx,tipY+dy));
+  }
+  ctx.lineTo(x+w,tipY+depth);ctx.lineTo(x+w,y+h);ctx.lineTo(x,y+h);ctx.closePath();
+  const tg=ctx.createLinearGradient(0,tipY,0,tipY+depth);tg.addColorStop(0,'#6f8396');tg.addColorStop(1,'#34455a');
+  ctx.fillStyle=tg;ctx.fill();ctx.strokeStyle='#9fb6c9';ctx.lineWidth=1.4;ctx.stroke();
+  // gas pocket glow
+  ctx.fillStyle='rgba(255,150,70,.35)';ctx.beginPath();ctx.arc(x0+pitch+4,tipY+depth-18,14,0,7);ctx.fill();
+  // leak path (dotted, winding)
+  const t=(performance.now()/1000)%1;
+  ctx.strokeStyle='rgba(255,170,90,.85)';ctx.setLineDash([3,4]);ctx.lineDashOffset=-t*14;ctx.lineWidth=1.6;
+  const L=[[x0+pitch+8,tipY+depth-20],[x0+pitch-6,tipY+depth*0.42-6],[x0+76+4,tipY-g*0.5+2],[x0+66,tipY+4],[x0+52,tipY-g*0.5],[x0+40,tipY+10],[x0+20,tipY+depth-14]];
+  ctx.beginPath();ctx.moveTo(...L[0]);L.slice(1).forEach(p=>ctx.lineTo(...p));ctx.stroke();ctx.setLineDash([]);
+  arrowHead(L[6][0],L[6][1],Math.atan2(L[6][1]-L[5][1],L[6][0]-L[5][0]),6,'rgba(255,170,90,.9)');
+  // clearance dimension
+  const dxm=x0+pitch+59;
+  ctx.strokeStyle='#ffd166';ctx.lineWidth=1.2;ctx.beginPath();ctx.moveTo(dxm,wallY);ctx.lineTo(dxm,tipY);ctx.stroke();
+  ctx.beginPath();ctx.moveTo(dxm-5,wallY);ctx.lineTo(dxm+5,wallY);ctx.moveTo(dxm-5,tipY);ctx.lineTo(dxm+5,tipY);ctx.stroke();
+  ctx.restore();
+  ctx.font='11px Segoe UI,Arial';ctx.fillStyle='#ffd166';ctx.textAlign='left';
+  ctx.fillText(gap===GAP_HOT?'gap = target (hot)':'gap = loose (cold)',x0+pitch+66,wallY+Math.max(10,g/2+4));
+  ctx.fillStyle='#c3d0dc';
+  const notes=[['angled face',x0+12,tipY+depth*0.55],['tip groove',x0+44,tipY+28],['step',x0+86+6,tipY+depth*0.42+16],['deep pocket',x0+pitch+18,tipY+depth+4]];
+  // annotation text at bottom of inset
+  ctx.fillStyle='#ffb46b';ctx.fillText('- - \u25B6 winding leak path: blow-by reduced, NOT eliminated',x+12,y+h-28);
+  ctx.fillStyle='#93a6b8';ctx.fillText('(some leakage is intentional \u2014 no rubbing seals)',x+12,y+h-12);
+  ctx.fillStyle='#d6e2ee';ctx.font='10px Segoe UI,Arial';
+  notes.forEach(([s,nx,ny])=>{if(ny<y+h-40)ctx.fillText(s,nx,ny);});
+}
+
+let last=performance.now();
+function frame(now){
+  const dt=Math.min(0.05,(now-last)/1000);last=now;
+  const play=+spd.value;
+  // volume & clearance
+  if(autoVol.checked){volS=Math.min(2,1+0.15*(N-1));volEl.value=volS;volEl.disabled=true;}else{volS=+volEl.value;volEl.disabled=false;}
+  const gTarget=clrEl.value==='hot'?GAP_HOT:GAP_COLD; gap+=(gTarget-gap)*Math.min(1,dt*3);
+  updateModel();
+  const CAV=Ro+gap;
+  const halfW=70+60*(volS-1), upH=80*volS, SH=Ro+gap+8, NECK=62;
+  // funnel-shaped chambers: narrow neck in the mesh wedge, big expandable volume beyond the gear tips
+  const chA={x0:CX-halfW,x1:CX+halfW,y0:CY-SH-upH,y1:CY-SH,neck:CY-NECK,s:-1};
+  const chB={x0:CX-halfW,x1:CX+halfW,y0:CY+SH,y1:CY+SH+upH,neck:CY+NECK,s:1};
+  const inCh={x0:CX-70,x1:CX-30,y0:HOUSE.y0,y1:chA.y0+4};
+  const exCh={x0:CX+30,x1:CX+70,y0:chB.y1-4,y1:HOUSE.y1};
+
+  // self-regulating speed: eases toward the equilibrium set by firing interval
+  if(running){
+    omega+=(targetOmega()-omega)*Math.min(1,dt*0.9);
+    const w=omega*play;
+    phi-=w*dt;travel+=w*dt*180/Math.PI;
+  }
+  const rev=Math.floor(travel/360), cyc=travel%360;
+  const fireRev=(rev%N===0);
+  const intakeOpen=cyc<40, exhaustOpen=cyc>=200&&cyc<330;
+  if(((fireRev&&cyc>=45&&cyc<120)||forceFire)&&lastFireRev!==rev){lastFireRev=rev;pA=1;flash=1;forceFire=false;omega+=0.12*BASE/Math.sqrt(N);}
+  else if(forceFire&&lastFireRev===rev){pA=1;flash=1;forceFire=false;omega+=0.12*BASE;}
+  if(running){
+    const ex=dt*play;
+    if(intakeOpen) pA+=(0.18-pA)*Math.min(1,ex*4);
+    else if(cyc>=45&&cyc<200) pA*=Math.exp(-ex*1.1/volS*1.5);
+    else pA*=Math.exp(-ex*0.6);
+    flash*=Math.exp(-dt*5);
+  }
+  const phi1=phi, phi2=-phi+P/2;
+  if(running){
+    let dump=0;const ex=dt*play;
+    for(let i=0;i<Z;i++){
+      const d1=normDeg(phi1+i*P+P/2), d2=normDeg(phi2+i*P+P/2);
+      if(inArc(d1,285,345))ch1[i]=Math.max(ch1[i],pA*0.85);
+      if(inArc(d2,195,255))ch2[i]=Math.max(ch2[i],pA*0.85);
+      if(inArc(d1,15,75)){dump+=ch1[i]*ex*3;ch1[i]*=Math.exp(-ex*3);}
+      if(inArc(d2,105,165)){dump+=ch2[i]*ex*3;ch2[i]*=Math.exp(-ex*3);}
+      ch1[i]*=Math.exp(-ex*0.15);ch2[i]*=Math.exp(-ex*0.15);
+    }
+    pB=Math.min(1,pB+dump*0.6);
+    if(exhaustOpen) pB*=Math.exp(-ex*2.5); else pB*=Math.exp(-ex*0.12);
+    // spawn intentional leak particles (rate ∝ pressure in A, more when cold/loose)
+    if(Math.random()<pA*dt*14*(gap/GAP_HOT)**0.6){
+      const side=Math.random();
+      if(side<0.4) leaks.push({type:'mesh',t:0,x:CX+(Math.random()-.5)*10});
+      else leaks.push({type:'rim',t:0,g:Math.random()<.5?G1:G2,a0:Math.random()*0.6});
+    }
+    for(const L of leaks)L.t+=ex*(L.type==='mesh'?0.55:0.18);
+    while(leaks.length&&leaks[0].t>1)leaks.shift();
+    for(let i=leaks.length-1;i>=0;i--)if(leaks[i].t>1)leaks.splice(i,1);
+  }
+
+  // ---------- draw ----------
+  ctx.clearRect(0,0,W,H);
+  ctx.strokeStyle='rgba(79,195,247,.05)';ctx.lineWidth=1;
+  for(let x=0;x<W;x+=25){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,H);ctx.stroke();}
+  for(let y=0;y<H;y+=25){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(W,y);ctx.stroke();}
+  // compass
+  ctx.save();ctx.font='600 11px monospace';ctx.fillStyle='#5f7488';ctx.textAlign='center';
+  const kx=W-40,ky=46;ctx.strokeStyle='#5f7488';ctx.beginPath();ctx.arc(kx,ky,16,0,7);ctx.stroke();
+  ctx.fillText('N',kx,ky-21);ctx.fillText('S',kx,ky+30);ctx.fillText('W',kx-27,ky+4);ctx.fillText('E',kx+27,ky+4);ctx.restore();
+  // housing
+  rr(HOUSE.x0,HOUSE.y0,HOUSE.x1-HOUSE.x0,HOUSE.y1-HOUSE.y0,26);
+  const hg=ctx.createLinearGradient(0,HOUSE.y0,0,HOUSE.y1);hg.addColorStop(0,'#2a3644');hg.addColorStop(1,'#1c2530');
+  ctx.fillStyle=hg;ctx.fill();ctx.strokeStyle='#4a5d70';ctx.lineWidth=2;ctx.stroke();
+  ctx.save();rr(HOUSE.x0,HOUSE.y0,HOUSE.x1-HOUSE.x0,HOUSE.y1-HOUSE.y0,26);ctx.clip();
+  ctx.strokeStyle='rgba(255,255,255,.035)';for(let k=-900;k<1300;k+=12){ctx.beginPath();ctx.moveTo(k,0);ctx.lineTo(k+700,H);ctx.stroke();}
+  ctx.restore();
+  // cavity
+  ctx.fillStyle='#070b10';
+  ctx.beginPath();ctx.arc(G1.x,G1.y,CAV,0,7);ctx.fill();
+  ctx.beginPath();ctx.arc(G2.x,G2.y,CAV,0,7);ctx.fill();
+  // hot-clearance ring highlight on bore wall
+  ctx.save();ctx.strokeStyle=gap>GAP_HOT+1?'rgba(124,190,255,.55)':'rgba(255,209,102,.55)';ctx.lineWidth=1.2;ctx.setLineDash([2,4]);
+  ctx.beginPath();ctx.arc(G1.x,G1.y,CAV,Math.PI*0.62,Math.PI*1.38);ctx.stroke();
+  ctx.beginPath();ctx.arc(G2.x,G2.y,CAV,-Math.PI*0.38,Math.PI*0.38);ctx.stroke();ctx.setLineDash([]);ctx.restore();
+  // base (v1) chamber outline for comparison
+  const chPath=c=>{const far=c.s<0?c.y0:c.y1, sh=c.s<0?c.y1:c.y0, r=18;
+    ctx.beginPath();ctx.moveTo(CX-26,c.neck);ctx.lineTo(c.x0,sh);
+    ctx.arcTo(c.x0,far,c.x0+r,far,r);ctx.arcTo(c.x1,far,c.x1,far-c.s*r,r);ctx.lineTo(c.x1,sh);ctx.lineTo(CX+26,c.neck);ctx.closePath();};
+  ctx.fillStyle='#070b10';chPath(chA);ctx.fill();chPath(chB);ctx.fill();
+  ctx.globalAlpha=.25+.6*pA;chPath(chA);ctx.fillStyle=heat(pA);ctx.fill();ctx.globalAlpha=1;
+  chPath(chA);ctx.strokeStyle='#ff8a3d99';ctx.lineWidth=1.6;ctx.lineJoin='round';ctx.stroke();
+  chPath(chB);ctx.fillStyle=`rgba(124,156,255,${.15+.65*pB})`;ctx.fill();ctx.strokeStyle='#7c9cff99';ctx.stroke();
+  // v1 size ghost + expansion arrows
+  if(labels){
+    ctx.save();ctx.setLineDash([4,4]);ctx.strokeStyle='rgba(255,255,255,.28)';ctx.lineWidth=1;
+    rr(CX-58,CY-205,116,145,14);ctx.stroke();rr(CX-58,CY+60,116,145,14);ctx.stroke();ctx.setLineDash([]);
+    ctx.fillStyle='rgba(255,255,255,.45)';ctx.font='10px Segoe UI,Arial';ctx.textAlign='center';
+    ctx.fillText('v1 size',CX-30,CY-205+13);ctx.fillText('v1 size',CX-30,CY+205-5);
+    const col='rgba(255,209,102,.85)';ctx.strokeStyle=col;ctx.lineWidth=1.5;
+    for(const [c,v1] of [[chA,CY-205],[chB,CY+205]]){const far=c.s<0?c.y0:c.y1;
+      if(Math.abs(far-v1)>12){ctx.beginPath();ctx.moveTo(CX+28,v1);ctx.lineTo(CX+28,far-c.s*6);ctx.stroke();arrowHead(CX+28,far-c.s*6,c.s*Math.PI/2,6,col);}
+      ctx.beginPath();ctx.moveTo(CX+58,(c.y0+c.y1)/2);ctx.lineTo(c.x1-6,(c.y0+c.y1)/2);ctx.stroke();arrowHead(c.x1-6,(c.y0+c.y1)/2,0,6,col);
+      ctx.beginPath();ctx.moveTo(CX-58,(c.y0+c.y1)/2);ctx.lineTo(c.x0+6,(c.y0+c.y1)/2);ctx.stroke();arrowHead(c.x0+6,(c.y0+c.y1)/2,Math.PI,6,col);}
+    ctx.fillStyle=col;ctx.fillText('expandable',CX+0,(chA.y0+chA.y1)/2-6);ctx.fillText('expandable',CX+0,(chB.y0+chB.y1)/2-6);
+    ctx.restore();
+  }
+  // fire flash
+  const fyc=(chA.y0+chA.y1)/2+10;
+  if(flash>0.02){
+    const fg=ctx.createRadialGradient(CX,fyc,2,CX,fyc,(140*flash+30)*volS*.8);
+    fg.addColorStop(0,`rgba(255,240,180,${flash})`);fg.addColorStop(.4,`rgba(255,138,61,${.7*flash})`);fg.addColorStop(1,'rgba(255,80,20,0)');
+    ctx.fillStyle=fg;ctx.beginPath();ctx.arc(CX,fyc,200*volS*.8,0,7);ctx.fill();
+  }
+  // pocket gas
+  function pockets(c,rot,arr){
+    for(let i=0;i<Z;i++){const v=arr[i];if(v<0.04)continue;const a=rot+i*P+P/2;
+      const [x,y]=pol(c,Rr+m*0.9,a);
+      ctx.beginPath();ctx.arc(x,y,6+6*v,0,7);ctx.fillStyle=`rgba(255,150,70,${Math.min(.9,v)})`;ctx.fill();}
+  }
+  pockets(G1,phi1,ch1);pockets(G2,phi2,ch2);
+  drawGear(G1,phi1,-1);
+  drawGear(G2,phi2,1);
+  // intentional leakage particles
+  for(const L of leaks){
+    const al=0.75*Math.sin(Math.PI*L.t);
+    let x,y;
+    if(L.type==='mesh'){x=L.x+Math.sin(L.t*18)*5;y=CY-50+100*L.t;}
+    else{const g=L.g, s=g===G1?1:-1, a=-Math.PI/2+(s<0?0:0)+(g===G1?-1:1)*(0.15+L.a0*0.2+L.t*(Math.PI-0.3));
+      const ang=g===G1? -Math.PI/2 - (0.2+L.t*(Math.PI-0.4)) : -Math.PI/2 + (0.2+L.t*(Math.PI-0.4));
+      [x,y]=pol(g,CAV-gap/2-1,ang);}
+    ctx.beginPath();ctx.arc(x,y,2.2,0,7);ctx.fillStyle=`rgba(255,190,110,${al})`;ctx.fill();
+  }
+  // pressure arrows on teeth in A
+  if(pA>0.25){
+    ctx.save();ctx.strokeStyle=`rgba(255,180,90,${Math.min(1,pA)})`;ctx.fillStyle=ctx.strokeStyle;ctx.lineWidth=2.2;
+    for(const [sx,dx] of [[-14,-1],[14,1]]){
+      const x=CX+sx,y=CY-112;ctx.beginPath();ctx.moveTo(x,y);ctx.lineTo(x+dx*30,y+8);ctx.stroke();
+      ctx.beginPath();ctx.moveTo(x+dx*36,y+10);ctx.lineTo(x+dx*24,y+1);ctx.lineTo(x+dx*27,y+14);ctx.closePath();ctx.fill();
+    }
+    ctx.restore();
+  }
+  // igniter
+  const iy=chA.y0+30;
+  ctx.fillStyle='#c9d3dc';ctx.fillRect(chA.x1-4,iy-5,26,10);ctx.fillStyle='#e8eef3';ctx.fillRect(chA.x1-10,iy-2,8,4);
+  if(flash>0.3){ctx.strokeStyle='#fff6c0';ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(chA.x1-12,iy);ctx.lineTo(chA.x1-20,iy+7);ctx.lineTo(chA.x1-16,iy+9);ctx.lineTo(chA.x1-26,iy+19);ctx.stroke();}
+  // ---- gear-tooth porting (replaces v2 sliding gates) ----
+  // ported-tooth sectors of the valve gears (VG1/VG2 sit directly above the power gears, same tooth phase)
+  const vinC=vinCentre(cyc), vexC=vexCentre(cyc);
+  function portedTeeth(g,cen,ws,col,rgb){
+    ctx.save();gearPath(g,g===G1?phi1:phi2,g===G1?-1:1);ctx.clip();annSector(ctx,g.x,g.y,Rr+3,Ro+2,cen-ws/2,cen+ws/2);ctx.fillStyle=`rgba(${rgb},.30)`;ctx.fill();
+    ctx.strokeStyle=col;ctx.lineWidth=2;ctx.setLineDash([5,3]);ctx.stroke();ctx.setLineDash([]);
+    // through-cut marks in each tooth gap inside the sector
+    for(let i=0;i<Z;i++){const rot=g===G1?phi1:phi2;const a=rot+i*P+P/2;let d=Math.atan2(Math.sin(a-cen),Math.cos(a-cen));
+      if(Math.abs(d)<=ws/2){const [x,y]=pol(g,Rr+m*0.85,a);ctx.beginPath();ctx.arc(x,y,5,0,7);ctx.fillStyle='#070b10';ctx.fill();ctx.strokeStyle=col;ctx.lineWidth=1.5;ctx.stroke();
+        ctx.beginPath();ctx.moveTo(x-3,y-3);ctx.lineTo(x+3,y+3);ctx.moveTo(x+3,y-3);ctx.lineTo(x-3,y+3);ctx.stroke();}}
+    ctx.restore();
+  }
+  portedTeeth(G1,vinC,VIN.ws,'#5be37d','91,227,125');
+  portedTeeth(G2,vexC,VEX.ws,'#ff7a6b','255,92,92');
+  // deck ports (fixed windows in the deck plate)
+  function deckPort(g,v,open,col){
+    annSector(ctx,g.x,g.y,PORT_R0,PORT_R1,v.port-v.wp/2,v.port+v.wp/2);
+    ctx.fillStyle=open?col:'rgba(20,28,36,.9)';ctx.fill();ctx.lineWidth=2.4;ctx.strokeStyle=open?'#ffffff':col;ctx.stroke();
+  }
+  deckPort(G1,VIN,intakeOpen,'#5be37d');deckPort(G2,VEX,exhaustOpen,'#ff5c5c');
+  const pin=pol(G1,(PORT_R0+PORT_R1)/2,VIN.port), pex=pol(G2,(PORT_R0+PORT_R1)/2,VEX.port);
+  // runners in the top cover (drawn dashed: they sit above the gears)
+  function runner(pts,open,col,inward,t){
+    ctx.save();ctx.strokeStyle=col;ctx.globalAlpha=open?.95:.45;ctx.lineWidth=14;ctx.lineJoin='round';ctx.setLineDash([]);
+    ctx.beginPath();ctx.moveTo(...pts[0]);pts.slice(1).forEach(p=>ctx.lineTo(...p));ctx.strokeStyle='rgba(10,16,22,.85)';ctx.stroke();
+    ctx.lineWidth=1.6;ctx.setLineDash([6,4]);ctx.strokeStyle=col;
+    for(const off of [-7,7]){ctx.beginPath();pts.forEach((p,i)=>{const x=p[0]+off*(i<pts.length-1?1:0.4);i?ctx.lineTo(x,p[1]):ctx.moveTo(x,p[1]);});ctx.stroke();}
+    ctx.setLineDash([]);
+    if(open){ // flow chevrons along the runner
+      const segs=[];let L=0;for(let i=1;i<pts.length;i++){const d=Math.hypot(pts[i][0]-pts[i-1][0],pts[i][1]-pts[i-1][1]);segs.push(d);L+=d;}
+      for(let k=0;k<4;k++){let u=((t*70+k*L/4)%L);if(!inward)u=L-u;let i=0;while(i<segs.length-1&&u>segs[i]){u-=segs[i];i++;}
+        const a=pts[i],b=pts[i+1],f=Math.min(1,u/segs[i]);const x=a[0]+(b[0]-a[0])*f,y=a[1]+(b[1]-a[1])*f;
+        let ang=Math.atan2(b[1]-a[1],b[0]-a[0]);if(!inward)ang+=Math.PI;arrowHead(x,y,ang,6,col);}
+    }
+    ctx.restore();
+  }
+  runner([[CX-50,HOUSE.y0-40],[CX-50,pin[1]-34],[pin[0],pin[1]]],intakeOpen,'#5be37d',true,now/1000);
+  runner([[pex[0],pex[1]],[CX+50,pex[1]+34],[CX+50,HOUSE.y1+40]],exhaustOpen,'#ff7a6b',false,now/1000);
+  ctx.fillStyle='#2f3e4d';ctx.fillRect(inCh.x0-8,HOUSE.y0-40,inCh.x1-inCh.x0+16,40);ctx.fillRect(exCh.x0-8,HOUSE.y1,exCh.x1-exCh.x0+16,40);
+  ctx.fillStyle='#070b10';ctx.fillRect(inCh.x0,HOUSE.y0-40,inCh.x1-inCh.x0,41);ctx.fillRect(exCh.x0,HOUSE.y1-1,exCh.x1-exCh.x0,41);
+  ctx.setLineDash([4,5]);ctx.strokeStyle='rgba(255,255,255,.18)';ctx.beginPath();ctx.moveTo(CX,CY-45);ctx.lineTo(CX,CY+45);ctx.stroke();ctx.setLineDash([]);
+
+  // ---- labels ----
+  const volTxt=volS.toFixed(2).replace(/0$/,'')+'\u00d7 v1 \u00b7 '+Math.round(volS*vrefCC())+' cc';
+  if(labels&&M){
+    ctx.save();ctx.textAlign='center';ctx.font='600 11px Segoe UI,Arial';
+    ctx.fillStyle='#ffe2a8';ctx.fillText('peak \u2248 '+(M.pPk/1e5).toFixed(0)+' bar (est.)',CX,(chA.y0+chA.y1)/2+12);
+    ctx.fillStyle='#d9e2ff';ctx.fillText('residual \u2248 '+(M.pRes/1e5).toFixed(1)+' bar (est.)',CX,(chB.y0+chB.y1)/2+12);
+    ctx.font='10px Segoe UI,Arial';ctx.fillStyle='#b8c6ff';ctx.fillText('needs \u2248 '+M.coast.toFixed(1)+' coast revs',CX,(chB.y0+chB.y1)/2+25);
+    ctx.restore();
+  }
+  const LX=HOUSE.x0-14, RX=HOUSE.x1+26;
+  label('INTAKE \u2192 DECK PORT (A)','opened by VG1 ported teeth',CX-150,HOUSE.y0-26,pin[0],pin[1],'#5be37d','runner in top cover \u00b7 no valve');
+  label('EXHAUST \u2190 DECK PORT (B)','opened by VG2 ported teeth',CX+170,HOUSE.y1+30,pex[0],pex[1],'#ff7a6b','runner in top cover \u00b7 no valve');
+  {const pv=pol(G1,Ro-6,vinC);label('VG1 PORTED TEETH','valve gear on Shaft 1, deck above',LX,CY-300,pv[0],pv[1],'#5be37d','(through-cut gaps = open)');}
+  label('CHAMBER A (enlarged)','combustion / expansion \u00b7 '+volTxt,RX,chA.y0+30,chA.x1-8,chA.y0+40,'#ffae6b','volume scales with revs per ignition');
+  label('GEAR 2 \u00b7 EAST','solid \u00b7 turns CW',RX,CY-95,G2.x+70,CY-70);
+  label('SHAFT 2',null,RX,CY+40,G2.x+10,CY+12,'#e0e6ec');
+  label('GEAR 1 \u00b7 WEST','solid \u00b7 turns CCW',LX,CY-235,G1.x-60,CY-80);
+  label('SHAFT 1',null,LX,CY+40,G1.x-10,CY+12,'#e0e6ec');
+  label('MESH POINT','angled teeth: some',LX,CY+110,CX-3,CY+30,'#cfd8e0','blow-by intentional');
+  label('CHAMBER B (enlarged)','leftover gas / skip-fire',LX,chB.y1-30,chB.x0+8,chB.y1-40,'#9fb4ff','compression \u00b7 '+volTxt);
+  label('IGNITER',null,CX+150,HOUSE.y0-26,chA.x1+20,iy,'#e0e6ec');
+  {const [px,py]=pol(G1,CAV,Math.PI*1.15);
+   label(gap>GAP_HOT+1?'CLEARANCE \u2014 COLD':'CLEARANCE \u2014 HOT FIT','housing bore sized for HOT',LX,CY-140,px,py,'#ffd166','running (thermal growth), not cold fit');}
+  // west-wall gap dimension marker
+  if(labels){
+    const a=Math.PI; const [x1,y1]=pol(G1,Ro,a), [x2,y2]=pol(G1,CAV,a);
+    ctx.strokeStyle='#ffd166';ctx.lineWidth=1.4;ctx.beginPath();ctx.moveTo(x1,y1-14);ctx.lineTo(x1,y1+14);ctx.moveTo(x2,y2-14);ctx.lineTo(x2,y2+14);ctx.stroke();
+    ctx.font='10px Segoe UI,Arial';ctx.fillStyle='#ffd166';ctx.textAlign='center';ctx.fillText('gap',(x1+x2)/2-2,y1+26);ctx.textAlign='left';
+    ctx.font='11px Segoe UI,Arial';ctx.fillStyle='#8396a8';
+    ctx.fillText('glowing dots = gas in tooth pockets A \u2192 B  \u00b7  sparks = intentional blow-by  \u00b7  green/red dashed sectors = ported teeth of the valve gears (deck above)',20,H-14);
+    inset(HOUSE.x1+16,CY+92,W-HOUSE.x1-26,280);
+  }
+
+  // ---- status UI ----
+  document.getElementById('ang').textContent=Math.round(cyc)+'\u00b0';
+  document.getElementById('rev').textContent=rev;
+  const md=document.getElementById('mode');md.textContent=fireRev?'FIRE':'SKIP';md.className='pill '+(fireRev?'firep':'skipp');
+  document.getElementById('phase').textContent=intakeOpen?'Intake via VG1 teeth':cyc<45?'Sealed':cyc<200?(fireRev?'Expansion on teeth':'Coast (skip)'):exhaustOpen?'Exhaust via VG2 teeth':'Compress leftover in B';
+  const ip=document.getElementById('inP');ip.textContent=intakeOpen?'OPEN':'CLOSED';ip.className='pill '+(intakeOpen?'open':'closed');
+  const ep=document.getElementById('exP');ep.textContent=exhaustOpen?'OPEN':'CLOSED';ep.className='pill '+(exhaustOpen?'open':'closed');
+  document.getElementById('volTxt').textContent=volTxt+(autoVol.checked?' (auto)':'');
+  document.getElementById('clrTxt').textContent=gap>GAP_HOT+1?'COLD (loose by design)':'HOT (target gap)';
+  if(M){
+    document.getElementById('rpm').textContent=Math.round(M.rpm).toLocaleString()+' rpm';document.getElementById('spdBar').style.width=Math.min(100,100*M.rpm/RPM_MAX)+'%';
+    document.getElementById('pwr').textContent=(M.Pel/1000).toFixed(2)+' kW';document.getElementById('pwrBar').style.width=Math.min(100,100*M.Pel/Pmax)+'%';
+  }
+  drawDial(cyc,fireRev);
+  drawDeck(phi1,phi2,cyc,intakeOpen,exhaustOpen);
+  drawGen(phi1,phi2,now,cyc);
+  drawXfer(phi1,phi2);
+  requestAnimationFrame(frame);
+}
+// ---------- model UI ----------
+const vrefEl=document.getElementById('vref'),fuelEl=document.getElementById('fuel'),rcEl=document.getElementById('rc'),cplEl=document.getElementById('cpl'),xfEl=document.getElementById('xfer');
+function vrefCC(){const v=+vrefEl.value;return isFinite(v)&&v>0?Math.min(1000,Math.max(25,v)):100;}
+document.getElementById('applySug').onclick=()=>{if(M)setN(M.Nsug);};
+function setV(id,txt){const el=document.getElementById(id);if(el.textContent!==txt){el.textContent=txt;el.classList.remove('chg');void el.offsetWidth;el.classList.add('chg');}}
+const pct=x=>(100*x).toFixed(1)+'%';
+const WF=[
+  ['in','Fuel energy in','tot','#8fb3d1'],
+  ['exh','− exhaust heat / cycle limit','loss','#6b4a4a'],
+  ['wall','− wall heat & finite burn','loss','#7a4f4f'],
+  ['bb','− blow-by (hot clearance)','bbl','#ff8a3d'],
+  ['ind','= indicated (thermal η)','tot','#ffb46b'],
+  ['fr','− friction (bearings, mesh, air)','loss','#7a4f4f'],
+  ['sh','= shaft output (all gears)','tot','#ffd166'],
+  ['cp','− coupling / belt / gearbox','loss','#7a4f4f'],
+  ['gn','− generator','loss','#7a4f4f'],
+  ['el','= electrical out','tot','#5be37d']];
+const wfEl=document.getElementById('wf');
+wfEl.innerHTML=WF.map(([k,l,c,col])=>`<span class="${c}">${l}</span><div class="b"><i id="wf_${k}" style="background:${col};width:0"></i></div><span class="p" id="wfp_${k}">–</span>`).join('');
+function updateModel(){
+  const o={Vcc:volS*vrefCC(),N,fuel:fuelEl.value,rc:+rcEl.value,mode:cplEl.value,xfer:xfEl.value,cold:clrEl.value==='cold'};
+  const key=JSON.stringify(o); if(key===Mkey)return; Mkey=key;
+  M=model(o);
+  Pmax=1;for(let k=1;k<=8;k++)Pmax=Math.max(Pmax,model({...o,N:k}).Pel);
+  setV('ccTxt',Math.round(o.Vcc)+' cc');
+  document.getElementById('rcTxt').textContent=o.rc.toFixed(1)+' : 1';
+  const bar=p=>(p/1e5).toFixed(1)+' bar';
+  setV('mPk','≈ '+bar(M.pPk));
+  setV('mRes','≈ '+bar(M.pRes));
+  setV('mCoast','≈ '+M.coast.toFixed(1)+' revs');
+  setV('mSug','→ suggest “fire every '+M.Nsug+'” for this chamber (now '+N+')');
+  setV('mEnd','≈ '+bar(M.pEnd));
+  setV('mQ','≈ '+Math.round(M.Q)+' J');
+  setV('mRpm',M.ok?'≈ '+Math.round(M.rpm).toLocaleString()+' rpm':'stalls');
+  setV('mShaft','≈ '+(M.Pshaft/1000).toFixed(2)+' kW');
+  setV('mElec','≈ '+(M.Pel/1000).toFixed(2)+' kW');
+  setV('mEth','≈ '+pct(M.etaTh));
+  setV('mEm','≈ '+pct(M.etaM));
+  setV('mEg','≈ '+pct(M.ec*M.eg));
+  setV('mEo','≈ '+pct(M.etaO));
+  setV('mFuel',M.ok?'≈ '+M.fuelKgH.toFixed(2)+' kg/h'+(M.Pel>0?' · '+Math.round(M.fuelKgH*1000/(M.Pel/1000))+' g/kWh':''):'–');
+  const adv=document.getElementById('mAdv');let t,c;
+  if(!M.ok){t='Won’t sustain: not enough energy per fire to beat friction + generator load at fire-every '+N+'. Fire more often, enlarge the chamber, or raise compression.';c='bad';}
+  else if(N<M.Nsug){t='Firing every '+N+' vents the gas at ≈ '+bar(M.pEnd)+' — unused pressure. This '+Math.round(o.Vcc)+' cc chamber wants ≈ '+M.coast.toFixed(1)+' coast revs: “fire every '+M.Nsug+'” (or a smaller chamber) for best efficiency; keep '+N+' for max power.';c='warnc';}
+  else if(N>M.Nsug+1){t='Gas is fully expanded after ≈ '+M.Nsug+' revs; the extra coast revs only add friction time and blow-by, so power drops with little efficiency gain. Try “fire every '+M.Nsug+'” or a bigger chamber.';c='warnc';}
+  else{t='Good match: fire-every '+N+' lets the gas expand close to atmosphere before venting — efficient for this '+Math.round(o.Vcc)+' cc chamber (est.).';c='good';}
+  if(M.gov)t+=' Speed held at the '+RPM_MAX+' rpm cap (a governor would skip fires).';
+  adv.textContent=t;adv.className='adv '+c;
+  document.getElementById('cplNote').innerHTML=CPL[o.mode].note;
+  document.getElementById('xfNote').innerHTML=XF[o.xfer].note+(CPL[o.mode].spin?'':' (This coupling has a stationary stator, so only the field feed is affected.)');
+  // waterfall (fractions of fuel energy)
+  const F=M.Pfuel||1, ei=M.etaIdeal, wall=ei*(1-M.heatF), bbL=ei*M.heatF*M.bb;
+  const vals=M.ok?{in:1,exh:1-ei,wall,bb:bbL,ind:M.Pind/F,fr:M.Pfric/F,sh:M.Pshaft/F,cp:(M.Pshaft-M.Pgen)/F,gn:(M.Pgen-M.Pel)/F,el:M.Pel/F}:{in:1,exh:0,wall:0,bb:0,ind:0,fr:0,sh:0,cp:0,gn:0,el:0};
+  for(const [k] of WF){document.getElementById('wf_'+k).style.width=Math.min(100,100*vals[k])+'%';setV('wfp_'+k,(100*vals[k]).toFixed(1)+'%');}
+  document.getElementById('bbNote').textContent=M.ok?('Blow-by + clearance cost here ≈ '+(100*(M.etaSealed-M.etaO)).toFixed(1)+' points of overall efficiency ('+pct(M.etaO)+' vs ≈ '+pct(M.etaSealed)+' if perfectly sealed) — estimate, '+(clrEl.value==='cold'?'COLD clearance (worse until warm).':'HOT clearance.')):'';
+}
+
+// ---------- valve deck mini view (top-down of upper deck) ----------
+const dk=document.getElementById('deck'),dkx=dk.getContext('2d');
+function drawDeck(phi1,phi2,cyc,inO,exO){
+  const d=window.devicePixelRatio||1;if(dk.width!==300*d){dk.width=300*d;dk.height=272*d;}
+  const c=dkx;c.setTransform(d,0,0,d,0,0);c.clearRect(0,0,300,272);
+  const k=0.56,cy=122,A={x:150-R*k,y:cy},B={x:150+R*k,y:cy},ro=Ro*k,rr_=Rr*k;
+  // deck plate
+  rr2(c,6,30,288,184,12);c.fillStyle='#1c2530';c.fill();c.strokeStyle='#4a5d70';c.lineWidth=1.2;c.stroke();
+  // chamber necks below the deck (dashed)
+  c.setLineDash([3,3]);c.strokeStyle='#ff8a3d88';c.beginPath();c.moveTo(150,cy-26);c.lineTo(112,cy-80);c.lineTo(188,cy-80);c.closePath();c.stroke();
+  c.strokeStyle='#7c9cff88';c.beginPath();c.moveTo(150,cy+26);c.lineTo(112,cy+80);c.lineTo(188,cy+80);c.closePath();c.stroke();c.setLineDash([]);
+  c.font='9.5px Segoe UI,Arial';c.textAlign='center';c.fillStyle='#ffae6b';c.fillText('Chamber A below',150,cy-84);c.fillStyle='#9fb4ff';c.fillText('Chamber B below',150,cy+88);
+  function gp(cn,rot){c.beginPath();for(let i=0;i<Z;i++){const b=rot+i*P;
+      [[rr_,-.5],[rr_,-.3],[ro,-.12],[ro,.12],[rr_,.3],[rr_,.5]].forEach(([r,f],j)=>{const x=cn.x+r*Math.cos(b+f*P),y=cn.y+r*Math.sin(b+f*P);(i||j)?c.lineTo(x,y):c.moveTo(x,y);});}c.closePath();}
+  function g(cn,rot,fill){c.beginPath();for(let i=0;i<Z;i++){const b=rot+i*P;
+      [[rr_,-.5],[rr_,-.3],[ro,-.12],[ro,.12],[rr_,.3],[rr_,.5]].forEach(([r,f],j)=>{const x=cn.x+r*Math.cos(b+f*P),y=cn.y+r*Math.sin(b+f*P);(i||j)?c.lineTo(x,y):c.moveTo(x,y);});}
+    c.closePath();c.fillStyle=fill;c.fill();c.strokeStyle='#7fe7dc';c.lineWidth=1.2;c.stroke();
+    c.beginPath();c.arc(cn.x,cn.y,6,0,7);c.fillStyle='#cfd8e0';c.fill();}
+  g(A,phi1,'#24343a');g(B,phi2,'#24343a');
+  function sec(cn,rot,cen,ws,rgb){c.save();gp(cn,rot);c.clip();annSector(c,cn.x,cn.y,rr_-2,ro+2,cen-ws/2,cen+ws/2);c.fillStyle=`rgba(${rgb},.55)`;c.fill();c.restore();}
+  sec(A,phi1,vinCentre(cyc),VIN.ws,'91,227,125');sec(B,phi2,vexCentre(cyc),VEX.ws,'255,92,92');
+  function port(cn,v,open,col){annSector(c,cn.x,cn.y,PORT_R0*k,PORT_R1*k,v.port-v.wp/2,v.port+v.wp/2);c.fillStyle=open?col:'#0b1118';c.fill();c.strokeStyle=open?'#fff':col;c.lineWidth=1.8;c.stroke();}
+  port(A,VIN,inO,'#5be37d');port(B,VEX,exO,'#ff5c5c');
+  c.font='600 10.5px Segoe UI,Arial';c.fillStyle='#7fe7dc';c.textAlign='center';
+  c.fillText('VG1 · Shaft 1 · CCW',A.x-8,232);c.fillText('VG2 · Shaft 2 · CW',B.x+8,232);
+  c.font='700 11px Segoe UI,Arial';
+  c.fillStyle=inO?'#5be37d':'#5f7488';c.fillText('IN '+(inO?'OPEN':'closed'),60,22);
+  c.fillStyle=exO?'#ff7a6b':'#5f7488';c.fillText('EX '+(exO?'OPEN':'closed'),240,22);
+  c.font='9.5px Segoe UI,Arial';c.fillStyle='#8396a8';c.fillText('upper deck, top-down · shaded teeth = through-cut (ported)',150,250);c.fillText('white-outlined window = deck port open',150,264);
+  c.textAlign='left';
+}
+
+// ---------- generator side-elevation view ----------
+const gc=document.getElementById('g'),gx=gc.getContext('2d');const GW=1160;let GH=660;
+function fitG(){const d=window.devicePixelRatio||1;gc.width=GW*d;gc.height=GH*d;gx.setTransform(d,0,0,d,0,0);}
+function gHeight(){const h=(document.getElementById('cpl').value==='halves')?660:430;if(h!==GH){GH=h;fitG();}}
+fitG();window.addEventListener('resize',fitG);
+function rr2(c,x,y,w,h,r){c.beginPath();c.moveTo(x+r,y);c.arcTo(x+w,y,x+w,y+h,r);c.arcTo(x+w,y+h,x,y+h,r);c.arcTo(x,y+h,x,y,r);c.arcTo(x,y,x+w,y,r);c.closePath();}
+function ah(c,x,y,ang,sz,col){c.save();c.translate(x,y);c.rotate(ang);c.fillStyle=col;c.beginPath();c.moveTo(sz,0);c.lineTo(-sz*.6,-sz*.6);c.lineTo(-sz*.6,sz*.6);c.closePath();c.fill();c.restore();}
+function wrap(c,text,x,y,maxW,lh){const words=text.split(' ');let line='';for(const w of words){const t=line?line+' '+w:w;if(c.measureText(t).width>maxW&&line){c.fillText(line,x,y);y+=lh;line=w;}else line=t;}if(line){c.fillText(line,x,y);y+=lh;}return y;}
+// a rotating cylinder seen side-on: markers on the front (south) face slide according to rotation angle
+function cyl(c,x,y0,y1,r,rot,n,base,mark){
+  const g=c.createLinearGradient(x-r,0,x+r,0);g.addColorStop(0,base[0]);g.addColorStop(.45,base[1]);g.addColorStop(1,base[2]);
+  c.fillStyle=g;c.fillRect(x-r,y0,2*r,y1-y0);
+  for(let k=0;k<n;k++){const th=rot+k*2*Math.PI/n,s=Math.sin(th);if(s<=0)continue;
+    c.strokeStyle=mark.replace('A',(0.2+0.8*s).toFixed(2));c.lineWidth=Math.max(1.5,r/9)*s+0.6;
+    const mx=x+r*Math.cos(th);c.beginPath();c.moveTo(mx,y0+1);c.lineTo(mx,y1-1);c.stroke();}
+  c.strokeStyle='rgba(0,0,0,.45)';c.lineWidth=1;c.strokeRect(x-r,y0,2*r,y1-y0);
+}
+function spinArrow(c,x,y,dirRight,col){
+  c.save();c.strokeStyle=col;c.lineWidth=2;c.beginPath();c.ellipse(x,y,26,7,0,0,Math.PI);c.stroke();
+  c.setLineDash([2,3]);c.globalAlpha=.5;c.beginPath();c.ellipse(x,y,26,7,0,Math.PI,2*Math.PI);c.stroke();c.restore();
+  ah(c,dirRight?x+26:x-26,y-2,-Math.PI/2,7,col);
+}
+function alternator(c,x,y0,y1,w,rot,name,shellRot){
+  // body
+  rr2(c,x-w/2,y0,w,y1-y0,12);const bg=c.createLinearGradient(x-w/2,0,x+w/2,0);bg.addColorStop(0,'#26323e');bg.addColorStop(.5,'#3a4a5a');bg.addColorStop(1,'#1f2933');c.fillStyle=bg;c.fill();
+  c.strokeStyle='#6a8296';c.lineWidth=1.5;c.stroke();
+  c.save();rr2(c,x-w/2,y0,w,y1-y0,12);c.clip();
+  if(shellRot===undefined){c.strokeStyle='rgba(255,255,255,.07)';c.lineWidth=2;for(let yy=y0+6;yy<y1;yy+=7){c.beginPath();c.moveTo(x-w/2,yy);c.lineTo(x+w/2,yy);c.stroke();}}
+  else{for(let k=0;k<10;k++){const th=shellRot+k*Math.PI/5,s=Math.sin(th);if(s<=0)continue;c.strokeStyle=`rgba(124,156,255,${(0.15+0.7*s).toFixed(2)})`;c.lineWidth=3*s+1;const mx=x+(w/2)*Math.cos(th);c.beginPath();c.moveTo(mx,y0);c.lineTo(mx,y1);c.stroke();}}
+  c.restore();
+  // cut-away window with rotor
+  const wx=w*0.31, wy0=y0+18, wy1=y1-26;
+  c.fillStyle='#0a1118';c.fillRect(x-wx-6,wy0-4,2*(wx+6),wy1-wy0+8);
+  // stator windings (copper) inside window edges
+  c.fillStyle='#8a5a2b';c.fillRect(x-wx-6,wy0-4,5,wy1-wy0+8);c.fillRect(x+wx+1,wy0-4,5,wy1-wy0+8);
+  cyl(c,x,wy0,wy1,wx-2,rot,8,['#3d2f4a','#7a6a95','#2a2033'],'rgba(255,120,120,A)');
+  // electromagnet (no permanent magnets): copper wire turns on the rotor poles + stator coil stacks
+  c.save();c.beginPath();c.rect(x-wx+2,wy0,2*wx-4,wy1-wy0);c.clip();
+  for(let yy=wy0+6;yy<wy1-4;yy+=5){c.strokeStyle='rgba(205,127,50,.55)';c.lineWidth=1.6;c.beginPath();c.moveTo(x-wx+4,yy);c.lineTo(x+wx-4,yy);c.stroke();}
+  c.restore();
+  c.fillStyle='#b87333';for(let yy=wy0;yy<wy1;yy+=6){c.fillRect(x-wx-9,yy,8,3);c.fillRect(x+wx+1,yy,8,3);}
+  c.font='600 11px Segoe UI,Arial';c.textAlign='center';c.fillStyle='#d6e2ee';c.fillText(name,x,y1-9);c.textAlign='left';
+}
+function boxT(c,x,y,w,h,txt,col){rr2(c,x,y,w,h,6);c.fillStyle='#0f1820';c.fill();c.strokeStyle=col;c.lineWidth=1.3;c.stroke();c.font='600 10.5px Segoe UI,Arial';c.fillStyle=col;c.textAlign='center';c.fillText(txt,x+w/2,y+h/2+4);c.textAlign='left';}
+function wire(c,pts,col){c.strokeStyle=col;c.lineWidth=2;c.beginPath();c.moveTo(...pts[0]);pts.slice(1).forEach(p=>c.lineTo(...p));c.stroke();}
+function drawGen(phi1,phi2,now,cyc){
+  gHeight();
+  const c=gx;c.clearRect(0,0,GW,GH);
+  c.strokeStyle='rgba(79,195,247,.05)';c.lineWidth=1;
+  for(let x=0;x<GW;x+=25){c.beginPath();c.moveTo(x,0);c.lineTo(x,GH);c.stroke();}
+  for(let y=0;y<GH;y+=25){c.beginPath();c.moveTo(0,y);c.lineTo(GW,y);c.stroke();}
+  const mode=cplEl.value, s=0.85, Rp=R*s, Rt=Ro*s, CXg=400, X1=CXg-Rp, X2=CXg+Rp, HY0=24, HY1=112;
+  const metal=['#6d7a86','#e3e9ee','#55616c'], mk='rgba(40,60,80,A)';
+  if(mode==='halves'){drawHalves(c,phi1,phi2,cyc,metal,mk);}else{
+  // which shafts go how deep
+  c.save();c.translate(0,16);
+  const low={twin:[178,178],contra:[300,214],single:[178,172],gearbox:[168,168]}[mode];
+  cyl(c,X1,4,low[0],9,phi1,3,metal,mk);
+  cyl(c,X2,4,low[1],9,phi2,3,metal,mk);
+  // engine housing (side cut-away)
+  rr2(c,X1-Rt-30,HY0,(X2+Rt+30)-(X1-Rt-30),HY1-HY0,12);
+  const hg=c.createLinearGradient(0,HY0,0,HY1);hg.addColorStop(0,'#2a3644');hg.addColorStop(1,'#1c2530');c.fillStyle=hg;c.fill();c.strokeStyle='#4a5d70';c.lineWidth=2;c.stroke();
+  c.fillStyle='#070b10';c.fillRect(X1-Rt-8,HY0+8,(X2+Rt+8)-(X1-Rt-8),HY1-HY0-16);
+  function slab(x,rot,tint,y0,y1,sect,scol,edge){
+    c.save();c.beginPath();c.rect(x-Rt,y0,2*Rt,y1-y0);c.clip();
+    const g=c.createLinearGradient(x-Rt,0,x+Rt,0);g.addColorStop(0,'#2c3a48');g.addColorStop(.5,tint);g.addColorStop(1,'#2c3a48');c.fillStyle=g;c.fillRect(x-Rt,y0,2*Rt,y1-y0);
+    for(let i=0;i<Z;i++){const th=rot+i*P,sn=Math.sin(th);if(sn<=0)continue;const tx=x+Rt*Math.cos(th);
+      c.strokeStyle=`rgba(210,228,245,${(0.15+0.75*sn).toFixed(2)})`;c.lineWidth=1+3*sn;c.beginPath();c.moveTo(tx,y0);c.lineTo(tx,y1);c.stroke();
+      if(sect){const ga=th+P/2;const dd=Math.atan2(Math.sin(ga-sect[0]),Math.cos(ga-sect[0]));const gs=Math.sin(ga);
+        if(Math.abs(dd)<=sect[1]/2&&gs>0){const gx2=x+Rt*Math.cos(ga);c.fillStyle=scol;c.fillRect(gx2-2-3*gs,y0,4+6*gs,y1-y0);}}}
+    c.restore();c.strokeStyle=edge||'#9fb6c9';c.lineWidth=1;c.strokeRect(x-Rt,y0,2*Rt,y1-y0);
+  }
+  // upper deck: valve gears (ported teeth highlighted) — lower deck: power gears
+  const VY0=HY0+12,VY1=HY0+32,DP=HY0+36,PY0=HY0+42,PY1=HY1-10;
+  slab(X2,phi2,'#3f5a5a',VY0,VY1,[vexCentre(cyc),VEX.ws],'rgba(255,92,92,.85)','#7fe7dc');
+  slab(X1,phi1,'#4a6a68',VY0,VY1,[vinCentre(cyc),VIN.ws],'rgba(91,227,125,.85)','#7fe7dc');
+  c.fillStyle='#4a5d70';c.fillRect(X1-Rt-8,DP-2,(X2+Rt+8)-(X1-Rt-8),4); // deck plate
+  slab(X2,phi2,'#5d7084',PY0,PY1);slab(X1,phi1,'#6f8396',PY0,PY1);
+  c.font='600 10.5px Segoe UI,Arial';c.textAlign='right';c.fillStyle='#7fe7dc';c.fillText('VALVE GEARS VG1 · VG2',X1-Rt-36,VY1-4);
+  c.fillStyle='#8396a8';c.font='9.5px Segoe UI,Arial';c.fillText('deck plate with ports',X1-Rt-36,DP+8);
+  c.fillStyle='#9fd7f5';c.font='600 10.5px Segoe UI,Arial';c.fillText('POWER GEARS 1 · 2',X1-Rt-36,PY1-10);c.textAlign='left';
+  c.setLineDash([3,3]);c.strokeStyle='rgba(255,255,255,.3)';c.beginPath();c.moveTo(CXg,HY0+8);c.lineTo(CXg,HY1-8);c.stroke();c.setLineDash([]);
+  // top bearing caps
+  for(const x of [X1,X2]){c.fillStyle='#3b4a59';c.fillRect(x-16,HY0-6,32,6);}
+  c.fillStyle='#8396a8';c.font='10px Segoe UI,Arial';
+  c.fillText('side cut-away · valve gear stacked above each power gear · teeth sliding past = rotation',X1-Rt-30,HY1+14);
+  // rotation arrows + shaft labels
+  const ay=HY1+30;
+  spinArrow(c,X1,ay,true,'#4fc3f7');spinArrow(c,X2,ay,false,'#4fc3f7');
+  c.font='600 11px Segoe UI,Arial';c.fillStyle='#e0e6ec';c.textAlign='right';c.fillText('SHAFT 1 · CCW',X1-34,ay+4);
+  c.textAlign='left';c.fillText('SHAFT 2 · CW',X2+34,ay+4);c.font='10px Segoe UI,Arial';c.fillStyle='#8396a8';
+  c.textAlign='right';c.fillText('(seen from top)',X1-34,ay+16);c.textAlign='left';c.fillText('(seen from top)',X2+34,ay+16);
+  const flange=(x,y)=>{c.fillStyle='#7d8b98';c.fillRect(x-22,y,44,6);c.fillRect(x-22,y+9,44,6);c.fillStyle='#2b3540';c.fillRect(x-22,y+6,44,3);c.fillStyle='#cfd8e0';for(const dx of [-15,0,15]){c.fillRect(x+dx-1.5,y-1,3,17);}};
+  const bearing=(x,y,txt)=>{c.fillStyle='#3b4a59';c.fillRect(x-24,y,48,14);c.strokeStyle='#6a8296';c.strokeRect(x-24,y,48,14);c.font='10px Segoe UI,Arial';c.fillStyle='#8396a8';c.fillText(txt,x+30,y+11);};
+  const busY=388, invX=600;
+  const elecCol='#5be37d';
+  if(mode==='twin'){
+    flange(X1,160);flange(X2,160);
+    alternator(c,X1,182,312,140,phi1,'ALT 1 (½)');alternator(c,X2,182,312,140,phi2,'ALT 2 (½)');
+    boxT(c,X1-36,334,72,24,'AC → DC','#9fd7f5');boxT(c,X2-36,334,72,24,'AC → DC','#9fd7f5');
+    wire(c,[[X1,312],[X1,334]],elecCol);wire(c,[[X2,312],[X2,334]],elecCol);
+    wire(c,[[X1,358],[X1,busY],[invX,busY]],elecCol);wire(c,[[X2,358],[X2,busY]],elecCol);
+    c.font='10px Segoe UI,Arial';c.fillStyle='#8fe3a8';c.fillText('common DC bus',X2+12,busY-5);
+    c.font='600 11px Segoe UI,Arial';c.fillStyle='#ffd166';c.fillText('DIRECT DRIVE · NO GEARBOX',X2+78,166);c.font='10.5px Segoe UI,Arial';c.fillStyle='#c9b27a';c.fillText('flex couplings, 1:1 with each shaft',X2+78,180);
+  }else if(mode==='contra'){
+    // sleeve on shaft 1 + belt from shaft 2
+    cyl(c,X1,160,206,17,phi2,6,['#3b4f8a','#9bb0ff','#2a3766'],'rgba(20,30,70,A)');
+    cyl(c,X1,172,192,36,phi2,8,['#41506a','#a9b6cf','#2e3a4c'],'rgba(20,30,50,A)');
+    cyl(c,X2,172,192,36,phi2,8,['#41506a','#a9b6cf','#2e3a4c'],'rgba(20,30,50,A)');
+    c.fillStyle='#1d1d22';c.fillRect(X1,173,X2-X1,18);
+    c.save();c.strokeStyle='#5c5c66';c.lineWidth=14;c.setLineDash([3,5]);c.lineDashOffset=(phi2*36)%8;c.beginPath();c.moveTo(X1+36,182);c.lineTo(X2-36,182);c.stroke();c.restore();
+    ah(c,CXg-6,182,Math.PI,7,'#9bb0ff');c.font='10px Segoe UI,Arial';c.fillStyle='#b8c6ff';c.fillText('1:1 timing belt',X2+44,180);c.fillText('(front run moves west)',X2+44,192);
+    bearing(X2,214,'end bearing');
+    alternator(c,X1,210,320,170,phi1,'ROTOR ← S1 · STATOR ← S2',phi2);
+    // slip rings
+    for(let k=0;k<3;k++){c.fillStyle='#c9a35a';c.fillRect(X1-18,324+k*8,36,5);c.fillStyle='#55616c';c.fillRect(X1+20,324+k*8,10,5);}
+    c.font='10px Segoe UI,Arial';c.fillStyle='#8396a8';c.fillText('slip rings',X1+34,335);
+    boxT(c,X1-36,348,72,22,'AC → DC','#9fd7f5');wire(c,[[X1,370],[X1,busY],[invX,busY]],elecCol);
+    c.font='600 11px Segoe UI,Arial';c.fillStyle='#ffd166';c.fillText('relative speed = 2 × shaft rpm',X1+92,244);
+    c.font='10.5px Segoe UI,Arial';c.fillStyle='#b8c6ff';c.fillText('wound armature stator spins CW (blue bands)',X1+92,260);c.fillStyle='#ffb0b0';c.fillText('wound field rotor spins CCW (red bands)',X1+92,275);
+  }else if(mode==='single'){
+    flange(X1,160);bearing(X2,168,'end bearing — idler');
+    alternator(c,X1,182,312,150,phi1,'GENERATOR');
+    boxT(c,X1-36,334,72,24,'AC → DC','#9fd7f5');wire(c,[[X1,312],[X1,334]],elecCol);wire(c,[[X1,358],[X1,busY],[invX,busY]],elecCol);
+    c.font='10.5px Segoe UI,Arial';c.fillStyle='#ffb46b';
+    wrap(c,'Shaft 2’s half of the torque crosses the gear mesh into Shaft 1 (≈1.5% loss on that half, est.). Reaction torque does not cancel.',X2-40,200,250,14);
+  }else{ // gearbox
+    rr2(c,X1-60,166,(X2+60)-(X1-60),52,8);c.fillStyle='#3a2f28';c.fill();c.strokeStyle='#a07a5a';c.lineWidth=1.5;c.stroke();
+    for(const [x,r,rot] of [[X1,22,phi1],[X2,22,phi2],[CXg,12,phi1*3]]){c.strokeStyle='#d0a070';c.lineWidth=1.2;c.beginPath();c.arc(x,192,r,0,7);c.stroke();
+      for(let k=0;k<8;k++){const a=rot+k*Math.PI/4;c.beginPath();c.moveTo(x+(r-4)*Math.cos(a),192+(r-4)*Math.sin(a)*.5);c.lineTo(x+(r+3)*Math.cos(a),192+(r+3)*Math.sin(a)*.5);c.stroke();}}
+    c.font='600 10.5px Segoe UI,Arial';c.fillStyle='#ffcf9a';c.fillText('SUMMING GEARBOX 3:1',X2+70,204);c.font='10px Segoe UI,Arial';c.fillText('≈4% loss, oil, noise (est.)',X2+70,217);
+    cyl(c,CXg,218,248,8,phi1*3,3,metal,mk);
+    alternator(c,CXg,248,352,130,phi1*3,'FAST GENERATOR');
+    wire(c,[[CXg,352],[CXg,busY],[invX,busY]],elecCol);
+    c.font='600 11px Segoe UI,Arial';c.fillStyle='#ff8a8a';c.fillText('✗ comparison only',X2+70,188);
+  }
+  boxT(c,invX,busY-18,96,36,'INVERTER','#5be37d');
+  wire(c,[[invX+96,busY],[invX+140,busY]],elecCol);ah(c,invX+146,busY,0,8,elecCol);
+  c.font='600 11px Segoe UI,Arial';c.fillStyle='#8fe3a8';c.fillText('AC OUT',invX+102,busY-8);
+  c.restore();
+  }
+  // info panel
+  const px=760,pw=GW-px-16;
+  rr2(c,px,14,pw,GH-28,10);c.fillStyle='rgba(9,14,20,.92)';c.fill();c.strokeStyle='#ffd16677';c.lineWidth=1.2;c.stroke();
+  let y=38;c.font='700 13px Segoe UI,Arial';c.fillStyle='#4fc3f7';c.fillText(mode==='halves'?'TWIN-HALF GENERATOR DRIVE':'DUAL-SHAFT GENERATOR DRIVE',px+14,y);
+  c.font='600 9.5px monospace';const tw=c.measureText('ESTIMATE · NOT CFD').width+10;c.fillStyle='#ffd166';rr2(c,px+pw-tw-12,y-11,tw,15,3);c.fill();c.fillStyle='#1b1405';c.fillText('ESTIMATE · NOT CFD',px+pw-tw-7,y);
+  y+=18;c.font='600 12px Segoe UI,Arial';c.fillStyle='#ffd166';c.fillText(CPL[mode].name,px+14,y);y+=22;
+  if(!M)return;
+  const rpmS=M.ok?Math.round(M.rpm).toLocaleString():'0', tq=M.torque.toFixed(1), half=(M.Pshaft/2000).toFixed(2);
+  const s1=mode==='single'?(M.Pshaft/1000).toFixed(2):half, s2=mode==='single'?'0 (via mesh)':half;
+  c.font='12px monospace';c.fillStyle='#d6e2ee';
+  if(mode==='halves'){
+    const hp=(M.Pshaft/2000).toFixed(2), rel=M.ok?Math.round(2*M.rpm).toLocaleString():'0';
+    c.fillText(`Half A  ${rpmS} rpm  CCW → ROTOR   ${hp} kW`,px+14,y);y+=17;
+    c.fillText(`Half B  ${rpmS} rpm  CW  → STATOR  ${hp} kW`,px+14,y);y+=17;
+    c.fillStyle='#ffd166';c.fillText(`Rotor vs stator: ${rel} rpm relative`,px+14,y);y+=22;
+    c.font='12px Segoe UI,Arial';c.fillStyle='#bff2cc';
+    y=wrap(c,'✓ Counter-rotation from the gears themselves: half A’s CCW gear is on the rotor axis, half B’s CW gear is on the stator axis — 2× relative speed, no belt, no gearbox.',px+14,y,pw-28,16);
+    c.fillStyle='#ffd9a8';
+    y=wrap(c,'✓ Shared combustion chamber / crossover port: one ignition pressurises both halves at the same instant → equal push, same firing timing → halves stay in step.',px+14,y,pw-28,16);
+    c.fillStyle='#bff2cc';
+    y=wrap(c,'✓ Equal & opposite reaction torques cancel at the frame. '+XF[xfEl.value].name+' ≈ '+pct(XF[xfEl.value].spin)+'; wound-field generator (no magnets) ≈ '+pct(M.eg)+' incl. excitation, at 2× relative speed (est.).',px+14,y,pw-28,16);
+    c.fillStyle='#e6cbbd';
+    y=wrap(c,'✓ Permanent muffler encasing + fins: roughly 15–25 dB(A) quieter than an open port (typical multi-chamber muffler, est.); back-pressure ≈ 0.5–1% of power (est., not in the model).',px+14,y,pw-28,16);
+    c.fillStyle='#c9b27a';c.font='11.5px Segoe UI,Arial';
+    y=wrap(c,'Watch: generator sits inside the hot jacket — winding thermal limit: insulation class F ≈ 155 °C / H ≈ 180 °C hot-spot; copper R rises ≈ 0.4 %/°C; aluminium wire needs ≈ 1.6× section. Insulated inner wall or cooling air may be needed (open point).',px+14,y,pw-28,15);
+    y=wrap(c,'Open point: a gas link equalises pressure, not shaft angle — a light 1:1 cross-shaft or electronic phase trim may be wanted if test shows drift.',px+14,y,pw-28,15);y+=8;
+  }else{
+  c.fillText(`Shaft 1  ${rpmS} rpm  CCW  ${tq} N·m  → ${s1} kW`,px+14,y);y+=17;
+  c.fillText(`Shaft 2  ${rpmS} rpm  CW   ${tq} N·m  → ${s2}${mode==='single'?'':' kW'}`,px+14,y);y+=22;
+  c.font='12px Segoe UI,Arial';c.fillStyle='#bff2cc';
+  y=wrap(c,'✓ Counter-rotation matched: the mesh locks both shafts 1:1 — same rpm, opposite direction, always in step.',px+14,y,pw-28,16);
+  if(mode!=='single')y=wrap(c,'✓ Opposite reaction torques cancel at the mounts → low vibration, no torque-reaction bracket.',px+14,y,pw-28,16);
+  c.fillStyle=mode==='gearbox'?'#ffc2c2':'#bff2cc';
+  const ln={twin:'✓ Direct drive, NO gearbox: coupling ≈ 99.5%, alternators ≈ '+pct(M.eg)+' (est.)',
+            contra:'✓ No gearbox: belt ≈ 99.5% × '+XF[xfEl.value].short+' ≈ '+pct(XF[xfEl.value].spin)+', generator ≈ '+pct(M.eg)+' at 2× relative speed (est.)',
+            single:'✓ Direct drive: mesh + coupling ≈ 98.8%, generator ≈ '+pct(M.eg)+' (est.)',
+            gearbox:'✗ Gearbox ≈ 96% (est.) — the loss direct drive avoids'}[mode];
+  y=wrap(c,ln,px+14,y,pw-28,16);y+=10;
+  }
+  c.font='600 12px Segoe UI,Arial';c.fillStyle='#8396a8';c.fillText('ELECTRICAL OUT (estimate)',px+14,y);y+=30;
+  c.font='700 30px monospace';c.fillStyle='#5be37d';c.fillText(M.ok?('≈ '+(M.Pel/1000).toFixed(2)+' kW'):'stalls',px+14,y);y+=24;
+  c.font='12px Segoe UI,Arial';c.fillStyle='#d6e2ee';
+  c.fillText('Fuel → electric ≈ '+pct(M.etaO)+'   ·   thermal ≈ '+pct(M.etaTh)+'   ·   mech ≈ '+pct(M.etaM),px+14,y);y+=17;
+  c.fillText(FUELS[M.fuel].name+' ≈ '+M.fuelKgH.toFixed(2)+' kg/h   ·   '+Math.round(M.Vcc)+' cc chamber   ·   fire every '+M.N,px+14,y);y+=20;
+  c.font='11px Segoe UI,Arial';c.fillStyle='#8396a8';
+  wrap(c,mode==='halves'?'Rough lumped energy model — trends only, not CFD or test data. Each half = one copy of the engine; torque split 50/50 between halves.':'Rough lumped energy model — trends only, not CFD or test data. Torque split assumed 50/50 between gears.',px+14,GH-34,pw-28,14);
+}
+
+
+// ---------- v4: twin counter-rotating engine halves flanking one generator ----------
+function drawHalves(c,phi1,phi2,cyc,metal,mk){
+  c.save();c.translate(0,14);
+  const s=0.62, Rp=R*s, Rt=Ro*s, X1=300;             // X1 = common generator axis
+  const XA2=X1+2*Rp, XB1=X1-2*Rp;                    // half A: X1 (CCW) + XA2 (CW); half B: XB1 (CCW) + X1 (CW)
+  const mA=X1+Rp, mB=X1-Rp;                          // mesh (chamber) positions
+  const A0=74,A1=156, B0=438,B1=522;                 // engine-half housings
+  const G0=222,G1y=352;                              // generator body
+  const glow=Math.min(1,0.25+0.75*Math.max(pA,flash));
+  const t=performance.now()/1000;
+  // ---- permanent muffler encasing (hollow, chambered) + cooling fins ----
+  const IX0=44,IX1=556,IY0=54,IY1=540,T=18,FL=11;    // inner wall box, wall/cavity thickness, fin length
+  const OX0=IX0-T,OX1=IX1+T,OY0=IY0-T,OY1=IY1+T;
+  const exA=XA2+38, exB=X1+38, inA=X1-38, inB=XB1-38, tail=470, wireY=372;
+  // fins (drawn first, outside the outer skin); gaps where pipes / wiring pass through
+  const skip=(v,list)=>list.some(q=>Math.abs(v-q)<9);
+  const finG=c.createLinearGradient(0,0,0,1);
+  c.fillStyle='#7f8e9b';
+  for(let x=OX0+10;x<=OX1-12;x+=9){
+    if(!skip(x,[inA]))c.fillRect(x,OY0-FL,3,FL);
+    if(!skip(x,[inB,tail]))c.fillRect(x,OY1,3,FL);}
+  for(let y=OY0+10;y<=OY1-12;y+=9){c.fillRect(OX0-FL,y,FL,3);if(!skip(y,[wireY]))c.fillRect(OX1,y,FL,3);}
+  // fin heat shimmer (hotter when firing)
+  c.fillStyle=`rgba(255,140,80,${(0.08+0.22*glow).toFixed(2)})`;
+  for(let x=OX0+10;x<=OX1-12;x+=9){if(!skip(x,[inA]))c.fillRect(x,OY0-FL,3,4);}
+  // hollow wall: outer skin + inner skin, cavity between
+  function rrp(x,y,w,h,r){c.moveTo(x+r,y);c.arcTo(x+w,y,x+w,y+h,r);c.arcTo(x+w,y+h,x,y+h,r);c.arcTo(x,y+h,x,y,r);c.arcTo(x,y,x+w,y,r);c.closePath();}
+  c.beginPath();rrp(OX0,OY0,OX1-OX0,OY1-OY0,18);rrp(IX0,IY0,IX1-IX0,IY1-IY0,8);
+  c.fillStyle=`rgba(${Math.round(40+30*glow)},34,30,0.95)`;c.fill('evenodd');
+  // baffles across the cavity (each with an offset perforation) -> chambers
+  c.strokeStyle='#6b7c8c';c.lineWidth=2;
+  const baf=[];for(let x=IX0+40;x<IX1-20;x+=64){baf.push(['h',x]);}for(let y=IY0+44;y<IY1-20;y+=64){baf.push(['v',y]);}
+  baf.forEach(([o,v],i)=>{const g=(i%2)?[0,0.35]:[0.65,1];
+    if(o==='h'){if(!skip(v,[exA,inA]))  {c.beginPath();c.moveTo(v,OY0+2);c.lineTo(v,OY0+2+(T-4)*g[0]+ (g[0]?0:0));c.moveTo(v,OY0+2+(T-4)*(g[0]?0:0.35)+(g[0]?0:0));c.stroke();}
+      // simple: draw rib leaving a hole on alternating ends
+      c.beginPath();if(i%2){c.moveTo(v,OY0+7);c.lineTo(v,IY0);}else{c.moveTo(v,OY0);c.lineTo(v,IY0-7);}if(!skip(v,[exA,inA]))c.stroke();
+      c.beginPath();if(i%2){c.moveTo(v,IY1);c.lineTo(v,OY1-7);}else{c.moveTo(v,IY1+7);c.lineTo(v,OY1);}if(!skip(v,[exB,inB,tail]))c.stroke();}
+    else{c.beginPath();if(i%2){c.moveTo(OX0+7,v);c.lineTo(IX0,v);}else{c.moveTo(OX0,v);c.lineTo(IX0-7,v);}c.stroke();
+      c.beginPath();if(i%2){c.moveTo(IX1,v);c.lineTo(OX1-7,v);}else{c.moveTo(IX1+7,v);c.lineTo(OX1,v);}if(!skip(v,[wireY]))c.stroke();}});
+  // exhaust flow through the chambers -> single tailpipe (animated)
+  const cy0=IY0-T/2, cy1=IY1+T/2, cx0=IX0-T/2, cx1=IX1+T/2;
+  const flows=[[[exA,cy0],[cx1,cy0],[cx1,cy1],[tail,cy1]], [[exA,cy0],[cx0,cy0],[cx0,cy1],[tail,cy1]], [[exB,cy1],[tail,cy1]]];
+  c.save();c.lineWidth=3;c.setLineDash([4,9]);c.lineDashOffset=-(t*30)%13;
+  flows.forEach(f=>{c.strokeStyle=`rgba(255,${Math.round(120+60*(1-glow))},90,${(0.35+0.5*glow).toFixed(2)})`;c.beginPath();c.moveTo(...f[0]);f.slice(1).forEach(p=>c.lineTo(...p));c.stroke();});
+  c.restore();
+  c.strokeStyle='#8fa2b3';c.lineWidth=2.5;c.beginPath();rrp(OX0,OY0,OX1-OX0,OY1-OY0,18);c.stroke();
+  c.lineWidth=2;c.beginPath();rrp(IX0,IY0,IX1-IX0,IY1-IY0,8);c.stroke();
+
+  function slab(x,rot,tint,y0,y1,sect,scol,edge){
+    c.save();c.beginPath();c.rect(x-Rt,y0,2*Rt,y1-y0);c.clip();
+    const g=c.createLinearGradient(x-Rt,0,x+Rt,0);g.addColorStop(0,'#2c3a48');g.addColorStop(.5,tint);g.addColorStop(1,'#2c3a48');c.fillStyle=g;c.fillRect(x-Rt,y0,2*Rt,y1-y0);
+    for(let i=0;i<Z;i++){const th=rot+i*P,sn=Math.sin(th);if(sn<=0)continue;const tx=x+Rt*Math.cos(th);
+      c.strokeStyle=`rgba(210,228,245,${(0.15+0.75*sn).toFixed(2)})`;c.lineWidth=1+3*sn;c.beginPath();c.moveTo(tx,y0);c.lineTo(tx,y1);c.stroke();
+      if(sect){const ga=th+P/2;const dd=Math.atan2(Math.sin(ga-sect[0]),Math.cos(ga-sect[0]));const gs=Math.sin(ga);
+        if(Math.abs(dd)<=sect[1]/2&&gs>0){const gx2=x+Rt*Math.cos(ga);c.fillStyle=scol;c.fillRect(gx2-2-3*gs,y0,4+6*gs,y1-y0);}}}
+    c.restore();c.strokeStyle=edge||'#9fb6c9';c.lineWidth=1;c.strokeRect(x-Rt,y0,2*Rt,y1-y0);
+  }
+  function half(xc,xw,y0,y1,valveTop,mesh){
+    const xl=Math.min(xc,xw)-Rt-30, xr=Math.max(xc,xw)+Rt+30;
+    rr2(c,xl,y0,xr-xl,y1-y0,12);const hg=c.createLinearGradient(0,y0,0,y1);hg.addColorStop(0,'#2a3644');hg.addColorStop(1,'#1c2530');c.fillStyle=hg;c.fill();c.strokeStyle='#4a5d70';c.lineWidth=2;c.stroke();
+    c.fillStyle='#070b10';c.fillRect(xl+22,y0+8,xr-xl-44,y1-y0-16);
+    const vy0=valveTop?y0+12:y1-32, vy1=vy0+20, dp=valveTop?y0+36:y1-36, py0=valveTop?y0+42:y0+10, py1=valveTop?y1-10:y1-42;
+    slab(xc,phi1,'#4a6a68',vy0,vy1,[vinCentre(cyc),VIN.ws],'rgba(91,227,125,.85)','#7fe7dc');
+    slab(xw,phi2,'#3f5a5a',vy0,vy1,[vexCentre(cyc),VEX.ws],'rgba(255,92,92,.85)','#7fe7dc');
+    c.fillStyle='#4a5d70';c.fillRect(xl+22,dp-2,xr-xl-44,4);
+    slab(xc,phi1,'#6f8396',py0,py1);slab(xw,phi2,'#5d7084',py0,py1);
+    c.fillStyle=`rgba(255,138,61,${(0.35+0.55*glow).toFixed(2)})`;c.fillRect(mesh-9,py0,18,py1-py0);
+    c.strokeStyle='#ffb46b';c.lineWidth=1;c.strokeRect(mesh-9,py0,18,py1-py0);
+    for(const x of [xc,xw]){c.fillStyle='#3b4a59';c.fillRect(x-16,valveTop?y0-6:y1,32,6);}
+    return {xl,xr,py0,py1};
+  }
+  // exhaust stubs: engine exhaust ports -> muffler cavity (short, permanent)
+  const pipe=(x,y0,y1,col,w)=>{c.fillStyle='#4a5d70';c.fillRect(x-w/2-2,Math.min(y0,y1),w+4,Math.abs(y1-y0));c.fillStyle=col;c.fillRect(x-w/2,Math.min(y0,y1),w,Math.abs(y1-y0));};
+  const exCol=`rgba(255,92,92,${(0.55+0.4*glow).toFixed(2)})`;
+  pipe(exA,IY0-2,A0+4,exCol,10);pipe(exB,B1-4,IY1+2,exCol,10);
+  const HA=half(X1,XA2,A0,A1,true,mA);
+  const HB=half(XB1,X1,B0,B1,false,mB);
+  // intake pipes pass straight through the muffler wall in sealed sleeves (fresh charge never mixes with exhaust)
+  pipe(inA,OY0-FL-8,A0+4,'#2f8f52',10);pipe(inB,B1-4,OY1+FL+8,'#2f8f52',10);
+  c.strokeStyle='#cfd8e0';c.lineWidth=1;for(const [x,y] of [[inA,OY0],[inA,IY0],[inB,IY1],[inB,OY1]]){c.strokeRect(x-8,y-2,16,4);}
+  ah(c,inA,OY0-FL-2,Math.PI/2,6,'#5be37d');ah(c,inB,OY1+FL+2,-Math.PI/2,6,'#5be37d');
+  // tailpipe (single outlet)
+  pipe(tail,IY1+T-2,OY1+FL+14,'#6b4a4a',12);ah(c,tail,OY1+FL+20,Math.PI/2,7,'#c7a9a9');
+  c.font='600 10px Segoe UI,Arial';c.fillStyle='#c7a9a9';c.fillText('tailpipe (one outlet)',tail+12,OY1+FL+16);
+  c.fillStyle='#8fe3a8';c.fillText('intake',inB+10,OY1+FL+12);c.textAlign='right';c.fillText('intake',inA-10,OY0-FL-2);c.textAlign='left';
+  c.font='9.5px Segoe UI,Arial';c.fillStyle='#ff9a9a';c.fillText('exhaust → muffler',exA+9,IY0+14);c.fillText('exhaust → muffler',exB+9,IY1-4);
+
+  // ---- shared combustion chamber / crossover port ----
+  const DX=440, DW=20, dTopY=A1, dBotY=B0, RY1=170, RY2=418;
+  // generator wiring (drawn before the duct so the duct sits in front)
+  const elecCol='#5be37d';
+  wire(c,[[X1+40,wireY],[OX1+FL+4,wireY],[OX1+FL+4,486],[604,486]],elecCol);
+  c.fillStyle='#cfd8e0';c.fillRect(IX1-2,wireY-4,T+4,8);
+  const path=[[mA,dTopY-4],[mA,RY1],[DX,RY1],[DX,RY2],[mB,RY2],[mB,dBotY+4]];
+  c.save();c.lineJoin='round';
+  c.strokeStyle='#4a5d70';c.lineWidth=DW+6;c.beginPath();c.moveTo(...path[0]);path.slice(1).forEach(p=>c.lineTo(...p));c.stroke();
+  c.strokeStyle=`rgba(255,${Math.round(150-60*glow)},61,${(0.45+0.5*glow).toFixed(2)})`;c.lineWidth=DW;c.beginPath();c.moveTo(...path[0]);path.slice(1).forEach(p=>c.lineTo(...p));c.stroke();
+  c.strokeStyle=`rgba(255,240,190,${(0.35+0.6*glow).toFixed(2)})`;c.lineWidth=4;c.setLineDash([6,10]);c.lineDashOffset=(performance.now()/40)%16;
+  c.beginPath();c.moveTo(DX,294);c.lineTo(DX,RY1);c.lineTo(mA,RY1);c.lineTo(mA,dTopY);c.stroke();
+  c.beginPath();c.moveTo(DX,294);c.lineTo(DX,RY2);c.lineTo(mB,RY2);c.lineTo(mB,dBotY);c.stroke();
+  c.setLineDash([]);c.restore();
+  c.fillStyle='#e0e6ec';c.fillRect(DX+DW/2+3,287,14,14);c.fillStyle=flash>0.3?'#fff6c0':'#ffb46b';c.beginPath();c.arc(DX,294,6,0,7);c.fill();
+  c.font='9.5px Segoe UI,Arial';c.fillStyle='#c3d0dc';c.fillText('shared igniter',DX+DW/2+20,298);
+
+  // ---- rotor shaft (half A, CCW) / stator sleeve (half B, CW) / generator ----
+  cyl(c,X1,A1,G0+30,9,phi1,3,metal,mk);
+  const flange=(x,y)=>{c.fillStyle='#7d8b98';c.fillRect(x-22,y,44,6);c.fillRect(x-22,y+9,44,6);c.fillStyle='#2b3540';c.fillRect(x-22,y+6,44,3);c.fillStyle='#cfd8e0';for(const dx of [-15,0,15]){c.fillRect(x+dx-1.5,y-1,3,17);}};
+  flange(X1,192);
+  cyl(c,X1,G1y-6,B0,20,phi2,6,['#3b4f8a','#9bb0ff','#2a3766'],'rgba(20,30,70,A)');
+  alternator(c,X1,G0,G1y,210,phi1,'WOUND ROTOR ← A  ·  WOUND STATOR ← B',phi2);
+  {const xo=xfEl.value;let lb;
+   if(xo==='sr'){for(let k=0;k<3;k++){c.fillStyle='#c9a35a';c.fillRect(X1-26,360+k*9,52,5);c.fillStyle='#55616c';c.fillRect(X1+28,360+k*9,12,5);}lb='slip rings: DC field in · AC out (backup)';}
+   else if(xo==='cap'){for(let k=0;k<4;k++){c.fillStyle=k%2?'#9fb6c9':'#b87333';c.fillRect(k%2?X1-34:X1-26,358+k*7,k%2?68:52,3);}lb='capacitive coupler: field in · power out';}
+   else{c.fillStyle='#b87333';c.fillRect(X1-24,358,10,24);c.fillRect(X1+14,358,10,24);c.fillStyle='#6d7a86';c.fillRect(X1-38,358,10,24);c.fillRect(X1+28,358,10,24);
+        c.fillStyle='#e09a55';c.fillRect(X1-16,159,32,9);c.fillStyle='#7d8b98';c.fillRect(X1-28,159,8,9);c.fillRect(X1+20,159,8,9);
+        lb='rotary transformer (power out) · brushless';
+        c.font='9.5px Segoe UI,Arial';c.fillStyle='#e0a070';c.textAlign='right';c.fillText('brushless exciter (field in)',X1-34,167);c.textAlign='left';}
+   c.font='10px Segoe UI,Arial';c.fillStyle='#8396a8';c.textAlign='right';c.fillText(lb,X1-42,374);c.textAlign='left';}
+  spinArrow(c,X1,178,true,'#ff9a9a');spinArrow(c,X1,398,false,'#9bb0ff');
+  c.font='600 11px Segoe UI,Arial';c.fillStyle='#ffb0b0';c.textAlign='right';c.fillText('rotor shaft · CCW',X1-34,182);
+  c.fillStyle='#b8c6ff';c.fillText('stator sleeve · CW',X1-34,404);
+  c.font='10.5px Segoe UI,Arial';c.fillStyle='#ffb0b0';c.fillText('field rotor CCW (red)',X1-26,G0-8);
+  c.fillStyle='#b8c6ff';c.textAlign='left';c.fillText('armature stator CW',X1+26,G0-8);
+  c.font='600 11px Segoe UI,Arial';c.fillStyle='#ffd166';
+  wrap(c,'relative speed = 2 × shaft rpm',54,262,135,14);c.font='10px Segoe UI,Arial';c.fillStyle='#c9b27a';
+  wrap(c,'rotor & stator both spin, opposite ways · no belt · no gearbox',54,294,135,12);
+  c.font='600 10px Segoe UI,Arial';c.textAlign='center';c.fillStyle='#d6e2ee';
+  c.fillText('A1 · CCW',X1,A0-10);c.fillText('A2 · CW',XA2,A0-10);c.fillText('B1 · CCW',XB1,B1+16);c.fillText('B2 · CW',X1,B1+16);
+  c.fillStyle='#ffb46b';c.fillText('chamber',mA,A0+50);c.fillText('chamber',mB,B1-48);c.textAlign='left';
+
+  // ---- right-hand column: labels + electrical ----
+  const RX=600, RW=146;
+  const lead=(x0,y0,x1,y1,col)=>{c.strokeStyle=col;c.globalAlpha=.7;c.lineWidth=1;c.beginPath();c.moveTo(x0,y0);c.lineTo(x1,y1);c.stroke();c.globalAlpha=1;c.beginPath();c.arc(x0,y0,2.5,0,7);c.fillStyle=col;c.fill();};
+  let y=70;
+  c.font='700 11.5px Segoe UI,Arial';c.fillStyle='#4fc3f7';c.fillText('ENGINE HALF A (top)',RX,y);y+=14;
+  c.font='10px Segoe UI,Arial';c.fillStyle='#c3d0dc';y=wrap(c,'A1 (CCW, on axis) drives the wound field ROTOR directly.',RX,y,RW,12);
+  y+=8;c.font='700 11.5px Segoe UI,Arial';c.fillStyle='#ffb46b';c.fillText('SHARED CHAMBER / PORT',RX,y);lead(DX+DW/2,240,RX-4,y-4,'#ffb46b');y+=14;
+  c.font='10px Segoe UI,Arial';c.fillStyle='#ffd9a8';y=wrap(c,'one burn feeds both halves → equal pressure, same instant → torque & timing in sync.',RX,y,RW,12);
+  y+=10;c.font='700 11.5px Segoe UI,Arial';c.fillStyle='#e8b9a0';c.fillText('PERMANENT MUFFLER',RX,y);lead(OX1-4,y-30,RX-4,y-4,'#e8b9a0');y+=13;c.fillText('ENCASING',RX,y);y+=14;
+  c.font='10px Segoe UI,Arial';c.fillStyle='#e6cbbd';y=wrap(c,'hollow double wall around the whole engine; both exhaust ports feed it; baffles split it into chambers → noise down; no separate muffler / pipes.',RX,y,RW,12);
+  y+=8;c.font='700 11.5px Segoe UI,Arial';c.fillStyle='#b9c7d3';c.fillText('COOLING FINS',RX,y);lead(OX1+FL-2,y+14,RX-4,y-4,'#b9c7d3');y+=14;
+  c.font='10px Segoe UI,Arial';c.fillStyle='#c3d0dc';y=wrap(c,'all around the muffler skin → shed exhaust heat to air.',RX,y,RW,12);
+  c.font='700 11.5px Segoe UI,Arial';c.fillStyle='#4fc3f7';c.fillText('ENGINE HALF B (bottom)',RX,436);
+  c.font='10px Segoe UI,Arial';c.fillStyle='#c3d0dc';wrap(c,'mirrored; B2 (CW) drives the wound STATOR.',RX,450,RW,12);
+  boxT(c,604,476,72,22,'AC → DC','#9fd7f5');
+  wire(c,[[640,498],[640,520]],elecCol);
+  boxT(c,604,520,96,32,'INVERTER','#5be37d');
+  wire(c,[[700,536],[722,536]],elecCol);ah(c,728,536,0,7,elecCol);
+  c.font='600 10.5px Segoe UI,Arial';c.fillStyle='#8fe3a8';c.fillText('AC OUT',704,566);
+  c.font='9.5px Segoe UI,Arial';c.fillStyle='#8396a8';c.fillText('wiring exits via a',604,580);c.fillText('sealed feed-through',604,592);
+  c.fillStyle='#8396a8';c.font='10px Segoe UI,Arial';
+  c.fillText('side cut-away · orange duct = shared burn gas · red dashes in the hollow wall = exhaust working through the baffled chambers to one tailpipe · schematic, not to scale',14,630);
+  c.restore();
+}
+
+// ---------- v7: brushless power-transfer options (field in + power out, counter-rotating rotor & stator) ----------
+const xc=document.getElementById('xf'),xx=xc.getContext('2d');const XW=1160,XH=440;
+function fitX(){const d=window.devicePixelRatio||1;xc.width=XW*d;xc.height=XH*d;xx.setTransform(d,0,0,d,0,0);}
+fitX();window.addEventListener('resize',fitX);
+function drawXfer(phi1,phi2){
+  const c=xx;c.clearRect(0,0,XW,XH);
+  c.strokeStyle='rgba(79,195,247,.05)';c.lineWidth=1;
+  for(let x=0;x<XW;x+=25){c.beginPath();c.moveTo(x,0);c.lineTo(x,XH);c.stroke();}
+  for(let y=0;y<XH;y+=25){c.beginPath();c.moveTo(0,y);c.lineTo(XW,y);c.stroke();}
+  const sel=xfEl.value, t=performance.now()/1000;
+  const metal=['#6d7a86','#e3e9ee','#55616c'], mk='rgba(40,60,80,A)';
+  const PW=372, keys=['ex','cap','sr'];
+  const flow=(pts,col)=>{c.save();c.strokeStyle=col;c.lineWidth=2.2;c.setLineDash([4,6]);c.lineDashOffset=-(t*24)%10;c.beginPath();c.moveTo(...pts[0]);pts.slice(1).forEach(p=>c.lineTo(...p));c.stroke();c.restore();};
+  const txt=(s,x,y,col,f,al)=>{c.font=f||'10px Segoe UI,Arial';c.fillStyle=col||'#c3d0dc';c.textAlign=al||'left';c.fillText(s,x,y);c.textAlign='left';};
+  const box=(x,y,w,h,s,col)=>{rr2(c,x,y,w,h,4);c.fillStyle='#0f1820';c.fill();c.strokeStyle=col;c.lineWidth=1.2;c.stroke();txt(s,x+w/2,y+h/2+3.5,col,'600 9.5px Segoe UI,Arial','center');};
+  const hatch=(x,y,w,h)=>{c.fillStyle='#232c35';c.fillRect(x,y,w,h);c.save();c.beginPath();c.rect(x,y,w,h);c.clip();c.strokeStyle='rgba(255,255,255,.12)';for(let q=y-w;q<y+h;q+=7){c.beginPath();c.moveTo(x,q);c.lineTo(x+w,q+w);c.stroke();}c.restore();c.strokeStyle='#4a5d70';c.strokeRect(x,y,w,h);};
+  keys.forEach((k,i)=>{
+    const x0=8+i*(PW+8), cx=x0+PW/2, X=XF[k], on=sel===k;
+    rr2(c,x0,30,PW,XH-38,10);c.fillStyle=on?'rgba(79,195,247,.06)':'rgba(9,14,20,.6)';c.fill();c.strokeStyle=on?'#4fc3f7':'#2a3a4a';c.lineWidth=on?2:1;c.stroke();
+    txt((i+1)+'. '+X.short,x0+12,50,on?'#4fc3f7':'#d6e2ee','700 12.5px Segoe UI,Arial');
+    if(k==='ex'){c.font='700 9px monospace';const w=c.measureText('PREFERRED').width+10;c.fillStyle='#5be37d';rr2(c,x0+PW-w-10,39,w,14,3);c.fill();txt('PREFERRED',x0+PW-w-5,49.5,'#08210f','700 9px monospace');}
+    if(k==='sr'){c.font='700 9px monospace';const w=c.measureText('BACKUP / COMPARE').width+10;c.fillStyle='#8396a8';rr2(c,x0+PW-w-10,39,w,14,3);c.fill();txt('BACKUP / COMPARE',x0+PW-w-5,49.5,'#0b0f14','700 9px monospace');}
+    // stationary frame both sides
+    hatch(x0+10,62,16,262);hatch(x0+PW-26,62,16,262);
+    txt('frame',x0+18,336,'#8396a8','9px Segoe UI,Arial','center');txt('frame',x0+PW-18,336,'#8396a8','9px Segoe UI,Arial','center');
+    // rotor shaft (from half A, CCW) / generator / stator sleeve (from half B, CW)
+    cyl(c,cx,58,176,7,phi1,3,metal,mk);
+    cyl(c,cx,236,322,13,phi2,6,['#3b4f8a','#9bb0ff','#2a3766'],'rgba(20,30,70,A)');
+    alternator(c,cx,166,246,150,phi1,'',phi2);
+    txt('field rotor (Cu) ← A · CCW',cx-12,160,'#ffb0b0','9.5px Segoe UI,Arial','right');
+    txt('armature stator ← B · CW',cx-18,262,'#b8c6ff','9.5px Segoe UI,Arial','right');
+    const FIN='#ffb46b', OUT='#5be37d';
+    if(k==='ex'){
+      // exciter: stationary field ring (on frame) around a rotating exciter armature on the rotor shaft
+      c.fillStyle='#7d8b98';c.fillRect(cx-50,72,16,26);c.fillRect(cx+34,72,16,26);
+      c.strokeStyle='#7d8b98';c.lineWidth=3;c.beginPath();c.moveTo(cx-50,85);c.lineTo(x0+26,85);c.moveTo(cx+50,85);c.lineTo(x0+PW-26,85);c.stroke();
+      cyl(c,cx,72,98,28,phi1,8,['#7a4a20','#e09a55','#5a3515'],'rgba(60,30,10,A)');
+      // rotating diode bridge on the shaft
+      box(cx+12,108,46,18,'diodes ◇','#ffd166');
+      flow([[cx+35,126],[cx+35,166]],FIN);
+      box(x0+30,104,58,20,'AVR (DC)',FIN);flow([[x0+59,104],[x0+59,90],[cx-50,90]],FIN);
+      txt('exciter field (stationary)',cx-54,66,'#9fb6c9','9px Segoe UI,Arial','right');
+      txt('exciter armature (on rotor)',cx+54,66,'#e0a070','9px Segoe UI,Arial');
+      txt('rotating rectifier → DC field',cx+62,121,'#ffd166','9px Segoe UI,Arial');
+      // output: spinning HF converter on stator sleeve -> rotary transformer -> frame
+      box(cx+18,252,70,18,'HF conv. (spins)','#9bb0ff');
+      flow([[cx+45,246],[cx+45,252]],OUT);
+      c.fillStyle='#b87333';c.fillRect(cx-32,280,18,30);c.fillRect(cx+14,280,18,30);   // rotating core/winding
+      c.fillStyle='#6d7a86';c.fillRect(cx-56,280,18,30);c.fillRect(cx+38,280,18,30);   // stationary core/winding
+      c.strokeStyle='#ffd166';c.setLineDash([2,2]);c.beginPath();c.moveTo(cx-36,276);c.lineTo(cx-36,314);c.moveTo(cx+36,276);c.lineTo(cx+36,314);c.stroke();c.setLineDash([]);
+      c.strokeStyle='#6d7a86';c.lineWidth=3;c.beginPath();c.moveTo(cx+56,296);c.lineTo(x0+PW-26,296);c.moveTo(cx-56,296);c.lineTo(x0+26,296);c.stroke();
+      flow([[cx+45,270],[cx+45,288]],OUT);flow([[cx+56,300],[x0+PW-40,300],[x0+PW-40,346]],OUT);
+      txt('rotary transformer',cx,334,'#ffd166','600 9.5px Segoe UI,Arial','center');txt('air gap = no contact',cx,346,'#c9b27a','9px Segoe UI,Arial','center');
+    }else if(k==='cap'){
+      // field: capacitive plates (stationary on frame / rotating on shaft) + HF driver + rectifier on rotor
+      for(const [y,rot] of [[76,1],[86,0],[96,1],[106,0]]){c.fillStyle=rot?'#e09a55':'#9fb6c9';c.fillRect(rot?cx-40:cx-52,y,rot?80:104,4);}
+      c.strokeStyle='#7d8b98';c.lineWidth=3;c.beginPath();c.moveTo(cx-52,92);c.lineTo(x0+26,92);c.moveTo(cx+52,92);c.lineTo(x0+PW-26,92);c.stroke();
+      box(x0+30,112,62,20,'HF driver',FIN);flow([[x0+61,112],[x0+61,98],[cx-52,98]],FIN);
+      box(cx+12,118,52,18,'rectifier','#ffd166');flow([[cx+38,136],[cx+38,166]],FIN);
+      txt('stationary plates (grey) / rotating plates (copper)',cx,68,'#9fb6c9','9px Segoe UI,Arial','center');
+      // output: HF inverter spinning on sleeve -> capacitive plates -> frame
+      box(cx+18,252,70,18,'HF inv. (spins)','#9bb0ff');flow([[cx+45,246],[cx+45,252]],OUT);
+      for(const [y,rot] of [[282,1],[292,0],[302,1],[312,0]]){c.fillStyle=rot?'#b87333':'#9fb6c9';c.fillRect(rot?cx-44:cx-56,y,rot?88:112,4);}
+      c.strokeStyle='#7d8b98';c.lineWidth=3;c.beginPath();c.moveTo(cx+56,306);c.lineTo(x0+PW-26,306);c.moveTo(cx-56,306);c.lineTo(x0+26,306);c.stroke();
+      flow([[cx+45,270],[cx+45,282]],OUT);flow([[cx+56,310],[x0+PW-40,310],[x0+PW-40,346]],OUT);
+      txt('capacitive coupler',cx,334,'#ffd166','600 9.5px Segoe UI,Arial','center');txt('tiny gap · ~100 kHz–MHz · gap/dirt sensitive',cx,346,'#c9b27a','9px Segoe UI,Arial','center');
+    }else{
+      // slip rings + spring-loaded brushes
+      for(let j=0;j<2;j++){c.fillStyle='#c9a35a';c.fillRect(cx-16,80+j*12,32,7);c.fillStyle='#3a3a3a';c.fillRect(cx+18,80+j*12,14,7);c.strokeStyle='#8396a8';c.lineWidth=1;c.beginPath();c.moveTo(cx+32,83+j*12);for(let q=0;q<5;q++)c.lineTo(cx+36+q*4,(q%2?80:87)+j*12);c.lineTo(x0+PW-26,83+j*12);c.stroke();}
+      box(x0+30,104,58,20,'AVR (DC)',FIN);flow([[x0+59,104],[x0+59,96],[cx-16,96]],FIN);flow([[cx,104],[cx,166]],FIN);
+      txt('2 rings · DC field in',cx-20,74,'#e0c890','9px Segoe UI,Arial','right');
+      for(let j=0;j<3;j++){c.fillStyle='#c9a35a';c.fillRect(cx-22,276+j*12,44,7);c.fillStyle='#3a3a3a';c.fillRect(cx+24,276+j*12,14,7);c.strokeStyle='#8396a8';c.lineWidth=1;c.beginPath();c.moveTo(cx+38,279+j*12);for(let q=0;q<5;q++)c.lineTo(cx+42+q*4,(q%2?276:283)+j*12);c.lineTo(x0+PW-26,279+j*12);c.stroke();}
+      flow([[cx+64,300],[x0+PW-40,300],[x0+PW-40,346]],OUT);
+      // brush dust
+      c.fillStyle='rgba(120,120,120,.6)';for(let q=0;q<10;q++){const a=(t*0.7+q*0.37)%1;c.fillRect(cx+26+(q*7)%14,316+a*18,2,2);}
+      txt('3 rings · 3φ AC out',cx,334,'#e0c890','600 9.5px Segoe UI,Arial','center');txt('carbon brushes wear · dust',cx,346,'#c9b27a','9px Segoe UI,Arial','center');
+    }
+    txt('→ AC→DC / inverter',x0+PW-44,360,OUT,'600 9.5px Segoe UI,Arial','right');
+    // estimate metrics
+    let y=376;
+    c.font='700 8.5px monospace';const ew=c.measureText('ESTIMATE').width+8;c.fillStyle='#ffd166';rr2(c,x0+12,y-9,ew,12,3);c.fill();txt('ESTIMATE',x0+16,y,'#1b1405','700 8.5px monospace');
+    txt('output path η ≈ '+X.eta,x0+20+ew,y,'#bff2cc','600 10.5px Segoe UI,Arial');y+=15;
+    txt('cost: '+X.cost,x0+12,y,'#ffd9a8','10.5px Segoe UI,Arial');y+=15;
+    txt('uptime: '+X.up,x0+12,y,'#c3d0dc','10.5px Segoe UI,Arial');y+=15;
+    txt(X.risk,x0+12,y,'#8396a8','10px Segoe UI,Arial');
+  });
+  txt('orange dashes = field power in (to the copper field coils) · green dashes = generated power out · all η / cost / uptime figures are rough estimates, not test data',14,22,'#8396a8','10px Segoe UI,Arial');
+}
+
+// ---------- v8: efficiency optimisation sweep (rough model; estimates only) ----------
+const OPT={busy:false,best:null};
+function optBase(fuel){return {Vcc:1.5*vrefCC(),N:3,fuel,rc:2,mode:cplEl.value,xfer:'ex',cold:false};}
+function runOpt(){
+  if(OPT.busy)return;OPT.busy=true;
+  const st=document.getElementById('oStat');st.textContent=' sweeping…';
+  const rpmMax=+document.getElementById('oRpm').value||5000, pMin=1000*(+document.getElementById('oPmin').value||0);
+  const brushless=document.getElementById('oBrushless').checked, lock=document.getElementById('oFuelLock').checked;
+  const fuels=Object.keys(FUELS), xfers=['ex','cap','sr'], curF=fuelEl.value;
+  const vs=[];for(let v=1;v<=2.0001;v+=0.1)vs.push(+v.toFixed(2));
+  const rcs=[];for(let r=1;r<=4.0001;r+=0.25)rcs.push(+r.toFixed(2));
+  const mode=cplEl.value, vr=vrefCC();
+  const jobs=[];fuels.forEach(f=>xfers.forEach(x=>jobs.push([f,x])));
+  let rec=null,eff=null,pow=null,cnt=0;const all=[];
+  const okRec=(M,o)=>M.ok&&M.rpm<=rpmMax&&M.Pel>=pMin&&!M.gov&&(!brushless||o.xfer==='ex')&&(!lock||o.fuel===curF);
+  function step(){
+    const t0=performance.now();
+    while(jobs.length&&performance.now()-t0<30){
+      const [fuel,xfer]=jobs.shift();
+      for(const v of vs)for(let N=1;N<=8;N++)for(const rc of rcs){
+        const o={Vcc:v*vr,N,fuel,rc,mode,xfer,cold:false},M=model(o);cnt++;
+        if(!M.ok)continue;const r={o,v,M};all.push(r);
+        if(!eff||M.etaO>eff.M.etaO)eff=r;
+        if(!pow||M.Pel>pow.M.Pel||(M.Pel===pow.M.Pel&&M.etaO>pow.M.etaO))pow=r;
+        if(okRec(M,o)&&(!rec||M.etaO>rec.M.etaO+1e-9||(Math.abs(M.etaO-rec.M.etaO)<1e-9&&M.Pel>rec.M.Pel)))rec=r;
+      }
+    }
+    if(jobs.length){setTimeout(step,0);return;}
+    OPT.busy=false;OPT.best={rec,eff,pow,all,rpmMax,pMin};
+    st.textContent=' '+cnt.toLocaleString()+' combinations swept (est.)';
+    renderOpt();
+  }
+  step();
+}
+function presetHTML(r,title,cls,note){
+  if(!r)return `<b>${title}</b><div class="dim2">no setting meets the limits — relax rpm / min power</div>`;
+  const o=r.o,M=r.M;
+  return `<div class="ph"><b>${title}</b>${cls?'<span class="est">RECOMMENDED</span>':''}</div>
+   <div class="big2">η ≈ ${pct(M.etaO)}</div>
+   <div class="kv2"><span>Electrical</span><b>≈ ${(M.Pel/1000).toFixed(1)} kW</b><span>Fuel</span><b>≈ ${Math.round(M.fuelKgH*1000/(M.Pel/1000))} g/kWh · ${M.fuelKgH.toFixed(2)} kg/h</b><span>Shaft speed</span><b>≈ ${Math.round(M.rpm).toLocaleString()} rpm${M.gov?' (cap)':''}</b><span>Peak pressure</span><b>≈ ${(M.pPk/1e5).toFixed(0)} bar</b></div>
+   <div class="set">${FUELS[o.fuel].name} · ${Math.round(o.Vcc)} cc · fire every ${o.N} · squeeze ${o.rc.toFixed(2)}:1 · ${XF[o.xfer].short}</div>
+   ${note?`<div class="dim2" style="margin-top:3px">${note}</div>`:''}
+   <button data-apply="${cls?'rec':title}">Apply</button>`;
+}
+function renderOpt(){
+  const B=OPT.best;if(!B)return;const {rec,eff,pow}=B;
+  const base=model(optBase(rec?rec.o.fuel:fuelEl.value));
+  document.getElementById('pRec').innerHTML=presetHTML(rec,'High-efficiency preset',true,`limits: ≤ ${B.rpmMax.toLocaleString()} rpm (lifetime), ≥ ${(B.pMin/1000).toFixed(1)} kW · vs default η ≈ ${pct(base.etaO)} / ${(base.Pel/1000).toFixed(1)} kW → ${rec?'+'+((rec.M.etaO/base.etaO-1)*100).toFixed(0)+'% efficiency (est.)':''}`);
+  document.getElementById('pEff').innerHTML=presetHTML(eff,'Peak η (no limits)',false,'any fuel / transfer; ignores the rpm & power limits');
+  document.getElementById('pPow').innerHTML=presetHTML(pow,'Max power',false,'any fuel / transfer; pinned at the 9,000 rpm cap — shortest life, lower η');
+  document.querySelectorAll('#optPanel [data-apply]').forEach(b=>b.onclick=()=>{const k=b.dataset.apply;applyPreset(k==='rec'?rec:(k.startsWith('Peak')?eff:pow));});
+  document.getElementById('oPeak').innerHTML=eff?`<b style="color:#ffd166">Peak overall fuel→electric efficiency reachable in this rough model: ≈ ${pct(eff.M.etaO)}</b> (${FUELS[eff.o.fuel].name}, ${XF[eff.o.xfer].short}). Recommended brushless / rpm-limited preset: ≈ ${rec?pct(rec.M.etaO):'–'}. <i>Estimates only.</i>`:'';
+  // lever ranking: drop-one from recommended back to default
+  const L=document.getElementById('oLev');
+  if(!rec){L.innerHTML='<div class="dim2">–</div>';return;}
+  const d=optBase(rec.o.fuel), e=rec.M.etaO, dflt=model({...d,fuel:fuelEl.value});
+  const lev=[
+    ['Residual-gas squeeze','rc',`${d.rc.toFixed(1)} → ${rec.o.rc.toFixed(2)} : 1`],
+    ['Chamber size','Vcc',`${Math.round(d.Vcc)} → ${Math.round(rec.o.Vcc)} cc`],
+    ['Fire every N (match coast)','N',`${d.N} → ${rec.o.N}`],
+    ['Fuel','fuel',`${FUELS[fuelEl.value].name} → ${FUELS[rec.o.fuel].name}${document.getElementById('oFuelLock').checked?' (locked)':''}`],
+  ].map(([n,k,txt])=>{const o={...rec.o};o[k]=k==='fuel'?fuelEl.value:d[k];const M=model(o);return {n,txt,g:M.ok?(e/M.etaO-1):1,stall:!M.ok};});
+  lev.push({n:'Chamber + fire-every together','txt':`${Math.round(d.Vcc)} cc / ${d.N} → ${Math.round(rec.o.Vcc)} cc / ${rec.o.N}`,g:(()=>{const M=model({...rec.o,Vcc:d.Vcc,N:d.N});return M.ok?e/M.etaO-1:1;})()});
+  const Mc=model({...rec.o,cold:true});lev.push({n:'Hot-running clearance (warm up first)',txt:'cold → hot fit',g:Mc.ok?e/Mc.etaO-1:1});
+  const Ms=model({...rec.o,xfer:'sr'});lev.push({n:'Transfer: brushless vs slip rings',txt:'chosen for lifetime',g:e/Ms.etaO-1,life:true});
+  const Mcap=model({...rec.o,xfer:'cap'});lev.push({n:'Transfer: brushless vs capacitive',txt:'brushless + HF on sleeve',g:e/Mcap.etaO-1});
+  lev.sort((a,b)=>b.g-a.g);const mx=Math.max(...lev.map(l=>Math.abs(l.g)),0.01);
+  L.innerHTML=lev.map((l,i)=>`<div class="lr"><span class="ln">${i+1}. ${l.n}<br><small>${l.txt}</small></span><span class="lb"><i style="width:${Math.min(100,100*Math.abs(l.g)/mx)}%;background:${l.g<0?'#ff8a3d':'linear-gradient(90deg,#5be37d,#ffd166)'}"></i></span><span class="lp">${l.g>=0?'+':''}${(100*l.g).toFixed(1)}%${l.life?'*':''}</span></div>`).join('')+
+    `<div class="dim2" style="margin-top:4px">* negative = brushless costs ≈ ${(100*-lev.find(l=>l.life).g).toFixed(1)}% vs slip rings, accepted for brush-free uptime (est.). Default → recommended overall: <b style="color:#5be37d">+${((e/dflt.etaO-1)*100).toFixed(0)}%</b> efficiency, ${(dflt.Pel/1000).toFixed(1)} → ${(rec.M.Pel/1000).toFixed(1)} kW (est.).</div>`;
+  // sweep map for recommended fuel / squeeze / transfer
+  const cv=document.getElementById('oMap'),c=cv.getContext('2d'),dp=window.devicePixelRatio||1;
+  if(cv.width!==330*dp){cv.width=330*dp;cv.height=250*dp;}c.setTransform(dp,0,0,dp,0,0);c.clearRect(0,0,330,250);
+  document.getElementById('oMapLbl').textContent=`(${FUELS[rec.o.fuel].name}, ${rec.o.rc.toFixed(2)}:1, ${XF[rec.o.xfer].short})`;
+  const vs=[];for(let v=1;v<=2.0001;v+=0.1)vs.push(v);const gx=46,gy=14,cw=(330-gx-10)/8,ch=(250-gy-40)/vs.length;
+  let lo=1,hi=0;const grid=vs.map(v=>[1,2,3,4,5,6,7,8].map(N=>{const M=model({...rec.o,Vcc:v*vrefCC(),N});const ok=M.ok&&M.rpm<=B.rpmMax&&M.Pel>=B.pMin&&!M.gov;if(ok){lo=Math.min(lo,M.etaO);hi=Math.max(hi,M.etaO);}return {M,ok};}));
+  grid.forEach((row,j)=>row.forEach((g,i)=>{const x=gx+i*cw,y=gy+(vs.length-1-j)*ch;
+    if(g.ok){const f=(g.M.etaO-lo)/Math.max(1e-6,hi-lo);c.fillStyle=`hsl(${Math.round(20+110*f)},70%,${Math.round(18+40*f)}%)`;}else c.fillStyle='#1a222b';
+    c.fillRect(x+1,y+1,cw-2,ch-2);
+    if(g.ok&&cw>30){c.fillStyle='rgba(0,0,0,.65)';c.font='8.5px monospace';c.textAlign='center';c.fillText((100*g.M.etaO).toFixed(1),x+cw/2,y+ch/2+3);}
+    if(Math.abs(vs[j]*vrefCC()-rec.o.Vcc)<0.5&&i+1===rec.o.N){c.strokeStyle='#fff';c.lineWidth=2;c.strokeRect(x+1,y+1,cw-2,ch-2);}}));
+  c.fillStyle='#8396a8';c.font='9.5px Segoe UI,Arial';c.textAlign='center';
+  for(let i=0;i<8;i++)c.fillText(i+1,gx+i*cw+cw/2,gy+vs.length*ch+12);c.fillText('fire every N →',gx+4*cw,gy+vs.length*ch+26);
+  c.textAlign='right';vs.forEach((v,j)=>{if(j%2===0)c.fillText(Math.round(v*vrefCC())+'cc',gx-4,gy+(vs.length-1-j)*ch+ch/2+3);});c.textAlign='left';
+}
+function applyPreset(r){
+  if(!r)return;const o=r.o;
+  autoVol.checked=false;volEl.value=Math.min(2,Math.max(1,o.Vcc/vrefCC()));
+  setN(o.N);fuelEl.value=o.fuel;rcEl.value=o.rc;xfEl.value=o.xfer;clrEl.value='hot';
+  [volEl,rcEl,fuelEl,xfEl,clrEl].forEach(el=>{el.dispatchEvent(new Event('input'));el.dispatchEvent(new Event('change'));});
+}
+document.getElementById('oRun').onclick=runOpt;
+['oRpm','oPmin','oBrushless','oFuelLock'].forEach(id=>document.getElementById(id).addEventListener('change',runOpt));
+fuelEl.addEventListener('change',()=>{if(document.getElementById('oFuelLock').checked)runOpt();});
+setTimeout(runOpt,400);
+
+const dc=document.getElementById('dial'),dx=dc.getContext('2d');
+function drawDial(cyc,fireRev){
+  const d=window.devicePixelRatio||1;if(dc.width!==300*d){dc.width=300*d;dc.height=170*d;}
+  dx.setTransform(d,0,0,d,0,0);dx.clearRect(0,0,300,170);
+  const cx=85,cy=85,r=62;
+  const seg=(a0,a1,col,w)=>{dx.strokeStyle=col;dx.lineWidth=w;dx.beginPath();dx.arc(cx,cy,r,(a0-90)*Math.PI/180,(a1-90)*Math.PI/180);dx.stroke();};
+  seg(0,360,'#243241',12);seg(0,40,'#5be37d',12);seg(45,200,'#ffb46b55',12);seg(200,330,'#ff5c5c',12);
+  const fa=(45-90)*Math.PI/180;dx.fillStyle=fireRev?'#ff8a3d':'#7c9cff';dx.beginPath();dx.arc(cx+r*Math.cos(fa),cy+r*Math.sin(fa),6,0,7);dx.fill();
+  const na=(cyc-90)*Math.PI/180;dx.strokeStyle='#4fc3f7';dx.lineWidth=2.5;dx.beginPath();dx.moveTo(cx,cy);dx.lineTo(cx+(r+4)*Math.cos(na),cy+(r+4)*Math.sin(na));dx.stroke();
+  dx.fillStyle='#cfd8e0';dx.beginPath();dx.arc(cx,cy,5,0,7);dx.fill();
+  dx.fillStyle='#8396a8';dx.font='11px Segoe UI,Arial';dx.textAlign='center';dx.fillText('0\u00b0',cx,cy-r-10);
+  dx.textAlign='left';dx.fillStyle='#d6e2ee';dx.font='12px Segoe UI,Arial';
+  dx.fillText('Gear 1 position',165,60);dx.fillStyle='#4fc3f7';dx.font='600 20px monospace';dx.fillText(Math.round(cyc)+'\u00b0',165,85);
+  dx.fillStyle=fireRev?'#ff8a3d':'#7c9cff';dx.font='12px Segoe UI,Arial';dx.fillText(fireRev?'\u25cf fire this rev':'\u25cf skip this rev',165,110);
+}
+requestAnimationFrame(frame);
+})();
+</script>
+
+
+</body></html>
