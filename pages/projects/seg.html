@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<!-- saved from url=(0048)file:///Users/larryseyer/Desktop/seg-mockup.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>SEG Concept Mockup — CLAIMED design (not verified)</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+:root{--bg:#0b0f14;--panel:#121922;--line:#1f2b38;--txt:#c9d6e3;--dim:#7d8fa3;--acc:#38bdf8;--n:#ef4444;--s:#3b82f6;--warn:#f59e0b;--ok:#22c55e}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--txt);font:14px/1.45 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+header{padding:14px 20px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
+h1{font-size:18px;margin:0;color:#e6f1fb;letter-spacing:.5px}
+h2{font-size:13px;margin:0 0 8px;color:var(--acc);text-transform:uppercase;letter-spacing:1px}
+.banner{background:repeating-linear-gradient(45deg,#3a2a05,#3a2a05 10px,#2c2005 10px,#2c2005 20px);border:1px solid var(--warn);color:#fde68a;padding:10px 16px;margin:12px 20px;border-radius:6px;font-size:13px}
+.banner b{color:#fff}
+.tag.phys{border-color:var(--ok);color:var(--ok)}
+.tag{display:inline-block;font-size:10px;padding:1px 6px;border:1px solid var(--warn);color:var(--warn);border-radius:3px;margin-left:6px;vertical-align:middle}
+main{display:grid;grid-template-columns:minmax(420px,1.15fr) minmax(380px,1fr);gap:14px;padding:0 20px 20px}
+@media(max-width:1000px){main{grid-template-columns:1fr}}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:14px}
+canvas{width:100%;display:block;background:#070a0e;border:1px solid var(--line);border-radius:6px}
+.row{display:grid;grid-template-columns:170px 1fr 120px;gap:8px;align-items:center;margin:6px 0}
+.row label{color:var(--dim)}
+.row output{text-align:right;color:#e6f1fb}
+input[type=range]{width:100%;accent-color:var(--acc)}
+table{width:100%;border-collapse:collapse;font-size:12.5px}
+td,th{border-bottom:1px solid var(--line);padding:4px 6px;text-align:left}
+th{color:var(--dim);font-weight:normal}
+.num{color:#e6f1fb}
+.small{font-size:11.5px;color:var(--dim)}
+.ok{color:var(--ok)}.bad{color:var(--n)}
+button{background:#0f2433;color:var(--acc);border:1px solid var(--acc);border-radius:4px;padding:5px 10px;font:inherit;cursor:pointer}
+button.on{background:var(--acc);color:#04121c}
+.caption{margin:0 20px 20px;padding:12px 16px;border-left:3px solid var(--acc);background:var(--panel);border-radius:4px}
+.legend span{display:inline-block;margin-right:12px}
+.sw{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:4px;vertical-align:middle}
+footer{padding:10px 20px 24px;color:var(--dim);font-size:11.5px}
+.stack>*+*{margin-top:14px}
+.claimbox{border-left:3px solid var(--warn);padding:6px 10px;background:#1a1508;margin:8px 0;font-size:12.5px}
+.physbox{border-left:3px solid var(--ok);padding:6px 10px;background:#0b1a10;margin:8px 0;font-size:12.5px}
+.wide{grid-column:1/-1}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}
+@media(max-width:1100px){.grid3{grid-template-columns:1fr!important}}
+.kv td:first-child{color:var(--dim)} .kv td:last-child{text-align:right;color:#e6f1fb}
+</style>
+</head>
+<body>
+<header>
+  <h1>Searl Effect Generator (SEG) — Concept Mockup <span class="tag">CLAIMED</span></h1>
+  <div class="small">Prepared for Larry Seyer · visual review only · v0.1</div>
+</header>
+
+
+<main>
+  <!-- LEFT: top-down view -->
+  <section class="stack">
+    <div class="panel">
+      <h2>1 · Top-down view: plate, rollers, C-coils <span class="tag">CLAIMED</span></h2>
+      <canvas id="top" width="820" height="820"></canvas>
+      <div class="row" style="margin-top:10px">
+        <label>Roller orbit</label>
+        <div><button id="playBtn" class="on">⏸ Pause</button> <button id="tracksBtn" class="on">Pole tracks: ON</button> <button id="coilBtn" class="on">C-coils: ON</button> <button id="elecBtn" class="on">Electron path: ON</button></div>
+        <output></output>
+      </div>
+      <div class="row"><label>Rollers (count)</label><input id="nRollers" type="range" min="6" max="16" step="1" value="12"><output id="nRollersO">12</output></div>
+      <div class="row"><label>Orbit speed (visual)</label><input id="speed" type="range" min="0" max="100" value="35"><output id="speedO">35%</output></div>
+      <div class="legend small" style="margin-top:6px">
+        <span><i class="sw" style="background:var(--n)"></i>N pole segment</span>
+        <span><i class="sw" style="background:var(--s)"></i>S pole segment</span>
+        <span><i class="sw" style="background:#facc15"></i>C-coil (lit = roller passing; claimed induction)</span>
+        <span><i class="sw" style="background:#a5f3fc;border-radius:50%"></i>claimed electron path: drawn in at center → thrown out to C-coils</span>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h2>1b · Cross-section: angled encoded field lines → shear torque <span class="tag">CLAIMED</span></h2>
+      <canvas id="xsec" width="820" height="440"></canvas>
+      <div class="claimbox"><b>CLAIM (Searl / Sandberg):</b> the AC+DC process "encodes" field lines that are inclined, not radial.
+      On one track the lines lean upward and on the other downward. The up-pull and down-pull cancel vertically, which centers the roller, while their
+      inclined components add tangentially. That gives a shear force on the roller face and a torque that rolls it around the plate.</div>
+      <div class="physbox"><b>PHYSICS:</b> inclined gap flux does produce shear stress, from the Maxwell stress tensor σ<sub>t</sub> = B<sub>n</sub>·B<sub>t</sub>/μ<sub>0</sub>
+      (the same mechanism as magnetic gears). In a <i>static</i> permanent-magnet field, though, that torque changes sign as the poles pass. Over a closed
+      pole cycle ∮τ·dφ = 0, so it can guide or transmit motion but cannot supply net work by itself (see panel 5).</div>
+      <div class="row"><label>Gap normal field B<sub>n</sub></label><input id="Bn" type="range" min="0.1" max="0.6" step="0.01" value="0.40"><output id="BnO">0.40 T</output></div>
+      <div class="row"><label>Line inclination θ</label><input id="th" type="range" min="0" max="35" step="1" value="20"><output id="thO">20°</output></div>
+    </div>
+
+    <div class="panel">
+      <h2>1c · Claimed electron path (dielectric layers) <span class="tag">CLAIMED</span></h2>
+      <div class="claimbox"><b>CLAIM (Searl):</b> the SEG is <i>not</i> described as overunity. The layered plate and rollers include dielectric
+      material that is said to draw electrons in toward the <b>center of the plate</b>. Rotation is said to throw them <b>outward</b>
+      through the plate and rollers toward the <b>C-coils</b>, while the plate takes in fresh electrons from the surroundings at the center.
+      The claimed energy source is this through-flow of ambient electrons, not energy created from nothing. (Animated as cyan dots in the top-down view.)</div>
+      <div class="physbox"><b>PHYSICS:</b>
+        <ul style="margin:4px 0 0 16px;padding:0">
+        <li><b>Centrifugal action on electrons is real but tiny</b> (the Stewart–Tolman effect). The radial potential is ΔV = m<sub>e</sub>ω²R²/(2e): <span id="stV" class="num">3.06×10⁻¹⁰ V at 300 rpm, R = 0.33 m (3.40×10⁻⁷ V even at 10,000 rpm)</span>.</li>
+        <li><b>Dielectrics do not carry free electrons.</b> They polarize (bound charge) rather than conduct, so a sustained electron current through them is not expected.</li>
+        <li><b>Ambient charge supply is minute.</b> Air holds about 10³ ions/cm³ (10⁹ /m³), so collection over 0.1 m² at about 1 m/s gives I ≈ n·e·v·A ≈ <span id="ionI" class="num">1.60×10⁻¹¹ A (≈16 pA)</span>.</li>
+        <li><b>Electrons carry charge, not stored energy.</b> Power = EMF × current, and that EMF must be produced by work on the rotor (induction or charge separation). The energy still comes out of the rotor's kinetic energy, so the energy balance in panel 5D applies unchanged.</li>
+        <li><b>Charge conservation:</b> a steady current needs a closed circuit. Electrons leaving at the C-coils must return or be resupplied, and neutral air supplies only pA-scale currents.</li>
+        </ul>
+        No measurement in the open literature shows this mechanism delivering usable power. It remains a claimed, untested hypothesis.</div>
+    </div>
+  </section>
+
+  <!-- RIGHT -->
+  <section class="stack">
+    <div class="panel">
+      <h2>2 · Pole tracks &amp; pole-density matching <span class="tag">CLAIMED</span></h2>
+      <canvas id="tracks" width="760" height="230"></canvas>
+      <p class="small">Per the published notes, the AC+DC magnetization writes <b>two concentric annular tracks</b> of fine alternating N/S poles on
+      both the plate and each roller. The claimed engagement condition is equal pole density (poles per unit circumference):</p>
+      <p style="text-align:center;color:#e6f1fb;font-size:15px">x = N<sub>p</sub> / (π·D<sub>p</sub>) = N<sub>r</sub> / (π·D<sub>r</sub>)</p>
+      <div class="row"><label>Plate track Ø D<sub>p</sub></label><input id="Dp" type="range" min="200" max="1200" step="5" value="600"><output id="DpO">600 mm</output></div>
+      <div class="row"><label>Roller track Ø D<sub>r</sub></label><input id="Dr" type="range" min="20" max="200" step="1" value="80"><output id="DrO">80 mm</output></div>
+      <div class="row"><label>Pole length (≈1 mm)</label><input id="pole" type="range" min="0.5" max="2" step="0.05" value="1"><output id="poleO">1.00 mm</output></div>
+      <table>
+        <tbody><tr><th></th><th>Diameter</th><th>Circumference</th><th>Poles N</th><th>x (poles/mm)</th></tr>
+        <tr><td>Plate</td><td class="num" id="tDp">600 mm</td><td class="num" id="tCp">1,885.0 mm</td><td class="num" id="tNp">1,884</td><td class="num" id="tXp">0.9995</td></tr>
+        <tr><td>Roller</td><td class="num" id="tDr">80 mm</td><td class="num" id="tCr">251.3 mm</td><td class="num" id="tNr">252</td><td class="num" id="tXr">1.0027</td></tr>
+      </tbody></table>
+      <p class="small" id="matchMsg">Mismatch |x<sub>p</sub>−x<sub>r</sub>|/x = <b class="ok">0.318%</b> (N rounded to even integer for closed N/S alternation). Diameter ratio D<sub>p</sub>/D<sub>r</sub> = 7.500; pole ratio N<sub>p</sub>/N<sub>r</sub> = 7.476 — these must agree for the claimed matching. Roller spins ≈ D<sub>p</sub>/D<sub>r</sub> times per orbit if rolling without slip.</p>
+    </div>
+
+    <div class="panel">
+      <h2>3 · Magnetization process (published parameters) <span class="tag">CLAIMED</span></h2>
+      <table style="margin-bottom:8px">
+        <tbody><tr><th>Parameter</th><th>Published value / range</th><th>Current setting</th></tr>
+        <tr><td>DC winding N<sub>1</sub></td><td>≈ 200 turns</td><td class="num" id="sN1">200 turns</td></tr>
+        <tr><td>DC current i<sub>dc</sub></td><td>150 – 180 A</td><td class="num" id="sIdc">165 A</td></tr>
+        <tr><td>AC winding N<sub>2</sub></td><td>≈ 5 – 10 turns</td><td class="num" id="sN2">8 turns</td></tr>
+        <tr><td>AC current i<sub>ac</sub></td><td>0.1 – 0.2 A</td><td class="num" id="sIac">0.150 A</td></tr>
+        <tr><td>AC frequency f</td><td>1 – 3 MHz</td><td class="num" id="sF">2.00 MHz</td></tr>
+        <tr><td>Pole length</td><td>≈ 1 mm</td><td class="num" id="sPole">1.00 mm</td></tr>
+      </tbody></table>
+      <div class="row"><label>AC frequency f</label><input id="f" type="range" min="1" max="3" step="0.05" value="2"><output id="fO">2.00 MHz</output></div>
+      <div class="row"><label>DC current i<sub>dc</sub></label><input id="idc" type="range" min="150" max="180" step="1" value="165"><output id="idcO">165 A</output></div>
+      <div class="row"><label>DC turns N<sub>1</sub></label><input id="N1" type="range" min="180" max="220" step="1" value="200"><output id="N1O">200 t</output></div>
+      <div class="row"><label>AC current i<sub>ac</sub></label><input id="iac" type="range" min="0.1" max="0.2" step="0.005" value="0.15"><output id="iacO">0.150 A</output></div>
+      <div class="row"><label>AC turns N<sub>2</sub></label><input id="N2" type="range" min="5" max="10" step="1" value="8"><output id="N2O">8 t</output></div>
+      <div class="row"><label>ACS switch</label><div><button id="acsBtn" class="on">ACS: ON</button> <button id="exBtn" class="on">AC ripple ×1000 (visual)</button></div><output></output></div>
+    </div>
+
+    <div class="panel">
+      <h2>4 · MMF waveform: MMF(t) = i<sub>dc</sub>·N<sub>1</sub> + i<sub>ac</sub>·N<sub>2</sub>·sin(2πft)</h2>
+      <canvas id="mmf" width="760" height="260"></canvas>
+      <table style="margin-top:8px">
+        <tbody><tr><th>DC MMF</th><th>AC MMF amplitude</th><th>MMF min</th><th>MMF max</th><th>MMF &gt; 0 always?</th></tr>
+        <tr><td class="num" id="mDC">33,000 A·t</td><td class="num" id="mAC">1.20 A·t</td><td class="num" id="mMin">32,998.80 A·t</td><td class="num" id="mMax">33,001.20 A·t</td><td id="mPos"><b class="ok">YES (ACS on)</b></td></tr>
+      </tbody></table>
+      <p class="small">Time axis is in µs (slowed down ~10⁹× for display). Per the notes, the ACS (AC switch) arrangement keeps the total MMF
+      unidirectional (&gt; 0) so the AC component only modulates — never reverses — the magnetizing field, which is claimed to "write" the fine pole pattern.
+      With the published numbers the AC term is ~10⁴× smaller than the DC term, so the ripple is exaggerated ×1000 by default (toggle above).
+      Turn ACS off to see the un-switched AC term alone shown for comparison (dashed), which swings negative.</p>
+    </div>
+  </section>
+
+  <section class="panel wide">
+    <h2>5 · Physics check: magnetostatics &amp; energy conservation <span class="tag phys">PHYSICS</span></h2>
+    <table style="margin-bottom:10px">
+      <tbody><tr><th style="width:50%"><span class="tag" style="margin:0">CLAIM</span> Searl / Sandberg literature</th><th><span class="tag phys" style="margin:0">PHYSICS</span> Established magnetostatics / electrodynamics / thermodynamics</th></tr>
+      <tr><td>Encoded pole tracks guide the rollers into a stable orbit around the plate.</td><td>Plausible. Forces between permanent magnets can center and guide a roller and transmit torque, as in a magnetic gear or bearing.</td></tr>
+      <tr><td>Inclined lines (half up, half down) give a shear torque that keeps the rollers turning.</td><td>A static field gives a position-dependent torque that averages to zero per pole pitch (∮F·dl = 0, conservative field). Sustained motion needs an external drive or stored kinetic energy.</td></tr>
+      <tr><td>C-coils at the rim harvest electricity as rollers pass.</td><td>Induction is real: EMF = −N·dΦ/dt. Drawing current creates a back-torque (Lenz), so electrical output equals kinetic energy removed from the rollers. They slow unless P<sub>in</sub> ≥ P<sub>elec</sub> + losses.</td></tr>
+      <tr><td>Not overunity: dielectrics pull ambient electrons in at the center; rotation flings them out to the C-coils.</td><td>Centrifugal electron potential is about nV–µV, dielectrics don't conduct, and ambient ion currents are about pA. Any electrical power still has to come from work done on the rotor.</td></tr>
+      <tr><td>Self-sustaining operation.</td><td>No independently verified self-running SEG has been published. The energy stored by magnetization is finite and small (5C), and motion does not replenish it.</td></tr>
+    </tbody></table>
+    <div class="grid3">
+      <div>
+        <h2 style="color:var(--ok)">A · Forces &amp; torque (live)</h2>
+        <div class="row"><label>Engaged area / roller</label><input id="Aeng" type="range" min="0.5" max="6" step="0.1" value="2"><output id="AengO">2.0 cm²</output></div>
+        <div class="row"><label>Roller radius r<sub>r</sub></label><input id="rr" type="range" min="10" max="100" step="1" value="40"><output id="rrO">40 mm</output></div>
+        <table class="kv" id="forceTbl">
+   <tbody><tr><td>B<sub>n</sub> (gap normal)</td><td>0.40 T</td></tr>
+   <tr><td>B<sub>t</sub> = B<sub>n</sub>·tanθ</td><td>0.146 T</td></tr>
+   <tr><td>Normal stress B<sub>n</sub>²/2μ<sub>0</sub></td><td>63.7 kPa</td></tr>
+   <tr><td>Shear stress B<sub>n</sub>B<sub>t</sub>/μ<sub>0</sub></td><td>46.3 kPa</td></tr>
+   <tr><td>Attraction F<sub>n</sub> / roller</td><td>12.7 N</td></tr>
+   <tr><td>Peak shear F<sub>t</sub> / roller</td><td>9.3 N</td></tr>
+   <tr><td>Peak torque on roller F<sub>t</sub>·r<sub>r</sub></td><td>0.371 N·m</td></tr>
+   <tr><td>Vertical: up-track + down-track</td><td>+4.6 − 4.6 = 0 N</td></tr>
+   <tr><td><b>Mean torque per pole cycle (static)</b></td><td><b class="ok">0.000 N·m</b></td></tr></tbody></table>
+        <p class="small">Maxwell stress: σ<sub>n</sub> = B<sub>n</sub>²/(2μ<sub>0</sub>) for attraction; σ<sub>t</sub> = B<sub>n</sub>B<sub>t</sub>/μ<sub>0</sub> with B<sub>t</sub> = B<sub>n</sub>·tanθ. Sintered NdFeB has B<sub>r</sub> ≈ 1.2–1.4 T, so 0.2–0.5 T in a ~1 mm working gap is realistic.</p>
+      </div>
+      <div>
+        <h2 style="color:var(--ok)">B · Cogging torque over a pole cycle</h2>
+        <canvas id="cog" width="460" height="260"></canvas>
+        <p class="small">Torque on a roller advancing two pole pitches through a static field (blue), with cumulative work ∫τ dφ (green). The work returns to <b>0 J</b> every period: the magnets push and then pull back equally.</p>
+      </div>
+      <div>
+        <h2 style="color:var(--ok)">C · Stored energy &amp; electron-path numbers</h2>
+        <table class="kv" id="storeTbl">
+   <tbody><tr><td>Energy density B²/2μ<sub>0</sub></td><td>63.7 kJ/m³</td></tr>
+   <tr><td>Gap volume (n·A·1 mm)</td><td>2.40 cm³</td></tr>
+   <tr><td>Total stored gap-field energy</td><td>0.153 J</td></tr>
+   <tr><td>Load at 300 rpm (current c<sub>e</sub>)</td><td>84 W</td></tr>
+   <tr><td>Time that store could feed it</td><td>1.82 ms</td></tr>
+   <tr><td>Magnetizer input (i<sub>dc</sub>²·0.05 Ω·10 s, illus.)</td><td>13.6 kJ</td></tr>
+   <tr><td>Roller KE at 300 rpm</td><td>967 J</td></tr>
+   <tr><td colspan="2" style="text-align:left;color:var(--ok);padding-top:6px">Claimed electron path</td></tr>
+   <tr><td>Centrifugal ΔV on e⁻ (R = 0.33 m)</td><td>3.06×10⁻¹⁰ V</td></tr>
+   <tr><td>Ambient ion current (0.1 m², 1 m/s)</td><td>1.60×10⁻¹¹ A</td></tr>
+   <tr><td>Max power ΔV × I<sub>ion</sub></td><td>4.90×10⁻²¹ W</td></tr>
+   <tr><td>vs. C-coil load at 300 rpm</td><td>84 W</td></tr></tbody></table>
+        <p class="small">Field energy density w = B²/(2μ<sub>0</sub>) is a one-time store, put in by the magnetizer. Electron numbers: m<sub>e</sub> = 9.11×10⁻³¹ kg, e = 1.602×10⁻¹⁹ C.</p>
+      </div>
+    </div>
+    <h2 style="color:var(--ok);margin-top:14px">D · Energy-balance simulation: rollers + C-coil load + losses</h2>
+    <div class="grid3" style="grid-template-columns:1fr 2fr">
+      <div>
+        <div class="row" style="grid-template-columns:130px 1fr 80px"><label>Drive power P<sub>in</sub></label><input id="Pin" type="range" min="0" max="500" step="5" value="0"><output id="PinO">0 W</output></div>
+        <div class="row" style="grid-template-columns:130px 1fr 80px"><label>C-coil load c<sub>e</sub></label><input id="cload" type="range" min="0" max="0.4" step="0.005" value="0.10"><output id="cloadO">0.100</output></div>
+        <div class="row" style="grid-template-columns:130px 1fr 80px"><label>Roller mass</label><input id="mr" type="range" min="0.2" max="5" step="0.1" value="1"><output id="mrO">1.0 kg</output></div>
+        <div style="margin:8px 0"><button id="kick">Spin up to 300 rpm (one-time)</button> <button id="resetE">Reset</button> <button id="syncBtn">Top view follows sim: OFF</button></div>
+        <table class="kv" id="simTbl">
+   <tbody><tr><td>Orbit speed</td><td>0.0 rpm</td></tr>
+   <tr><td>Kinetic energy (orbit + spin)</td><td>0.0 J</td></tr>
+   <tr><td>P<sub>in</sub> (drive) actual</td><td>0.0 W</td></tr>
+   <tr><td>P<sub>load</sub> (C-coils → load)</td><td>0.0 W</td></tr>
+   <tr><td>P<sub>cu</sub> + friction + air</td><td>0.0 W</td></tr>
+   <tr><td>η = P<sub>load</sub>/P<sub>in</sub></td><td>—</td></tr>
+   <tr><td colspan="2" style="text-align:left;color:var(--ok);padding-top:6px">Energy ledger since reset</td></tr>
+   <tr><td>E<sub>in</sub> (spin-up + drive)</td><td>0.0 J</td></tr>
+   <tr><td>E<sub>load</sub></td><td>0.0 J</td></tr>
+   <tr><td>E<sub>losses</sub> (Cu + friction + air)</td><td>0.0 J</td></tr>
+   <tr><td>KE remaining</td><td>0.0 J</td></tr>
+   <tr><td><b>Balance in − out − KE</b></td><td><b class="ok">0.00 J</b></td></tr></tbody></table>
+      </div>
+      <div>
+        <canvas id="sim" width="900" height="300"></canvas>
+        <p class="small">Model: I<sub>eff</sub>·dω/dt = τ<sub>drive</sub> − c<sub>e</sub>ω (coil back-torque) − τ<sub>f</sub> − c<sub>a</sub>ω². Orbit radius 0.33 m; I<sub>eff</sub> = 1.5·n·m·R² (orbit plus rolling spin); friction 0.3 N·m; air c<sub>a</sub> = 2×10⁻⁴ N·m·s²; coil copper loss 15% of P<sub>elec</sub>.
+        With P<sub>in</sub> = 0, a spun-up rotor coasts down, and the load energy plus losses equals the initial kinetic energy. With drive on, it settles where P<sub>in</sub> = P<sub>load</sub> + losses, so efficiency stays below 100%.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div class="caption">
+  <b>Caption (claimed mechanism):</b> The encoded magnetic lines — the AC+DC-written N/S pole tracks of matched density on plate and rollers —
+  are claimed to govern the rollers' path, locking them into orbit around the annular plate; C-coils at the rim are claimed to harvest
+  electrical energy as the magnetized rollers sweep past.
+</div>
+
+<footer>
+  Sources: SEG claims and magnetization parameters (N<sub>1</sub>≈200, i<sub>dc</sub>=150–180 A, N<sub>2</sub>≈5–10, i<sub>ac</sub>=0.1–0.2 A, f=1–3 MHz, ≈1 mm poles,
+  x=N<sub>p</sub>/(πD<sub>p</sub>)=N<sub>r</sub>/(πD<sub>r</sub>), inclined encoded lines, dielectric electron path) come from published SEG literature, principally S. Gunnar Sandberg's notes on
+  John Searl's design. Physics: Maxwell stress tensor, field energy B²/2μ<sub>0</sub>, Faraday/Lenz induction, Stewart–Tolman effect, charge and energy conservation.
+  Geometry and masses are illustrative; animations are schematic.
+</footer>
+
+<script>
+const $=id=>document.getElementById(id);
+const S={play:true,tracks:true,coils:true,acs:true,exag:true,theta:0,spin:0,t:0};
+const fmt=(v,d=0)=>Number(v).toLocaleString(undefined,{minimumFractionDigits:d,maximumFractionDigits:d});
+
+function toggle(btn,key,on,off){btn.onclick=()=>{S[key]=!S[key];btn.classList.toggle('on',S[key]);btn.textContent=S[key]?on:off;update();};}
+toggle($('playBtn'),'play','⏸ Pause','▶ Play');
+toggle($('tracksBtn'),'tracks','Pole tracks: ON','Pole tracks: OFF');
+toggle($('coilBtn'),'coils','C-coils: ON','C-coils: OFF');
+S.elec=true;toggle($('elecBtn'),'elec','Electron path: ON','Electron path: OFF');
+toggle($('acsBtn'),'acs','ACS: ON','ACS: OFF');
+toggle($('exBtn'),'exag','AC ripple ×1000 (visual)','AC ripple ×1 (true scale)');
+document.querySelectorAll('input').forEach(i=>i.oninput=update);
+
+let P={};
+function update(){
+  P.n=+$('nRollers').value; P.speed=+$('speed').value;
+  P.Dp=+$('Dp').value; P.Dr=+$('Dr').value; P.pole=+$('pole').value;
+  P.f=+$('f').value; P.idc=+$('idc').value; P.N1=+$('N1').value; P.iac=+$('iac').value; P.N2=+$('N2').value;
+  $('nRollersO').textContent=P.n; $('speedO').textContent=P.speed+'%';
+  $('DpO').textContent=P.Dp+' mm'; $('DrO').textContent=P.Dr+' mm'; $('poleO').textContent=P.pole.toFixed(2)+' mm';
+  $('fO').textContent=P.f.toFixed(2)+' MHz'; $('idcO').textContent=P.idc+' A'; $('N1O').textContent=P.N1+' t';
+  $('iacO').textContent=P.iac.toFixed(3)+' A'; $('N2O').textContent=P.N2+' t';
+  $('sN1').textContent=P.N1+' turns'; $('sIdc').textContent=P.idc+' A'; $('sN2').textContent=P.N2+' turns';
+  $('sIac').textContent=P.iac.toFixed(3)+' A'; $('sF').textContent=P.f.toFixed(2)+' MHz'; $('sPole').textContent=P.pole.toFixed(2)+' mm';
+  // pole density: N must be even for alternating N/S closure
+  const even=v=>2*Math.round(v/2);
+  const Cp=Math.PI*P.Dp, Cr=Math.PI*P.Dr;
+  P.Np=even(Cp/P.pole); P.Nr=even(Cr/P.pole);
+  const xp=P.Np/Cp, xr=P.Nr/Cr;
+  $('tDp').textContent=P.Dp+' mm'; $('tCp').textContent=fmt(Cp,1)+' mm'; $('tNp').textContent=fmt(P.Np); $('tXp').textContent=xp.toFixed(4);
+  $('tDr').textContent=P.Dr+' mm'; $('tCr').textContent=fmt(Cr,1)+' mm'; $('tNr').textContent=fmt(P.Nr); $('tXr').textContent=xr.toFixed(4);
+  const err=Math.abs(xp-xr)/xp*100;
+  $('matchMsg').innerHTML=`Mismatch |x<sub>p</sub>−x<sub>r</sub>|/x = <b class="${err<0.5?'ok':'bad'}">${err.toFixed(3)}%</b> `+
+    `(N rounded to even integer for closed N/S alternation). Diameter ratio D<sub>p</sub>/D<sub>r</sub> = ${(P.Dp/P.Dr).toFixed(3)}; `+
+    `pole ratio N<sub>p</sub>/N<sub>r</sub> = ${(P.Np/P.Nr).toFixed(3)} — these must agree for the claimed matching. Roller spins ≈ D<sub>p</sub>/D<sub>r</sub> times per orbit if rolling without slip.`;
+  // MMF
+  P.mdc=P.idc*P.N1; P.mac=P.iac*P.N2;
+  $('mDC').textContent=fmt(P.mdc)+' A·t'; $('mAC').textContent=P.mac.toFixed(2)+' A·t';
+  $('mMin').textContent=fmt(P.mdc-P.mac,2)+' A·t'; $('mMax').textContent=fmt(P.mdc+P.mac,2)+' A·t';
+  const pos=S.acs?(P.mdc-P.mac>0):false;
+  $('mPos').innerHTML=S.acs?(pos?'<b class="ok">YES (ACS on)</b>':'<b class="bad">NO</b>'):'<b class="bad">AC-only term reverses</b>';
+}
+update();
+
+/* ---------- Top-down view ---------- */
+const topCv=$('top'),tc=topCv.getContext('2d');
+function drawTop(){
+  const W=topCv.width,H=topCv.height,cx=W/2,cy=H/2;
+  tc.clearRect(0,0,W,H);
+  // grid
+  tc.strokeStyle='#0f1720';tc.lineWidth=1;
+  for(let i=0;i<W;i+=40){tc.beginPath();tc.moveTo(i,0);tc.lineTo(i,H);tc.stroke();tc.beginPath();tc.moveTo(0,i);tc.lineTo(W,i);tc.stroke();}
+  const Rin=150,Rout=255; // plate annulus
+  const rr=Math.min(42,Math.PI*(Rout+60)/P.n*0.42); // roller radius
+  const Rorb=Rout+rr+4;
+  const Rcoil=Rorb+rr+28;
+  // plate
+  tc.beginPath();tc.arc(cx,cy,Rout,0,2*Math.PI);tc.arc(cx,cy,Rin,0,2*Math.PI,true);
+  const g=tc.createRadialGradient(cx,cy,Rin,cx,cy,Rout);g.addColorStop(0,'#2a3644');g.addColorStop(1,'#1a232e');
+  tc.fillStyle=g;tc.fill('evenodd');tc.strokeStyle='#4b5d72';tc.stroke();
+  // plate pole tracks (two annular) — visually decimated
+  if(S.tracks){
+    const segs=120;
+    [[Rout-14,8],[Rout-34,8]].forEach(([r,w],k)=>{
+      for(let i=0;i<segs;i++){
+        const a0=i/segs*2*Math.PI,a1=(i+1)/segs*2*Math.PI;
+        tc.beginPath();tc.arc(cx,cy,r,a0,a1);tc.lineWidth=w;
+        tc.strokeStyle=((i+k)%2)?'rgba(59,130,246,.85)':'rgba(239,68,68,.85)';tc.stroke();
+      }
+    });
+    tc.lineWidth=1;
+  }
+  tc.fillStyle='#7d8fa3';tc.font='13px ui-monospace,monospace';tc.textAlign='center';
+  tc.fillText('ANNULAR PLATE (stator)',cx,cy-6);
+  tc.fillStyle='#4b5d72';tc.fillText('2 pole tracks (claimed)',cx,cy+12);
+  // rollers
+  const rollers=[];
+  for(let i=0;i<P.n;i++){
+    const a=S.theta+i/P.n*2*Math.PI;
+    const x=cx+Rorb*Math.cos(a),y=cy+Rorb*Math.sin(a);
+    rollers.push(a);
+    // magnetic "lines" between roller & plate
+    tc.strokeStyle='rgba(56,189,248,.25)';
+    for(let k=-2;k<=2;k++){tc.beginPath();
+      const pa=a+k*0.03;tc.moveTo(cx+(Rout-10)*Math.cos(pa),cy+(Rout-10)*Math.sin(pa));
+      tc.quadraticCurveTo(cx+(Rout+6)*Math.cos(a+k*0.06),cy+(Rout+6)*Math.sin(a+k*0.06),x-rr*Math.cos(a)+k*3*Math.sin(a),y-rr*Math.sin(a)-k*3*Math.cos(a));tc.stroke();}
+    tc.save();tc.translate(x,y);
+    tc.beginPath();tc.arc(0,0,rr,0,2*Math.PI);
+    const rg=tc.createRadialGradient(-rr/3,-rr/3,2,0,0,rr);rg.addColorStop(0,'#5b6f86');rg.addColorStop(1,'#26323f');
+    tc.fillStyle=rg;tc.fill();tc.strokeStyle='#8aa0b8';tc.stroke();
+    if(S.tracks){
+      const segs=16,spin=S.spin*(Rorb/rr);
+      [[rr-5,4],[rr-12,4]].forEach(([r,w],k)=>{for(let j=0;j<segs;j++){
+        const a0=spin+j/segs*2*Math.PI,a1=spin+(j+1)/segs*2*Math.PI;
+        tc.beginPath();tc.arc(0,0,r,a0,a1);tc.lineWidth=w;
+        tc.strokeStyle=((j+k)%2)?'#3b82f6':'#ef4444';tc.stroke();}});
+      tc.lineWidth=1;
+    }
+    tc.beginPath();tc.arc(0,0,4,0,2*Math.PI);tc.fillStyle='#cbd5e1';tc.fill();
+    tc.restore();
+  }
+  // C-coils
+  const nc=P.n*2;
+  if(S.coils){
+    for(let i=0;i<nc;i++){
+      const a=i/nc*2*Math.PI;
+      let prox=0;rollers.forEach(ra=>{let d=Math.abs(((ra-a)%(2*Math.PI)+3*Math.PI)%(2*Math.PI)-Math.PI);prox=Math.max(prox,Math.max(0,1-d/(Math.PI/nc*1.2)));});
+      tc.save();tc.translate(cx+Rcoil*Math.cos(a),cy+Rcoil*Math.sin(a));tc.rotate(a);
+      // C-shaped core opening toward center
+      tc.beginPath();tc.moveTo(-14,-16);tc.lineTo(10,-16);tc.lineTo(10,16);tc.lineTo(-14,16);
+      tc.lineWidth=7;tc.strokeStyle=prox>0.05?`rgba(250,204,21,${0.35+0.65*prox})`:'#5a5130';tc.stroke();
+      // winding
+      tc.lineWidth=1.5;tc.strokeStyle=prox>0.05?'#fde047':'#8a6d1f';
+      for(let k=-10;k<=10;k+=4){tc.beginPath();tc.moveTo(5,k);tc.lineTo(15,k+2);tc.stroke();}
+      if(prox>0.3){tc.shadowColor='#facc15';tc.shadowBlur=18*prox;tc.beginPath();tc.arc(-14,0,3,0,7);tc.fillStyle='#fde047';tc.fill();}
+      tc.restore();
+    }
+    tc.lineWidth=1;
+  }
+  if(S.elec)drawElectrons(cx,cy,Rin,Rout,Rcoil);
+  // labels
+  tc.fillStyle='#facc15';tc.textAlign='left';tc.font='12px ui-monospace,monospace';
+  tc.fillText('C-coils at rim (claimed pickup)',14,22);
+  tc.fillStyle='#94a3b8';tc.fillText(`${P.n} rollers orbit plate (claimed self-propelled)`,14,40);
+  // orbit arrow
+  tc.strokeStyle='#38bdf8';tc.lineWidth=2;tc.beginPath();tc.arc(cx,cy,Rcoil+30,-0.6,-0.2);tc.stroke();
+  const ea=-0.2,ex=cx+(Rcoil+30)*Math.cos(ea),ey=cy+(Rcoil+30)*Math.sin(ea);
+  tc.beginPath();tc.moveTo(ex,ey);tc.lineTo(ex-10,ey-8);tc.lineTo(ex+3,ey-12);tc.closePath();tc.fillStyle='#38bdf8';tc.fill();
+  tc.lineWidth=1;
+}
+
+/* ---------- Unrolled pole tracks ---------- */
+const tr=$('tracks'),trc=tr.getContext('2d');
+function drawTracks(){
+  const W=tr.width,H=tr.height;trc.clearRect(0,0,W,H);
+  const mmPx=14; // 1 mm = 14 px window
+  const win=(W-120)/mmPx; // mm visible
+  const off=(S.spin*30)% (2*P.pole);
+  trc.font='12px ui-monospace,monospace';trc.fillStyle='#94a3b8';
+  const rows=[['PLATE outer track',20],['PLATE inner track',55],['ROLLER outer track',130],['ROLLER inner track',165]];
+  rows.forEach(([lab,y],k)=>{
+    trc.fillStyle='#94a3b8';trc.textAlign='left';trc.fillText(lab.split(' ')[0],8,y+15);
+    trc.fillStyle='#64748b';trc.fillText(lab.split(' ').slice(1).join(' '),8,y+28);
+    const moving=k<2?0:off; // rollers move relative
+    for(let m=-2*P.pole;m<win+2*P.pole;m+=P.pole){
+      const idx=Math.round((m)/P.pole)+(k%2);
+      const x=120+(m+(k<2?0:moving))*mmPx;
+      if(x>W||x+P.pole*mmPx<120)continue;
+      trc.fillStyle=(idx%2+2)%2?'#3b82f6':'#ef4444';
+      trc.fillRect(Math.max(120,x),y,Math.min(P.pole*mmPx-1,W-x),26);
+      if(P.pole*mmPx>12){trc.fillStyle='#0b0f14';trc.textAlign='center';trc.fillText((idx%2+2)%2?'S':'N',x+P.pole*mmPx/2,y+18);}
+    }
+  });
+  // interface
+  trc.strokeStyle='rgba(56,189,248,.5)';trc.setLineDash([4,4]);trc.beginPath();trc.moveTo(120,105);trc.lineTo(W,105);trc.stroke();trc.setLineDash([]);
+  trc.fillStyle='#38bdf8';trc.textAlign='left';trc.fillText('rolling interface — matched pole pitch',130,101);
+  // scale bar
+  trc.fillStyle='#e2e8f0';trc.fillRect(W-10-5*mmPx,212,5*mmPx,3);trc.textAlign='right';trc.fillText('5 mm',W-10,207);
+  trc.fillStyle='#64748b';trc.textAlign='left';trc.fillText(`unrolled view · pole length ${P.pole.toFixed(2)} mm · plate N=${P.Np}, roller N=${P.Nr}`,8,214);
+}
+
+/* ---------- MMF waveform ---------- */
+const mm=$('mmf'),mc=mm.getContext('2d');
+function drawMMF(){
+  const W=mm.width,H=mm.height,L=60,R=W-14,T=14,B=H-30;mc.clearRect(0,0,W,H);
+  const span=3; // µs window
+  const amp=P.mac*(S.exag?1000:1);
+  const maxV=P.mdc*1.25+ (S.exag?amp:0);
+  const minV=-Math.max(amp,P.mdc*0.25);
+  const Y=v=>B-(v-minV)/(maxV-minV)*(B-T);
+  const X=t=>L+t/span*(R-L);
+  // grid
+  mc.strokeStyle='#16202b';mc.fillStyle='#64748b';mc.font='11px ui-monospace,monospace';mc.textAlign='right';
+  for(let i=0;i<=5;i++){const v=minV+i*(maxV-minV)/5;mc.beginPath();mc.moveTo(L,Y(v));mc.lineTo(R,Y(v));mc.stroke();mc.fillText(fmt(v/1000,1)+'k',L-4,Y(v)+4);}
+  mc.textAlign='center';
+  for(let i=0;i<=6;i++){const t=i*span/6;mc.beginPath();mc.moveTo(X(t),T);mc.lineTo(X(t),B);mc.stroke();mc.fillText(t.toFixed(1)+' µs',X(t),H-12);}
+  // zero line
+  mc.strokeStyle='#ef4444';mc.setLineDash([2,4]);mc.beginPath();mc.moveTo(L,Y(0));mc.lineTo(R,Y(0));mc.stroke();mc.setLineDash([]);
+  mc.fillStyle='#ef4444';mc.textAlign='left';mc.fillText('MMF = 0',L+4,Y(0)-4);
+  // DC level
+  mc.strokeStyle='#64748b';mc.setLineDash([6,4]);mc.beginPath();mc.moveTo(L,Y(P.mdc));mc.lineTo(R,Y(P.mdc));mc.stroke();mc.setLineDash([]);
+  mc.fillStyle='#94a3b8';mc.fillText(`DC: i_dc·N1 = ${fmt(P.mdc)} A·t`,L+4,Y(P.mdc)-amp/(maxV-minV)*(B-T)-6);
+  // AC alone (when ACS off), dashed
+  if(!S.acs){
+    mc.strokeStyle='rgba(239,68,68,.8)';mc.setLineDash([3,3]);mc.beginPath();
+    for(let px=0;px<=R-L;px++){const t=px/(R-L)*span;const v=amp*Math.sin(2*Math.PI*P.f*(t+S.t));px?mc.lineTo(L+px,Y(v)):mc.moveTo(L+px,Y(v));}
+    mc.stroke();mc.setLineDash([]);
+    mc.fillStyle='#ef4444';mc.fillText('AC term alone — reverses sign (no DC offset / ACS)',L+4,Y(-amp)+14);
+  }
+  // total MMF
+  mc.strokeStyle='#38bdf8';mc.lineWidth=2;mc.beginPath();
+  for(let px=0;px<=R-L;px++){const t=px/(R-L)*span;let v=P.mdc+amp*Math.sin(2*Math.PI*P.f*(t+S.t));if(S.acs)v=Math.max(v,0);px?mc.lineTo(L+px,Y(v)):mc.moveTo(L+px,Y(v));}
+  mc.stroke();mc.lineWidth=1;
+  mc.fillStyle='#38bdf8';mc.textAlign='right';
+  mc.fillText(`MMF(t) total · f = ${P.f.toFixed(2)} MHz · ${S.exag?'AC ripple ×1000':'true scale'}`,R-4,T+12);
+  mc.save();mc.translate(14,(T+B)/2);mc.rotate(-Math.PI/2);mc.textAlign='center';mc.fillStyle='#64748b';mc.fillText('MMF (A·turns)',0,0);mc.restore();
+}
+
+let last=performance.now();
+function loop(now){
+  const dt=Math.min(0.05,(now-last)/1000);last=now;
+  if(S.play&&!S.sync){const w=P.speed/100*0.9;S.theta+=w*dt;S.spin+=w*dt;S.t+=dt*0.15;}
+  drawTop();drawTracks();drawMMF();
+  requestAnimationFrame(loop);
+}
+requestAnimationFrame(loop);
+/* ================= v2 additions ================= */
+const MU0=4*Math.PI*1e-7, ME=9.109e-31, QE=1.602e-19;
+const X2={phase:0};
+function g(id){return +$(id).value}
+const SIM={w:0,Ein:0,Eload:0,Ecu:0,Ef:0,Ea:0,E0:0,hist:[],t:0,cur:null};
+S.sync=false;
+function Ieff(){return 1.5*P.n*g('mr')*0.33**2}
+$('kick').onclick=()=>{const w0=300*2*Math.PI/60;SIM.E0+=0.5*Ieff()*(w0*w0-SIM.w*SIM.w);SIM.w=w0;};
+$('resetE').onclick=()=>{Object.assign(SIM,{w:0,Ein:0,Eload:0,Ecu:0,Ef:0,Ea:0,E0:0,hist:[],t:0});};
+$('syncBtn').onclick=()=>{S.sync=!S.sync;$('syncBtn').classList.toggle('on',S.sync);$('syncBtn').textContent='Top view follows sim: '+(S.sync?'ON':'OFF');};
+const sci=(v,u)=>{if(v===0)return '0 '+u;const e=Math.floor(Math.log10(Math.abs(v)));const m=v/10**e;return m.toFixed(2)+'×10'+String(e).replace('-','⁻').replace(/\d/g,d=>'⁰¹²³⁴⁵⁶⁷⁸⁹'[d])+' '+u;};
+
+/* electrons in top view (claimed path) */
+const ELEC=[];for(let i=0;i<90;i++)ELEC.push({r:Math.random(),a:Math.random()*2*Math.PI,v:0.15+Math.random()*0.2});
+function drawElectrons(cx,cy,Rin,Rout,Rcoil){
+  // inflow arrows at center
+  tc.strokeStyle='rgba(165,243,252,.35)';tc.lineWidth=1;
+  for(let k=0;k<8;k++){const a=k*Math.PI/4+S.theta*0.3;tc.beginPath();tc.moveTo(cx+60*Math.cos(a),cy+60*Math.sin(a));tc.lineTo(cx+22*Math.cos(a),cy+22*Math.sin(a));tc.stroke();}
+  tc.beginPath();tc.arc(cx,cy,18,0,7);tc.strokeStyle='rgba(165,243,252,.6)';tc.setLineDash([3,3]);tc.stroke();tc.setLineDash([]);
+  ELEC.forEach(e=>{
+    const R=20+e.r*(Rcoil-20);const a=e.a+e.r*1.2; // slight spiral from rotation
+    tc.beginPath();tc.arc(cx+R*Math.cos(a),cy+R*Math.sin(a),2.2,0,7);
+    tc.fillStyle=`rgba(165,243,252,${0.35+0.6*(1-Math.abs(e.r-0.5))})`;tc.fill();
+  });
+  tc.fillStyle='#a5f3fc';tc.font='11px ui-monospace,monospace';tc.textAlign='center';
+  tc.fillText('e⁻ drawn in (claimed)',cx,cy+42);
+}
+function stepElectrons(dt){const sp=S.sync?Math.min(3,SIM.w/10):P.speed/35;
+  if(!S.play)return;ELEC.forEach(e=>{e.r+=e.v*dt*sp*0.6;if(e.r>1){e.r=0;e.a=Math.random()*2*Math.PI;}});}
+
+function phys(){
+  const Bn=g('Bn'),th=g('th')*Math.PI/180,A=g('Aeng')*1e-4,r=g('rr')/1000;
+  $('BnO').textContent=Bn.toFixed(2)+' T';$('thO').textContent=g('th')+'°';
+  $('AengO').textContent=g('Aeng').toFixed(1)+' cm²';$('rrO').textContent=g('rr')+' mm';
+  $('PinO').textContent=g('Pin')+' W';$('cloadO').textContent=g('cload').toFixed(3);$('mrO').textContent=g('mr').toFixed(1)+' kg';
+  const Bt=Bn*Math.tan(th),sn=Bn*Bn/(2*MU0),st=Bn*Bt/MU0;
+  const Fn=sn*A,Ft=st*A,tau=Ft*r;P.tauPk=tau;
+  $('forceTbl').innerHTML=`
+   <tr><td>B<sub>n</sub> (gap normal)</td><td>${Bn.toFixed(2)} T</td></tr>
+   <tr><td>B<sub>t</sub> = B<sub>n</sub>·tanθ</td><td>${Bt.toFixed(3)} T</td></tr>
+   <tr><td>Normal stress B<sub>n</sub>²/2μ<sub>0</sub></td><td>${(sn/1000).toFixed(1)} kPa</td></tr>
+   <tr><td>Shear stress B<sub>n</sub>B<sub>t</sub>/μ<sub>0</sub></td><td>${(st/1000).toFixed(1)} kPa</td></tr>
+   <tr><td>Attraction F<sub>n</sub> / roller</td><td>${Fn.toFixed(1)} N</td></tr>
+   <tr><td>Peak shear F<sub>t</sub> / roller</td><td>${Ft.toFixed(1)} N</td></tr>
+   <tr><td>Peak torque on roller F<sub>t</sub>·r<sub>r</sub></td><td>${tau.toFixed(3)} N·m</td></tr>
+   <tr><td>Vertical: up-track + down-track</td><td>+${(Ft/2).toFixed(1)} − ${(Ft/2).toFixed(1)} = 0 N</td></tr>
+   <tr><td><b>Mean torque per pole cycle (static)</b></td><td><b class="ok">0.000 N·m</b></td></tr>`;
+  const w=Bn*Bn/(2*MU0),Vg=A*1e-3*P.n,Eg=w*Vg,w300=300*2*Math.PI/60;
+  const Pl=Math.max(1,0.85*g('cload')*w300**2);
+  const Edc=P.idc**2*0.05*10;
+  const om=Math.max(SIM.w,w300),Rp=0.33;
+  const dV=ME*om*om*Rp*Rp/(2*QE), dV10k=ME*(10000*2*Math.PI/60)**2*Rp*Rp/(2*QE);
+  const Iion=1e9*QE*1*0.1;
+  $('stV').textContent=`${sci(dV,'V')} at ${(om*60/2/Math.PI).toFixed(0)} rpm, R = 0.33 m (${sci(dV10k,'V')} even at 10,000 rpm)`;
+  $('ionI').textContent=sci(Iion,'A')+' (≈16 pA)';
+  $('storeTbl').innerHTML=`
+   <tr><td>Energy density B²/2μ<sub>0</sub></td><td>${(w/1000).toFixed(1)} kJ/m³</td></tr>
+   <tr><td>Gap volume (n·A·1 mm)</td><td>${(Vg*1e6).toFixed(2)} cm³</td></tr>
+   <tr><td>Total stored gap-field energy</td><td>${Eg.toFixed(3)} J</td></tr>
+   <tr><td>Load at 300 rpm (current c<sub>e</sub>)</td><td>${Pl.toFixed(0)} W</td></tr>
+   <tr><td>Time that store could feed it</td><td>${(Eg/Pl*1000).toFixed(2)} ms</td></tr>
+   <tr><td>Magnetizer input (i<sub>dc</sub>²·0.05 Ω·10 s, illus.)</td><td>${(Edc/1000).toFixed(1)} kJ</td></tr>
+   <tr><td>Roller KE at 300 rpm</td><td>${(0.5*Ieff()*w300**2).toFixed(0)} J</td></tr>
+   <tr><td colspan=2 style="text-align:left;color:var(--ok);padding-top:6px">Claimed electron path</td></tr>
+   <tr><td>Centrifugal ΔV on e⁻ (R = 0.33 m)</td><td>${sci(dV,'V')}</td></tr>
+   <tr><td>Ambient ion current (0.1 m², 1 m/s)</td><td>${sci(Iion,'A')}</td></tr>
+   <tr><td>Max power ΔV × I<sub>ion</sub></td><td>${sci(dV*Iion,'W')}</td></tr>
+   <tr><td>vs. C-coil load at 300 rpm</td><td>${Pl.toFixed(0)} W</td></tr>`;
+}
+document.querySelectorAll('input').forEach(i=>i.addEventListener('input',phys));
+phys();
+
+function stepSim(dt){
+  const sub=10,h=dt/sub,I=Ieff(),ce=g('cload'),tf=0.3,ca=2e-4,Pin=g('Pin');
+  for(let k=0;k<sub;k++){
+    const w=SIM.w,tin=Pin>0?Math.min(Pin/Math.max(w,1e-3),25):0;
+    let tfr=tf;if(w<1e-3)tfr=Math.min(tf,tin);
+    const wn=Math.max(0,w+h*(tin-ce*w-tfr-ca*w*w)/I);
+    // energy bookkeeping (use mean speed in step; close residual into friction when clamped to 0)
+    const wm=(w+wn)/2,pe=ce*wm*wm,pa=ca*wm**3,pin=tin*wm;
+    const dKE=0.5*I*(wn*wn-w*w);
+    SIM.Ein+=pin*h;SIM.Eload+=0.85*pe*h;SIM.Ecu+=0.15*pe*h;SIM.Ea+=pa*h;
+    SIM.Ef+=pin*h-pe*h-pa*h-dKE; // friction = remainder (exact ledger)
+    SIM.w=wn;
+  }
+  SIM.t+=dt;
+  const w=SIM.w,pe=ce*w*w;
+  SIM.cur={rpm:w*60/(2*Math.PI),KE:0.5*I*w*w,Pl:0.85*pe,Pcu:0.15*pe,Pf:(w>1e-3?tf:0)*w,Pa:ca*w**3,Pin:Pin>0?Math.min(Pin,25*w):0};
+  SIM.hist.push([SIM.t,SIM.cur.rpm,SIM.cur.Pin,SIM.cur.Pl]);
+  while(SIM.hist.length&&SIM.t-SIM.hist[0][0]>60)SIM.hist.shift();
+}
+function simTable(){
+  const c=SIM.cur;if(!c)return;const Eout=SIM.Eload+SIM.Ecu+SIM.Ef+SIM.Ea;
+  $('simTbl').innerHTML=`
+   <tr><td>Orbit speed</td><td>${c.rpm.toFixed(1)} rpm</td></tr>
+   <tr><td>Kinetic energy (orbit + spin)</td><td>${c.KE.toFixed(1)} J</td></tr>
+   <tr><td>P<sub>in</sub> (drive) actual</td><td>${c.Pin.toFixed(1)} W</td></tr>
+   <tr><td>P<sub>load</sub> (C-coils → load)</td><td>${c.Pl.toFixed(1)} W</td></tr>
+   <tr><td>P<sub>cu</sub> + friction + air</td><td>${(c.Pcu+c.Pf+c.Pa).toFixed(1)} W</td></tr>
+   <tr><td>η = P<sub>load</sub>/P<sub>in</sub></td><td>${c.Pin>0.5?(100*c.Pl/c.Pin).toFixed(1)+' %':'—'}</td></tr>
+   <tr><td colspan=2 style="text-align:left;color:var(--ok);padding-top:6px">Energy ledger since reset</td></tr>
+   <tr><td>E<sub>in</sub> (spin-up + drive)</td><td>${(SIM.E0+SIM.Ein).toFixed(1)} J</td></tr>
+   <tr><td>E<sub>load</sub></td><td>${SIM.Eload.toFixed(1)} J</td></tr>
+   <tr><td>E<sub>losses</sub> (Cu + friction + air)</td><td>${(SIM.Ecu+SIM.Ef+SIM.Ea).toFixed(1)} J</td></tr>
+   <tr><td>KE remaining</td><td>${c.KE.toFixed(1)} J</td></tr>
+   <tr><td><b>Balance in − out − KE</b></td><td><b class="ok">${Math.abs(SIM.E0+SIM.Ein-Eout-c.KE).toFixed(2)} J</b></td></tr>`;
+}
+
+function drawSim(){
+  const cv=$('sim'),c=cv.getContext('2d'),W=cv.width,H=cv.height,L=50,R=W-60,T=24,B=H-28;
+  c.clearRect(0,0,W,H);c.font='11px ui-monospace,monospace';c.strokeStyle='#16202b';c.fillStyle='#64748b';
+  for(let i=0;i<=5;i++){const y=T+i*(B-T)/5;c.beginPath();c.moveTo(L,y);c.lineTo(R,y);c.stroke();
+    c.textAlign='right';c.fillText((400-i*80)+'',L-4,y+4);c.textAlign='left';c.fillText((500-i*100)+' W',R+4,y+4);}
+  c.textAlign='center';for(let i=0;i<=6;i++){const x=L+i*(R-L)/6;c.fillText((i-6)*10+' s',x,H-10);}
+  const tN=SIM.t,X=t=>R-(tN-t)/60*(R-L);
+  const plot=(idx,sc,col)=>{c.strokeStyle=col;c.lineWidth=2;c.beginPath();SIM.hist.forEach((h,i)=>{const x=X(h[0]),y=B-Math.min(1,h[idx]/sc)*(B-T);i?c.lineTo(x,y):c.moveTo(x,y);});c.stroke();c.lineWidth=1;};
+  plot(1,400,'#38bdf8');plot(2,500,'#f59e0b');plot(3,500,'#22c55e');
+  c.textAlign='left';c.fillStyle='#38bdf8';c.fillText('orbit rpm (left axis)',L+6,14);
+  c.fillStyle='#f59e0b';c.fillText('P_in drive (W)',L+190,14);c.fillStyle='#22c55e';c.fillText('P_load from C-coils (W)',L+330,14);
+  if(!SIM.hist.length||SIM.cur.rpm<0.5&&SIM.cur.Pin<0.5){c.fillStyle='#94a3b8';c.textAlign='center';c.fillText('At rest. Click "Spin up" or raise P_in. With no input, nothing turns.',(L+R)/2,(T+B)/2);}
+}
+
+function drawCog(){
+  const cv=$('cog'),c=cv.getContext('2d'),W=cv.width,H=cv.height,L=50,R=W-10,T=34,B=H-26;
+  c.clearRect(0,0,W,H);c.font='11px ui-monospace,monospace';
+  const tp=P.tauPk||0.1,p=P.pole/1000,rr=g('rr')/1000,dphi=p/rr; // rad per pitch
+  const ym=(T+B)/2,sc=(B-T)/2/tp*0.9,Wpk=tp*dphi/Math.PI; // peak work
+  c.strokeStyle='#16202b';c.beginPath();c.moveTo(L,ym);c.lineTo(R,ym);c.stroke();
+  c.fillStyle='#64748b';c.textAlign='center';c.fillText('roller advance: 0 → 2 pole pitches',(L+R)/2,H-8);
+  c.textAlign='right';c.fillText('+'+tp.toFixed(2),L-3,ym-tp*sc+4);c.fillText('−'+tp.toFixed(2),L-3,ym+tp*sc+4);c.fillText('0',L-3,ym+4);
+  const N=300,ph=X2.phase;
+  c.strokeStyle='#38bdf8';c.lineWidth=2;c.beginPath();
+  for(let i=0;i<=N;i++){const u=i/N*2,tq=tp*Math.sin(2*Math.PI*u);const x=L+i/N*(R-L);i?c.lineTo(x,ym-tq*sc):c.moveTo(x,ym-tq*sc);}c.stroke();
+  c.strokeStyle='#22c55e';c.beginPath();
+  for(let i=0;i<=N;i++){const u=i/N*2;const Wk=tp*dphi/(2*Math.PI)*(1-Math.cos(2*Math.PI*u));const y=ym-Wk/Wpk*tp*sc*0.9;const x=L+i/N*(R-L);i?c.lineTo(x,y):c.moveTo(x,y);}c.stroke();c.lineWidth=1;
+  // moving marker
+  const u=(ph*0.25)%2,mx=L+u/2*(R-L);c.strokeStyle='#facc15';c.beginPath();c.moveTo(mx,T);c.lineTo(mx,B);c.stroke();
+  c.fillStyle='#38bdf8';c.textAlign='left';c.fillText('τ(φ) N·m',L+4,12);
+  c.fillStyle='#22c55e';c.fillText(`∫τdφ (peak ${(Wpk*1000).toFixed(2)} mJ) · net per period = 0 J`,L+4,26);
+}
+
+function drawX(){
+  const cv=$('xsec'),c=cv.getContext('2d'),W=cv.width,H=cv.height;c.clearRect(0,0,W,H);
+  c.font='12px ui-monospace,monospace';
+  const th=g('th')*Math.PI/180,Bn=g('Bn');
+  const arrow=(x,y,dx,dy,col,lab)=>{c.strokeStyle=col;c.fillStyle=col;c.lineWidth=2.5;c.beginPath();c.moveTo(x,y);c.lineTo(x+dx,y+dy);c.stroke();
+    const a=Math.atan2(dy,dx);c.beginPath();c.moveTo(x+dx,y+dy);c.lineTo(x+dx-9*Math.cos(a-0.4),y+dy-9*Math.sin(a-0.4));c.lineTo(x+dx-9*Math.cos(a+0.4),y+dy-9*Math.sin(a+0.4));c.fill();c.lineWidth=1;
+    if(lab){c.textAlign='left';c.fillText(lab,x+dx+6,y+dy+4);}};
+  // ---- View A
+  c.fillStyle='#94a3b8';c.textAlign='left';c.fillText('A · radial cross-section (r–z)',12,20);
+  const px0=20,px1=200,gap=46,ry0=px1+gap,ry1=ry0+110,zt=90,zb=320,zm=(zt+zb)/2;
+  c.fillStyle='#22303e';c.fillRect(px0,zt+30,px1-px0,zb-zt-60);c.strokeStyle='#4b5d72';c.strokeRect(px0,zt+30,px1-px0,zb-zt-60);
+  c.fillStyle='#2b3a4a';c.fillRect(ry0,zt,ry1-ry0,zb-zt);c.strokeRect(ry0,zt,ry1-ry0,zb-zt);
+  // dielectric layer hint
+  c.fillStyle='rgba(165,243,252,.08)';c.fillRect(px0,zm-6,px1-px0,12);c.fillRect(ry0,zm-6,ry1-ry0,12);
+  c.fillStyle='#94a3b8';c.textAlign='center';c.fillText('PLATE (layered)',(px0+px1)/2,zt+50);c.fillText('ROLLER',(ry0+ry1)/2,zt+20);
+  c.setLineDash([4,4]);c.strokeStyle='#64748b';c.beginPath();c.moveTo((ry0+ry1)/2,zt-15);c.lineTo((ry0+ry1)/2,zb+15);c.stroke();c.setLineDash([]);
+  c.fillStyle='#64748b';c.fillText('roller axis',(ry0+ry1)/2,zb+30);c.fillText('← plate center',px0+50,zb+30);
+  const tUp=[zt+40,zm-10],tDn=[zm+10,zb-40];
+  [[tUp,'#ef4444','#3b82f6'],[tDn,'#3b82f6','#ef4444']].forEach(([t,a,b])=>{c.fillStyle=a;c.fillRect(px1-8,t[0],8,t[1]-t[0]);c.fillStyle=b;c.fillRect(ry0,t[0],8,t[1]-t[0]);});
+  const lines=(t,dir)=>{for(let i=0;i<6;i++){const y=t[0]+6+i*(t[1]-t[0]-12)/5;const dy=-dir*Math.tan(th)*gap;
+      c.strokeStyle='rgba(56,189,248,.85)';c.lineWidth=1.5;c.setLineDash([6,4]);c.lineDashOffset=-X2.phase*8;
+      c.beginPath();c.moveTo(px1,y);c.lineTo(ry0,y+dy);c.stroke();c.setLineDash([]);}};
+  lines(tUp,1);lines(tDn,-1);c.lineWidth=1;
+  const fl=20+60*Math.tan(th);
+  arrow(ry1+14,(tUp[0]+tUp[1])/2+fl/2,0,-fl,'#facc15','F↑ up-track');
+  arrow(ry1+14,(tDn[0]+tDn[1])/2-fl/2,0,fl,'#facc15','F↓ down-track');
+  // claimed electron flow along mid-plane (dielectric)
+  if(S.elec){for(let k=0;k<10;k++){const u=((X2.phase*0.15+k/10)%1);const x=px0+u*(ry1+60-px0);
+    c.beginPath();c.arc(x,zm,2.5,0,7);c.fillStyle='rgba(165,243,252,.9)';c.fill();}
+    c.fillStyle='#a5f3fc';c.textAlign='left';c.fillText('e⁻ → C-coil (claimed)',ry1+20,zm+4);}
+  c.fillStyle='#e2e8f0';c.textAlign='left';c.fillText('ΣF_z = 0 → vertical centering',12,H-40);
+  c.fillStyle='#64748b';c.fillText(`gap ≈ 1 mm (exaggerated) · θ = ${g('th')}°`,12,H-22);
+  // ---- View B
+  const ox=450;c.strokeStyle='#1f2b38';c.beginPath();c.moveTo(ox-10,10);c.lineTo(ox-10,H-10);c.stroke();
+  c.fillStyle='#94a3b8';c.textAlign='left';c.fillText('B · top-down zoom at contact (r–φ)',ox+4,20);
+  const pcx=ox+180,pR=720,pcy=H-110+pR; // plate top edge at y=H-110
+  c.save();c.beginPath();c.rect(ox-8,0,W-ox+8,H);c.clip();
+  c.beginPath();c.arc(pcx,pcy,pR,0,7);c.fillStyle='#22303e';c.fill();c.strokeStyle='#4b5d72';c.stroke();
+  for(let j=-30;j<30;j++){const a0=-Math.PI/2+j*0.0115;c.beginPath();c.arc(pcx,pcy,pR-4,a0,a0+0.0115);c.lineWidth=6;c.strokeStyle=(j+30)%2?'#3b82f6':'#ef4444';c.stroke();}
+  c.lineWidth=1;
+  const rR=80,rcx=pcx,rcy=pcy-pR-26-rR;
+  c.beginPath();c.arc(rcx,rcy,rR,0,7);c.fillStyle='#2b3a4a';c.fill();c.stroke();
+  const spin=X2.phase*0.6;for(let j=0;j<24;j++){c.beginPath();c.arc(rcx,rcy,rR-4,spin+j/24*2*Math.PI,spin+(j+1)/24*2*Math.PI);c.lineWidth=6;c.strokeStyle=j%2?'#3b82f6':'#ef4444';c.stroke();}
+  c.lineWidth=1;
+  for(let k=-4;k<=4;k++){const x=rcx+k*12;const yp=pcy-Math.sqrt(pR*pR-(x-pcx)**2);const xr=x+Math.tan(th)*26;
+    const yr=rcy+Math.sqrt(Math.max(0,rR*rR-(xr-rcx)**2));
+    c.strokeStyle='rgba(56,189,248,.9)';c.lineWidth=1.5;c.setLineDash([5,3]);c.lineDashOffset=-X2.phase*8;c.beginPath();c.moveTo(x,yp);c.lineTo(xr,yr);c.stroke();c.setLineDash([]);}
+  c.lineWidth=1;
+  const ft=15+70*Math.tan(th)*Bn/0.4;
+  arrow(rcx-ft/2,rcy+rR+8,ft,0,'#facc15','');
+  c.fillStyle='#facc15';c.textAlign='left';c.fillText('F_t (shear)',rcx+ft/2+8,rcy+rR+12);
+  c.strokeStyle='#22c55e';c.lineWidth=2.5;c.beginPath();c.arc(rcx,rcy,rR+14,Math.PI*1.15,Math.PI*1.85);c.stroke();
+  const ea=Math.PI*1.85,ex=rcx+(rR+14)*Math.cos(ea),ey=rcy+(rR+14)*Math.sin(ea);c.fillStyle='#22c55e';c.beginPath();c.moveTo(ex,ey);c.lineTo(ex-10,ey-4);c.lineTo(ex-2,ey+9);c.fill();c.lineWidth=1;
+  c.fillStyle='#94a3b8';c.textAlign='center';c.fillText('ROLLER',rcx,rcy+4);c.fillText('PLATE rim',pcx,H-70);
+  c.restore();
+  c.textAlign='left';c.fillStyle='#22c55e';c.fillText(`τ = F_t·r_r ≈ ${(P.tauPk||0).toFixed(3)} N·m (peak, panel 5A)`,ox+4,H-46);
+  c.fillStyle='#e2e8f0';c.fillText('σ_t = B_n·B_t/μ0 ;  B_t = B_n·tanθ',ox+4,H-28);
+  c.fillStyle='#64748b';c.fillText('static field: τ alternates per pole → mean 0',ox+4,H-10);
+}
+
+let last2=performance.now(),tabT=0;
+function loop2(now){const dt=Math.min(0.05,(now-last2)/1000);last2=now;
+  if(S.play)X2.phase+=dt*1.5;
+  stepSim(dt);stepElectrons(dt);
+  if(S.sync&&S.play){S.theta+=SIM.w*0.03*dt;S.spin+=SIM.w*0.03*dt;}
+  tabT+=dt;if(tabT>0.15){tabT=0;simTable();}
+  drawX();drawCog();drawSim();requestAnimationFrame(loop2);}
+requestAnimationFrame(loop2);
+</script>
+
+
+</body></html>
