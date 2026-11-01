@@ -74,10 +74,11 @@
 
   <main>
     <!-- Hero Section -->
-    <section class="hero hero--spectrum">
-      <div class="spectrum" aria-hidden="true"><canvas id="spectrum" width="1800" height="420"></canvas></div>
+    <section class="fb">
+      <img class="fb__img" width="1920" height="858" src="/images/ls-studio-wide.jpg" alt="Larry Seyer playing guitar in his studio, surrounded by keyboards, controllers, and a wall of guitars" fetchpriority="high">
       <div class="container">
-        <p class="kicker">Nine Grammys <b>&middot;</b> Engineer since 1971 <b>&middot;</b> Programming since 1984</p>
+        <span class="tc" id="tc" aria-hidden="true">00:00:00:00</span>
+        <p class="kicker"><span class="rec"><span class="led" aria-hidden="true"></span>REC</span>Nine Grammys <b>&middot;</b> Engineer since 1971 <b>&middot;</b> Programming since 1984</p>
         <h1>I spent fifty years <span class="lit">making records sound right.</span> Now I build tools so you can.</h1>
         <p>Fifty years of making records taught me exactly where software gets in the way. So I write my own &mdash; drum instruments you play instead of program, loopers that react in real time on stage, visuals that groove.</p>
         <p>
@@ -89,15 +90,23 @@
       </div>
     </section>
 
-    <!-- Credit ticker -->
-    <div class="ticker" aria-hidden="true">
-      <div class="ticker__row">
-        <span>Asleep At The Wheel <b>&mdash;</b> 1986&ndash;2007</span><span>9 <b>&times;</b> Grammy Award</span>
-        <span>Platinum records</span><span>Film &amp; TV post</span><span>Surround &amp; immersive</span>
-        <span>Live broadcast audio</span><span>Programming since 1984</span><span>REAPER <b>&middot;</b> Pro Tools <b>&middot;</b> Logic</span>
-        <span>Asleep At The Wheel <b>&mdash;</b> 1986&ndash;2007</span><span>9 <b>&times;</b> Grammy Award</span>
-        <span>Platinum records</span><span>Film &amp; TV post</span><span>Surround &amp; immersive</span>
-        <span>Live broadcast audio</span><span>Programming since 1984</span><span>REAPER <b>&middot;</b> Pro Tools <b>&middot;</b> Logic</span>
+    <!-- Career analyzer (credits) -->
+    <div class="container">
+      <div class="analyzer">
+        <div class="analyzer__top" aria-hidden="true"><span>1971 &rarr; Now</span><b><span class="led"></span>Live</b></div>
+        <svg viewBox="0 0 1200 220" preserveAspectRatio="none" aria-hidden="true">
+          <defs><linearGradient id="ag" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#f0b44c" stop-opacity=".32"/><stop offset="1" stop-color="#f0b44c" stop-opacity="0"/></linearGradient></defs>
+          <g stroke="#262a30"><line x1="0" y1="55" x2="1200" y2="55"/><line x1="0" y1="110" x2="1200" y2="110"/><line x1="0" y1="165" x2="1200" y2="165"/><line x1="240" y1="0" x2="240" y2="220"/><line x1="480" y1="0" x2="480" y2="220"/><line x1="720" y1="0" x2="720" y2="220"/><line x1="960" y1="0" x2="960" y2="220"/></g>
+          <path id="analyzer-spec" fill="#6fd6c8" fill-opacity=".1" stroke="#6fd6c8" stroke-opacity=".45"/>
+          <path d="M0,160 C120,158 170,110 240,100 S380,140 480,128 S620,52 720,50 S880,110 960,108 S1100,66 1200,70 L1200,220 L0,220Z" fill="url(#ag)"/>
+          <path d="M0,160 C120,158 170,110 240,100 S380,140 480,128 S620,52 720,50 S880,110 960,108 S1100,66 1200,70" fill="none" stroke="#f0b44c" stroke-width="2.5" vector-effect="non-scaling-stroke"/>
+          <g font-family="Azeret Mono, monospace" font-size="11" fill="#8a9098"><text x="8" y="212">1971</text><text x="246" y="212">1984</text><text x="486" y="212">1986</text><text x="726" y="212">2007</text><text x="1160" y="212">NOW</text></g>
+        </svg>
+        <div class="analyzer__bands">
+          <span style="--c:#e5654e"><i></i>Asleep At The Wheel <b>&mdash;</b> 1986&ndash;2007</span><span style="--c:#f0b44c"><i></i>9 <b>&times;</b> Grammy Award</span>
+          <span><i></i>Platinum records</span><span><i></i>Film &amp; TV post</span><span><i></i>Surround &amp; immersive</span>
+          <span><i></i>Live broadcast audio</span><span style="--c:#6fd6c8"><i></i>Programming since 1984</span><span><i></i>REAPER <b>&middot;</b> Pro Tools <b>&middot;</b> Logic</span>
+        </div>
       </div>
     </div>
 
@@ -110,9 +119,10 @@
           <p>Making records tells me what software is missing. The software makes the next project faster and better.
             The show is where both get tested in public.</p>
         </div>
-        <div class="card-grid">
+        <div class="card-grid card-grid--modules">
           <a href="/pages/work.html" class="card-link">
             <article class="card">
+              <div class="meter" data-meter aria-hidden="true"></div>
               <h3>Tracking, mixing, mastering</h3>
               <p>Albums, singles, film, and television post. Pro Tools, REAPER, and Logic, with surround
                 and immersive work when a project asks for it.</p>
@@ -120,6 +130,7 @@
           </a>
           <a href="/pages/projects.html" class="card-link">
             <article class="card">
+              <div class="meter" data-meter aria-hidden="true"></div>
               <h3>Instruments and utilities</h3>
               <p>C++ and JUCE for the plugins, Lua and JSFX inside REAPER. Built in the room where they
                 get used, then shipped once they survive a real session.</p>
@@ -127,13 +138,14 @@
           </a>
           <a href="/pages/live.html" class="card-link">
             <article class="card">
+              <div class="meter" data-meter aria-hidden="true"></div>
               <h3>Streams and broadcast audio</h3>
               <p>Multi-camera switching, low-latency monitoring, and the automation that lets one person
                 run a clean show without a crew.</p>
             </article>
           </a>
         </div>
-        <p class="mt-lg"><strong>Now:</strong> I am supposed to be retired, but building things is in my DNA.
+        <p class="now-note"><strong>Now:</strong> I am supposed to be retired, but building things is in my DNA.
           These days that means OTTO, IDA, the Vector plugins (LOUIS), Sparks of Light, JTF News, and ACIM Daily Minute
           on the bench, and the show going out every week. (GRIM was a REAPER proof of concept that defined what OTTO is today &mdash; I haven&rsquo;t touched it in about a year.)</p>
       </div>
@@ -146,58 +158,53 @@
           <span class="label">In build</span>
           <h2>Tools that came out of real sessions.</h2>
         </div>
-        <div class="tiles">
-          <a href="/pages/projects/otto.html" class="tile">
-            <div class="tile__shot">
-              <img width="1800" height="1267" src="/images/projects/otto-players.jpg" alt="OTTO Players view - four player cards for Drums, Percs, Shakers and Hands, each with its own kit, energy level and gain">
-            </div>
-            <div class="tile__body">
-              <span class="tag">Drum DAW &middot; Active</span>
-              <h3>OTTO</h3>
-              <p>The Drum DAW. Four drummers you play instead of program. Organic tempo, human placement, arrangement
+        <div class="desk">
+          <a href="/pages/projects/otto.html" class="ch" style="--c:#f0b44c;--f:82%">
+            <div class="ch__h" aria-hidden="true"><span>CH 1</span><span class="ch__ms">S</span></div>
+            <div class="ch__img"><img width="1800" height="1267" src="/images/projects/otto-players.jpg" alt="OTTO Players view - four player cards for Drums, Percs, Shakers and Hands, each with its own kit, energy level and gain"></div>
+            <span class="tag">Drum DAW &middot; Active</span>
+            <h3>OTTO</h3>
+            <p>The Drum DAW. Four drummers you play instead of program. Organic tempo, human placement, arrangement
                 that follows the song instead of the grid.</p>
-            </div>
+            <div class="ch__ctl" aria-hidden="true"><div class="vu"><i></i><i></i></div><div class="fdr"><b></b></div></div>
+            <div class="ch__name" aria-hidden="true">OTTO</div>
           </a>
-          <a href="/pages/projects/ida.html" class="tile">
-            <div class="tile__shot">
-              <img loading="lazy" width="1920" height="1080" src="/images/projects/ida-interface.webp" alt="IDA interface - input mixer, per-phrase tape lanes for audio, MIDI, video, and lyric, and an output mixer">
-            </div>
-            <div class="tile__body">
-              <span class="tag">Instrument &middot; Active</span>
-              <h3>IDA</h3>
-              <p>Idea Development Arranger. Looping treated as what it actually is &mdash; capturing a musical
+          <a href="/pages/projects/ida.html" class="ch" style="--c:#6fd6c8;--f:72%">
+            <div class="ch__h" aria-hidden="true"><span>CH 2</span><span class="ch__ms">S</span></div>
+            <div class="ch__img"><img loading="lazy" width="1920" height="1080" src="/images/projects/ida-interface.webp" alt="IDA interface - input mixer, per-phrase tape lanes for audio, MIDI, video, and lyric, and an output mixer"></div>
+            <span class="tag">Instrument &middot; Active</span>
+            <h3>IDA</h3>
+            <p>Idea Development Arranger. Looping treated as what it actually is &mdash; capturing a musical
                 idea and repeating it until it becomes the arrangement.</p>
-            </div>
+            <div class="ch__ctl" aria-hidden="true"><div class="vu"><i></i><i></i></div><div class="fdr"><b></b></div></div>
+            <div class="ch__name" aria-hidden="true">IDA</div>
           </a>
-          <a href="/pages/projects/grim.html" class="tile">
-            <div class="tile__shot">
-              <img loading="lazy" width="2546" height="1440" src="/images/projects/grim-gui.webp" alt="GRIM scene-based loop station running inside REAPER">
-            </div>
-            <div class="tile__body">
-              <span class="tag">REAPER &middot; Inactive</span>
-              <h3>GRIM</h3>
-              <p>REAPER proof of concept that defined OTTO. No longer in active development.</p>
-            </div>
+          <a href="/pages/projects/grim.html" class="ch ch--muted" style="--c:#5b6168;--f:8%">
+            <div class="ch__h" aria-hidden="true"><span>CH 3</span><span class="ch__ms">M</span></div>
+            <div class="ch__img"><img loading="lazy" width="2546" height="1440" src="/images/projects/grim-gui.webp" alt="GRIM scene-based loop station running inside REAPER"></div>
+            <span class="tag">REAPER &middot; Inactive</span>
+            <h3>GRIM</h3>
+            <p>REAPER proof of concept that defined OTTO. No longer in active development.</p>
+            <div class="ch__ctl" aria-hidden="true"><div class="vu"><i></i><i></i></div><div class="fdr"><b></b></div></div>
+            <div class="ch__name" aria-hidden="true">GRIM</div>
           </a>
-          <a href="/pages/projects/jtf-news.html" class="tile">
-            <div class="tile__shot tile__shot--logo">
-              <img loading="lazy" width="450" height="120" src="/images/projects/jtf-news-logo.svg" alt="JTF News logo">
-            </div>
-            <div class="tile__body">
-              <span class="tag">Web &amp; iOS &middot; Active</span>
-              <h3>JTF News</h3>
-              <p>Just The Facts. News aggregation that strips the bias off news stories and presents the simple facts allowing you to decide how to feel about them.</p>
-            </div>
+          <a href="/pages/projects/jtf-news.html" class="ch" style="--c:#e9e6df;--f:64%">
+            <div class="ch__h" aria-hidden="true"><span>CH 4</span><span class="ch__ms">S</span></div>
+            <div class="ch__img ch__img--logo"><img loading="lazy" width="450" height="120" src="/images/projects/jtf-news-logo.svg" alt="JTF News logo"></div>
+            <span class="tag">Web &amp; iOS &middot; Active</span>
+            <h3>JTF News</h3>
+            <p>Just The Facts. News aggregation that strips the bias off news stories and presents the simple facts allowing you to decide how to feel about them.</p>
+            <div class="ch__ctl" aria-hidden="true"><div class="vu"><i></i><i></i></div><div class="fdr"><b></b></div></div>
+            <div class="ch__name" aria-hidden="true">JTF News</div>
           </a>
-          <a href="/pages/projects/sparks-of-light.html" class="tile">
-            <div class="tile__shot">
-              <img loading="lazy" width="2848" height="1928" src="/images/projects/sparks-of-light-visualizer.webp" alt="Sparks of Light turning live MIDI into particles and notes on screen">
-            </div>
-            <div class="tile__body">
-              <span class="tag tag--soon">macOS &middot; Coming to the Mac App Store</span>
-              <h3>Sparks of Light</h3>
-              <p>Live MIDI and audio turned into particles and notes on screen, in time.</p>
-            </div>
+          <a href="/pages/projects/sparks-of-light.html" class="ch" style="--c:#e5654e;--f:58%">
+            <div class="ch__h" aria-hidden="true"><span>CH 5</span><span class="ch__ms">S</span></div>
+            <div class="ch__img"><img loading="lazy" width="2848" height="1928" src="/images/projects/sparks-of-light-visualizer.webp" alt="Sparks of Light turning live MIDI into particles and notes on screen"></div>
+            <span class="tag">macOS &middot; Coming to the Mac App Store</span>
+            <h3>Sparks of Light</h3>
+            <p>Live MIDI and audio turned into particles and notes on screen, in time.</p>
+            <div class="ch__ctl" aria-hidden="true"><div class="vu"><i></i><i></i></div><div class="fdr"><b></b></div></div>
+            <div class="ch__name" aria-hidden="true">Sparks of Light</div>
           </a>
         </div>
         <p class="mt-lg">
@@ -249,18 +256,18 @@
           <span class="label">In other words</span>
           <h2>What people said, on the record.</h2>
         </div>
-        <div class="card-grid">
-          <a href="https://www.thefader.com/2013/05/14/interview-pure-x" class="card card-link" target="_blank" rel="noopener noreferrer">
+        <div class="press-quotes">
+          <a href="https://www.thefader.com/2013/05/14/interview-pure-x"  target="_blank" rel="noopener noreferrer">
             <p>&ldquo;He really took our record to the next level.&rdquo;</p>
             <h3>Nate Grace, Pure X</h3>
             <p>The FADER, 2013 &rarr;</p>
           </a>
-          <a href="https://dmy.co/features/quick-catch-up-pure-x" class="card card-link" target="_blank" rel="noopener noreferrer">
+          <a href="https://dmy.co/features/quick-catch-up-pure-x"  target="_blank" rel="noopener noreferrer">
             <p>&ldquo;But the speed at which he works is unreal.&rdquo;</p>
             <h3>Jesse Jenkins, Pure X</h3>
             <p>DMY, 2013 &rarr;</p>
           </a>
-          <a href="https://vi-control.net/community/threads/larry-seyer-drums.9771/" class="card card-link" target="_blank" rel="noopener noreferrer">
+          <a href="https://vi-control.net/community/threads/larry-seyer-drums.9771/"  target="_blank" rel="noopener noreferrer">
             <p>&ldquo;As a percussion major and former professional drummer, I couldn&rsquo;t stop &lsquo;playing&rsquo; them. Unbelievably good.&rdquo;</p>
             <h3>Peter Alexander, on Larry Seyer Acoustic Drums</h3>
             <p>VI-CONTROL, 2008 &rarr;</p>
