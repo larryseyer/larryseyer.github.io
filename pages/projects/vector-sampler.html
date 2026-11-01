@@ -47,6 +47,7 @@
     <!-- Project Hero -->
     <section class="project-hero">
       <div class="container">
+        <img src="../../images/projects/vectorsampler-logo.svg" width="96" height="96" alt="VectorSampler logo: an amber zigzag V" style="display:block;margin-bottom:1rem;border-radius:12px">
         <span class="badge badge--active">In Development</span>
         <h1>VectorSampler</h1>
         <p>A multi-timbral sample-player instrument built around a simple dissatisfaction: samplers switch between an instrument's dynamic layers, and you can hear the switch.</p>
@@ -93,22 +94,53 @@
         <p class="mb-md">Captured from a running build over OSC.</p>
         <div class="screenshots">
           <figure>
-            <img width="1440" height="900" src="../../images/projects/vs-rack.jpg" alt="VectorSampler Rack page: two instrument slots, each loaded with an SFZ piano and carrying a SPECTRAL morph engine chip, with per-slot MIDI channel and key range, and a keyboard with pitch, mod and pedal controls along the bottom">
+            <img width="1440" height="900" src="../../images/projects/vs-rack.png" alt="VectorSampler Rack page: two instrument slots, each loaded with an SFZ piano and carrying a SPECTRAL morph engine chip, with per-slot MIDI channel and key range, and a keyboard with pitch, mod and pedal controls along the bottom">
             <figcaption>Rack &mdash; two instruments, one morph engine per slot</figcaption>
           </figure>
           <figure>
-            <img loading="lazy" width="1440" height="900" src="../../images/projects/vs-instrument.jpg" alt="VectorSampler Instrument page: the Dynamics and Morph panel with a live spectrum display, a morph position readout at 67 percent between layers, a mod-wheel morph-ride control, and the unison multi-voice detune controls below">
+            <img loading="lazy" width="1440" height="900" src="../../images/projects/vs-instrument.png" alt="VectorSampler Instrument page: the Dynamics and Morph panel with a live spectrum display, a morph position readout at 67 percent between layers, a mod-wheel morph-ride control, and the unison multi-voice detune controls below">
             <figcaption>Instrument &mdash; morphing between the recorded dynamic layers</figcaption>
           </figure>
           <figure>
-            <img loading="lazy" width="1440" height="900" src="../../images/projects/vs-mixer.jpg" alt="VectorSampler Mixer page: an insert row of Vector EQ, Distortion, Compressor, Tape, Filter, Modulation, Reverb and Delay across the channel, with a four-band parametric EQ drawn over the piano's live frequency spectrum and the shared return and master buttons below">
+            <img loading="lazy" width="1440" height="900" src="../../images/projects/vs-mixer.png" alt="VectorSampler Mixer page: an insert row of Vector EQ, Distortion, Compressor, Tape, Filter, Modulation, Reverb and Delay across the channel, with a four-band parametric EQ drawn over the piano's live frequency spectrum and the shared return and master buttons below">
             <figcaption>Mixer &mdash; the Vector engines as inserts</figcaption>
           </figure>
           <figure>
-            <img loading="lazy" width="1440" height="900" src="../../images/projects/vs-return.jpg" alt="VectorSampler Return page: the Reverb A editor, with a room source panel, a preset selector, and decay, predelay, HF decay, room width, depth, warmth, diffusion and clarity controls">
+            <img loading="lazy" width="1440" height="900" src="../../images/projects/vs-return.png" alt="VectorSampler Return page: the Reverb A editor, with a room source panel, a preset selector, and decay, predelay, HF decay, room width, depth, warmth, diffusion and clarity controls">
             <figcaption>Return &mdash; one of four shared effect buses</figcaption>
           </figure>
+          <figure>
+            <img loading="lazy" width="1440" height="900" src="../../images/projects/vs-session.png" alt="VectorSampler Mixer page in a full session: eight inserts on the channel and all four shared returns active">
+            <figcaption>Mixer &mdash; a full session, eight inserts and four returns</figcaption>
+          </figure>
         </div>
+      </div>
+    </section>
+
+    <!-- Development status -->
+    <section class="section">
+      <div class="container">
+        <h2>Development Status</h2>
+        <p>VectorSampler is in active development as a standalone application. Work began in July 2026, and the project&rsquo;s own build roadmap puts the remaining work in the musician-facing app rather than the sound engine: the morph and audio processing are settled, and what is left is wiring the rest of the interface to it. The plugin formats and other platforms are a later packaging stage.</p>
+        <p>Underway now: microtuning, with Scala scale and keyboard-mapping files per instrument slot. Still to come after that: in-app SFZ/Lua editing, a preset manager with bank and program changes, MIDI Learn, and host automation.</p>
+      </div>
+    </section>
+
+    <!-- Done so far -->
+    <section class="section">
+      <div class="container">
+        <h2>What&rsquo;s Been Done So Far</h2>
+        <ul class="features">
+          <li><strong>Multi-timbral rack</strong>Up to 128 instrument slots, each loading its own instrument, with a freely assignable MIDI channel per slot so several slots can play together as a stack</li>
+          <li><strong>Output routing and busses</strong>Up to 16 user busses, with slots routed to busses and busses to the master</li>
+          <li><strong>Unison</strong>Stacked, detuned voices per slot with voice count, detune, blend and stereo width</li>
+          <li><strong>Insert effects</strong>The Vector engines as inserts on every channel: EQ, distortion, compression, tape, filter, modulation, reverb and delay</li>
+          <li><strong>Reverb and sends</strong>Four shared effect returns fed from each channel&rsquo;s sends</li>
+          <li><strong>Modulation and macros</strong>A modulation matrix and macro knobs per instrument</li>
+          <li><strong>Articulations</strong>Articulations kept separate and switched, never morphed across</li>
+          <li><strong>Metering</strong>Peak and LUFS metering</li>
+          <li><strong>Morphing on pitched instruments</strong>Morphing between recorded dynamic layers verified clean on a real melodic instrument, an upright acoustic bass, after first being proven on drums in OTTO</li>
+        </ul>
       </div>
     </section>
 
