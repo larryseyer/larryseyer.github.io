@@ -1271,3 +1271,21 @@ main > .section:first-child, .hero + .section, .project-hero + .section { border
 .fb .kicker { display: block; line-height: 1.9; margin-bottom: 0; }
 .fb h1 .lit { white-space: normal; }
 .fb .rec { font-size: inherit; color: #ff7a63; font-weight: 500; }
+
+/* EmailOctopus embed — Precision skin */
+body .inline-container .emailoctopus-form-wrapper { background: var(--color-surface, #1a1d22) !important; border: 1px solid #2c3138 !important; border-left: 2px solid #f0b44c !important; border-radius: 6px !important; padding: 18px 20px 12px !important; max-width: 520px !important; margin: 1.25rem 0 .5rem !important; font-family: "Familjen Grotesk", system-ui, sans-serif !important; color: #e9e6df !important; }
+body .inline-container .emailoctopus-form .main-form { display: flex !important; gap: 8px !important; flex-wrap: wrap !important; align-items: stretch !important; }
+body .inline-container .emailoctopus-form [eo-form-fields-container] { flex: 1 1 240px !important; }
+body .inline-container .emailoctopus-form-row { margin: 0 !important; }
+body .inline-container .emailoctopus-form input.form-control { width: 100% !important; height: 44px !important; background: #121418 !important; color: #e9e6df !important; border: 1px solid #4a5058 !important; border-radius: 4px !important; padding: 0 14px !important; font: 400 15px/1 "Familjen Grotesk", system-ui, sans-serif !important; box-shadow: none !important; }
+body .inline-container .emailoctopus-form input.form-control::placeholder { color: #8a8f96 !important; }
+body .inline-container .emailoctopus-form input.form-control:focus { outline: 2px solid #f0b44c !important; outline-offset: 1px !important; border-color: #f0b44c !important; }
+body .inline-container .emailoctopus-form input[type=submit] { width: auto !important; flex: 0 0 auto !important; height: 44px !important; margin: 0 !important; padding: 0 22px !important; background: #f0b44c !important; color: #121418 !important; border: 1px solid #f0b44c !important; border-radius: 4px !important; font: 600 12px/1 "Azeret Mono", ui-monospace, monospace !important; letter-spacing: .12em !important; text-transform: uppercase !important; cursor: pointer !important; box-shadow: none !important; }
+body .inline-container .emailoctopus-form input[type=submit]:hover { background: #f6c873 !important; border-color: #f6c873 !important; }
+body .inline-container .emailoctopus-form-wrapper p, body .inline-container .emailoctopus-form-wrapper a, body .inline-container .emailoctopus-form-wrapper [class*=powered] { color: #8a8f96 !important; font-family: "Azeret Mono", monospace !important; font-size: 10px !important; }
+body .inline-container .emailoctopus-form-wrapper img, body .inline-container .emailoctopus-form-wrapper svg { filter: grayscale(1) brightness(1.6) !important; opacity: .7 !important; }
+@media (max-width: 480px) { body .inline-container .emailoctopus-form input[type=submit] { width: 100% !important; flex-basis: 100% !important; } }
+body .inline-container, body .inline-container .form-container { margin: 0 !important; padding: 0 !important; max-width: 520px !important; width: 100% !important; }
+body .inline-container .text-center { text-align: left !important; }
+body .inline-container [eo-block=powered-by], body .inline-container [eo-block=powered-by] * { color: #8a8f96 !important; background: none !important; font: 400 10px/1.6 "Azeret Mono", monospace !important; letter-spacing: .08em !important; }
+body .inline-container [eo-block=powered-by] img, body .inline-container [eo-block=powered-by] svg { filter: grayscale(1) brightness(1.4) !important; opacity: .6 !important; }

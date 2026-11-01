@@ -4,24 +4,29 @@ This repository hosts the personal website for Larry Seyer, served via GitHub Pa
 
 ## Design System
 
-The site uses the **"Stage Light"** design system, replacing the earlier black-and-amber
-"Architect" system. The palette comes from the show's own lighting rig:
+The site uses the **"Precision"** design system (mockup D, Oct 2026), replacing "Stage Light".
+It reads like a pro audio plugin / mixing console:
 
-- Near-black violet ground (#0a0713) under a fixed two-source wash — magenta (#ff3d92) from
-  house left, cyan (#3ddcff) from house right, warm spot (#ffb648) between them
-- Bricolage Grotesque for headlines, Public Sans for body, Azeret Mono for labels and data
-- Rounded corners, pill buttons, cards that light up under the cursor
+- Dark ground #121418, panels #1a1d22 (#20242a raised), borders #2c3138 / #4a5058
+- Text #e9e6df, secondary #a9adb3; accents amber #f0b44c (primary, buttons, `.lit`),
+  cyan #6fd6c8, red #e5654e (REC/LED dots, sparingly)
+- Instrument Serif (headings, weight 400; `.lit` = italic amber), Familjen Grotesk (body),
+  Azeret Mono (labels, kickers, buttons, data)
+- Small radii (6–8px), flat plugin-style panels, square-ish amber/outline buttons, no glow or gradients
+- Meters/faders only where they fit; all animation stops under prefers-reduced-motion
 
 Every page shares one stylesheet. The class vocabulary is small and consistent, so a change
-in `css/style.css` reaches all 31 pages — prefer that to per-page markup edits.
+in `css/style.css` reaches every page — prefer that to per-page markup edits. The
+"Precision layer" at the end of the stylesheet holds the overrides and new components.
 
-Components beyond the basics: `.kicker` (eyebrow), `.lit` (gradient phrase inside a heading),
-`.sec-head` + `.label` (section heading), `.tiles`/`.tile` (card with a screenshot),
-`.stage` (photo beside copy), `.band` (wide CTA), `.specs`/`.spec` (numbers strip),
-`.pills` (link row), `.ticker` (credit marquee), `.spectrum` (hero canvas analyzer).
+Components: `.kicker`, `.lit`, `.sec-head` + `.label`, `.tiles`/`.tile`, `.stage`, `.band`,
+`.specs`/`.spec`, `.pills`. Home-only: `.fb` (full-bleed studio hero with `.rec` marker and
+`#tc` timecode), `.analyzer` (decorative spectrum + credit bands), `[data-meter]` meters,
+`.desk`/`.ch` (projects as console channel strips; `.ch--muted` for inactive), `.press-quotes`.
+The EmailOctopus embed is skinned via `.inline-container` overrides (with !important).
 
-Mobile drops the nav into a horizontal scroll row. `.nav-toggle` is in the markup on every
-page but is hidden by CSS — there is no dropdown menu to maintain.
+Mobile (≤1080px): `.nav-toggle` opens a full-height menu (`.header.nav-open`), handled in
+`js/main.js` (aria-expanded, closes on link click / Escape).
 
 ## Structure
 
