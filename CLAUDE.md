@@ -95,8 +95,8 @@ deleted repo 404s for visitors:
 - MIDI2Button: https://github.com/larryseyer/midi2button
 - ACIM Daily Minute: https://github.com/larryseyer/ACIMDailyMinuteApp
 
-**Do not link OTTO, IDA, or GRIM to GitHub.** OTTO and IDA are private and
-`larryseyer/GRIM-for-Reaper` does not exist; all three are proprietary products and their
+**Do not link OTTO, IDA, or VectorSampler to GitHub.** All three are private;
+all three are proprietary products and their
 pages carry a Licensing section instead of a source link.
 
 ## Licensing Claims
