@@ -59,7 +59,7 @@
       <div class="container">
         <h2>What OTTO Is</h2>
         <p>OTTO is a four-player, playback-only rhythm-generation instrument. It plays pre-existing MIDI patterns through kits, where a kit may use sampled voices, procedurally-synthesized voices, or a mix of both. Each of the four players is fully independent &mdash; its own mode, its own kit, its own pattern, its own timeline lane, its own mixer channel &mdash; and live performance is treated as a first-class use case alongside studio work. OTTO is both a standalone product and an embeddable engine: the same compiled code serves both, with the difference expressed only as configuration, never as a separate build.</p>
-        <p>The shortest description is four words: <strong>a live drum arrangement instrument.</strong> <em>Live</em> is why energy and tempo react in real time. <em>Drum</em> is why there is no audio recording or waveform editing and why the four player roles are all rhythm-section roles. <em>Arrangement</em> is why "pills" exist as the playback unit and why each player's lane is independent. <em>Instrument</em> is why OTTO is played rather than programmed.</p>
+        <p>The shortest description is four words: <strong>a live drum arrangement instrument.</strong> <em>Live</em> is why energy and tempo react in real time. <em>Drum</em> is why there is no audio recording or waveform editing and why Version 1.0 is built entirely around drums. <em>Arrangement</em> is why "pills" exist as the playback unit and why each player's lane is independent. <em>Instrument</em> is why OTTO is played rather than programmed.</p>
       </div>
     </section>
 
@@ -83,7 +83,7 @@
     <section class="section">
       <div class="container">
         <h2>Modes, Styles, and the Library</h2>
-        <p>A player can fill one of four roles: Drums, Percs (auxiliary percussion), Shakers, and Hands (hand percussion such as claps and snaps). Each mode owns its own catalog of Styles, and the four catalogs are deliberately disjoint &mdash; no Style name appears in more than one mode. A Style is a coherent pattern collection containing a fixed 36-file set: four section-tagged patterns (Intro, Verse, Chorus, Bridge) plus 32 fills. Cross-mode arrangements are assembled by the user, one Style per player, never enforced by the engine.</p>
+        <p>In Version 1.0, all four players are drum players. Each has its own kit, its own pattern catalog, and its own lane. A Style is a coherent pattern collection containing a fixed 36-file set: four section-tagged patterns (Intro, Verse, Chorus, Bridge) plus 32 fills. Arrangements are assembled by the user, one Style per player. The architecture can later host additional instrument types &mdash; Percussion, Shakers, and Hands &mdash; as optional expansions sold separately; those expansions are not part of Version 1.0 or Full Unlock.</p>
         <p>Internally, OTTO uses a single expanded articulation layout for all drum MIDI. The general drum-map convention exists only transiently at the import boundary; a translator stage converts imported material into the expanded layout before anything reaches the library. After import, the engine retains no general-map data and never converts back.</p>
       </div>
     </section>

@@ -11,7 +11,7 @@
   </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="VectorTape - a fully algorithmic analog-tape coloration module for OTTO and IDA, adding warmth, saturation, and gentle movement across the master and category buses.">
+  <meta name="description" content="VectorTape - a fully algorithmic analog-tape coloration module for OTTO and IDA, adding warmth, saturation, and gentle movement across the master and player buses.">
   <meta property="og:title" content="VectorTape - Larry Seyer">
   <meta property="og:description" content="A fully algorithmic analog-tape coloration module for OTTO and IDA - warmth, saturation, and gentle tape movement, per-bus.">
   <meta property="og:image" content="https://larryseyer.com/images/ls-share-card.jpg">
@@ -57,7 +57,7 @@
     <section class="section">
       <div class="container">
         <h2>The Idea</h2>
-        <p>Tape gives a mix glue, warmth, and a subtle sense of motion that purely digital signal paths lack. VectorTape models that behavior algorithmically &mdash; no samples, no convolution &mdash; and runs not as a single effect on the master but as five always-on instances: one on the master bus and one on each of the four category buses (Drums, Percs, Shakers, Hands). Each section of the kit can be colored independently before everything glues together at the master.</p>
+        <p>Tape gives a mix glue, warmth, and a subtle sense of motion that purely digital signal paths lack. VectorTape models that behavior algorithmically &mdash; no samples, no convolution &mdash; and runs not as a single effect on the master but as always-on instances: one on the master bus and one on each player bus. In OTTO Version 1.0 those player buses are drum buses; each player&rsquo;s kit can be colored independently before everything glues together at the master.</p>
         <p>It is built as a shared module so OTTO and IDA behave identically, and it follows the same strict real-time rules as the host engine &mdash; no allocations, locks, logging, or file I/O on the audio thread.</p>
       </div>
     </section>
