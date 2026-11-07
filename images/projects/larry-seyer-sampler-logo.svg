@@ -3,7 +3,7 @@
   <!-- Dark rounded background (matches app theme) -->
   <rect width="512" height="512" rx="90" ry="90" fill="#121212"/>
 
-  <!-- Left arm of the V (jagged vector-style waveform) -->
+  <!-- Left arm of the V (jagged waveform) -->
   <polyline
     points="130,140 160,195 140,250 175,305 150,360 256,410"
     fill="none"
