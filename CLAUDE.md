@@ -59,7 +59,7 @@ Mobile (≤1080px): `.nav-toggle` opens a full-height menu (`.header.nav-open`),
 ## Known Loose Ends
 
 - `pages/projects/tapecolor.html` is an orphan: titled "Vector Tape", superseded by
-  `pages/projects/vector-tape.html`. Nothing links to it and it is not in the sitemap.
+  `pages/projects/seyertape.html`. Nothing links to it and it is not in the sitemap.
   Left in place pending a decision to delete it.
 
 ## Customization
