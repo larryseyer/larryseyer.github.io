@@ -1,0 +1,7 @@
+# Keep default Jekyll processing; only exclude non-site files.
+exclude:
+  - CLAUDE.md
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor
