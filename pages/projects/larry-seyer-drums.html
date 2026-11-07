@@ -41,6 +41,10 @@
     .video-embed { position: relative; width: 100%; max-width: 900px; margin: 1.5rem auto 0; aspect-ratio: 16 / 9; }
     .video-embed iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; border-radius: 10px; }
     .video-caption { font-size: .9rem; opacity: .7; text-align: center; margin-top: .75rem; }
+    .video-soon { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .6rem; text-align: center; padding: 1.5rem; background: var(--color-surface, #1a1d22); border: 1px solid var(--color-border, #2a2f36); border-top: 3px solid var(--color-accent, #f0b44c); border-radius: 10px; }
+    .video-soon__badge { font-size: .8rem; letter-spacing: .12em; text-transform: uppercase; color: var(--color-accent, #f0b44c); }
+    .video-soon__title { font-size: clamp(1.4rem, 3vw, 2rem); margin: 0; }
+    .video-soon__text { opacity: .75; margin: 0; max-width: 32rem; }
   </style>
   <script type="application/ld+json">
 {
@@ -133,17 +137,14 @@
     <section class="section">
       <div class="container">
         <h2>Hear It</h2>
-        <p class="mb-md">Screenshots cannot show you the part that actually matters, which is how it feels to play. These walkthroughs are the sound and the playing.</p>
+        <p class="mb-md">Screenshots cannot show you the part that actually matters, which is how it feels to play. New walkthroughs of the sound and the playing are on the way.</p>
         <div class="video-embed">
-          <iframe
-            src="https://www.youtube.com/embed/videoseries?list=PLNts1vMG4Axg&amp;rel=0"
-            title="Larry Seyer Drums (YouTube playlist) &mdash; Larry Seyer"
-            loading="lazy"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            referrerpolicy="strict-origin-when-cross-origin"
-            allowfullscreen></iframe>
+          <div class="video-soon" role="img" aria-label="Video walkthroughs coming soon">
+            <span class="video-soon__badge">Coming soon</span>
+            <p class="video-soon__title">New video walkthroughs</p>
+            <p class="video-soon__text">Fresh demos of the Larry Seyer Drum app are being recorded now.</p>
+          </div>
         </div>
-        <p class="video-caption">The Larry Seyer Drums instructional series. New walkthroughs land in this playlist as they are finished &mdash; <a href="https://www.youtube.com/playlist?list=PLNts1vMG4Axg" target="_blank" rel="noopener noreferrer">open the full playlist on YouTube</a>.</p>
       </div>
     </section>
 
