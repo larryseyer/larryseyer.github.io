@@ -1,0 +1,1389 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--
+  GENERATED FILE. Do not edit by hand.
+  This page is generated from the OSC source code of the Larry Seyer Drums app
+  and must be kept in sync with it. Regenerate with:
+       python3 tools/osc/build_osc_page.py
+  Wording lives in tools/osc/osc_descriptions.json. Addresses are read from:
+       src/seyer-core/include/seyer/osc/ControlRegistry.h
+       src/seyer-plugin/osc/OscTransport.cpp
+       src/seyer-plugin/PluginProcessor.cpp
+       src/seyer-plugin/osc/OscPublishersPhase2.cpp
+       src/seyer-plugin/osc/OscPublishersPhase25.cpp
+       src/seyer-plugin/osc/OscPublishersConductor.cpp
+       src/seyer-plugin/osc/OscPublishersKeystroke.cpp
+       src/seyer-plugin/osc/RegistrySelfTest.cpp
+       src/seyer-plugin/quickpick/QuickPickService.cpp
+       src/seyer-plugin/settings/AppSettingsPresets.cpp
+       src/seyer-plugin/keys/KeyBindingCatalog.h
+       (and every other source file that registers a ControlEntry)
+-->
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TS207FNV53"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-TS207FNV53');
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Complete OSC command reference for Larry Seyer Drums, The Drum DAW by Larry Seyer: transport, players, songs, mixer, effects and more.">
+  <meta property="og:title" content="Larry Seyer Drums OSC Reference - Larry Seyer">
+  <meta property="og:description" content="Every OSC command Larry Seyer Drums understands, with a short description of each.">
+  <meta property="og:image" content="https://larryseyer.com/images/projects/larry-seyer-drums-logo-black-1200.png?v=20261109">
+  <meta property="og:image:alt" content="Larry Seyer Drums logo">
+  <meta property="og:url" content="https://larryseyer.com/pages/projects/larry-seyer-drums-osc.html">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:image" content="https://larryseyer.com/images/projects/larry-seyer-drums-logo-black-1200.png?v=20261109">
+  <meta name="twitter:image:alt" content="Larry Seyer Drums logo">
+  <title>Larry Seyer Drums OSC Reference - Larry Seyer</title>
+  <link rel="canonical" href="https://larryseyer.com/pages/projects/larry-seyer-drums-osc.html">
+  <link rel="stylesheet" href="../../css/style.css">
+  <link rel="icon" type="image/x-icon" href="../../favicon.ico">
+  <link rel="apple-touch-icon" href="../../images/projects/larry-seyer-drums-touch-icon.png?v=20261109">
+  <style>
+    .osc-table-wrap { overflow-x: auto; margin: 1rem 0 2rem; }
+    .osc-table { width: 100%; border-collapse: collapse; font-size: .92rem; }
+    .osc-table th, .osc-table td { text-align: left; vertical-align: top; padding: .45rem .6rem; border-bottom: 1px solid rgba(128,128,128,.3); }
+    .osc-table th { white-space: nowrap; }
+    .osc-table td:first-child code { white-space: nowrap; }
+    .osc-toc { columns: 2 220px; margin: 1rem 0 2rem; }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="container">
+      <a href="../../index.html" class="logo">Larry Seyer</a>
+      <button class="nav-toggle" aria-label="Toggle navigation">&#9776;</button>
+      <nav class="nav">
+        <a href="../work.html">Work</a>
+        <a href="../clients.html">Clients</a>
+        <a href="../work.html#press">Press</a>
+        <a href="../projects.html" class="active">Projects</a>
+        <a href="../music.html">Music</a>
+        <a href="../live.html">Live</a>
+        <a href="../kits.html">Drum Kits</a>
+        <a href="../connect.html">Connect</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="section" id="osc">
+      <div class="container">
+        <h1>Larry Seyer Drums OSC Reference</h1>
+        <p class="mb-md">Larry Seyer Drums has a complete OSC (Open Sound Control) implementation for controlling virtually every aspect of its operation from another app, a control surface, a script or another computer. This page lists all 1538 commands. <a href="larry-seyer-drums.html">Back to Larry Seyer Drums</a>.</p>
+
+        <h2 id="osc-connecting">Connecting</h2>
+        <ul class="features">
+          <li><strong>On by default</strong>OSC control is on in every version. Turn it off or change the port in App Settings &rarr; OSC Control.</li>
+          <li><strong>Receive port</strong>Larry Seyer Drums listens for OSC over UDP on port 9100 by default (9200 is the alternative in App Settings). It listens on every network interface, so it can be reached from another device on the same network.</li>
+          <li><strong>Replies</strong>Answers are sent back over UDP to port 9101 (the receive port plus one) on the same computer.</li>
+          <li><strong>Reading a value</strong>Send an address with no argument and Larry Seyer Drums replies with its current value. Sending a value sets it and the new value comes back as confirmation.</li>
+          <li><strong>Live updates</strong>Readable values that change are sent automatically, up to 30 times a second, and a full set of current values is sent when OSC starts.</li>
+          <li><strong>Argument types</strong>Arguments are 32-bit integers, 32-bit floats or strings. On/off values are sent and received as the integers 0 and 1. Addresses must match exactly; wildcard patterns are not used.</li>
+          <li><strong>Numbering</strong>Players and song lanes are numbered 1-4 where the address says <code>&lt;1-4&gt;</code>. Everything else (mixer channels, buses, effect returns, slots, pills and energy levels) counts from 0. A range such as <code>&lt;0-95&gt;</code> means one address for each number.</li>
+        </ul>
+
+        <h2 id="osc-contents">Contents</h2>
+        <ul class="osc-toc">
+          <li><a href="#osc-basics">Connection and OSC settings</a></li>
+          <li><a href="#osc-transport">Transport, tempo and master</a></li>
+          <li><a href="#osc-sync">Sync</a></li>
+          <li><a href="#osc-midi">MIDI</a></li>
+          <li><a href="#osc-audio">Audio device and output</a></li>
+          <li><a href="#osc-click">Click (metronome)</a></li>
+          <li><a href="#osc-player">Players</a></li>
+          <li><a href="#osc-synth">Drum synth (per player)</a></li>
+          <li><a href="#osc-songs">Songs and banks</a></li>
+          <li><a href="#osc-timeline">Song timeline editing</a></li>
+          <li><a href="#osc-pills">Song pills</a></li>
+          <li><a href="#osc-editor">Pattern editor</a></li>
+          <li><a href="#osc-energy">Energy</a></li>
+          <li><a href="#osc-sounds">Sounds and kits</a></li>
+          <li><a href="#osc-slots">Sound slots (selected player)</a></li>
+          <li><a href="#osc-mixer">Mixer: channels, buses, master and effect returns</a></li>
+          <li><a href="#osc-comp">Advanced compressor</a></li>
+          <li><a href="#osc-tape">Tape machine</a></li>
+          <li><a href="#osc-reverb">Reverb (player 1 shortcuts)</a></li>
+          <li><a href="#osc-effects">Effect availability and defaults</a></li>
+          <li><a href="#osc-presets">Presets, Quick Pick and app setups</a></li>
+          <li><a href="#osc-settings">App settings</a></li>
+          <li><a href="#osc-importexport">Import and export</a></li>
+          <li><a href="#osc-shortcuts">Keyboard shortcuts</a></li>
+          <li><a href="#osc-actions">Actions</a></li>
+          <li><a href="#osc-ui">User interface automation</a></li>
+          <li><a href="#osc-testing">Testing and diagnostics</a></li>
+        </ul>
+
+        <h2 id="osc-basics">Connection and OSC settings</h2>
+        <p>Check the connection and change OSC settings remotely.</p>
+        <div class="osc-table-wrap">
+        <table class="osc-table">
+          <thead><tr><th>Address</th><th>Argument</th><th>Access</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td><code>/drums/ping</code></td><td>int</td><td>Set / read</td><td>Echo test: send any integer and the same value comes back.</td></tr>
+            <tr><td><code>/drums/settings/osc/enabled</code></td><td>int</td><td>Set / read</td><td>Turn OSC control off (0) or on (1).</td></tr>
+            <tr><td><code>/drums/settings/osc/port</code></td><td>int</td><td>Set / read</td><td>Receive port (1024-65535). Replies go to this port plus one.</td></tr>
+            <tr><td><code>/drums/settings/osc/listening</code></td><td>int</td><td>Read</td><td>Port Larry Seyer Drums is listening on, or 0 when OSC is off.</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <h2 id="osc-transport">Transport, tempo and master</h2>
+        <p>Playback, tempo, time signature and the global master controls.</p>
+        <div class="osc-table-wrap">
+        <table class="osc-table">
+          <thead><tr><th>Address</th><th>Argument</th><th>Access</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td><code>/drums/transport/play</code></td><td>&mdash;</td><td>Send</td><td>Start playback.</td></tr>
+            <tr><td><code>/drums/transport/stop</code></td><td>&mdash;</td><td>Send</td><td>Stop playback.</td></tr>
+            <tr><td><code>/drums/transport/bpm</code></td><td>float</td><td>Set / read</td><td>Tempo in BPM.</td></tr>
+            <tr><td><code>/drums/transport/playing</code></td><td>0/1</td><td>Read</td><td>1 while playing.</td></tr>
+            <tr><td><code>/drums/transport/timesig/num</code></td><td>int</td><td>Set / read</td><td>Time signature numerator.</td></tr>
+            <tr><td><code>/drums/transport/timesig/den</code></td><td>int</td><td>Set / read</td><td>Time signature denominator.</td></tr>
+            <tr><td><code>/drums/transport/position/beats</code></td><td>float</td><td>Read</td><td>Play position in beats.</td></tr>
+            <tr><td><code>/drums/transport/position/seconds</code></td><td>float</td><td>Read</td><td>Play position in seconds.</td></tr>
+            <tr><td><code>/drums/transport/bar</code></td><td>int</td><td>Read</td><td>Current bar.</td></tr>
+            <tr><td><code>/drums/transport/tempo/modulated</code></td><td>float</td><td>Read</td><td>Tempo actually playing, including any tempo changes.</td></tr>
+            <tr><td><code>/drums/transport/tap</code></td><td>int</td><td>Set / read</td><td>Tap tempo: each message is one tap.</td></tr>
+            <tr><td><code>/drums/transport/loop/active</code></td><td>0/1</td><td>Read</td><td>1 when the host loop is on.</td></tr>
+            <tr><td><code>/drums/transport/loop/start</code></td><td>float</td><td>Read</td><td>Host loop start (beats).</td></tr>
+            <tr><td><code>/drums/transport/loop/end</code></td><td>float</td><td>Read</td><td>Host loop end (beats).</td></tr>
+            <tr><td><code>/drums/meter/master</code></td><td>float</td><td>Read</td><td>Master peak level.</td></tr>
+            <tr><td><code>/drums/master/volume</code></td><td>float</td><td>Set / read</td><td>Master volume (dB).</td></tr>
+            <tr><td><code>/drums/master/pan</code></td><td>float</td><td>Set / read</td><td>Master pan.</td></tr>
+            <tr><td><code>/drums/swing/global</code></td><td>float</td><td>Set / read</td><td>Swing percent applied to every player.</td></tr>
+            <tr><td><code>/drums/global/masterswing</code></td><td>float</td><td>Set / read</td><td>Master swing (0-100 percent).</td></tr>
+            <tr><td><code>/drums/global/mastervelocityscale</code></td><td>float</td><td>Set / read</td><td>Master velocity scale.</td></tr>
+            <tr><td><code>/drums/global/selectedsongsection</code></td><td>int</td><td>Set / read</td><td>Select a song section.</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <h2 id="osc-sync">Sync</h2>
+        <p>Clock source, sync offsets, network tempo sync and timecode.</p>
+        <div class="osc-table-wrap">
+        <table class="osc-table">
+          <thead><tr><th>Address</th><th>Argument</th><th>Access</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td><code>/drums/sync/mode</code></td><td>int</td><td>Set / read</td><td>Sync mode (0-4).</td></tr>
+            <tr><td><code>/drums/sync/offset/midiclockin</code></td><td>float</td><td>Set / read</td><td>Offset for incoming MIDI clock (ms).</td></tr>
+            <tr><td><code>/drums/sync/offset/linkin</code></td><td>float</td><td>Set / read</td><td>Offset for incoming network tempo sync (ms).</td></tr>
+            <tr><td><code>/drums/sync/offset/hostin</code></td><td>float</td><td>Set / read</td><td>Offset when following the host (ms).</td></tr>
+            <tr><td><code>/drums/sync/offset/midiclockout</code></td><td>float</td><td>Set / read</td><td>Offset for outgoing MIDI clock (ms).</td></tr>
+            <tr><td><code>/drums/sync/offset/linkout</code></td><td>float</td><td>Set / read</td><td>Offset for outgoing network tempo sync (ms).</td></tr>
+            <tr><td><code>/drums/sync/offsets</code></td><td>string</td><td>Read</td><td>All five offsets plus the measured device latency.</td></tr>
+            <tr><td><code>/drums/sync/latency</code></td><td>string</td><td>Read</td><td>Measured output latency, and what the system reports.</td></tr>
+            <tr><td><code>/drums/sync/midiclock/synced</code></td><td>0/1</td><td>Read</td><td>1 while locked to incoming MIDI clock.</td></tr>
+            <tr><td><code>/drums/link/enabled</code></td><td>int 0/1</td><td>Set / read</td><td>Network tempo sync on or off.</td></tr>
+            <tr><td><code>/drums/link/startstopsync</code></td><td>int 0/1</td><td>Set / read</td><td>Share start and stop over network tempo sync.</td></tr>
+            <tr><td><code>/drums/link/peers</code></td><td>int</td><td>Read</td><td>Number of connected network tempo sync peers.</td></tr>
+            <tr><td><code>/drums/sync/ltc</code></td><td>int</td><td>Set / read</td><td>Timecode (LTC) reader off or on.</td></tr>
+            <tr><td><code>/drums/sync/ltc/origin</code></td><td>string</td><td>Set / read</td><td>Timecode at bar 1.</td></tr>
+            <tr><td><code>/drums/sync/ltc/status</code></td><td>string</td><td>Read</td><td>Timecode reader status.</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <h2 id="osc-midi">MIDI</h2>
+        <p>MIDI devices, channels and remote-control mappings.</p>
+        <div class="osc-table-wrap">
+        <table class="osc-table">
+          <thead><tr><th>Address</th><th>Argument</th><th>Access</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td><code>/drums/midi/output/devices</code></td><td>string</td><td>Read</td><td>Available MIDI outputs.</td></tr>
+            <tr><td><code>/drums/midi/input/devices</code></td><td>string</td><td>Read</td><td>Available MIDI inputs.</td></tr>
+            <tr><td><code>/drums/midi/input/enable</code></td><td>string</td><td>Set / read</td><td>Enable or disable an input: "name|1" or "name|0".</td></tr>
+            <tr><td><code>/drums/midi/output/device</code></td><td>string</td><td>Set / read</td><td>Choose the MIDI output by name.</td></tr>
+            <tr><td><code>/drums/midi/virtualports/state</code></td><td>string</td><td>Read</td><td>Status of the virtual MIDI ports.</td></tr>
+            <tr><td><code>/drums/midi/pcchannel</code></td><td>int</td><td>Set / read</td><td>MIDI channel for Program Change and Bank Select.</td></tr>
+            <tr><td><code>/drums/midi/activity</code></td><td>string</td><td>Read</td><td>Counts of incoming program, bank and transport messages.</td></tr>
+            <tr><td><code>/drums/midi/notechannelmask</code></td><td>int</td><td>Set / read</td><td>Bit mask of MIDI channels allowed to play drum elements.</td></tr>
+            <tr><td><code>/drums/midi/bankselectmode</code></td><td>int</td><td>Set / read</td><td>Bank Select mode: 0 = CC 0 value is the bank, 1 = standard.</td></tr>
+            <tr><td><code>/drums/midi/pilltrigger</code></td><td>int</td><td>Set / read</td><td>Press remote pill-trigger button 0-3, as CC 101-104 would.</td></tr>
+            <tr><td><code>/drums/midi/pillpresses</code></td><td>string</td><td>Read</td><td>Counts of incoming pill-trigger presses.</td></tr>
+            <tr><td><code>/drums/midi/fadercc</code></td><td>string</td><td>Set / read</td><td>Assign mixer faders to MIDI CCs on channel 10.</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <h2 id="osc-audio">Audio device and output</h2>
+        <p>Audio device selection and output layout.</p>
+        <div class="osc-table-wrap">
+        <table class="osc-table">
+          <thead><tr><th>Address</th><th>Argument</th><th>Access</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td><code>/drums/audio/output/device</code></td><td>string</td><td>Set / read</td><td>Choose the audio output device by name.</td></tr>
+            <tr><td><code>/drums/audio/output/devices</code></td><td>string</td><td>Read</td><td>Available audio output devices.</td></tr>
+            <tr><td><code>/drums/audio/testsound</code></td><td>&mdash;</td><td>Send</td><td>Play a one-second test tone.</td></tr>
+            <tr><td><code>/drums/audio/output/followsystem</code></td><td>int 0/1</td><td>Set / read</td><td>Follow the system default output.</td></tr>
+            <tr><td><code>/drums/audio/output/none</code></td><td>int 0/1</td><td>Set / read</td><td>Close the audio output (1) or reopen it (0).</td></tr>
+            <tr><td><code>/drums/audio/nodeviceclock</code></td><td>0/1</td><td>Read</td><td>1 when no audio device is open and the internal clock drives the engine.</td></tr>
+            <tr><td><code>/drums/app/outputmode</code></td><td>int</td><td>Set / read</td><td>Output mode: 0 = automatic, 1 = stereo, 2 = multi-output.</td></tr>
+            <tr><td><code>/drums/app/buffersize</code></td><td>int</td><td>Set / read</td><td>Audio buffer size (standalone app).</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <h2 id="osc-click">Click (metronome)</h2>
+        <p>The built-in click.</p>
+        <div class="osc-table-wrap">
+        <table class="osc-table">
+          <thead><tr><th>Address</th><th>Argument</th><th>Access</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td><code>/drums/click/on</code></td><td>int</td><td>Set / read</td><td>Click off (0) or on (1).</td></tr>
+            <tr><td><code>/drums/click/accent/sound</code></td><td>int</td><td>Set / read</td><td>Sound for the first beat of the bar.</td></tr>
+            <tr><td><code>/drums/click/beat/sound</code></td><td>int</td><td>Set / read</td><td>Sound for the other beats.</td></tr>
+            <tr><td><code>/drums/click/accent/level</code></td><td>float</td><td>Set / read</td><td>First-beat level (dB).</td></tr>
+            <tr><td><code>/drums/click/beat/level</code></td><td>float</td><td>Set / read</td><td>Other-beat level (dB).</td></tr>
+            <tr><td><code>/drums/click/accent/file</code></td><td>string</td><td>Set / read</td><td>Custom sound file for the first beat.</td></tr>
+            <tr><td><code>/drums/click/beat/file</code></td><td>string</td><td>Set / read</td><td>Custom sound file for the other beats.</td></tr>
+            <tr><td><code>/drums/click/output</code></td><td>int</td><td>Set / read</td><td>Output pair: 0 = outputs 1-2 up to 31 = outputs 63-64.</td></tr>
+            <tr><td><code>/drums/click/output/state</code></td><td>string</td><td>Read</td><td>Status of the chosen output pair.</td></tr>
+            <tr><td><code>/drums/click/listen</code></td><td>&mdash;</td><td>Send</td><td>Play one bar of the click.</td></tr>
+            <tr><td><code>/drums/click/stats</code></td><td>string</td><td>Set / read</td><td>Clicks played since launch and their levels.</td></tr>
+            <tr><td><code>/drums/song/click</code></td><td>int</td><td>Set / read</td><td>Press the Songs page click button.</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <h2 id="osc-player">Players</h2>
+        <p>Larry Seyer Drums has four players, numbered 1-4 in these addresses.</p>
+        <p>Address prefixes: <code>/drums/player/&lt;1-4&gt;/</code>. Add a parameter from the table below to a prefix.</p>
+        <div class="osc-table-wrap">
+        <table class="osc-table">
+          <thead><tr><th>Parameter</th><th>Argument</th><th>Access</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td><code>mute</code></td><td>int 0/1</td><td>Set / read</td><td>Mute the player.</td></tr>
+            <tr><td><code>solo</code></td><td>int 0/1</td><td>Set / read</td><td>Solo the player.</td></tr>
+            <tr><td><code>colour</code></td><td>int</td><td>Read</td><td>The player&rsquo;s color (ARGB).</td></tr>
+            <tr><td><code>enabled</code></td><td>int 0/1</td><td>Set / read</td><td>Turn the player on or off.</td></tr>
+            <tr><td><code>fill</code></td><td>&mdash;</td><td>Send</td><td>Play a fill now.</td></tr>
+            <tr><td><code>drumsolo</code></td><td>int 0/1</td><td>Set / read</td><td>Drum solo mode on or off.</td></tr>
+            <tr><td><code>lock</code></td><td>int 0/1</td><td>Set / read</td><td>Lock the player against changes.</td></tr>
+            <tr><td><code>mode</code></td><td>int</td><td>Set / read</td><td>Player mode.</td></tr>
+            <tr><td><code>soundkit</code></td><td>int</td><td>Set / read</td><td>Sound kit index.</td></tr>
+            <tr><td><code>swing</code></td><td>float</td><td>Set / read</td><td>Swing amount (percent).</td></tr>
+            <tr><td><code>velocityscale</code></td><td>float</td><td>Set / read</td><td>Velocity scale (percent).</td></tr>
+            <tr><td><code>velocitylevels/pp</code></td><td>int</td><td>Set / read</td><td>Velocity for pianissimo hits.</td></tr>
+            <tr><td><code>velocitylevels/p</code></td><td>int</td><td>Set / read</td><td>Velocity for piano hits.</td></tr>
+            <tr><td><code>velocitylevels/f</code></td><td>int</td><td>Set / read</td><td>Velocity for forte hits.</td></tr>
+            <tr><td><code>velocitylevels/ff</code></td><td>int</td><td>Set / read</td><td>Velocity for fortissimo hits.</td></tr>
+            <tr><td><code>drumelementmutes</code></td><td>int</td><td>Set / read</td><td>Bit mask of muted drum elements.</td></tr>
+            <tr><td><code>drumelementsolos</code></td><td>int</td><td>Set / read</td><td>Bit mask of soloed drum elements.</td></tr>
+            <tr><td><code>handsvariant</code></td><td>int</td><td>Set / read</td><td>Hand-pattern variant.</td></tr>
+            <tr><td><code>pattern</code></td><td>int</td><td>Set / read</td><td>Pattern index.</td></tr>
+            <tr><td><code>snaremode</code></td><td>int</td><td>Set / read</td><td>Snare mode.</td></tr>
+            <tr><td><code>pan</code></td><td>float</td><td>Set / read</td><td>Player pan.</td></tr>
+            <tr><td><code>volume</code></td><td>float</td><td>Set / read</td><td>Player volume (dB).</td></tr>
+            <tr><td><code>outputlevel</code></td><td>float</td><td>Set / read</td><td>Output level (percent).</td></tr>
+            <tr><td><code>outputbus</code></td><td>int</td><td>Set / read</td><td>Output pair the player is routed to.</td></tr>
+            <tr><td><code>midichannel</code></td><td>int</td><td>Set / read</td><td>MIDI channel (1-16).</td></tr>
+            <tr><td><code>meter/level</code></td><td>float</td><td>Read</td><td>Current level.</td></tr>
+            <tr><td><code>meter/peak</code></td><td>float</td><td>Read</td><td>Current peak.</td></tr>
+            <tr><td><code>meter/voicecount</code></td><td>int</td><td>Read</td><td>Voices playing.</td></tr>
+            <tr><td><code>meter/noteons</code></td><td>int</td><td>Read</td><td>Notes played.</td></tr>
+            <tr><td><code>meter/lufs</code></td><td>float</td><td>Read</td><td>Loudness (LUFS).</td></tr>
+            <tr><td><code>meter/gainreduction</code></td><td>float</td><td>Read</td><td>Gain reduction (dB).</td></tr>
+            <tr><td><code>fillactive</code></td><td>0/1</td><td>Read</td><td>1 while a fill is playing.</td></tr>
+            <tr><td><code>morph/build</code></td><td>string</td><td>Read</td><td>Status of the kit&rsquo;s morph build.</td></tr>
+            <tr><td><code>kit/path</code></td><td>string</td><td>Read</td><td>File path of the loaded kit.</td></tr>
+            <tr><td><code>kit/snapshot</code></td><td>string</td><td>Read</td><td>File path of the kit preset in use.</td></tr>
+            <tr><td><code>kit/snapshotid</code></td><td>string</td><td>Read</td><td>ID of the kit preset in use.</td></tr>
+            <tr><td><code>kit/index</code></td><td>int</td><td>Read</td><td>Catalog index of the loaded kit.</td></tr>
+            <tr><td><code>preset/id</code></td><td>string</td><td>Read</td><td>ID of the player preset the player shows.</td></tr>
+            <tr><td><code>audition</code></td><td>int</td><td>Send</td><td>Play a single drum element (by element number).</td></tr>
+            <tr><td><code>pf/markermask</code></td><td>int</td><td>Read</td><td>Diagnostic: bars of the pattern that carry a lift.</td></tr>
+            <tr><td><code>pf/snarenote</code></td><td>int</td><td>Read</td><td>Diagnostic: the groove&rsquo;s snare note (-1 when none).</td></tr>
+            <tr><td><code>pf/patternbars</code></td><td>int</td><td>Read</td><td>Diagnostic: bars in the current pattern.</td></tr>
+            <tr><td><code>pill/name</code></td><td>string</td><td>Read</td><td>Name of the pill playing on this player&rsquo;s lane.</td></tr>
+            <tr><td><code>pill/pattern</code></td><td>string</td><td>Read</td><td>Content of the pill playing on this player&rsquo;s lane.</td></tr>
+            <tr><td><code>kit/resident</code></td><td>string</td><td>Read</td><td>Kit file the sampler actually has loaded.</td></tr>
+            <tr><td><code>kit/capabilities</code></td><td>string</td><td>Read</td><td>Articulations the loaded kit supports.</td></tr>
+            <tr><td><code>pattern/name</code></td><td>string</td><td>Read</td><td>Name of the selected pattern.</td></tr>
+            <tr><td><code>fill/capturedmiss</code></td><td>int</td><td>Read</td><td>Diagnostic: automatic fills that found no matching fill.</td></tr>
+            <tr><td><code>fill/starvation</code></td><td>int</td><td>Read</td><td>Diagnostic: fill draws that came back empty.</td></tr>
+            <tr><td><code>fill/capturedstyle</code></td><td>string</td><td>Read</td><td>Diagnostic: style preloaded for automatic fills.</td></tr>
+            <tr><td><code>fill/bagsize</code></td><td>int</td><td>Read</td><td>Diagnostic: fills available to draw.</td></tr>
+            <tr><td><code>fill/capturedbagsize</code></td><td>int</td><td>Read</td><td>Diagnostic: fills preloaded for automatic fills.</td></tr>
+            <tr><td><code>fill/lastdrawn</code></td><td>int</td><td>Read</td><td>Diagnostic: last fill drawn.</td></tr>
+            <tr><td><code>fill/cursor</code></td><td>int</td><td>Read</td><td>Diagnostic: fill draw position.</td></tr>
+            <tr><td><code>fill/capturedlastdrawn</code></td><td>int</td><td>Read</td><td>Diagnostic: last preloaded fill drawn.</td></tr>
+            <tr><td><code>fill/capturedcursor</code></td><td>int</td><td>Read</td><td>Diagnostic: preloaded fill draw position.</td></tr>
+            <tr><td><code>fill/subdivision</code></td><td>string</td><td>Read</td><td>Diagnostic: feel (straight or triplet) fills are matched to.</td></tr>
+            <tr><td><code>energy</code></td><td>int</td><td>Set / read</td><td>Energy level 0-6 of the pill playing on this lane.</td></tr>
+            <tr><td><code>output/midi/enabled</code></td><td>int 0/1</td><td>Set / read</td><td>Send this player&rsquo;s notes as MIDI.</td></tr>
+            <tr><td><code>output/sampler/enabled</code></td><td>int 0/1</td><td>Set / read</td><td>Play this player through the sampler.</td></tr>
+            <tr><td><code>output/synth/enabled</code></td><td>int 0/1</td><td>Set / read</td><td>Play this player through the drum synth.</td></tr>
+            <tr><td><code>output/midiLevel</code></td><td>float</td><td>Set / read</td><td>MIDI output level (percent).</td></tr>
+            <tr><td><code>output/samplerLevel</code></td><td>float</td><td>Set / read</td><td>Sampler output level (percent).</td></tr>
+            <tr><td><code>output/synthLevel</code></td><td>float</td><td>Set / read</td><td>Synth output level (percent).</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <h2 id="osc-synth">Drum synth (per player)</h2>
+        <p>Each player has a built-in drum synthesizer. Players are numbered 1-4.</p>
+        <p>Address prefixes: <code>/drums/player/&lt;1-4&gt;/synth/</code>. Add a parameter from the table below to a prefix.</p>
+        <div class="osc-table-wrap">
+        <table class="osc-table">
+          <thead><tr><th>Parameter</th><th>Argument</th><th>Access</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td><code>soloslot</code></td><td>int</td><td>Set / read</td><td>Solo one kit slot on the synth (-1 for none).</td></tr>
+            <tr><td><code>engine</code></td><td>string</td><td>Read</td><td>Diagnostic: synth engine status text.</td></tr>
+            <tr><td><code>routing</code></td><td>string</td><td>Read</td><td>Diagnostic: whether the synth is enabled and which kit slots are assigned to it.</td></tr>
+            <tr><td><code>kickLevel</code></td><td>float</td><td>Set / read</td><td>Synth kick level.</td></tr>
+            <tr><td><code>kickTune</code></td><td>float</td><td>Set / read</td><td>Synth kick tuning.</td></tr>
+            <tr><td><code>kickDecay</code></td><td>float</td><td>Set / read</td><td>Synth kick decay.</td></tr>
+            <tr><td><code>snareLevel</code></td><td>float</td><td>Set / read</td><td>Synth snare level.</td></tr>
+            <tr><td><code>snareTune</code></td><td>float</td><td>Set / read</td><td>Synth snare tuning.</td></tr>
+            <tr><td><code>snareDecay</code></td><td>float</td><td>Set / read</td><td>Synth snare decay.</td></tr>
+            <tr><td><code>rimshotLevel</code></td><td>float</td><td>Set / read</td><td>Synth rimshot level.</td></tr>
+            <tr><td><code>rimshotTune</code></td><td>float</td><td>Set / read</td><td>Synth rimshot tuning.</td></tr>
+            <tr><td><code>rimshotDecay</code></td><td>float</td><td>Set / read</td><td>Synth rimshot decay.</td></tr>
+            <tr><td><code>clapLevel</code></td><td>float</td><td>Set / read</td><td>Synth clap level.</td></tr>
+            <tr><td><code>clapTune</code></td><td>float</td><td>Set / read</td><td>Synth clap tuning.</td></tr>
+            <tr><td><code>clapTone</code></td><td>float</td><td>Set / read</td><td>Synth clap tone.</td></tr>
+            <tr><td><code>clapDecay</code></td><td>float</td><td>Set / read</td><td>Synth clap decay.</td></tr>
+            <tr><td><code>closedHiHatLevel</code></td><td>float</td><td>Set / read</td><td>Synth closed hi-hat level.</td></tr>
+            <tr><td><code>closedHiHatDecay</code></td><td>float</td><td>Set / read</td><td>Synth closed hi-hat decay.</td></tr>
+            <tr><td><code>pedalHiHatLevel</code></td><td>float</td><td>Set / read</td><td>Synth pedal hi-hat level.</td></tr>
+            <tr><td><code>pedalHiHatDecay</code></td><td>float</td><td>Set / read</td><td>Synth pedal hi-hat decay.</td></tr>
+            <tr><td><code>openHiHatLevel</code></td><td>float</td><td>Set / read</td><td>Synth open hi-hat level.</td></tr>
+            <tr><td><code>openHiHatDecay</code></td><td>float</td><td>Set / read</td><td>Synth open hi-hat decay.</td></tr>
+            <tr><td><code>lowTomLevel</code></td><td>float</td><td>Set / read</td><td>Synth low tom level.</td></tr>
+            <tr><td><code>lowTomTune</code></td><td>float</td><td>Set / read</td><td>Synth low tom tuning.</td></tr>
+            <tr><td><code>lowTomDecay</code></td><td>float</td><td>Set / read</td><td>Synth low tom decay.</td></tr>
+            <tr><td><code>midTomLevel</code></td><td>float</td><td>Set / read</td><td>Synth mid tom level.</td></tr>
+            <tr><td><code>midTomTune</code></td><td>float</td><td>Set / read</td><td>Synth mid tom tuning.</td></tr>
+            <tr><td><code>midTomDecay</code></td><td>float</td><td>Set / read</td><td>Synth mid tom decay.</td></tr>
+            <tr><td><code>highTomLevel</code></td><td>float</td><td>Set / read</td><td>Synth high tom level.</td></tr>
+            <tr><td><code>highTomTune</code></td><td>float</td><td>Set / read</td><td>Synth high tom tuning.</td></tr>
+            <tr><td><code>highTomDecay</code></td><td>float</td><td>Set / read</td><td>Synth high tom decay.</td></tr>
+            <tr><td><code>midHighTomLevel</code></td><td>float</td><td>Set / read</td><td>Synth mid-high tom level.</td></tr>
+            <tr><td><code>midHighTomTune</code></td><td>float</td><td>Set / read</td><td>Synth mid-high tom tuning.</td></tr>
+            <tr><td><code>midHighTomDecay</code></td><td>float</td><td>Set / read</td><td>Synth mid-high tom decay.</td></tr>
+            <tr><td><code>crashLevel</code></td><td>float</td><td>Set / read</td><td>Synth crash level.</td></tr>
+            <tr><td><code>crashDecay</code></td><td>float</td><td>Set / read</td><td>Synth crash decay.</td></tr>
+            <tr><td><code>crashPitch</code></td><td>float</td><td>Set / read</td><td>Synth crash pitch.</td></tr>
+            <tr><td><code>rideLevel</code></td><td>float</td><td>Set / read</td><td>Synth ride level.</td></tr>
+            <tr><td><code>rideDecay</code></td><td>float</td><td>Set / read</td><td>Synth ride decay.</td></tr>
+            <tr><td><code>ridePitch</code></td><td>float</td><td>Set / read</td><td>Synth ride pitch.</td></tr>
+            <tr><td><code>rideBellLevel</code></td><td>float</td><td>Set / read</td><td>Synth ride bell level.</td></tr>
+            <tr><td><code>rideBellDecay</code></td><td>float</td><td>Set / read</td><td>Synth ride bell decay.</td></tr>
+            <tr><td><code>rideBellPitch</code></td><td>float</td><td>Set / read</td><td>Synth ride bell pitch.</td></tr>
+            <tr><td><code>tambourineLevel</code></td><td>float</td><td>Set / read</td><td>Synth tambourine level.</td></tr>
+            <tr><td><code>tambourineTune</code></td><td>float</td><td>Set / read</td><td>Synth tambourine tuning.</td></tr>
+            <tr><td><code>tambourineTone</code></td><td>float</td><td>Set / read</td><td>Synth tambourine tone.</td></tr>
+            <tr><td><code>tambourineDecay</code></td><td>float</td><td>Set / read</td><td>Synth tambourine decay.</td></tr>
+            <tr><td><code>cowbellLevel</code></td><td>float</td><td>Set / read</td><td>Synth cowbell level.</td></tr>
+            <tr><td><code>cowbellTune</code></td><td>float</td><td>Set / read</td><td>Synth cowbell tuning.</td></tr>
+            <tr><td><code>cowbellDecay</code></td><td>float</td><td>Set / read</td><td>Synth cowbell decay.</td></tr>
+            <tr><td><code>shakerLevel</code></td><td>float</td><td>Set / read</td><td>Synth shaker level.</td></tr>
+            <tr><td><code>shakerTune</code></td><td>float</td><td>Set / read</td><td>Synth shaker tuning.</td></tr>
+            <tr><td><code>shakerTone</code></td><td>float</td><td>Set / read</td><td>Synth shaker tone.</td></tr>
+            <tr><td><code>shakerDecay</code></td><td>float</td><td>Set / read</td><td>Synth shaker decay.</td></tr>
+            <tr><td><code>clavesLevel</code></td><td>float</td><td>Set / read</td><td>Synth claves level.</td></tr>
+            <tr><td><code>clavesTune</code></td><td>float</td><td>Set / read</td><td>Synth claves tuning.</td></tr>
+            <tr><td><code>clavesDecay</code></td><td>float</td><td>Set / read</td><td>Synth claves decay.</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <h2 id="osc-songs">Songs and banks</h2>
+        <p>Load, save and organize songs and banks, and follow song playback.</p>
+        <div class="osc-table-wrap">
+        <table class="osc-table">
+          <thead><tr><th>Address</th><th>Argument</th><th>Access</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td><code>/drums/song/load</code></td><td>int</td><td>Send</td><td>Load the song in a slot.</td></tr>
+            <tr><td><code>/drums/song/save</code></td><td>string</td><td>Send</td><td>Save the current song under a name.</td></tr>
+            <tr><td><code>/drums/song/new</code></td><td>int</td><td>Set / read</td><td>Start a new song.</td></tr>
+            <tr><td><code>/drums/song/slot</code></td><td>int</td><td>Set / read</td><td>Current song slot.</td></tr>
+            <tr><td><code>/drums/song/name</code></td><td>string</td><td>Read</td><td>Name of the current song.</td></tr>
+            <tr><td><code>/drums/song/program</code></td><td>int</td><td>Set / read</td><td>Recall song 0-99 in the current bank (as a Program Change).</td></tr>
+            <tr><td><code>/drums/song/program/bank</code></td><td>string</td><td>Set / read</td><td>Recall a song by "bank|slot".</td></tr>
+            <tr><td><code>/drums/song/bank</code></td><td>int</td><td>Set / read</td><td>Current bank.</td></tr>
+            <tr><td><code>/drums/song/bank/add</code></td><td>string</td><td>Set / read</td><td>Add a bank: "index|name".</td></tr>
+            <tr><td><code>/drums/song/bank/rename</code></td><td>string</td><td>Set / read</td><td>Rename a bank: "index|name".</td></tr>
+            <tr><td><code>/drums/song/bank/delete</code></td><td>int</td><td>Set / read</td><td>Delete a bank.</td></tr>
+            <tr><td><code>/drums/song/bank/list</code></td><td>string</td><td>Read</td><td>All banks.</td></tr>
+            <tr><td><code>/drums/song/bank/slots</code></td><td>string</td><td>Read</td><td>Occupied slots in the current bank.</td></tr>
+            <tr><td><code>/drums/song/slot/delete</code></td><td>int</td><td>Set / read</td><td>Clear a slot (locked slots are kept).</td></tr>
+            <tr><td><code>/drums/song/slot/rename</code></td><td>string</td><td>Set / read</td><td>Rename a slot: "index|name".</td></tr>
+            <tr><td><code>/drums/song/slot/lock</code></td><td>string</td><td>Set / read</td><td>Lock or unlock a slot: "index|1" or "index|0".</td></tr>
+            <tr><td><code>/drums/song/seek</code></td><td>int</td><td>Set / read</td><td>Jump to a bar.</td></tr>
+            <tr><td><code>/drums/song/position/bar</code></td><td>int</td><td>Read</td><td>Current song bar.</td></tr>
+            <tr><td><code>/drums/song/position/barsfractional</code></td><td>float</td><td>Read</td><td>Current song position in bars.</td></tr>
+            <tr><td><code>/drums/song/position/barlog</code></td><td>string</td><td>Read</td><td>Bars entered since playback started.</td></tr>
+            <tr><td><code>/drums/song/activeplayers</code></td><td>int</td><td>Read</td><td>Bit mask of lanes playing a pill now.</td></tr>
+            <tr><td><code>/drums/song/endbehavior</code></td><td>int</td><td>Set / read</td><td>At the end of the song: 0 = loop song, 1 = loop last bars, 2 = stop.</td></tr>
+            <tr><td><code>/drums/song/launchquantize</code></td><td>int</td><td>Set / read</td><td>When a triggered pill starts: 0 = end of pill, 1 = next bar, 2 = two bars, 3 = four bars.</td></tr>
+            <tr><td><code>/drums/song/autofillonpillchange</code></td><td>int</td><td>Set / read</td><td>Play a fill when a remote trigger changes the pill (0/1).</td></tr>
+            <tr><td><code>/drums/song/appliedcount</code></td><td>int</td><td>Read</td><td>Songs applied since launch.</td></tr>
+            <tr><td><code>/drums/song/grid/open</code></td><td>int</td><td>Set / read</td><td>Song grid: 0 = close, 1 = open to load, 2 = open to save.</td></tr>
+            <tr><td><code>/drums/song/grid/tap</code></td><td>int</td><td>Set / read</td><td>Tap a slot in the open song grid.</td></tr>
+            <tr><td><code>/drums/song/grid/state</code></td><td>string</td><td>Read</td><td>Song grid status.</td></tr>
+            <tr><td><code>/drums/song/grid/find</code></td><td>&mdash;</td><td>Send</td><td>Open song search.</td></tr>
+            <tr><td><code>/drums/song/track/&lt;1-4&gt;/loopanchor</code></td><td>string</td><td>Read</td><td>Where the lane&rsquo;s loop is anchored.</td></tr>
+            <tr><td><code>/drums/song/editcursorbar</code></td><td>int</td><td>Set / read</td><td>Edit cursor bar.</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <h2 id="osc-timeline">Song timeline editing</h2>
+        <p>Arrange pills, time signature changes and styles on the song timeline.</p>
+        <div class="osc-table-wrap">
+        <table class="osc-table">
+          <thead><tr><th>Address</th><th>Argument</th><th>Access</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td><code>/drums/song/conductor/state</code></td><td>string</td><td>Read</td><td>Time signature and tempo changes.</td></tr>
+            <tr><td><code>/drums/song/ruler/beats</code></td><td>string</td><td>Read</td><td>Beats the ruler shows in each visible bar.</td></tr>
+            <tr><td><code>/drums/song/conductor/chips</code></td><td>string</td><td>Read</td><td>Time signature chips as drawn.</td></tr>
+            <tr><td><code>/drums/song/conductor/insert</code></td><td>string</td><td>Set / read</td><td>Insert a meter change: "bar,num,den" or "bar,num,den,tempo".</td></tr>
+            <tr><td><code>/drums/song/conductor/count</code></td><td>string</td><td>Set / read</td><td>Set a change&rsquo;s count: "bar,count".</td></tr>
+            <tr><td><code>/drums/song/conductor/delete</code></td><td>int</td><td>Set / read</td><td>Delete the change at a bar.</td></tr>
+            <tr><td><code>/drums/song/conductor/droppill</code></td><td>string</td><td>Set / read</td><td>Drop a pill: "lane,bar,num,den".</td></tr>
+            <tr><td><code>/drums/song/conductor/droppillatrelease</code></td><td>string</td><td>Set / read</td><td>Drop a pill where a drag is released: "lane,bar,num,den".</td></tr>
+            <tr><td><code>/drums/song/conductor/clear</code></td><td>int 0/1</td><td>Send</td><td>Clear every pill and meter change.</td></tr>
+            <tr><td><code>/drums/song/conductor/pending</code></td><td>string</td><td>Read</td><td>Pending time signature suggestion.</td></tr>
+            <tr><td><code>/drums/song/conductor/suggest/accept</code></td><td>int 0/1</td><td>Send</td><td>Accept the suggestion.</td></tr>
+            <tr><td><code>/drums/song/conductor/suggest/decline</code></td><td>int 0/1</td><td>Send</td><td>Decline the suggestion.</td></tr>
+            <tr><td><code>/drums/song/pool/style</code></td><td>string</td><td>Set / read</td><td>Pick a style for a pool column: "column,style".</td></tr>
+            <tr><td><code>/drums/song/pool/droplibrarypill</code></td><td>string</td><td>Set / read</td><td>Drop a library pill: "lane,bar,section".</td></tr>
+            <tr><td><code>/drums/song/pool/style/rename</code></td><td>string</td><td>Set / read</td><td>Rename a pool column&rsquo;s style: "column|name".</td></tr>
+            <tr><td><code>/drums/song/pool/style/delete</code></td><td>int</td><td>Set / read</td><td>Ask to delete a pool column&rsquo;s style.</td></tr>
+            <tr><td><code>/drums/song/pool/styleroots</code></td><td>string</td><td>Read</td><td>Folders styles are read from.</td></tr>
+            <tr><td><code>/drums/song/pool/columns</code></td><td>string</td><td>Read</td><td>Pool columns and their styles.</td></tr>
+            <tr><td><code>/drums/song/pool/blankverse</code></td><td>int</td><td>Set / read</td><td>Create a blank pattern set for a pool column.</td></tr>
+            <tr><td><code>/drums/song/select/multi</code></td><td>string</td><td>Set / read</td><td>Select several pills.</td></tr>
+            <tr><td><code>/drums/song/select/multi/move</code></td><td>string</td><td>Set / read</td><td>Move the selected pills: "lane:bar".</td></tr>
+            <tr><td><code>/drums/song/select/timerange</code></td><td>string</td><td>Read</td><td>Selected time range.</td></tr>
+            <tr><td><code>/drums/song/select/blankspan</code></td><td>string</td><td>Read</td><td>Selected blank span.</td></tr>
+            <tr><td><code>/drums/song/selection/combine</code></td><td>string</td><td>Set / read</td><td>Combine the selected pills.</td></tr>
+            <tr><td><code>/drums/song/shake</code></td><td>&mdash;</td><td>Send</td><td>Ask to clear the song (as shaking the device does).</td></tr>
+            <tr><td><code>/drums/song/undo</code></td><td>string</td><td>Set / read</td><td>Undo.</td></tr>
+            <tr><td><code>/drums/song/redo</code></td><td>string</td><td>Set / read</td><td>Redo.</td></tr>
+            <tr><td><code>/drums/song/view</code></td><td>string</td><td>Read</td><td>Visible timeline range.</td></tr>
+            <tr><td><code>/drums/song/transportstart</code></td><td>string</td><td>Read</td><td>Where playback started.</td></tr>
+            <tr><td><code>/drums/song/scroll</code></td><td>float</td><td>Set / read</td><td>Timeline scroll position (bars).</td></tr>
+            <tr><td><code>/drums/song/zoom</code></td><td>float</td><td>Set / read</td><td>Timeline zoom (pixels per bar).</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <h2 id="osc-pills">Song pills</h2>
+        <p>Pills are the sections placed on each player&rsquo;s lane of the song timeline. Lanes are 1-4 and pills are numbered from 0 in timeline order.</p>
+        <p>Address prefixes: <code>/drums/song/track/&lt;1-4&gt;/pill/&lt;0-255&gt;/</code>. Add a parameter from the table below to a prefix.</p>
+        <div class="osc-table-wrap">
+        <table class="osc-table">
+          <thead><tr><th>Parameter</th><th>Argument</th><th>Access</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td><code>levelIndex</code></td><td>int</td><td>Set / read</td><td>Energy level 0-6.</td></tr>
+            <tr><td><code>accentColorIdx</code></td><td>int</td><td>Set / read</td><td>Accent color index.</td></tr>
+            <tr><td><code>triggerCcNumber</code></td><td>int</td><td>Set / read</td><td>MIDI CC that triggers the pill.</td></tr>
+            <tr><td><code>loop</code></td><td>int 0/1</td><td>Set / read</td><td>Loop the pill.</td></tr>
+            <tr><td><code>preFill</code></td><td>int 0/1</td><td>Set / read</td><td>Play a fill before the pill.</td></tr>
+            <tr><td><code>lastFill</code></td><td>int 0/1</td><td>Set / read</td><td>Play a fill in the pill&rsquo;s last bar.</td></tr>
+            <tr><td><code>move</code></td><td>int</td><td>Set / read</td><td>Move the pill to a bar.</td></tr>
+            <tr><td><code>pattern</code></td><td>string</td><td>Read</td><td>What the pill contains.</td></tr>
+            <tr><td><code>resize</code></td><td>int</td><td>Set / read</td><td>Set the pill&rsquo;s length in bars.</td></tr>
+            <tr><td><code>speed</code></td><td>string</td><td>Set / read</td><td>Playback speed as a ratio, e.g. 1/2 or 2/1.</td></tr>
+            <tr><td><code>trigger</code></td><td>&mdash;</td><td>Send</td><td>Play this pill next.</td></tr>
+            <tr><td><code>geom</code></td><td>string</td><td>Read</td><td>Automation: the pill&rsquo;s screen position.</td></tr>
+            <tr><td><code>meter</code></td><td>string</td><td>Read</td><td>The pill&rsquo;s time signature.</td></tr>
+            <tr><td><code>remove</code></td><td>&mdash;</td><td>Send</td><td>Delete the pill.</td></tr>
+            <tr><td><code>energy</code></td><td>int</td><td>Read</td><td>Energy level the pill is playing.</td></tr>
+            <tr><td><code>energy/stored</code></td><td>int</td><td>Read</td><td>Stored energy response for the current global energy.</td></tr>
+            <tr><td><code>regrid</code></td><td>int</td><td>Set / read</td><td>Re-fit the pill to the grid.</td></tr>
+            <tr><td><code>name</code></td><td>string</td><td>Set / read</td><td>The pill&rsquo;s name.</td></tr>
+            <tr><td><code>beatLength</code></td><td>int</td><td>Set / read</td><td>Length in counted beats.</td></tr>
+            <tr><td><code>beats</code></td><td>int</td><td>Read</td><td>Length in counted beats under the meter in force.</td></tr>
+            <tr><td><code>storedLevel/&lt;0-6&gt;</code></td><td>int</td><td>Set / read</td><td>Stored response for global energy level 0-6.</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <h2 id="osc-editor">Pattern editor</h2>
+        <p>Edit the notes and feel of a pill. Open the editor with lane*1000 + pill.</p>
+        <div class="osc-table-wrap">
+        <table class="osc-table">
+          <thead><tr><th>Address</th><th>Argument</th><th>Access</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td><code>/drums/song/editor/open</code></td><td>int</td><td>Set / read</td><td>Open the editor on a pill (lane*1000 + pill).</td></tr>
+            <tr><td><code>/drums/song/editor/close</code></td><td>int 0/1</td><td>Set / read</td><td>Close the editor.</td></tr>
+            <tr><td><code>/drums/song/editor/done</code></td><td>&mdash;</td><td>Send</td><td>Press Done (commit and close).</td></tr>
+            <tr><td><code>/drums/song/editor/state</code></td><td>string</td><td>Read</td><td>Editor status.</td></tr>
+            <tr><td><code>/drums/song/editor/length</code></td><td>int</td><td>Set / read</td><td>Pattern length in bars.</td></tr>
+            <tr><td><code>/drums/song/editor/feel</code></td><td>string</td><td>Read</td><td>The pill&rsquo;s own feel settings.</td></tr>
+            <tr><td><code>/drums/song/editor/feel/energy</code></td><td>int</td><td>Set / read</td><td>The pill&rsquo;s energy level 0-6.</td></tr>
+            <tr><td><code>/drums/song/editor/feel/energy/edit</code></td><td>int</td><td>Send</td><td>Open the energy level editor.</td></tr>
+            <tr><td><code>/drums/song/editor/feel/swing</code></td><td>string</td><td>Set / read</td><td>The pill&rsquo;s swing percent, or none.</td></tr>
+            <tr><td><code>/drums/song/editor/feel/offset</code></td><td>string</td><td>Set / read</td><td>The pill&rsquo;s timing offset in beats, or none.</td></tr>
+            <tr><td><code>/drums/song/editor/feel/speed</code></td><td>string</td><td>Set / read</td><td>The pill&rsquo;s speed: "num/den".</td></tr>
+            <tr><td><code>/drums/song/editor/timesig</code></td><td>string</td><td>Set / read</td><td>Time signature: "num,den".</td></tr>
+            <tr><td><code>/drums/song/editor/snap</code></td><td>string</td><td>Set / read</td><td>Snap on or off, or a grid value.</td></tr>
+            <tr><td><code>/drums/song/editor/zoom</code></td><td>float</td><td>Set / read</td><td>Horizontal zoom factor.</td></tr>
+            <tr><td><code>/drums/song/editor/zoomv</code></td><td>float</td><td>Set / read</td><td>Vertical zoom factor.</td></tr>
+            <tr><td><code>/drums/song/editor/zoombutton</code></td><td>string</td><td>Set / read</td><td>Press a zoom button: h-, h+, v- or v+.</td></tr>
+            <tr><td><code>/drums/song/editor/cursor</code></td><td>string</td><td>Set / read</td><td>Place the cursor: "row,beat".</td></tr>
+            <tr><td><code>/drums/song/editor/geom</code></td><td>string</td><td>Read</td><td>Automation: grid geometry.</td></tr>
+            <tr><td><code>/drums/song/editor/notes</code></td><td>string</td><td>Read</td><td>Notes shown compared with notes stored.</td></tr>
+            <tr><td><code>/drums/song/editor/tapx</code></td><td>string</td><td>Set / read</td><td>Automation: aim the cursor at "row,x".</td></tr>
+            <tr><td><code>/drums/song/editor/tapinner</code></td><td>string</td><td>Set / read</td><td>Automation: press the grid at "x,y".</td></tr>
+            <tr><td><code>/drums/song/editor/velocitymode/tap</code></td><td>int</td><td>Send</td><td>Press the velocity mode button.</td></tr>
+            <tr><td><code>/drums/song/editor/rowgesture</code></td><td>string</td><td>Set / read</td><td>Automation: a gesture on a drum row.</td></tr>
+            <tr><td><code>/drums/song/editor/follow</code></td><td>int</td><td>Set / read</td><td>Follow playback (0/1).</td></tr>
+            <tr><td><code>/drums/song/editor/scrollx</code></td><td>int</td><td>Set / read</td><td>Horizontal scroll position.</td></tr>
+            <tr><td><code>/drums/song/editor/scrolly</code></td><td>int</td><td>Set / read</td><td>Vertical scroll position.</td></tr>
+            <tr><td><code>/drums/song/editor/veldrag</code></td><td>string</td><td>Set / read</td><td>Automation: drag note velocities.</td></tr>
+            <tr><td><code>/drums/song/editor/seekbar</code></td><td>int</td><td>Set / read</td><td>Move the play cursor to a bar.</td></tr>
+            <tr><td><code>/drums/song/editor/rows</code></td><td>string</td><td>Set / read</td><td>Show used rows or all rows.</td></tr>
+            <tr><td><code>/drums/song/editor/rowclear</code></td><td>int</td><td>Send</td><td>Clear every row solo and mute.</td></tr>
+            <tr><td><code>/drums/song/editor/adddrum</code></td><td>int</td><td>Set / read</td><td>Show a hidden drum row.</td></tr>
+            <tr><td><code>/drums/song/editor/note/add</code></td><td>string</td><td>Set / read</td><td>Add a note.</td></tr>
+            <tr><td><code>/drums/song/editor/select</code></td><td>string</td><td>Set / read</td><td>Select notes.</td></tr>
+            <tr><td><code>/drums/song/editor/quantize</code></td><td>string</td><td>Set / read</td><td>Quantize notes.</td></tr>
+            <tr><td><code>/drums/song/editor/selection</code></td><td>string</td><td>Set / read</td><td>Act on selected notes: delete, copy, clear or move.</td></tr>
+            <tr><td><code>/drums/song/editor/note/remove</code></td><td>string</td><td>Set / read</td><td>Remove the note nearest "row,beat".</td></tr>
+            <tr><td><code>/drums/song/editor/note/clear</code></td><td>&mdash;</td><td>Send</td><td>Remove every note.</td></tr>
+            <tr><td><code>/drums/song/editor/toggleatcursor</code></td><td>&mdash;</td><td>Send</td><td>Add or remove the note at the cursor.</td></tr>
+            <tr><td><code>/drums/song/editor/group</code></td><td>int</td><td>Set / read</td><td>Fold or unfold an instrument group (0 kick to 5 other).</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <h2 id="osc-energy">Energy</h2>
+        <p>Energy levels shape how hard each player plays. There are seven levels, 0 (Asleep) to 6 (Energetic). Profile parameters with a trailing &lt;0-3&gt; are per player (0-based).</p>
+        <div class="osc-table-wrap">
+        <table class="osc-table">
+          <thead><tr><th>Address</th><th>Argument</th><th>Access</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td><code>/drums/energy/global</code></td><td>int</td><td>Read</td><td>Song-wide energy level 0-6.</td></tr>
+            <tr><td><code>/drums/energy/player/&lt;0-3&gt;/default</code></td><td>int</td><td>Set / read</td><td>Default energy level for a player (0-based).</td></tr>
+            <tr><td><code>/drums/energy/profile/&lt;0-6&gt;/tempo</code></td><td>float</td><td>Set / read</td><td>Tempo for this level.</td></tr>
+            <tr><td><code>/drums/energy/profile/&lt;0-6&gt;/clear</code></td><td>int</td><td>Set / read</td><td>Reset this level.</td></tr>
+            <tr><td><code>/drums/energy/profile/&lt;0-6&gt;/factory</code></td><td>int</td><td>Read</td><td>1 while the level matches the factory setting.</td></tr>
+            <tr><td><code>/drums/energy/profile/&lt;0-6&gt;/name</code></td><td>string</td><td>Set / read</td><td>Level name.</td></tr>
+            <tr><td><code>/drums/energy/profile/&lt;0-6&gt;/colorARGB</code></td><td>int</td><td>Set / read</td><td>Level color (ARGB).</td></tr>
+            <tr><td><code>/drums/energy/profile/&lt;0-6&gt;/snareMode</code></td><td>int</td><td>Set / read</td><td>Snare mode.</td></tr>
+            <tr><td><code>/drums/energy/profile/&lt;0-6&gt;/hihatMode</code></td><td>int</td><td>Set / read</td><td>Hi-hat mode.</td></tr>
+            <tr><td><code>/drums/energy/profile/&lt;0-6&gt;/crashOnBackbeat</code></td><td>int 0/1</td><td>Set / read</td><td>Crash on the backbeat.</td></tr>
+            <tr><td><code>/drums/energy/profile/&lt;0-6&gt;/hatPosition</code></td><td>int</td><td>Set / read</td><td>Hi-hat playing position.</td></tr>
+            <tr><td><code>/drums/energy/profile/&lt;0-6&gt;/hatOpenness</code></td><td>int</td><td>Set / read</td><td>Hi-hat openness.</td></tr>
+            <tr><td><code>/drums/energy/profile/&lt;0-6&gt;/hatMorph</code></td><td>int</td><td>Set / read</td><td>Hi-hat morph amount.</td></tr>
+            <tr><td><code>/drums/energy/profile/&lt;0-6&gt;/snareMorph</code></td><td>int</td><td>Set / read</td><td>Snare morph amount.</td></tr>
+            <tr><td><code>/drums/energy/profile/&lt;0-6&gt;/tomMorph</code></td><td>int</td><td>Set / read</td><td>Tom morph amount.</td></tr>
+            <tr><td><code>/drums/energy/profile/&lt;0-6&gt;/tomArticulation</code></td><td>int</td><td>Set / read</td><td>Tom articulation.</td></tr>
+            <tr><td><code>/drums/energy/profile/&lt;0-6&gt;/kickZone</code></td><td>int</td><td>Set / read</td><td>Kick playing zone.</td></tr>
+            <tr><td><code>/drums/energy/profile/&lt;0-6&gt;/snareZone</code></td><td>int</td><td>Set / read</td><td>Snare playing zone.</td></tr>
+            <tr><td><code>/drums/energy/profile/&lt;0-6&gt;/swingamount/&lt;0-3&gt;</code></td><td>float</td><td>Set / read</td><td>Swing amount per player.</td></tr>
+            <tr><td><code>/drums/energy/profile/&lt;0-6&gt;/swingsubdivisions/&lt;0-3&gt;</code></td><td>int</td><td>Set / read</td><td>Swing subdivision per player.</td></tr>
+            <tr><td><code>/drums/energy/profile/&lt;0-6&gt;/elementmutes/&lt;0-3&gt;</code></td><td>int</td><td>Set / read</td><td>Muted drum elements per player (bit mask).</td></tr>
+            <tr><td><code>/drums/energy/profile/&lt;0-6&gt;/barcount/&lt;0-3&gt;</code></td><td>int</td><td>Set / read</td><td>Bar count per player.</td></tr>
+            <tr><td><code>/drums/energy/profile/&lt;0-6&gt;/filllength/&lt;0-3&gt;</code></td><td>int</td><td>Set / read</td><td>Fill length per player.</td></tr>
+            <tr><td><code>/drums/energy/profile/&lt;0-6&gt;/tomposition/&lt;0-3&gt;</code></td><td>int</td><td>Set / read</td><td>Tom position per player.</td></tr>
+            <tr><td><code>/drums/energy/profile/&lt;0-6&gt;/cymbalchoice/&lt;0-7&gt;</code></td><td>int</td><td>Set / read</td><td>Cymbal choice 0-7.</td></tr>
+            <tr><td><code>/drums/energy/profile/&lt;0-6&gt;/cymbalposition/&lt;0-7&gt;</code></td><td>int</td><td>Set / read</td><td>Cymbal position 0-7.</td></tr>
+            <tr><td><code>/drums/energy/profile/&lt;0-6&gt;/groupVelocityPercent/&lt;0-3&gt;/&lt;0-7&gt;</code></td><td>int</td><td>Set / read</td><td>Velocity percent per player and instrument group 0-7.</td></tr>
+            <tr><td><code>/drums/energy/profile/&lt;0-6&gt;/groupTimingMs/&lt;0-3&gt;/&lt;0-7&gt;</code></td><td>int</td><td>Set / read</td><td>Timing offset (ms) per player and instrument group 0-7.</td></tr>
+            <tr><td><code>/drums/energy/profile/&lt;0-6&gt;/instrumentVelocityPercent/&lt;0-3&gt;/&lt;instrument&gt;</code></td><td>int</td><td>Set / read</td><td>Velocity percent per player and instrument. &lt;instrument&gt; is one of: bongos, cabasa, claps, congas, cowbell, cymbals, hihat, kick, sandpaper, shaker, snaps, snare, tambourine, toms, triangle.</td></tr>
+            <tr><td><code>/drums/energy/profile/&lt;0-6&gt;/instrumentTimingMs/&lt;0-3&gt;/&lt;instrument&gt;</code></td><td>int</td><td>Set / read</td><td>Timing offset (ms) per player and instrument. &lt;instrument&gt; is one of: bongos, cabasa, claps, congas, cowbell, cymbals, hihat, kick, sandpaper, shaker, snaps, snare, tambourine, toms, triangle.</td></tr>
+            <tr><td><code>/drums/energy/profile/&lt;0-6&gt;/dynamics/player</code></td><td>int</td><td>Set / read</td><td>Dynamics editor: choose the player.</td></tr>
+            <tr><td><code>/drums/energy/profile/&lt;0-6&gt;/dynamics/group</code></td><td>int</td><td>Set / read</td><td>Dynamics editor: choose the group.</td></tr>
+            <tr><td><code>/drums/energy/profile/&lt;0-6&gt;/dynamics/instrument</code></td><td>string</td><td>Set / read</td><td>Dynamics editor: choose the instrument.</td></tr>
+            <tr><td><code>/drums/energy/profile/&lt;0-6&gt;/dynamics/amount</code></td><td>float</td><td>Set / read</td><td>Dynamics amount.</td></tr>
+            <tr><td><code>/drums/energy/profile/&lt;0-6&gt;/dynamics/direction</code></td><td>int</td><td>Set / read</td><td>Dynamics direction.</td></tr>
+            <tr><td><code>/drums/energy/profile/&lt;0-6&gt;/dynamics/period</code></td><td>int</td><td>Set / read</td><td>Dynamics period.</td></tr>
+            <tr><td><code>/drums/energy/profile/&lt;0-6&gt;/dynamics/curve</code></td><td>int</td><td>Set / read</td><td>Dynamics curve.</td></tr>
+            <tr><td><code>/drums/energy/profile/&lt;0-6&gt;/timingoffsets/player</code></td><td>int</td><td>Set / read</td><td>Timing offsets: choose the player.</td></tr>
+            <tr><td><code>/drums/energy/profile/&lt;0-6&gt;/timingoffsets/index</code></td><td>int</td><td>Set / read</td><td>Timing offsets: choose the step.</td></tr>
+            <tr><td><code>/drums/energy/profile/&lt;0-6&gt;/timingoffsets/value</code></td><td>float</td><td>Set / read</td><td>Timing offsets: value for the chosen step.</td></tr>
+            <tr><td><code>/drums/energy/profile/&lt;0-6&gt;/velocityscales/player</code></td><td>int</td><td>Set / read</td><td>Velocity scales: choose the player.</td></tr>
+            <tr><td><code>/drums/energy/profile/&lt;0-6&gt;/velocityscales/index</code></td><td>int</td><td>Set / read</td><td>Velocity scales: choose the step.</td></tr>
+            <tr><td><code>/drums/energy/profile/&lt;0-6&gt;/velocityscales/value</code></td><td>float</td><td>Set / read</td><td>Velocity scales: value for the chosen step.</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <h2 id="osc-sounds">Sounds and kits</h2>
+        <p>Kits, samples and the drum synth pages for the selected player.</p>
+        <div class="osc-table-wrap">
+        <table class="osc-table">
+          <thead><tr><th>Address</th><th>Argument</th><th>Access</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td><code>/drums/sounds/kit/count</code></td><td>int</td><td>Read</td><td>Number of kits.</td></tr>
+            <tr><td><code>/drums/sounds/kit/&lt;0-255&gt;/name</code></td><td>string</td><td>Read</td><td>Name of a kit.</td></tr>
+            <tr><td><code>/drums/sounds/kit/load</code></td><td>int</td><td>Set / read</td><td>Load a kit by index.</td></tr>
+            <tr><td><code>/drums/sounds/kit/current</code></td><td>string</td><td>Read</td><td>Name of the loaded kit.</td></tr>
+            <tr><td><code>/drums/sounds/striker</code></td><td>int</td><td>Set / read</td><td>Striker (stick type).</td></tr>
+            <tr><td><code>/drums/sounds/element/query/slot</code></td><td>int</td><td>Set / read</td><td>Sample lookup: choose the slot.</td></tr>
+            <tr><td><code>/drums/sounds/element/query/index</code></td><td>int</td><td>Set / read</td><td>Sample lookup: choose the list position.</td></tr>
+            <tr><td><code>/drums/sounds/element/query/name</code></td><td>string</td><td>Read</td><td>Sample lookup: the sample&rsquo;s name.</td></tr>
+            <tr><td><code>/drums/sounds/changesample/currentrow</code></td><td>int</td><td>Read</td><td>Row of the loaded sound in the change-sample sheet.</td></tr>
+            <tr><td><code>/drums/sounds/synth/page</code></td><td>int</td><td>Set / read</td><td>Synth editor page.</td></tr>
+            <tr><td><code>/drums/sounds/synth/pages</code></td><td>int</td><td>Read</td><td>Number of synth editor pages.</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <h2 id="osc-slots">Sound slots (selected player)</h2>
+        <p>The 32 sound slots of the selected player&rsquo;s kit, numbered 0-31.</p>
+        <p>Address prefixes: <code>/drums/sounds/slot/&lt;0-31&gt;/</code>. Add a parameter from the table below to a prefix.</p>
+        <div class="osc-table-wrap">
+        <table class="osc-table">
+          <thead><tr><th>Parameter</th><th>Argument</th><th>Access</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td><code>tune</code></td><td>float</td><td>Set / read</td><td>Tuning.</td></tr>
+            <tr><td><code>volume</code></td><td>float</td><td>Set / read</td><td>Volume.</td></tr>
+            <tr><td><code>pan</code></td><td>float</td><td>Set / read</td><td>Pan.</td></tr>
+            <tr><td><code>output</code></td><td>int</td><td>Set / read</td><td>Output pair.</td></tr>
+            <tr><td><code>articulation</code></td><td>int</td><td>Set / read</td><td>Articulation.</td></tr>
+            <tr><td><code>element</code></td><td>int</td><td>Set / read</td><td>Swap the sample by its place in the compatible list.</td></tr>
+            <tr><td><code>element/count</code></td><td>int</td><td>Read</td><td>Samples in the compatible list.</td></tr>
+            <tr><td><code>element/name</code></td><td>string</td><td>Read</td><td>Name of the assigned sample.</td></tr>
+            <tr><td><code>changesample</code></td><td>int</td><td>Set / read</td><td>Open the change-sample sheet for this slot.</td></tr>
+            <tr><td><code>deepdive</code></td><td>int</td><td>Set / read</td><td>Open the detailed sound editor for this slot.</td></tr>
+            <tr><td><code>editdock</code></td><td>int</td><td>Set / read</td><td>Open the tuning dock for this slot.</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <h2 id="osc-mixer">Mixer: channels, buses, master and effect returns</h2>
+        <p>Every mixer strip shares one set of controls. Instrument channels are numbered 0-95 (24 per player: player 1 uses 0-23, player 2 uses 24-47 and so on). Player buses are 0-3. Effect returns are 0-15, four per player: the first three of each player are reverbs and the fourth is the delay.</p>
+        <p>Address prefixes: <code>/drums/mixer/channel/&lt;0-95&gt;/</code>, <code>/drums/mixer/bus/&lt;0-3&gt;/</code>, <code>/drums/mixer/master/</code>, <code>/drums/fx/return/&lt;0-15&gt;/</code>. Add a parameter from the table below to a prefix.</p>
+        <div class="osc-table-wrap">
+        <table class="osc-table">
+          <thead><tr><th>Parameter</th><th>Argument</th><th>Access</th><th>Applies to</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td><code>gain</code></td><td>float</td><td>Set / read</td><td>All</td><td>Strip gain (linear).</td></tr>
+            <tr><td><code>pan</code></td><td>float</td><td>Set / read</td><td>All</td><td>Pan position.</td></tr>
+            <tr><td><code>width</code></td><td>float</td><td>Set / read</td><td>All</td><td>Stereo width.</td></tr>
+            <tr><td><code>mute</code></td><td>int 0/1</td><td>Set / read</td><td>All</td><td>Mute the strip.</td></tr>
+            <tr><td><code>solo</code></td><td>int 0/1</td><td>Set / read</td><td>Channels, Buses, Returns</td><td>Solo the strip.</td></tr>
+            <tr><td><code>eq/enabled</code></td><td>int 0/1</td><td>Set / read</td><td>All</td><td>Turn the strip EQ on or off.</td></tr>
+            <tr><td><code>eq/hpfreq</code></td><td>float</td><td>Set / read</td><td>All</td><td>High-pass filter frequency (Hz).</td></tr>
+            <tr><td><code>eq/lowgain</code></td><td>float</td><td>Set / read</td><td>All</td><td>Low band gain (dB).</td></tr>
+            <tr><td><code>eq/lowfreq</code></td><td>float</td><td>Set / read</td><td>All</td><td>Low band frequency (Hz).</td></tr>
+            <tr><td><code>eq/lowq</code></td><td>float</td><td>Set / read</td><td>All</td><td>Low band Q.</td></tr>
+            <tr><td><code>eq/midgain</code></td><td>float</td><td>Set / read</td><td>All</td><td>Mid band gain (dB).</td></tr>
+            <tr><td><code>eq/midfreq</code></td><td>float</td><td>Set / read</td><td>All</td><td>Mid band frequency (Hz).</td></tr>
+            <tr><td><code>eq/midq</code></td><td>float</td><td>Set / read</td><td>All</td><td>Mid band Q.</td></tr>
+            <tr><td><code>eq/highgain</code></td><td>float</td><td>Set / read</td><td>All</td><td>High band gain (dB).</td></tr>
+            <tr><td><code>eq/highfreq</code></td><td>float</td><td>Set / read</td><td>All</td><td>High band frequency (Hz).</td></tr>
+            <tr><td><code>eq/highq</code></td><td>float</td><td>Set / read</td><td>All</td><td>High band Q.</td></tr>
+            <tr><td><code>eq/lpfreq</code></td><td>float</td><td>Set / read</td><td>All</td><td>Low-pass filter frequency (Hz).</td></tr>
+            <tr><td><code>eq/hpslope</code></td><td>int</td><td>Set / read</td><td>All</td><td>High-pass filter slope.</td></tr>
+            <tr><td><code>eq/lpslope</code></td><td>int</td><td>Set / read</td><td>All</td><td>Low-pass filter slope.</td></tr>
+            <tr><td><code>eq/phase</code></td><td>int</td><td>Set / read</td><td>All</td><td>EQ phase mode.</td></tr>
+            <tr><td><code>eq/scsource</code></td><td>int</td><td>Set / read</td><td>All</td><td>EQ sidechain source.</td></tr>
+            <tr><td><code>eq/latency</code></td><td>int</td><td>Read</td><td>All</td><td>Latency the EQ adds, in samples.</td></tr>
+            <tr><td><code>eq/align</code></td><td>int</td><td>Read</td><td>All</td><td>Latency alignment applied to this strip, in samples.</td></tr>
+            <tr><td><code>eq/analyzeractive</code></td><td>int</td><td>Read</td><td>All</td><td>1 while the EQ spectrum analyzer is running.</td></tr>
+            <tr><td><code>comp/enabled</code></td><td>int 0/1</td><td>Set / read</td><td>All</td><td>Turn the strip compressor on or off.</td></tr>
+            <tr><td><code>comp/threshold</code></td><td>float</td><td>Set / read</td><td>All</td><td>Compressor threshold (dB).</td></tr>
+            <tr><td><code>comp/ratio</code></td><td>float</td><td>Set / read</td><td>All</td><td>Compressor ratio.</td></tr>
+            <tr><td><code>comp/attack</code></td><td>float</td><td>Set / read</td><td>All</td><td>Compressor attack (ms).</td></tr>
+            <tr><td><code>comp/release</code></td><td>float</td><td>Set / read</td><td>All</td><td>Compressor release (ms).</td></tr>
+            <tr><td><code>comp/makeup</code></td><td>float</td><td>Set / read</td><td>All</td><td>Compressor makeup gain (dB).</td></tr>
+            <tr><td><code>comp/mix</code></td><td>float</td><td>Set / read</td><td>All</td><td>Compressor wet/dry mix.</td></tr>
+            <tr><td><code>comp/schpf</code></td><td>int 0/1</td><td>Set / read</td><td>All</td><td>Compressor sidechain high-pass filter on or off.</td></tr>
+            <tr><td><code>comp/gr</code></td><td>float</td><td>Read</td><td>Buses, Master</td><td>Current compressor gain reduction (dB).</td></tr>
+            <tr><td><code>peak</code></td><td>float</td><td>Read</td><td>All</td><td>Current peak level.</td></tr>
+            <tr><td><code>send/&lt;0-3&gt;</code></td><td>float</td><td>Set / read</td><td>Channels</td><td>Send level to the player&rsquo;s effect return 0-3 (reverbs 0-2, delay 3).</td></tr>
+            <tr><td><code>output</code></td><td>int</td><td>Set / read</td><td>Channels, Buses, Returns</td><td>Output pair the strip is routed to.</td></tr>
+            <tr><td><code>limiter/enabled</code></td><td>int 0/1</td><td>Set / read</td><td>Buses, Master</td><td>Turn the limiter on or off.</td></tr>
+            <tr><td><code>limiter/threshold</code></td><td>float</td><td>Set / read</td><td>Buses, Master</td><td>Limiter threshold (dB).</td></tr>
+            <tr><td><code>limiter/release</code></td><td>float</td><td>Set / read</td><td>Buses, Master</td><td>Limiter release (ms).</td></tr>
+            <tr><td><code>lufs</code></td><td>float</td><td>Read</td><td>Buses</td><td>Loudness reading (LUFS).</td></tr>
+            <tr><td><code>monoCheck</code></td><td>int 0/1</td><td>Set / read</td><td>Master</td><td>Mono check on or off.</td></tr>
+            <tr><td><code>trim</code></td><td>float</td><td>Set / read</td><td>Master</td><td>Master trim.</td></tr>
+            <tr><td><code>limiting</code></td><td>float</td><td>Read</td><td>Master</td><td>Current limiter gain reduction.</td></tr>
+            <tr><td><code>lufs/momentary</code></td><td>float</td><td>Read</td><td>Master</td><td>Momentary loudness (LUFS).</td></tr>
+            <tr><td><code>lufs/shortterm</code></td><td>float</td><td>Read</td><td>Master</td><td>Short-term loudness (LUFS).</td></tr>
+            <tr><td><code>truepeak</code></td><td>float</td><td>Read</td><td>Master</td><td>True-peak level.</td></tr>
+            <tr><td><code>diag/peakin</code></td><td>float</td><td>Read</td><td>Master</td><td>Diagnostic: master input peak.</td></tr>
+            <tr><td><code>diag/peakpretape</code></td><td>float</td><td>Read</td><td>Master</td><td>Diagnostic: peak before the tape stage.</td></tr>
+            <tr><td><code>diag/peakposttape</code></td><td>float</td><td>Read</td><td>Master</td><td>Diagnostic: peak after the tape stage.</td></tr>
+            <tr><td><code>available</code></td><td>0/1</td><td>Read</td><td>Returns</td><td>1 when the return&rsquo;s effect is available on this device.</td></tr>
+            <tr><td><code>granted</code></td><td>0/1</td><td>Read</td><td>Returns</td><td>1 when the reverb processing budget granted this return (a delay is always granted).</td></tr>
+            <tr><td><code>runtimeactive</code></td><td>0/1</td><td>Read</td><td>Returns</td><td>1 while the return&rsquo;s effect is running.</td></tr>
+            <tr><td><code>eq/on</code></td><td>0/1</td><td>Read</td><td>Returns</td><td>1 when the return&rsquo;s EQ is active.</td></tr>
+            <tr><td><code>comp/on</code></td><td>0/1</td><td>Read</td><td>Returns</td><td>1 when the return&rsquo;s compressor is active.</td></tr>
+            <tr><td><code>peak/pre</code></td><td>float</td><td>Read</td><td>Returns</td><td>Peak before the return&rsquo;s processing.</td></tr>
+            <tr><td><code>peak/post</code></td><td>float</td><td>Read</td><td>Returns</td><td>Peak after the return&rsquo;s processing.</td></tr>
+            <tr><td><code>delay/enabled</code></td><td>int 0/1</td><td>Set / read</td><td>Delay returns</td><td>Turn the delay on or off.</td></tr>
+            <tr><td><code>delay/sync</code></td><td>int 0/1</td><td>Set / read</td><td>Delay returns</td><td>1 locks the delay time to the tempo; 0 uses milliseconds.</td></tr>
+            <tr><td><code>delay/note</code></td><td>int</td><td>Set / read</td><td>Delay returns</td><td>Synced note division, 0 (1/32) to 13 (whole); default 4 (1/8 triplet).</td></tr>
+            <tr><td><code>delay/mix</code></td><td>float</td><td>Set / read</td><td>Delay returns</td><td>Delay wet/dry mix.</td></tr>
+            <tr><td><code>delay/timems</code></td><td>float</td><td>Set / read</td><td>Delay returns</td><td>Free delay time (ms), used when sync is off.</td></tr>
+            <tr><td><code>delay/feedback</code></td><td>float</td><td>Set / read</td><td>Delay returns</td><td>Delay feedback.</td></tr>
+            <tr><td><code>delay/highcut</code></td><td>float</td><td>Set / read</td><td>Delay returns</td><td>Delay high-cut frequency (Hz).</td></tr>
+            <tr><td><code>delay/lowcut</code></td><td>float</td><td>Set / read</td><td>Delay returns</td><td>Delay low-cut frequency (Hz).</td></tr>
+            <tr><td><code>delay/pingpong</code></td><td>int 0/1</td><td>Set / read</td><td>Delay returns</td><td>Ping-pong delay on or off.</td></tr>
+            <tr><td><code>vrDecayValue</code></td><td>float</td><td>Set / read</td><td>Reverb returns</td><td>Reverb decay.</td></tr>
+            <tr><td><code>vrPredelayValue</code></td><td>float</td><td>Set / read</td><td>Reverb returns</td><td>Reverb pre-delay.</td></tr>
+            <tr><td><code>vrBrightnessValue</code></td><td>float</td><td>Set / read</td><td>Reverb returns</td><td>Reverb brightness.</td></tr>
+            <tr><td><code>vrWidthValue</code></td><td>float</td><td>Set / read</td><td>Reverb returns</td><td>Reverb width.</td></tr>
+            <tr><td><code>vrMix</code></td><td>float</td><td>Set / read</td><td>Reverb returns</td><td>Reverb wet/dry mix.</td></tr>
+            <tr><td><code>vrModDepth</code></td><td>float</td><td>Set / read</td><td>Reverb returns</td><td>Reverb modulation depth.</td></tr>
+            <tr><td><code>vrOutputGain</code></td><td>float</td><td>Set / read</td><td>Reverb returns</td><td>Reverb output gain.</td></tr>
+            <tr><td><code>vrColoration</code></td><td>float</td><td>Set / read</td><td>Reverb returns</td><td>Reverb coloration.</td></tr>
+            <tr><td><code>vrDecayHeld</code></td><td>int 0/1</td><td>Set / read</td><td>Reverb returns</td><td>Hold decay at its own value instead of following the space.</td></tr>
+            <tr><td><code>vrPredelayHeld</code></td><td>int 0/1</td><td>Set / read</td><td>Reverb returns</td><td>Hold pre-delay at its own value.</td></tr>
+            <tr><td><code>vrBrightnessHeld</code></td><td>int 0/1</td><td>Set / read</td><td>Reverb returns</td><td>Hold brightness at its own value.</td></tr>
+            <tr><td><code>vrWidthHeld</code></td><td>int 0/1</td><td>Set / read</td><td>Reverb returns</td><td>Hold width at its own value.</td></tr>
+            <tr><td><code>vrSourceSet</code></td><td>int 0/1</td><td>Set / read</td><td>Reverb returns</td><td>1 when custom source positions are set.</td></tr>
+            <tr><td><code>vrAnchor</code></td><td>int</td><td>Set / read</td><td>Reverb returns</td><td>Reverb space (anchor) index.</td></tr>
+            <tr><td><code>vrOutputFormat</code></td><td>int</td><td>Set / read</td><td>Reverb returns</td><td>Reverb output format.</td></tr>
+            <tr><td><code>vrNumSources</code></td><td>int</td><td>Set / read</td><td>Reverb returns</td><td>Number of reverb sources.</td></tr>
+            <tr><td><code>vrColor</code></td><td>float</td><td>Set / read</td><td>Reverb returns</td><td>Morph: color.</td></tr>
+            <tr><td><code>vrWarmth</code></td><td>float</td><td>Set / read</td><td>Reverb returns</td><td>Morph: warmth.</td></tr>
+            <tr><td><code>vrDiffusion</code></td><td>float</td><td>Set / read</td><td>Reverb returns</td><td>Morph: diffusion.</td></tr>
+            <tr><td><code>vrClarity</code></td><td>float</td><td>Set / read</td><td>Reverb returns</td><td>Morph: clarity.</td></tr>
+            <tr><td><code>vrWidthMorph</code></td><td>float</td><td>Set / read</td><td>Reverb returns</td><td>Morph: width.</td></tr>
+            <tr><td><code>vrOutLevel/&lt;0-6&gt;</code></td><td>float</td><td>Set / read</td><td>Reverb returns</td><td>Reverb output channel level 0-6.</td></tr>
+            <tr><td><code>vrSources/&lt;0-1&gt;/&lt;0-1&gt;</code></td><td>float</td><td>Set / read</td><td>Reverb returns</td><td>Reverb source position (source 0-1, coordinate 0-1).</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <h2 id="osc-comp">Advanced compressor</h2>
+        <p>The advanced compressor (separate from the simple strip compressor above) is available on the master, each player bus, each instrument channel and each effect return.</p>
+        <p>Address prefixes: <code>/drums/fx/vcomp/master/</code>, <code>/drums/fx/vcomp/bus/&lt;0-3&gt;/</code>, <code>/drums/fx/vcomp/channel/&lt;0-95&gt;/</code>, <code>/drums/fx/vcomp/fxreturn/&lt;0-15&gt;/</code>. Add a parameter from the table below to a prefix.</p>
+        <div class="osc-table-wrap">
+        <table class="osc-table">
+          <thead><tr><th>Parameter</th><th>Argument</th><th>Access</th><th>Applies to</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td><code>enabled</code></td><td>int 0/1</td><td>Set / read</td><td>All</td><td>Turn the compressor on or off.</td></tr>
+            <tr><td><code>latency</code></td><td>int</td><td>Read</td><td>All</td><td>Latency the compressor adds, in samples.</td></tr>
+            <tr><td><code>character</code></td><td>float</td><td>Set / read</td><td>All</td><td>Character control.</td></tr>
+            <tr><td><code>threshold</code></td><td>float</td><td>Set / read</td><td>All</td><td>Threshold (dB).</td></tr>
+            <tr><td><code>inputgain</code></td><td>float</td><td>Set / read</td><td>All</td><td>Input gain (dB).</td></tr>
+            <tr><td><code>makeup</code></td><td>float</td><td>Set / read</td><td>All</td><td>Makeup gain (dB).</td></tr>
+            <tr><td><code>outputgain</code></td><td>float</td><td>Set / read</td><td>All</td><td>Output gain (dB).</td></tr>
+            <tr><td><code>mix</code></td><td>float</td><td>Set / read</td><td>All</td><td>Wet/dry mix.</td></tr>
+            <tr><td><code>width</code></td><td>float</td><td>Set / read</td><td>All</td><td>Stereo width.</td></tr>
+            <tr><td><code>balance</code></td><td>float</td><td>Set / read</td><td>All</td><td>Left/right balance.</td></tr>
+            <tr><td><code>punch</code></td><td>float</td><td>Set / read</td><td>All</td><td>Punch.</td></tr>
+            <tr><td><code>density</code></td><td>float</td><td>Set / read</td><td>All</td><td>Density.</td></tr>
+            <tr><td><code>intensity</code></td><td>float</td><td>Set / read</td><td>All</td><td>Intensity.</td></tr>
+            <tr><td><code>driftAge</code></td><td>float</td><td>Set / read</td><td>All</td><td>Analog drift/age amount.</td></tr>
+            <tr><td><code>rangeDb</code></td><td>float</td><td>Set / read</td><td>All</td><td>Maximum gain reduction range (dB).</td></tr>
+            <tr><td><code>holdMs</code></td><td>float</td><td>Set / read</td><td>All</td><td>Hold time (ms).</td></tr>
+            <tr><td><code>linkCrossoverHz</code></td><td>float</td><td>Set / read</td><td>All</td><td>Stereo-link crossover frequency (Hz).</td></tr>
+            <tr><td><code>wetGainDb</code></td><td>float</td><td>Set / read</td><td>All</td><td>Wet signal gain (dB).</td></tr>
+            <tr><td><code>wetMidDb</code></td><td>float</td><td>Set / read</td><td>All</td><td>Wet mid gain (dB).</td></tr>
+            <tr><td><code>wetSideDb</code></td><td>float</td><td>Set / read</td><td>All</td><td>Wet side gain (dB).</td></tr>
+            <tr><td><code>dryGainDb</code></td><td>float</td><td>Set / read</td><td>All</td><td>Dry signal gain (dB).</td></tr>
+            <tr><td><code>dryMidDb</code></td><td>float</td><td>Set / read</td><td>All</td><td>Dry mid gain (dB).</td></tr>
+            <tr><td><code>drySideDb</code></td><td>float</td><td>Set / read</td><td>All</td><td>Dry side gain (dB).</td></tr>
+            <tr><td><code>inputPan</code></td><td>float</td><td>Set / read</td><td>All</td><td>Input pan.</td></tr>
+            <tr><td><code>outputPan</code></td><td>float</td><td>Set / read</td><td>All</td><td>Output pan.</td></tr>
+            <tr><td><code>scLevelDb</code></td><td>float</td><td>Set / read</td><td>All</td><td>Sidechain level (dB).</td></tr>
+            <tr><td><code>stereoLink</code></td><td>float</td><td>Set / read</td><td>All</td><td>Stereo link amount.</td></tr>
+            <tr><td><code>midside</code></td><td>int 0/1</td><td>Set / read</td><td>All</td><td>Mid/side processing on or off.</td></tr>
+            <tr><td><code>allButtons</code></td><td>int 0/1</td><td>Set / read</td><td>All</td><td>All-buttons-in mode on or off.</td></tr>
+            <tr><td><code>autoRelease</code></td><td>int 0/1</td><td>Set / read</td><td>All</td><td>Automatic release on or off.</td></tr>
+            <tr><td><code>stereoLinkHeld</code></td><td>int 0/1</td><td>Set / read</td><td>All</td><td>Hold the stereo link at its own value.</td></tr>
+            <tr><td><code>auditionSc</code></td><td>int 0/1</td><td>Set / read</td><td>All</td><td>Listen to the sidechain signal.</td></tr>
+            <tr><td><code>auditionTrigger</code></td><td>int 0/1</td><td>Set / read</td><td>All</td><td>Listen to the trigger signal.</td></tr>
+            <tr><td><code>scPostFader</code></td><td>int 0/1</td><td>Set / read</td><td>All</td><td>Take the sidechain after the fader.</td></tr>
+            <tr><td><code>linkMode</code></td><td>int</td><td>Set / read</td><td>All</td><td>Stereo link mode.</td></tr>
+            <tr><td><code>scHpHz</code></td><td>float</td><td>Set / read</td><td>All</td><td>Sidechain high-pass frequency (Hz).</td></tr>
+            <tr><td><code>scLpHz</code></td><td>float</td><td>Set / read</td><td>All</td><td>Sidechain low-pass frequency (Hz).</td></tr>
+            <tr><td><code>lowSlopeDbOct</code></td><td>float</td><td>Set / read</td><td>All</td><td>Low split slope (dB/octave).</td></tr>
+            <tr><td><code>highSlopeDbOct</code></td><td>float</td><td>Set / read</td><td>All</td><td>High split slope (dB/octave).</td></tr>
+            <tr><td><code>ratioValue</code></td><td>float</td><td>Set / read</td><td>All</td><td>Ratio.</td></tr>
+            <tr><td><code>attackValue</code></td><td>float</td><td>Set / read</td><td>All</td><td>Attack.</td></tr>
+            <tr><td><code>releaseValue</code></td><td>float</td><td>Set / read</td><td>All</td><td>Release.</td></tr>
+            <tr><td><code>kneeValue</code></td><td>float</td><td>Set / read</td><td>All</td><td>Knee.</td></tr>
+            <tr><td><code>lookahead</code></td><td>float</td><td>Set / read</td><td>All</td><td>Lookahead (ms).</td></tr>
+            <tr><td><code>scBand&lt;0-2&gt;Freq</code></td><td>float</td><td>Set / read</td><td>All</td><td>Sidechain EQ band 0-2 frequency (Hz).</td></tr>
+            <tr><td><code>scBand&lt;0-2&gt;GainDb</code></td><td>float</td><td>Set / read</td><td>All</td><td>Sidechain EQ band 0-2 gain (dB).</td></tr>
+            <tr><td><code>scBand&lt;0-2&gt;Q</code></td><td>float</td><td>Set / read</td><td>All</td><td>Sidechain EQ band 0-2 Q.</td></tr>
+            <tr><td><code>lowEnabled</code></td><td>int 0/1</td><td>Set / read</td><td>All</td><td>Low band on or off.</td></tr>
+            <tr><td><code>midEnabled</code></td><td>int 0/1</td><td>Set / read</td><td>All</td><td>Mid band on or off.</td></tr>
+            <tr><td><code>highEnabled</code></td><td>int 0/1</td><td>Set / read</td><td>All</td><td>High band on or off.</td></tr>
+            <tr><td><code>midAuto</code></td><td>int 0/1</td><td>Set / read</td><td>All</td><td>Automatic mid band on or off.</td></tr>
+            <tr><td><code>ratioHeld</code></td><td>int 0/1</td><td>Set / read</td><td>All</td><td>Hold the ratio at its own value instead of following Character.</td></tr>
+            <tr><td><code>attackHeld</code></td><td>int 0/1</td><td>Set / read</td><td>All</td><td>Hold the attack at its own value.</td></tr>
+            <tr><td><code>releaseHeld</code></td><td>int 0/1</td><td>Set / read</td><td>All</td><td>Hold the release at its own value.</td></tr>
+            <tr><td><code>kneeHeld</code></td><td>int 0/1</td><td>Set / read</td><td>All</td><td>Hold the knee at its own value.</td></tr>
+            <tr><td><code>lowMode</code></td><td>int</td><td>Set / read</td><td>All</td><td>Low band mode.</td></tr>
+            <tr><td><code>highMode</code></td><td>int</td><td>Set / read</td><td>All</td><td>High band mode.</td></tr>
+            <tr><td><code>midShape</code></td><td>int</td><td>Set / read</td><td>All</td><td>Mid band shape.</td></tr>
+            <tr><td><code>makeupMode</code></td><td>int</td><td>Set / read</td><td>All</td><td>Makeup gain mode.</td></tr>
+            <tr><td><code>scSourceKind</code></td><td>int</td><td>Set / read</td><td>All</td><td>Sidechain source type.</td></tr>
+            <tr><td><code>scSourceIndex</code></td><td>int</td><td>Set / read</td><td>All</td><td>Sidechain source index.</td></tr>
+            <tr><td><code>gr</code></td><td>float</td><td>Read</td><td>All</td><td>Current gain reduction (dB).</td></tr>
+            <tr><td><code>inpeak</code></td><td>float</td><td>Read</td><td>All</td><td>Input peak.</td></tr>
+            <tr><td><code>outpeak</code></td><td>float</td><td>Read</td><td>All</td><td>Output peak.</td></tr>
+            <tr><td><code>meter/in/peakl</code></td><td>float</td><td>Read</td><td>All</td><td>Input meter, left peak.</td></tr>
+            <tr><td><code>meter/in/peakr</code></td><td>float</td><td>Read</td><td>All</td><td>Input meter, right peak.</td></tr>
+            <tr><td><code>meter/out/peakl</code></td><td>float</td><td>Read</td><td>All</td><td>Output meter, left peak.</td></tr>
+            <tr><td><code>meter/out/peakr</code></td><td>float</td><td>Read</td><td>All</td><td>Output meter, right peak.</td></tr>
+            <tr><td><code>meter/in/peakhold</code></td><td>float</td><td>Read</td><td>All</td><td>Input peak hold.</td></tr>
+            <tr><td><code>meter/out/peakhold</code></td><td>float</td><td>Read</td><td>All</td><td>Output peak hold.</td></tr>
+            <tr><td><code>meter/in/lufsm</code></td><td>float</td><td>Read</td><td>All</td><td>Input momentary loudness (LUFS).</td></tr>
+            <tr><td><code>meter/out/lufsm</code></td><td>float</td><td>Read</td><td>All</td><td>Output momentary loudness (LUFS).</td></tr>
+            <tr><td><code>meter/in/lufss</code></td><td>float</td><td>Read</td><td>All</td><td>Input short-term loudness (LUFS).</td></tr>
+            <tr><td><code>meter/out/lufss</code></td><td>float</td><td>Read</td><td>All</td><td>Output short-term loudness (LUFS).</td></tr>
+            <tr><td><code>meter/in/overload</code></td><td>int 0/1</td><td>Set / read</td><td>All</td><td>Input overload light; write 0 to clear.</td></tr>
+            <tr><td><code>meter/out/overload</code></td><td>int 0/1</td><td>Set / read</td><td>All</td><td>Output overload light; write 0 to clear.</td></tr>
+            <tr><td><code>meter/gr</code></td><td>float</td><td>Read</td><td>All</td><td>Gain reduction meter.</td></tr>
+            <tr><td><code>meter/grhold</code></td><td>float</td><td>Read</td><td>All</td><td>Gain reduction hold.</td></tr>
+            <tr><td><code>meter/history</code></td><td>int</td><td>Read</td><td>All</td><td>Gain reduction history length.</td></tr>
+            <tr><td><code>engine</code></td><td>string</td><td>Read</td><td>All</td><td>Diagnostic: engine status text.</td></tr>
+            <tr><td><code>approx/note</code></td><td>string</td><td>Read</td><td>All</td><td>Diagnostic: approximation note.</td></tr>
+            <tr><td><code>approx/leveldb</code></td><td>float</td><td>Read</td><td>All</td><td>Diagnostic: approximation level (dB).</td></tr>
+            <tr><td><code>sc/late</code></td><td>0/1</td><td>Read</td><td>All</td><td>Diagnostic: 1 if the sidechain arrived late.</td></tr>
+            <tr><td><code>sc/residual</code></td><td>int</td><td>Read</td><td>All</td><td>Diagnostic: sidechain residual.</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <h2 id="osc-tape">Tape machine</h2>
+        <p>The tape machine is available on the master and on each player bus.</p>
+        <p>Address prefixes: <code>/drums/fx/tape/master/</code>, <code>/drums/fx/tape/bus/&lt;0-3&gt;/</code>. Add a parameter from the table below to a prefix.</p>
+        <div class="osc-table-wrap">
+        <table class="osc-table">
+          <thead><tr><th>Parameter</th><th>Argument</th><th>Access</th><th>Applies to</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td><code>enabled</code></td><td>int 0/1</td><td>Set / read</td><td>All</td><td>Turn the tape machine on or off.</td></tr>
+            <tr><td><code>drive</code></td><td>float</td><td>Set / read</td><td>All</td><td>Drive.</td></tr>
+            <tr><td><code>playback</code></td><td>float</td><td>Set / read</td><td>All</td><td>Playback level.</td></tr>
+            <tr><td><code>mix</code></td><td>float</td><td>Set / read</td><td>All</td><td>Wet/dry mix.</td></tr>
+            <tr><td><code>machine</code></td><td>int</td><td>Set / read</td><td>All</td><td>Machine model.</td></tr>
+            <tr><td><code>tape</code></td><td>int</td><td>Set / read</td><td>All</td><td>Tape formula.</td></tr>
+            <tr><td><code>speed</code></td><td>int</td><td>Set / read</td><td>All</td><td>Tape speed.</td></tr>
+            <tr><td><code>level</code></td><td>int</td><td>Set / read</td><td>All</td><td>Operating level.</td></tr>
+            <tr><td><code>alignment</code></td><td>int</td><td>Set / read</td><td>All</td><td>Alignment.</td></tr>
+            <tr><td><code>quality</code></td><td>int</td><td>Set / read</td><td>All</td><td>Processing quality 0-2.</td></tr>
+            <tr><td><code>wowDivision</code></td><td>int</td><td>Set / read</td><td>All</td><td>Wow sync division 0-15.</td></tr>
+            <tr><td><code>wowSync</code></td><td>int 0/1</td><td>Set / read</td><td>All</td><td>Sync wow to the tempo.</td></tr>
+            <tr><td><code>tapestop</code></td><td>int 0/1</td><td>Send</td><td>All</td><td>Start a tape stop.</td></tr>
+            <tr><td><code>tapestop/active</code></td><td>0/1</td><td>Read</td><td>All</td><td>1 while a tape stop is running.</td></tr>
+            <tr><td><code>meter/inpeak</code></td><td>float</td><td>Read</td><td>All</td><td>Input peak.</td></tr>
+            <tr><td><code>meter/outpeak</code></td><td>float</td><td>Read</td><td>All</td><td>Output peak.</td></tr>
+            <tr><td><code>bias</code></td><td>float</td><td>Set / read</td><td>All</td><td>Bias.</td></tr>
+            <tr><td><code>inputDrive</code></td><td>float</td><td>Set / read</td><td>All</td><td>Input drive.</td></tr>
+            <tr><td><code>saturation</code></td><td>float</td><td>Set / read</td><td>All</td><td>Saturation.</td></tr>
+            <tr><td><code>headBump</code></td><td>float</td><td>Set / read</td><td>All</td><td>Head bump.</td></tr>
+            <tr><td><code>recordDriveDb</code></td><td>float</td><td>Set / read</td><td>All</td><td>Record drive (dB).</td></tr>
+            <tr><td><code>kneeWidth</code></td><td>float</td><td>Set / read</td><td>All</td><td>Saturation knee width.</td></tr>
+            <tr><td><code>wowRate</code></td><td>float</td><td>Set / read</td><td>All</td><td>Wow rate.</td></tr>
+            <tr><td><code>wowDepth</code></td><td>float</td><td>Set / read</td><td>All</td><td>Wow depth.</td></tr>
+            <tr><td><code>flutterRate</code></td><td>float</td><td>Set / read</td><td>All</td><td>Flutter rate.</td></tr>
+            <tr><td><code>flutterDepth</code></td><td>float</td><td>Set / read</td><td>All</td><td>Flutter depth.</td></tr>
+            <tr><td><code>scrapeAmount</code></td><td>float</td><td>Set / read</td><td>All</td><td>Scrape flutter amount.</td></tr>
+            <tr><td><code>noiseAmount</code></td><td>float</td><td>Set / read</td><td>All</td><td>Tape noise amount.</td></tr>
+            <tr><td><code>noiseModulation</code></td><td>float</td><td>Set / read</td><td>All</td><td>Noise modulation.</td></tr>
+            <tr><td><code>outputTrim</code></td><td>float</td><td>Set / read</td><td>All</td><td>Output trim.</td></tr>
+            <tr><td><code>tapeStopTime</code></td><td>float</td><td>Set / read</td><td>All</td><td>Tape stop time.</td></tr>
+            <tr><td><code>inputLowShelfDb</code></td><td>float</td><td>Set / read</td><td>All</td><td>Input low shelf gain (dB).</td></tr>
+            <tr><td><code>inputLowShelfHz</code></td><td>float</td><td>Set / read</td><td>All</td><td>Input low shelf frequency (Hz).</td></tr>
+            <tr><td><code>inputLowShelfQ</code></td><td>float</td><td>Set / read</td><td>All</td><td>Input low shelf Q.</td></tr>
+            <tr><td><code>inputHighShelfDb</code></td><td>float</td><td>Set / read</td><td>All</td><td>Input high shelf gain (dB).</td></tr>
+            <tr><td><code>inputHighShelfHz</code></td><td>float</td><td>Set / read</td><td>All</td><td>Input high shelf frequency (Hz).</td></tr>
+            <tr><td><code>inputHighShelfQ</code></td><td>float</td><td>Set / read</td><td>All</td><td>Input high shelf Q.</td></tr>
+            <tr><td><code>outputLowShelfDb</code></td><td>float</td><td>Set / read</td><td>All</td><td>Output low shelf gain (dB).</td></tr>
+            <tr><td><code>outputLowShelfHz</code></td><td>float</td><td>Set / read</td><td>All</td><td>Output low shelf frequency (Hz).</td></tr>
+            <tr><td><code>outputLowShelfQ</code></td><td>float</td><td>Set / read</td><td>All</td><td>Output low shelf Q.</td></tr>
+            <tr><td><code>outputHighShelfDb</code></td><td>float</td><td>Set / read</td><td>All</td><td>Output high shelf gain (dB).</td></tr>
+            <tr><td><code>outputHighShelfHz</code></td><td>float</td><td>Set / read</td><td>All</td><td>Output high shelf frequency (Hz).</td></tr>
+            <tr><td><code>outputHighShelfQ</code></td><td>float</td><td>Set / read</td><td>All</td><td>Output high shelf Q.</td></tr>
+            <tr><td><code>xfmrDrive</code></td><td>float</td><td>Set / read</td><td>All</td><td>Transformer drive.</td></tr>
+            <tr><td><code>xfmrAsym</code></td><td>float</td><td>Set / read</td><td>All</td><td>Transformer asymmetry.</td></tr>
+            <tr><td><code>xfmrLfDb</code></td><td>float</td><td>Set / read</td><td>All</td><td>Transformer low-frequency gain (dB).</td></tr>
+            <tr><td><code>xfmrLfHz</code></td><td>float</td><td>Set / read</td><td>All</td><td>Transformer low-frequency corner (Hz).</td></tr>
+            <tr><td><code>xfmrHfResDb</code></td><td>float</td><td>Set / read</td><td>All</td><td>Transformer high-frequency resonance (dB).</td></tr>
+            <tr><td><code>xfmrHfResHz</code></td><td>float</td><td>Set / read</td><td>All</td><td>Transformer resonance frequency (Hz).</td></tr>
+            <tr><td><code>xfmrHfResQ</code></td><td>float</td><td>Set / read</td><td>All</td><td>Transformer resonance Q.</td></tr>
+            <tr><td><code>xfmrHfRolloffDb</code></td><td>float</td><td>Set / read</td><td>All</td><td>Transformer high-frequency roll-off (dB).</td></tr>
+            <tr><td><code>xfmrHfRolloffHz</code></td><td>float</td><td>Set / read</td><td>All</td><td>Transformer roll-off frequency (Hz).</td></tr>
+            <tr><td><code>tubeDrive</code></td><td>float</td><td>Set / read</td><td>All</td><td>Tube drive.</td></tr>
+            <tr><td><code>tubeAsym</code></td><td>float</td><td>Set / read</td><td>All</td><td>Tube asymmetry.</td></tr>
+            <tr><td><code>tubeX2</code></td><td>float</td><td>Set / read</td><td>All</td><td>Tube second-harmonic amount.</td></tr>
+            <tr><td><code>tubeX3</code></td><td>float</td><td>Set / read</td><td>All</td><td>Tube third-harmonic amount.</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <h2 id="osc-reverb">Reverb (player 1 shortcuts)</h2>
+        <p>Direct reverb controls for player 1&rsquo;s three reverbs (0-2). Every player&rsquo;s reverbs are also reachable through the effect returns above.</p>
+        <p>Address prefixes: <code>/drums/fx/reverb/&lt;0-2&gt;/</code>. Add a parameter from the table below to a prefix.</p>
+        <div class="osc-table-wrap">
+        <table class="osc-table">
+          <thead><tr><th>Parameter</th><th>Argument</th><th>Access</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td><code>anchor</code></td><td>int</td><td>Set / read</td><td>Reverb space (anchor) index.</td></tr>
+            <tr><td><code>mix</code></td><td>float</td><td>Set / read</td><td>Wet/dry mix.</td></tr>
+            <tr><td><code>outputgain</code></td><td>float</td><td>Set / read</td><td>Output gain.</td></tr>
+            <tr><td><code>coloration</code></td><td>float</td><td>Set / read</td><td>Coloration.</td></tr>
+            <tr><td><code>moddepth</code></td><td>float</td><td>Set / read</td><td>Modulation depth.</td></tr>
+            <tr><td><code>decay</code></td><td>float</td><td>Set / read</td><td>Decay.</td></tr>
+            <tr><td><code>predelay</code></td><td>float</td><td>Set / read</td><td>Pre-delay.</td></tr>
+            <tr><td><code>brightness</code></td><td>float</td><td>Set / read</td><td>Brightness.</td></tr>
+            <tr><td><code>width</code></td><td>float</td><td>Set / read</td><td>Width.</td></tr>
+            <tr><td><code>decay/held</code></td><td>int 0/1</td><td>Set / read</td><td>Hold decay at its own value.</td></tr>
+            <tr><td><code>predelay/held</code></td><td>int 0/1</td><td>Set / read</td><td>Hold pre-delay at its own value.</td></tr>
+            <tr><td><code>brightness/held</code></td><td>int 0/1</td><td>Set / read</td><td>Hold brightness at its own value.</td></tr>
+            <tr><td><code>width/held</code></td><td>int 0/1</td><td>Set / read</td><td>Hold width at its own value.</td></tr>
+            <tr><td><code>outputformat</code></td><td>int</td><td>Set / read</td><td>Output format.</td></tr>
+            <tr><td><code>morph/color</code></td><td>float</td><td>Set / read</td><td>Morph: color.</td></tr>
+            <tr><td><code>morph/warmth</code></td><td>float</td><td>Set / read</td><td>Morph: warmth.</td></tr>
+            <tr><td><code>morph/diffusion</code></td><td>float</td><td>Set / read</td><td>Morph: diffusion.</td></tr>
+            <tr><td><code>morph/clarity</code></td><td>float</td><td>Set / read</td><td>Morph: clarity.</td></tr>
+            <tr><td><code>morph/widthmorph</code></td><td>float</td><td>Set / read</td><td>Morph: width.</td></tr>
+            <tr><td><code>diag/anchor</code></td><td>int</td><td>Read</td><td>Diagnostic: space the engine actually loaded.</td></tr>
+            <tr><td><code>diag/decay</code></td><td>float</td><td>Read</td><td>Diagnostic: decay the engine is using.</td></tr>
+            <tr><td><code>diag/outputformat</code></td><td>int</td><td>Read</td><td>Diagnostic: output format the engine is using.</td></tr>
+            <tr><td><code>diag/outlevel/l</code></td><td>float</td><td>Read</td><td>Diagnostic: left output level.</td></tr>
+            <tr><td><code>diag/outlevel/r</code></td><td>float</td><td>Read</td><td>Diagnostic: right output level.</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <h2 id="osc-effects">Effect availability and defaults</h2>
+        <p>Whether the heavier effects can run on this device, and new-song effect defaults.</p>
+        <div class="osc-table-wrap">
+        <table class="osc-table">
+          <thead><tr><th>Address</th><th>Argument</th><th>Access</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td><code>/drums/fx/tape/capable</code></td><td>0/1</td><td>Read</td><td>1 when this device can run the tape machine.</td></tr>
+            <tr><td><code>/drums/fx/vcomp/capable</code></td><td>0/1</td><td>Read</td><td>1 when this device can run the advanced compressor.</td></tr>
+            <tr><td><code>/drums/fx/vcomp/capacity</code></td><td>int</td><td>Read</td><td>How many advanced compressors this device can run.</td></tr>
+            <tr><td><code>/drums/diag/tape/fraction</code></td><td>float</td><td>Read</td><td>Diagnostic: processing load of the tape machines.</td></tr>
+            <tr><td><code>/drums/diag/vcomp/fraction</code></td><td>float</td><td>Read</td><td>Diagnostic: processing load of the advanced compressors.</td></tr>
+            <tr><td><code>/drums/mixer/fxreturn/defaultsroot</code></td><td>string</td><td>Read</td><td>Folder where new-song effect defaults are kept.</td></tr>
+            <tr><td><code>/drums/mixer/fxreturn/&lt;1-4&gt;/savedefault</code></td><td>int</td><td>Send</td><td>Save effect return 1-4 as the new-song default.</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <h2 id="osc-presets">Presets, Quick Pick and app setups</h2>
+        <p>Player presets, Quick Pick and saved audio/MIDI setups.</p>
+        <div class="osc-table-wrap">
+        <table class="osc-table">
+          <thead><tr><th>Address</th><th>Argument</th><th>Access</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td><code>/drums/presets/player/save</code></td><td>string</td><td>Set / read</td><td>Save a player preset.</td></tr>
+            <tr><td><code>/drums/presets/player/load</code></td><td>string</td><td>Set / read</td><td>Load a player preset.</td></tr>
+            <tr><td><code>/drums/presets/player/load/replacemixer</code></td><td>string</td><td>Set / read</td><td>Load a player preset and replace the mixer settings.</td></tr>
+            <tr><td><code>/drums/presets/player/load/keepmixer</code></td><td>string</td><td>Set / read</td><td>Load a player preset and keep the current mixer settings.</td></tr>
+            <tr><td><code>/drums/presets/player/generate</code></td><td>&mdash;</td><td>Send</td><td>Generate player presets in bulk.</td></tr>
+            <tr><td><code>/drums/presets/player/generate/output</code></td><td>string</td><td>Set / read</td><td>Folder for generated presets.</td></tr>
+            <tr><td><code>/drums/presets/player/generate/source</code></td><td>string</td><td>Set / read</td><td>Player preset whose mixer settings every generated preset takes (empty = the selected player).</td></tr>
+            <tr><td><code>/drums/presets/player/generate/state</code></td><td>string</td><td>Read</td><td>Result of the last generate run.</td></tr>
+            <tr><td><code>/drums/quickpick/beat</code></td><td>int</td><td>Set / read</td><td>Pick Quick Pick beat 1-10.</td></tr>
+            <tr><td><code>/drums/quickpick/preset</code></td><td>int</td><td>Set / read</td><td>Pick Quick Pick preset 1-10.</td></tr>
+            <tr><td><code>/drums/quickpick/note</code></td><td>int</td><td>Set / read</td><td>Pick a Quick Pick beat or preset by its MIDI note number.</td></tr>
+            <tr><td><code>/drums/quickpick/state</code></td><td>string</td><td>Read</td><td>Quick Pick status.</td></tr>
+            <tr><td><code>/drums/quickpick/show</code></td><td>int</td><td>Set / read</td><td>Hide (0) or show (1) the Quick Pick panel.</td></tr>
+            <tr><td><code>/drums/quickpick/layout</code></td><td>string</td><td>Read</td><td>Quick Pick layout.</td></tr>
+            <tr><td><code>/drums/appsettings/presets</code></td><td>string</td><td>Read</td><td>Saved app setups, and the last save or load result.</td></tr>
+            <tr><td><code>/drums/appsettings/save</code></td><td>string</td><td>Set / read</td><td>Save the current app setup under a name.</td></tr>
+            <tr><td><code>/drums/appsettings/load</code></td><td>string</td><td>Set / read</td><td>Load a saved app setup.</td></tr>
+            <tr><td><code>/drums/appsettings/current</code></td><td>string</td><td>Read</td><td>App setup in use, and whether it has changed.</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <h2 id="osc-settings">App settings</h2>
+        <p>Machine-wide performance settings.</p>
+        <div class="osc-table-wrap">
+        <table class="osc-table">
+          <thead><tr><th>Address</th><th>Argument</th><th>Access</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td><code>/drums/settings/morphmode</code></td><td>int</td><td>Set / read</td><td>Drum morphing: 0 = automatic, 1 = always on, 2 = always off, 3 = random.</td></tr>
+            <tr><td><code>/drums/settings/morphheadroom/verdict</code></td><td>int</td><td>Read</td><td>Automatic morphing verdict for this machine.</td></tr>
+            <tr><td><code>/drums/settings/morphheadroom/worst</code></td><td>string</td><td>Read</td><td>Worst case measured.</td></tr>
+            <tr><td><code>/drums/settings/morphheadroom/stoppedload</code></td><td>float</td><td>Read</td><td>Load measured while stopped.</td></tr>
+            <tr><td><code>/drums/settings/morphheadroom/players</code></td><td>int</td><td>Read</td><td>Players morphing can support.</td></tr>
+            <tr><td><code>/drums/settings/morphheadroom/state</code></td><td>string</td><td>Read</td><td>Measurement status.</td></tr>
+            <tr><td><code>/drums/settings/morphheadroom/measure</code></td><td>int</td><td>Set / read</td><td>Measure again.</td></tr>
+            <tr><td><code>/drums/settings/morph/drum/&lt;drum&gt;</code></td><td>int</td><td>Set / read</td><td>Morphing for one drum on or off. &lt;drum&gt; is one of: bells, china, crash1, crash2, hihat, ride1, ride2, sidestick, snare, splash, tom1, tom2, tom3, tom4.</td></tr>
+            <tr><td><code>/drums/settings/strikelean</code></td><td>int</td><td>Set / read</td><td>1 = vary each hit, 0 = exact recordings.</td></tr>
+            <tr><td><code>/drums/settings/ignorepcwhileplaying</code></td><td>int 0/1</td><td>Set / read</td><td>Ignore Program Change while playing.</td></tr>
+            <tr><td><code>/drums/settings/playerpresetoverwrite</code></td><td>int 0/1</td><td>Set / read</td><td>Allow saves to replace an existing player preset.</td></tr>
+            <tr><td><code>/drums/partialfills</code></td><td>int</td><td>Set / read</td><td>Automatic lifts on or off.</td></tr>
+            <tr><td><code>/drums/partialfills/phrase</code></td><td>int</td><td>Set / read</td><td>Lift phrase length in bars (1-32, default 4).</td></tr>
+            <tr><td><code>/drums/partialfills/recipes</code></td><td>string</td><td>Set / read</td><td>Lift recipes: "factory" or a custom list.</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <h2 id="osc-importexport">Import and export</h2>
+        <p>Import and export songs, styles, MIDI and audio.</p>
+        <div class="osc-table-wrap">
+        <table class="osc-table">
+          <thead><tr><th>Address</th><th>Argument</th><th>Access</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td><code>/drums/song/loadfile</code></td><td>string</td><td>Set / read</td><td>Load a song from a file path.</td></tr>
+            <tr><td><code>/drums/ui/export/song</code></td><td>string</td><td>Set / read</td><td>Export the current song to a file path.</td></tr>
+            <tr><td><code>/drums/ui/import/song</code></td><td>string</td><td>Set / read</td><td>Import a song file.</td></tr>
+            <tr><td><code>/drums/import/category</code></td><td>string</td><td>Set / read</td><td>Import one category: "category|mode|path".</td></tr>
+            <tr><td><code>/drums/import/programchange</code></td><td>string</td><td>Set / read</td><td>Import program changes: "scope|mode|path".</td></tr>
+            <tr><td><code>/drums/import/everything</code></td><td>string</td><td>Set / read</td><td>Restore a whole-library backup: "mode|path".</td></tr>
+            <tr><td><code>/drums/import/state</code></td><td>string</td><td>Read</td><td>Result of the last import.</td></tr>
+            <tr><td><code>/drums/import/midifile</code></td><td>string</td><td>Set / read</td><td>Import a MIDI file as a new style.</td></tr>
+            <tr><td><code>/drums/song/lane/importmidi</code></td><td>string</td><td>Set / read</td><td>Import a MIDI file onto a lane: "lane|bar|path".</td></tr>
+            <tr><td><code>/drums/import/style/state</code></td><td>string</td><td>Read</td><td>Style import dialog status.</td></tr>
+            <tr><td><code>/drums/import/style/name</code></td><td>string</td><td>Set / read</td><td>Style name.</td></tr>
+            <tr><td><code>/drums/import/style/feel</code></td><td>int</td><td>Set / read</td><td>Feel: 0 = automatic, 1 = straight, 2 = triplet.</td></tr>
+            <tr><td><code>/drums/import/style/quantize</code></td><td>string</td><td>Set / read</td><td>Quantize on or off.</td></tr>
+            <tr><td><code>/drums/import/style/checknotes</code></td><td>int</td><td>Set / read</td><td>Press Check Notes.</td></tr>
+            <tr><td><code>/drums/import/style/confirm</code></td><td>string</td><td>Set / read</td><td>Generate or cancel.</td></tr>
+            <tr><td><code>/drums/import/notemap/state</code></td><td>string</td><td>Read</td><td>Note map sheet status.</td></tr>
+            <tr><td><code>/drums/import/notemap/assign</code></td><td>string</td><td>Set / read</td><td>Map a note: "fileNote|drumNote".</td></tr>
+            <tr><td><code>/drums/import/notemap/name</code></td><td>string</td><td>Set / read</td><td>Note map name.</td></tr>
+            <tr><td><code>/drums/import/notemap/pick</code></td><td>int</td><td>Set / read</td><td>Pick a saved note map (-1 = new).</td></tr>
+            <tr><td><code>/drums/import/notemap/layout</code></td><td>string</td><td>Set / read</td><td>Note layout: ex or gm.</td></tr>
+            <tr><td><code>/drums/import/notemap/confirm</code></td><td>string</td><td>Set / read</td><td>Next or cancel.</td></tr>
+            <tr><td><code>/drums/export/timeline/midi</code></td><td>string</td><td>Set / read</td><td>Export the song as MIDI: "path" or "path|gm".</td></tr>
+            <tr><td><code>/drums/export/pills/midi</code></td><td>string</td><td>Set / read</td><td>Export pills as MIDI: "path|pills".</td></tr>
+            <tr><td><code>/drums/export/pills/dragout</code></td><td>string</td><td>Set / read</td><td>Export pills as a drag-out clip; reads back the file path.</td></tr>
+            <tr><td><code>/drums/song/pillmidi/ex</code></td><td>int</td><td>Set / read</td><td>Pill MIDI note layout: 1 = Larry Seyer Drums note layout, 0 = standard drum note layout.</td></tr>
+            <tr><td><code>/drums/export/timeline/audio</code></td><td>string</td><td>Set / read</td><td>Export the song as audio: "path|options".</td></tr>
+            <tr><td><code>/drums/export/timeline/audio/measured</code></td><td>string</td><td>Read</td><td>Loudness and peak of the last audio export.</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <h2 id="osc-shortcuts">Keyboard shortcuts</h2>
+        <p>Change shortcut bindings remotely. Every shortcut action can also be triggered directly (see Actions below).</p>
+        <div class="osc-table-wrap">
+        <table class="osc-table">
+          <thead><tr><th>Address</th><th>Argument</th><th>Access</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td><code>/drums/keybinding/&lt;action id&gt;</code></td><td>string</td><td>Set / read</td><td>The shortcut assigned to an action; send a key description to change it.</td></tr>
+            <tr><td><code>/drums/keybinding/scheme</code></td><td>string</td><td>Set / read</td><td>Shortcut scheme.</td></tr>
+            <tr><td><code>/drums/keymap/reset</code></td><td>int</td><td>Set / read</td><td>Reset every shortcut.</td></tr>
+            <tr><td><code>/drums/keymap/export</code></td><td>string</td><td>Set / read</td><td>Export shortcuts to a file path.</td></tr>
+            <tr><td><code>/drums/keymap/import</code></td><td>string</td><td>Set / read</td><td>Import shortcuts from a file path.</td></tr>
+            <tr><td><code>/drums/keymap/status</code></td><td>string</td><td>Read</td><td>Result of the last shortcut change.</td></tr>
+            <tr><td><code>/drums/player/solo_preview_held</code></td><td>int 0/1</td><td>Set / read</td><td>Hold (1) or release (0) Solo In Front for the selected player.</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <h2 id="osc-actions">Actions</h2>
+        <p>Every command that has a keyboard shortcut can be triggered over OSC. Send any integer (for example 1) to run it.</p>
+        <div class="osc-table-wrap">
+        <table class="osc-table">
+          <thead><tr><th>Address</th><th>Area</th><th>Action</th></tr></thead>
+          <tbody>
+            <tr><td><code>/drums/action/app.about</code></td><td>App</td><td>About Larry Seyer Drums.</td></tr>
+            <tr><td><code>/drums/action/app.audio_devices</code></td><td>App</td><td>Audio Devices.</td></tr>
+            <tr><td><code>/drums/action/app.keyboard_shortcuts</code></td><td>App</td><td>Keyboard Shortcuts.</td></tr>
+            <tr><td><code>/drums/action/app.quick_pick</code></td><td>App</td><td>Quick Pick.</td></tr>
+            <tr><td><code>/drums/action/app.settings</code></td><td>App</td><td>App Settings.</td></tr>
+            <tr><td><code>/drums/action/edit.redo</code></td><td>Edit</td><td>Redo.</td></tr>
+            <tr><td><code>/drums/action/edit.undo</code></td><td>Edit</td><td>Undo.</td></tr>
+            <tr><td><code>/drums/action/midi.all_notes_off</code></td><td>MIDI</td><td>Send All Notes Off.</td></tr>
+            <tr><td><code>/drums/action/mixer.toggle_visible</code></td><td>Mixer</td><td>Toggle Mixer Visible.</td></tr>
+            <tr><td><code>/drums/action/pattern.cursor_to_loop_end</code></td><td>Pattern Editor</td><td>Move Cursor to End of Loop.</td></tr>
+            <tr><td><code>/drums/action/pattern.cursor_to_loop_start</code></td><td>Pattern Editor</td><td>Move Cursor to Start of Loop.</td></tr>
+            <tr><td><code>/drums/action/pattern.cursor_to_time_selection_end</code></td><td>Pattern Editor</td><td>Move Cursor to End of Time Selection.</td></tr>
+            <tr><td><code>/drums/action/pattern.cursor_to_time_selection_start</code></td><td>Pattern Editor</td><td>Move Cursor to Start of Time Selection.</td></tr>
+            <tr><td><code>/drums/action/pattern.notes_down_octave</code></td><td>Pattern Editor</td><td>Nudge Notes Down an Octave.</td></tr>
+            <tr><td><code>/drums/action/pattern.notes_down_semitone</code></td><td>Pattern Editor</td><td>Nudge Notes Down a Semitone.</td></tr>
+            <tr><td><code>/drums/action/pattern.notes_extend_measure</code></td><td>Pattern Editor</td><td>Select All Notes in Measure.</td></tr>
+            <tr><td><code>/drums/action/pattern.notes_extend_next</code></td><td>Pattern Editor</td><td>Add Next Note to Selection.</td></tr>
+            <tr><td><code>/drums/action/pattern.notes_extend_previous</code></td><td>Pattern Editor</td><td>Add Previous Note to Selection.</td></tr>
+            <tr><td><code>/drums/action/pattern.notes_extend_time_selection</code></td><td>Pattern Editor</td><td>Select All Notes in Time Selection.</td></tr>
+            <tr><td><code>/drums/action/pattern.notes_left_grid</code></td><td>Pattern Editor</td><td>Nudge Notes Left One Grid Step.</td></tr>
+            <tr><td><code>/drums/action/pattern.notes_quantize</code></td><td>Pattern Editor</td><td>Quantize Selected Notes to the Grid.</td></tr>
+            <tr><td><code>/drums/action/pattern.notes_right_grid</code></td><td>Pattern Editor</td><td>Nudge Notes Right One Grid Step.</td></tr>
+            <tr><td><code>/drums/action/pattern.notes_set_time_selection</code></td><td>Pattern Editor</td><td>Set Time Selection to Selected Notes.</td></tr>
+            <tr><td><code>/drums/action/pattern.notes_up_octave</code></td><td>Pattern Editor</td><td>Nudge Notes Up an Octave.</td></tr>
+            <tr><td><code>/drums/action/pattern.notes_up_semitone</code></td><td>Pattern Editor</td><td>Nudge Notes Up a Semitone.</td></tr>
+            <tr><td><code>/drums/action/pattern.notes_zoom_to_selection</code></td><td>Pattern Editor</td><td>Zoom to Selected Notes.</td></tr>
+            <tr><td><code>/drums/action/pattern.toggle_visible</code></td><td>Pattern Editor</td><td>Toggle Pattern Editor Visible.</td></tr>
+            <tr><td><code>/drums/action/pattern.zoom_in_h</code></td><td>Pattern Editor</td><td>Zoom In Horizontally.</td></tr>
+            <tr><td><code>/drums/action/pattern.zoom_in_v</code></td><td>Pattern Editor</td><td>Zoom In Vertically.</td></tr>
+            <tr><td><code>/drums/action/pattern.zoom_out_h</code></td><td>Pattern Editor</td><td>Zoom Out Horizontally.</td></tr>
+            <tr><td><code>/drums/action/pattern.zoom_out_v</code></td><td>Pattern Editor</td><td>Zoom Out Vertically.</td></tr>
+            <tr><td><code>/drums/action/player.assign_random_colours</code></td><td>Player</td><td>Assign Random Player Colors.</td></tr>
+            <tr><td><code>/drums/action/player.select_next</code></td><td>Player</td><td>Next Player.</td></tr>
+            <tr><td><code>/drums/action/player.select_previous</code></td><td>Player</td><td>Previous Player.</td></tr>
+            <tr><td><code>/drums/action/player.set_custom_colour</code></td><td>Player</td><td>Set Player Color.</td></tr>
+            <tr><td><code>/drums/action/player.solo_preview</code></td><td>Player</td><td>Solo In Front (Hold).</td></tr>
+            <tr><td><code>/drums/action/player.toggle_solo</code></td><td>Player</td><td>Toggle Player Solo.</td></tr>
+            <tr><td><code>/drums/action/presets.channel_save_as</code></td><td>Presets</td><td>Save Channel Preset As.</td></tr>
+            <tr><td><code>/drums/action/presets.cmp_save_as</code></td><td>Presets</td><td>Save CMP Preset As.</td></tr>
+            <tr><td><code>/drums/action/presets.eq_save_as</code></td><td>Presets</td><td>Save EQ Preset As.</td></tr>
+            <tr><td><code>/drums/action/presets.mixer_save</code></td><td>Presets</td><td>Save Mixer Preset.</td></tr>
+            <tr><td><code>/drums/action/presets.mixer_save_as</code></td><td>Presets</td><td>Save Mixer Preset As.</td></tr>
+            <tr><td><code>/drums/action/presets.pattern_new</code></td><td>Presets</td><td>New Pattern.</td></tr>
+            <tr><td><code>/drums/action/presets.pattern_save_as</code></td><td>Presets</td><td>Save Pattern As.</td></tr>
+            <tr><td><code>/drums/action/presets.player_save</code></td><td>Presets</td><td>Save Player Preset.</td></tr>
+            <tr><td><code>/drums/action/presets.player_save_as</code></td><td>Presets</td><td>Save Player Preset As.</td></tr>
+            <tr><td><code>/drums/action/presets.sounds_save</code></td><td>Presets</td><td>Save Sounds Preset.</td></tr>
+            <tr><td><code>/drums/action/presets.sounds_save_as</code></td><td>Presets</td><td>Save Sounds Preset As.</td></tr>
+            <tr><td><code>/drums/action/song.combine_pills</code></td><td>Song</td><td>Combine Selected Pills.</td></tr>
+            <tr><td><code>/drums/action/song.copy_pill</code></td><td>Song</td><td>Copy Selected Pill.</td></tr>
+            <tr><td><code>/drums/action/song.cursor_nudge_back</code></td><td>Song</td><td>Nudge Cursor Back One Measure.</td></tr>
+            <tr><td><code>/drums/action/song.cursor_nudge_forward</code></td><td>Song</td><td>Nudge Cursor Forward One Measure.</td></tr>
+            <tr><td><code>/drums/action/song.delete</code></td><td>Song</td><td>Delete Song.</td></tr>
+            <tr><td><code>/drums/action/song.duplicate_pill</code></td><td>Song</td><td>Duplicate Selected Pill.</td></tr>
+            <tr><td><code>/drums/action/song.export</code></td><td>Song</td><td>Export Song.</td></tr>
+            <tr><td><code>/drums/action/song.export_midi</code></td><td>Song</td><td>Export Song MIDI.</td></tr>
+            <tr><td><code>/drums/action/song.find</code></td><td>Song</td><td>Find Song.</td></tr>
+            <tr><td><code>/drums/action/song.import</code></td><td>Song</td><td>Import.</td></tr>
+            <tr><td><code>/drums/action/song.insert_measures</code></td><td>Song</td><td>Insert Measures at Edit Cursor.</td></tr>
+            <tr><td><code>/drums/action/song.insert_pf_marker</code></td><td>Song</td><td>Insert Lift.</td></tr>
+            <tr><td><code>/drums/action/song.jump_end</code></td><td>Song</td><td>Jump to Song End.</td></tr>
+            <tr><td><code>/drums/action/song.jump_start</code></td><td>Song</td><td>Jump to Song Start.</td></tr>
+            <tr><td><code>/drums/action/song.load</code></td><td>Song</td><td>Load Song.</td></tr>
+            <tr><td><code>/drums/action/song.new</code></td><td>Song</td><td>New Song.</td></tr>
+            <tr><td><code>/drums/action/song.open_pill_editor</code></td><td>Song</td><td>Open Selected Pill Editor.</td></tr>
+            <tr><td><code>/drums/action/song.paste_pill</code></td><td>Song</td><td>Paste Pill at Edit Cursor.</td></tr>
+            <tr><td><code>/drums/action/song.pf_marker_next</code></td><td>Song</td><td>Next Lift.</td></tr>
+            <tr><td><code>/drums/action/song.pf_marker_prev</code></td><td>Song</td><td>Previous Lift.</td></tr>
+            <tr><td><code>/drums/action/song.pill_energy_alert</code></td><td>Song</td><td>Pill Energy Alert.</td></tr>
+            <tr><td><code>/drums/action/song.pill_energy_asleep</code></td><td>Song</td><td>Pill Energy Asleep.</td></tr>
+            <tr><td><code>/drums/action/song.pill_energy_chilled</code></td><td>Song</td><td>Pill Energy Chilled.</td></tr>
+            <tr><td><code>/drums/action/song.pill_energy_energetic</code></td><td>Song</td><td>Pill Energy Energetic.</td></tr>
+            <tr><td><code>/drums/action/song.pill_energy_excited</code></td><td>Song</td><td>Pill Energy Excited.</td></tr>
+            <tr><td><code>/drums/action/song.pill_energy_normal</code></td><td>Song</td><td>Pill Energy Normal.</td></tr>
+            <tr><td><code>/drums/action/song.pill_energy_relaxed</code></td><td>Song</td><td>Pill Energy Relaxed.</td></tr>
+            <tr><td><code>/drums/action/song.rename_pill</code></td><td>Song</td><td>Rename Selected Pill.</td></tr>
+            <tr><td><code>/drums/action/song.ripple_delete</code></td><td>Song</td><td>Delete and Close the Gap.</td></tr>
+            <tr><td><code>/drums/action/song.ripple_insert</code></td><td>Song</td><td>Insert Space and Open the Gap.</td></tr>
+            <tr><td><code>/drums/action/song.save</code></td><td>Song</td><td>Save Song.</td></tr>
+            <tr><td><code>/drums/action/song.save_as</code></td><td>Song</td><td>Save Song As.</td></tr>
+            <tr><td><code>/drums/action/song.scroll_page_down</code></td><td>Song</td><td>Scroll View Down a Page.</td></tr>
+            <tr><td><code>/drums/action/song.select_all_in_view</code></td><td>Song</td><td>Select All Pills.</td></tr>
+            <tr><td><code>/drums/action/song.select_blank_span</code></td><td>Song</td><td>Select Blank Span at Cursor.</td></tr>
+            <tr><td><code>/drums/action/song.set_pill_colour</code></td><td>Song</td><td>Set Pill Color.</td></tr>
+            <tr><td><code>/drums/action/song.split_pill</code></td><td>Song</td><td>Split Pill at Edit Cursor.</td></tr>
+            <tr><td><code>/drums/action/song.tempo_meter_focus</code></td><td>Song</td><td>Focus Tempo / Meter.</td></tr>
+            <tr><td><code>/drums/action/song.time_sel_end</code></td><td>Song</td><td>Set Time Selection End.</td></tr>
+            <tr><td><code>/drums/action/song.time_sel_fit</code></td><td>Song</td><td>Fit Time Selection To Selected Pills.</td></tr>
+            <tr><td><code>/drums/action/song.time_sel_start</code></td><td>Song</td><td>Set Time Selection Start.</td></tr>
+            <tr><td><code>/drums/action/song.toggle_pill_last_fill</code></td><td>Song</td><td>Toggle Selected Pill Post-fill.</td></tr>
+            <tr><td><code>/drums/action/song.toggle_pill_loop</code></td><td>Song</td><td>Toggle Selected Pill Loop.</td></tr>
+            <tr><td><code>/drums/action/song.toggle_pill_pre_fill</code></td><td>Song</td><td>Toggle Selected Pill Pre-fill.</td></tr>
+            <tr><td><code>/drums/action/song.transport_nudge_back</code></td><td>Song</td><td>Rewind a Little Bit.</td></tr>
+            <tr><td><code>/drums/action/song.zoom_in</code></td><td>Song</td><td>Zoom In.</td></tr>
+            <tr><td><code>/drums/action/song.zoom_out</code></td><td>Song</td><td>Zoom Out.</td></tr>
+            <tr><td><code>/drums/action/transport.clock_source</code></td><td>Transport</td><td>Clock Source.</td></tr>
+            <tr><td><code>/drums/action/transport.go_to_start</code></td><td>Transport</td><td>Go to Song Start.</td></tr>
+            <tr><td><code>/drums/action/transport.play_stop</code></td><td>Transport</td><td>Play / Stop.</td></tr>
+            <tr><td><code>/drums/action/transport.tap_tempo</code></td><td>Transport</td><td>Tap Tempo.</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <h2 id="osc-ui">User interface automation</h2>
+        <p>Open, close and operate on-screen panels and read back what they show. These are mainly useful for scripted testing and remote operation.</p>
+        <div class="osc-table-wrap">
+        <table class="osc-table">
+          <thead><tr><th>Address</th><th>Argument</th><th>Access</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td><code>/drums/ui/page</code></td><td>string</td><td>Set / read</td><td>Show a page by name; reads back the current page.</td></tr>
+            <tr><td><code>/drums/ui/player/select</code></td><td>int</td><td>Set / read</td><td>Select a player (0-based).</td></tr>
+            <tr><td><code>/drums/ui/player/selection</code></td><td>int</td><td>Set / read</td><td>Player selection, including multi-select.</td></tr>
+            <tr><td><code>/drums/ui/player/&lt;1-4&gt;/card/tap</code></td><td>string</td><td>Send</td><td>Tap a control on a player card.</td></tr>
+            <tr><td><code>/drums/ui/player/&lt;1-4&gt;/card</code></td><td>string</td><td>Read</td><td>What a player card shows.</td></tr>
+            <tr><td><code>/drums/ui/player/&lt;1-4&gt;/cardswing</code></td><td>float</td><td>Set / read</td><td>Swing on a player card (percent).</td></tr>
+            <tr><td><code>/drums/ui/player/&lt;1-4&gt;/badge</code></td><td>string</td><td>Read</td><td>A player card&rsquo;s mute and solo badges.</td></tr>
+            <tr><td><code>/drums/ui/player/preset/menu</code></td><td>int</td><td>Send</td><td>Open a player&rsquo;s preset menu.</td></tr>
+            <tr><td><code>/drums/ui/player/soundkit/menu</code></td><td>int</td><td>Send</td><td>Open a player&rsquo;s sound kit menu.</td></tr>
+            <tr><td><code>/drums/ui/player/compact</code></td><td>string</td><td>Set / read</td><td>Compact player view actions.</td></tr>
+            <tr><td><code>/drums/ui/preferences</code></td><td>int 0/1</td><td>Set / read</td><td>Close (0) or open (1) App Settings.</td></tr>
+            <tr><td><code>/drums/ui/preferences/reveal</code></td><td>string</td><td>Send</td><td>Scroll App Settings to a section.</td></tr>
+            <tr><td><code>/drums/ui/preferences/scroll</code></td><td>float</td><td>Set / read</td><td>Scroll App Settings.</td></tr>
+            <tr><td><code>/drums/ui/attached</code></td><td>0/1</td><td>Read</td><td>1 while this window is attached as the live editor.</td></tr>
+            <tr><td><code>/drums/ui/attached/label</code></td><td>string</td><td>Read</td><td>Header text when attached.</td></tr>
+            <tr><td><code>/drums/ui/licenses</code></td><td>int 0/1</td><td>Set / read</td><td>Close (0) or open (1) the license viewer.</td></tr>
+            <tr><td><code>/drums/ui/licenses/state</code></td><td>string</td><td>Read</td><td>License viewer status.</td></tr>
+            <tr><td><code>/drums/ui/licenses/document</code></td><td>int</td><td>Set / read</td><td>Show a license document by index.</td></tr>
+            <tr><td><code>/drums/ui/settings/midioutput/state</code></td><td>string</td><td>Read</td><td>MIDI output settings as shown.</td></tr>
+            <tr><td><code>/drums/ui/settings/midiinput/state</code></td><td>string</td><td>Read</td><td>MIDI input settings as shown.</td></tr>
+            <tr><td><code>/drums/ui/settings/syncoffsets/state</code></td><td>string</td><td>Read</td><td>Sync offset settings as shown.</td></tr>
+            <tr><td><code>/drums/ui/settings/click/state</code></td><td>string</td><td>Read</td><td>Click settings as shown.</td></tr>
+            <tr><td><code>/drums/ui/settings/click/menu</code></td><td>string</td><td>Send</td><td>Open a menu in the click settings.</td></tr>
+            <tr><td><code>/drums/ui/breakpoint</code></td><td>string</td><td>Read</td><td>Current responsive layout.</td></tr>
+            <tr><td><code>/drums/ui/fold</code></td><td>string</td><td>Read</td><td>Folding-phone state.</td></tr>
+            <tr><td><code>/drums/ui/split/geom</code></td><td>string</td><td>Read</td><td>Split-screen layout.</td></tr>
+            <tr><td><code>/drums/ui/orientation</code></td><td>int 0/1</td><td>Set / read</td><td>Window orientation: 1 = landscape, 0 = portrait.</td></tr>
+            <tr><td><code>/drums/ui/window/width</code></td><td>int</td><td>Set / read</td><td>Window width (pixels).</td></tr>
+            <tr><td><code>/drums/ui/window/preset</code></td><td>int</td><td>Set / read</td><td>Pick a window size preset.</td></tr>
+            <tr><td><code>/drums/ui/window/size</code></td><td>string</td><td>Set / read</td><td>Window size as "WxH".</td></tr>
+            <tr><td><code>/drums/ui/about</code></td><td>int</td><td>Set / read</td><td>Close (0) or open (1) About.</td></tr>
+            <tr><td><code>/drums/ui/overflowmenu</code></td><td>int 0/1</td><td>Set / read</td><td>Close (0) or open (1) the main menu.</td></tr>
+            <tr><td><code>/drums/ui/overflowmenu/state</code></td><td>string</td><td>Read</td><td>Main menu status.</td></tr>
+            <tr><td><code>/drums/ui/overflowmenu/rows</code></td><td>string</td><td>Read</td><td>Main menu rows.</td></tr>
+            <tr><td><code>/drums/ui/overflowmenu/tap</code></td><td>int</td><td>Set / read</td><td>Tap a main menu row.</td></tr>
+            <tr><td><code>/drums/ui/overflowmenu/hold</code></td><td>int</td><td>Set / read</td><td>Press and hold a main menu row.</td></tr>
+            <tr><td><code>/drums/ui/beatbar/state</code></td><td>string</td><td>Read</td><td>Beat progress bar.</td></tr>
+            <tr><td><code>/drums/ui/keyboardshortcuts</code></td><td>string</td><td>Read</td><td>Keyboard shortcuts window contents.</td></tr>
+            <tr><td><code>/drums/ui/keyboardshortcuts/search</code></td><td>string</td><td>Set / read</td><td>Search the keyboard shortcuts.</td></tr>
+            <tr><td><code>/drums/ui/keyboardshortcuts/reveal</code></td><td>string</td><td>Set / read</td><td>Scroll the keyboard shortcuts to an action or group.</td></tr>
+            <tr><td><code>/drums/ui/keyboard/simulate</code></td><td>int</td><td>Set / read</td><td>Simulate the on-screen keyboard.</td></tr>
+            <tr><td><code>/drums/ui/mixer/subtab</code></td><td>string</td><td>Set / read</td><td>Mixer sub-tab: panwid, sends, eq, cmp or level.</td></tr>
+            <tr><td><code>/drums/ui/mixer/selection</code></td><td>string</td><td>Read</td><td>Mixer selection.</td></tr>
+            <tr><td><code>/drums/ui/mixer/compact</code></td><td>int</td><td>Set / read</td><td>Compact mixer channel view.</td></tr>
+            <tr><td><code>/drums/ui/mixer/player</code></td><td>int</td><td>Set / read</td><td>Player whose strips the mixer shows (1-4).</td></tr>
+            <tr><td><code>/drums/ui/mixer/tabs</code></td><td>string</td><td>Read</td><td>Mixer player tabs.</td></tr>
+            <tr><td><code>/drums/ui/mixer/gesture</code></td><td>string</td><td>Send</td><td>A mixer click or gesture.</td></tr>
+            <tr><td><code>/drums/ui/mixer/link</code></td><td>int</td><td>Set / read</td><td>Add a channel to the linked selection.</td></tr>
+            <tr><td><code>/drums/ui/mixer/select</code></td><td>int</td><td>Set / read</td><td>Select an instrument channel.</td></tr>
+            <tr><td><code>/drums/ui/mixer/select/bus</code></td><td>int</td><td>Set / read</td><td>Select a player bus.</td></tr>
+            <tr><td><code>/drums/ui/mixer/select/send</code></td><td>int</td><td>Set / read</td><td>Select an effect return.</td></tr>
+            <tr><td><code>/drums/ui/mixer/select/master</code></td><td>int</td><td>Set / read</td><td>Select the master strip.</td></tr>
+            <tr><td><code>/drums/ui/mixer/scroll</code></td><td>int</td><td>Set / read</td><td>Scroll the mixer strips.</td></tr>
+            <tr><td><code>/drums/ui/mixer/param</code></td><td>string</td><td>Set / read</td><td>Move a control on a channel: "channel name value" (linked channels follow).</td></tr>
+            <tr><td><code>/drums/ui/mixer/eq</code></td><td>string</td><td>Set / read</td><td>Edit the EQ editor.</td></tr>
+            <tr><td><code>/drums/ui/mixer/eq/verdict</code></td><td>string</td><td>Read</td><td>Result of the last EQ editor command.</td></tr>
+            <tr><td><code>/drums/ui/mixer/eq/geom</code></td><td>string</td><td>Read</td><td>Automation: EQ editor layout.</td></tr>
+            <tr><td><code>/drums/ui/mixer/comp/bounds</code></td><td>string</td><td>Set / read</td><td>Compressor editor size.</td></tr>
+            <tr><td><code>/drums/ui/mixer/comp/page</code></td><td>string</td><td>Set / read</td><td>Compressor editor page.</td></tr>
+            <tr><td><code>/drums/ui/mixer/comp/press</code></td><td>string</td><td>Send</td><td>Press a compressor editor control.</td></tr>
+            <tr><td><code>/drums/ui/mixer/comp/scroll</code></td><td>int</td><td>Set / read</td><td>Scroll the compressor editor.</td></tr>
+            <tr><td><code>/drums/ui/mixer/comp/geom</code></td><td>string</td><td>Read</td><td>Automation: compressor editor layout.</td></tr>
+            <tr><td><code>/drums/ui/energyeditor</code></td><td>int</td><td>Set / read</td><td>Close (0) or open (1) the energy editor.</td></tr>
+            <tr><td><code>/drums/ui/energyeditor/geom</code></td><td>string</td><td>Read</td><td>Automation: energy editor layout.</td></tr>
+            <tr><td><code>/drums/ui/energyeditor/control</code></td><td>string</td><td>Set / read</td><td>Set an energy editor control: "name,value".</td></tr>
+            <tr><td><code>/drums/ui/energyeditor/open</code></td><td>string</td><td>Set / read</td><td>Open the energy editor on a section.</td></tr>
+            <tr><td><code>/drums/ui/energyeditor/sections</code></td><td>string</td><td>Read</td><td>Energy editor sections.</td></tr>
+            <tr><td><code>/drums/ui/energyeditor/scope</code></td><td>string</td><td>Read</td><td>Energy editor scope.</td></tr>
+            <tr><td><code>/drums/ui/energyeditor/captions</code></td><td>string</td><td>Read</td><td>Energy editor captions.</td></tr>
+            <tr><td><code>/drums/ui/energyeditor/scroll/state</code></td><td>string</td><td>Read</td><td>Energy editor scroll position.</td></tr>
+            <tr><td><code>/drums/ui/energyeditor/scroll</code></td><td>int</td><td>Set / read</td><td>Scroll the energy editor.</td></tr>
+            <tr><td><code>/drums/ui/energyeditor/scroll/wheel</code></td><td>int</td><td>Set / read</td><td>Scroll the energy editor with the wheel.</td></tr>
+            <tr><td><code>/drums/ui/energyeditor/scroll/drag</code></td><td>int</td><td>Set / read</td><td>Scroll the energy editor by dragging.</td></tr>
+            <tr><td><code>/drums/ui/energy/tap</code></td><td>int</td><td>Set / read</td><td>Tap an energy level button.</td></tr>
+            <tr><td><code>/drums/ui/energy/levelmenu</code></td><td>int</td><td>Send</td><td>Open an energy level&rsquo;s menu.</td></tr>
+            <tr><td><code>/drums/ui/spectrum/fullscreen</code></td><td>int</td><td>Set / read</td><td>Full-screen spectrum analyzer off or on.</td></tr>
+            <tr><td><code>/drums/ui/reverb/browser/open</code></td><td>int</td><td>Set / read</td><td>Close (0) or open (1) the reverb browser.</td></tr>
+            <tr><td><code>/drums/ui/reverb/browser/geom</code></td><td>string</td><td>Read</td><td>Automation: reverb browser layout.</td></tr>
+            <tr><td><code>/drums/ui/reverb/browser/chip</code></td><td>int</td><td>Set / read</td><td>Pick a reverb family.</td></tr>
+            <tr><td><code>/drums/ui/reverb/browser/row</code></td><td>int</td><td>Set / read</td><td>Pick a reverb.</td></tr>
+            <tr><td><code>/drums/ui/reverb/browser/rows</code></td><td>string</td><td>Read</td><td>Reverbs listed.</td></tr>
+            <tr><td><code>/drums/ui/reverb/panel</code></td><td>int</td><td>Set / read</td><td>Close (0) or open (1) the reverb panel.</td></tr>
+            <tr><td><code>/drums/ui/reverb/panel/geom</code></td><td>string</td><td>Read</td><td>Automation: reverb panel layout.</td></tr>
+            <tr><td><code>/drums/ui/tape/panel</code></td><td>int</td><td>Set / read</td><td>Close (0) or open (1) the tape machine panel.</td></tr>
+            <tr><td><code>/drums/ui/tape/page</code></td><td>int</td><td>Set / read</td><td>Tape panel page: 1 = main, 2 = advanced.</td></tr>
+            <tr><td><code>/drums/ui/tape/section</code></td><td>int</td><td>Set / read</td><td>Tape panel advanced section.</td></tr>
+            <tr><td><code>/drums/ui/tape/view</code></td><td>string</td><td>Read</td><td>Tape panel status.</td></tr>
+            <tr><td><code>/drums/ui/song/menu</code></td><td>&mdash;</td><td>Send</td><td>Open the song menu.</td></tr>
+            <tr><td><code>/drums/ui/song/menu/state</code></td><td>string</td><td>Read</td><td>Song menu status.</td></tr>
+            <tr><td><code>/drums/ui/song/compact</code></td><td>int</td><td>Set / read</td><td>Compact song launcher.</td></tr>
+            <tr><td><code>/drums/ui/song/compact/step</code></td><td>int</td><td>Set / read</td><td>Step through the compact song launcher.</td></tr>
+            <tr><td><code>/drums/ui/song/compact/done</code></td><td>&mdash;</td><td>Send</td><td>Close the compact song launcher.</td></tr>
+            <tr><td><code>/drums/ui/song/pill/menu</code></td><td>int</td><td>Send</td><td>Open a pill&rsquo;s menu (lane*1000 + pill).</td></tr>
+            <tr><td><code>/drums/ui/song/pill/menu/state</code></td><td>string</td><td>Read</td><td>Pill menu status.</td></tr>
+            <tr><td><code>/drums/ui/song/pill/popup</code></td><td>int</td><td>Send</td><td>Right-click a pill.</td></tr>
+            <tr><td><code>/drums/ui/song/pool/popup</code></td><td>int</td><td>Send</td><td>Right-click a pool column&rsquo;s style.</td></tr>
+            <tr><td><code>/drums/ui/song/pool/styletap</code></td><td>int</td><td>Send</td><td>Click a pool column&rsquo;s style.</td></tr>
+            <tr><td><code>/drums/ui/song/pill/styletap</code></td><td>int</td><td>Send</td><td>Click a pill&rsquo;s pattern name.</td></tr>
+            <tr><td><code>/drums/ui/song/conductor/popup</code></td><td>int</td><td>Send</td><td>Right-click a time signature change.</td></tr>
+            <tr><td><code>/drums/ui/song/lane/popup</code></td><td>int</td><td>Send</td><td>Right-click empty lane space (lane*1000 + bar).</td></tr>
+            <tr><td><code>/drums/ui/export/audio</code></td><td>string</td><td>Set / read</td><td>Drive the audio export dialog.</td></tr>
+            <tr><td><code>/drums/ui/sounds/compact</code></td><td>string</td><td>Set / read</td><td>Compact sounds view actions.</td></tr>
+            <tr><td><code>/drums/ui/sounds/changesample/compact</code></td><td>string</td><td>Set / read</td><td>Compact change-sample actions.</td></tr>
+            <tr><td><code>/drums/ui/sounds/synth/select</code></td><td>int</td><td>Set / read</td><td>Pick synth machine 1-9 for the selected player.</td></tr>
+            <tr><td><code>/drums/ui/sounds/synth/catalog</code></td><td>string</td><td>Read</td><td>Diagnostic: factory synth list.</td></tr>
+            <tr><td><code>/drums/ui/sounds/tuning</code></td><td>string</td><td>Set / read</td><td>Set a tuning value.</td></tr>
+            <tr><td><code>/drums/ui/sounds/tuning/state</code></td><td>string</td><td>Set / read</td><td>Tuning values for a slot.</td></tr>
+            <tr><td><code>/drums/ui/sounds/slot/select</code></td><td>int</td><td>Set / read</td><td>Select a sound slot.</td></tr>
+            <tr><td><code>/drums/ui/sounds/cell/select</code></td><td>int</td><td>Set / read</td><td>Select a drum grid cell.</td></tr>
+            <tr><td><code>/drums/ui/sounds/cell/tap</code></td><td>int</td><td>Set / read</td><td>Play a drum grid cell.</td></tr>
+            <tr><td><code>/drums/ui/sounds/cell/empty</code></td><td>string</td><td>Read</td><td>Drum grid cells the kit cannot play.</td></tr>
+            <tr><td><code>/drums/ui/sounds/cell/pads</code></td><td>string</td><td>Read</td><td>How the drum grid pads are drawn.</td></tr>
+            <tr><td><code>/drums/ui/sounds/articulation/state</code></td><td>string</td><td>Read</td><td>Articulation picker status.</td></tr>
+            <tr><td><code>/drums/ui/sounds/knob</code></td><td>string</td><td>Set / read</td><td>Set a sounds page knob.</td></tr>
+            <tr><td><code>/drums/ui/sounds/advanced</code></td><td>string</td><td>Set / read</td><td>Advanced sound settings.</td></tr>
+            <tr><td><code>/drums/ui/sounds/tuning/readout</code></td><td>string</td><td>Read</td><td>Tuning readout.</td></tr>
+            <tr><td><code>/drums/ui/sounds/tuning/labels</code></td><td>string</td><td>Read</td><td>Tuning labels.</td></tr>
+            <tr><td><code>/drums/ui/sounds/dock/geom</code></td><td>string</td><td>Read</td><td>Automation: sounds dock layout.</td></tr>
+            <tr><td><code>/drums/ui/sounds/dock/naming</code></td><td>string</td><td>Read</td><td>Sounds dock names.</td></tr>
+            <tr><td><code>/drums/ui/sounds/save</code></td><td>string</td><td>Set / read</td><td>Save the sounds preset.</td></tr>
+            <tr><td><code>/drums/ui/sounds/saveas</code></td><td>string</td><td>Set / read</td><td>Save the sounds preset under a new name.</td></tr>
+            <tr><td><code>/drums/ui/sounds/edit</code></td><td>string</td><td>Set / read</td><td>Enter or leave sound editing.</td></tr>
+            <tr><td><code>/drums/ui/sounds/edit/state</code></td><td>string</td><td>Read</td><td>Sound editing status.</td></tr>
+            <tr><td><code>/drums/ui/sounds/kit/import</code></td><td>string</td><td>Set / read</td><td>Import a kit.</td></tr>
+            <tr><td><code>/drums/ui/importexport</code></td><td>string</td><td>Set / read</td><td>Open the import/export window.</td></tr>
+            <tr><td><code>/drums/ui/importexport/state</code></td><td>string</td><td>Read</td><td>Import/export window status.</td></tr>
+            <tr><td><code>/drums/ui/importexport/forcecompact</code></td><td>int 0/1</td><td>Set / read</td><td>Force the compact import/export layout.</td></tr>
+            <tr><td><code>/drums/ui/importexport/forcesize</code></td><td>int</td><td>Set / read</td><td>Force an import/export window size.</td></tr>
+            <tr><td><code>/drums/ui/importexport/group</code></td><td>string</td><td>Set / read</td><td>Open an import/export group.</td></tr>
+            <tr><td><code>/drums/ui/importexport/tap</code></td><td>string</td><td>Set / read</td><td>Tap an import/export item.</td></tr>
+            <tr><td><code>/drums/ui/menu/tap</code></td><td>int</td><td>Send</td><td>Tap a menu row.</td></tr>
+            <tr><td><code>/drums/ui/menu/tapflash</code></td><td>int</td><td>Send</td><td>Tap a menu row with its highlight.</td></tr>
+            <tr><td><code>/drums/ui/menu/flashrow</code></td><td>int</td><td>Read</td><td>Highlighted menu row (-1 when none).</td></tr>
+            <tr><td><code>/drums/ui/menu/dismiss</code></td><td>&mdash;</td><td>Send</td><td>Close the open menu.</td></tr>
+            <tr><td><code>/drums/ui/menu/rows</code></td><td>int</td><td>Read</td><td>Number of visible menu rows.</td></tr>
+            <tr><td><code>/drums/ui/menu/labels</code></td><td>string</td><td>Read</td><td>Visible menu rows.</td></tr>
+            <tr><td><code>/drums/ui/menu/markers</code></td><td>string</td><td>Read</td><td>Menu row check marks.</td></tr>
+            <tr><td><code>/drums/ui/menu/chips</code></td><td>string</td><td>Read</td><td>Menu tabs.</td></tr>
+            <tr><td><code>/drums/ui/menu/chip</code></td><td>int</td><td>Send</td><td>Tap a menu tab.</td></tr>
+            <tr><td><code>/drums/ui/menu/geom</code></td><td>string</td><td>Read</td><td>Automation: menu layout.</td></tr>
+            <tr><td><code>/drums/ui/menu/songresults</code></td><td>string</td><td>Read</td><td>Song search results.</td></tr>
+            <tr><td><code>/drums/ui/menu/searchfocus</code></td><td>0/1</td><td>Read</td><td>1 while the menu search field has focus.</td></tr>
+            <tr><td><code>/drums/ui/menu/search</code></td><td>string</td><td>Set / read</td><td>Type into the menu search field.</td></tr>
+            <tr><td><code>/drums/ui/sync/picker</code></td><td>&mdash;</td><td>Send</td><td>Open the sync source picker.</td></tr>
+            <tr><td><code>/drums/ui/sync/source</code></td><td>string</td><td>Set / read</td><td>Pick a sync source by its label.</td></tr>
+            <tr><td><code>/drums/ui/morph/chip</code></td><td>string</td><td>Read</td><td>Morph indicator text.</td></tr>
+            <tr><td><code>/drums/ui/morph/progress</code></td><td>int</td><td>Read</td><td>Morph build progress (percent).</td></tr>
+            <tr><td><code>/drums/ui/morph/panel</code></td><td>string</td><td>Read</td><td>Morph panel status.</td></tr>
+            <tr><td><code>/drums/ui/morph/panel/open</code></td><td>int</td><td>Send</td><td>Open the morph panel.</td></tr>
+            <tr><td><code>/drums/ui/morph/panel/settings</code></td><td>&mdash;</td><td>Send</td><td>Open morph settings.</td></tr>
+            <tr><td><code>/drums/ui/alert/selftest</code></td><td>int</td><td>Set / read</td><td>Diagnostic: show a test alert.</td></tr>
+            <tr><td><code>/drums/ui/alert/input</code></td><td>string</td><td>Set / read</td><td>Type into an alert.</td></tr>
+            <tr><td><code>/drums/ui/alert/confirm</code></td><td>int</td><td>Set / read</td><td>Answer an alert.</td></tr>
+            <tr><td><code>/drums/ui/alert/text</code></td><td>string</td><td>Read</td><td>Alert text.</td></tr>
+            <tr><td><code>/drums/ui/alert/state</code></td><td>string</td><td>Read</td><td>Alert status.</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <h2 id="osc-testing">Testing and diagnostics</h2>
+        <p>Performance readings, self-tests and state checks.</p>
+        <div class="osc-table-wrap">
+        <table class="osc-table">
+          <thead><tr><th>Address</th><th>Argument</th><th>Access</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td><code>/drums/perf/cpu/now</code></td><td>float</td><td>Read</td><td>Current processing load (percent).</td></tr>
+            <tr><td><code>/drums/perf/cpu/peak</code></td><td>float</td><td>Read</td><td>Peak processing load in the current window.</td></tr>
+            <tr><td><code>/drums/perf/cpu/peak/alltime</code></td><td>float</td><td>Read</td><td>Peak processing load since launch.</td></tr>
+            <tr><td><code>/drums/perf/xruns</code></td><td>int</td><td>Read</td><td>Audio dropouts counted.</td></tr>
+            <tr><td><code>/drums/perf/near80</code></td><td>int</td><td>Read</td><td>Times the load came close to the limit.</td></tr>
+            <tr><td><code>/drums/perf/block/prepared</code></td><td>int</td><td>Read</td><td>Audio block size prepared.</td></tr>
+            <tr><td><code>/drums/perf/block/delivered/max</code></td><td>int</td><td>Read</td><td>Largest audio block delivered.</td></tr>
+            <tr><td><code>/drums/perf/deadline/prepared/ms</code></td><td>float</td><td>Read</td><td>Time available per block (ms).</td></tr>
+            <tr><td><code>/drums/perf/deadline/observed/ms</code></td><td>float</td><td>Read</td><td>Longest block processing time (ms).</td></tr>
+            <tr><td><code>/drums/perf/footprint/mb</code></td><td>int</td><td>Read</td><td>Memory in use (MB).</td></tr>
+            <tr><td><code>/drums/perf/reset</code></td><td>int</td><td>Set / read</td><td>Reset the peak load window.</td></tr>
+            <tr><td><code>/drums/selftest/registry/completeness</code></td><td>&mdash;</td><td>Send</td><td>Run the OSC completeness self-test.</td></tr>
+            <tr><td><code>/drums/selftest/registry/completeness/pass</code></td><td>int</td><td>Read</td><td>1 when the self-test passed.</td></tr>
+            <tr><td><code>/drums/selftest/registry/completeness/holes</code></td><td>string</td><td>Read</td><td>Self-test gaps found.</td></tr>
+            <tr><td><code>/drums/selftest/registry/completeness/summary</code></td><td>string</td><td>Read</td><td>Self-test summary.</td></tr>
+            <tr><td><code>/drums/selftest/registry/writables</code></td><td>int</td><td>Set / read</td><td>List writable addresses, one page at a time.</td></tr>
+            <tr><td><code>/drums/hoststate/capture</code></td><td>int</td><td>Send</td><td>Capture the state a host would save.</td></tr>
+            <tr><td><code>/drums/hoststate/restore</code></td><td>int</td><td>Send</td><td>Restore the captured state.</td></tr>
+            <tr><td><code>/drums/hoststate/size</code></td><td>int</td><td>Read</td><td>Size of the captured state (bytes).</td></tr>
+            <tr><td><code>/drums/hoststate/hostsave</code></td><td>int</td><td>Send</td><td>Simulate a host save request.</td></tr>
+            <tr><td><code>/drums/hoststate/anchor</code></td><td>string</td><td>Read</td><td>Bank and slot the live song belongs to.</td></tr>
+            <tr><td><code>/drums/screenshot</code></td><td>string</td><td>Send</td><td>Save a screenshot of the window under a name.</td></tr>
+            <tr><td><code>/drums/screenshot/done</code></td><td>string</td><td>Reply</td><td>Reply: screenshot saved.</td></tr>
+            <tr><td><code>/drums/screenshot/error</code></td><td>string</td><td>Reply</td><td>Reply: screenshot failed.</td></tr>
+            <tr><td><code>/drums/song/timeline/loadtest</code></td><td>string</td><td>Set / read</td><td>Load a test timeline.</td></tr>
+            <tr><td><code>/drums/song/timeline/loadtestphase</code></td><td>string</td><td>Set / read</td><td>Load a phase test timeline.</td></tr>
+            <tr><td><code>/drums/song/editor/selftest</code></td><td>int 0/1</td><td>Send</td><td>Fill the editor with a test velocity range.</td></tr>
+            <tr><td><code>/drums/song/editor/selftestarticulations</code></td><td>int 0/1</td><td>Send</td><td>Fill the editor with every articulation.</td></tr>
+          </tbody>
+        </table>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; <span id="year">2025</span> Larry Seyer. All rights reserved.</p>
+      <div class="social-links">
+        <a href="/pages/press.html">Press kit</a>
+        <a href="https://github.com/larryseyer" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="https://www.youtube.com/@larryseyer" target="_blank" rel="noopener noreferrer">YouTube</a>
+        <a href="https://www.facebook.com/LarrySeyerOfficialPage" target="_blank" rel="noopener noreferrer">Facebook</a>
+        <a href="https://rumble.com/c/larryseyer" target="_blank" rel="noopener noreferrer">Rumble</a>
+        <a href="https://open.spotify.com/artist/43rLqZlw7co7eyccfN9zRj" target="_blank" rel="noopener noreferrer">Spotify</a>
+        <a href="https://music.apple.com/us/artist/larry-seyer/20363332" target="_blank" rel="noopener noreferrer">Apple Music</a>
+        <a href="https://music.amazon.com/artists/B00137FA36/larry-seyer" target="_blank" rel="noopener noreferrer">Amazon Music</a>
+        <a href="https://music.youtube.com/@larryseyer" target="_blank" rel="noopener noreferrer">YouTube Music</a>
+        <a href="https://suno.com/@larryseyer?page=songs" target="_blank" rel="noopener noreferrer">Suno</a>
+        <a href="https://www.linkedin.com/in/larryseyer" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../../js/main.js"></script>
+
+</body>
+</html>
