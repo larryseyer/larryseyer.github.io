@@ -743,7 +743,8 @@
     "/drums/midi/bankselectmode": "Bank Select mode: 0 = CC 0 value is the bank, 1 = standard.",
     "/drums/midi/pilltrigger": "Press remote pill-trigger button 0-3, as CC 101-104 would.",
     "/drums/midi/pillpresses": "Counts of incoming pill-trigger presses.",
-    "/drums/midi/fadercc": "Assign mixer faders to MIDI CCs on channel 10."
+    "/drums/midi/fadercc": "Assign mixer faders to MIDI CCs on the MIDI control channel.",
+    "/drums/midi/controlchannel": "MIDI control channel (1-16, default 10) for Quick Pick notes, the all-lanes lift, global CCs and learned mixer faders."
    }
   },
   {
@@ -1013,7 +1014,10 @@
     "/drums/settings/playerpresetoverwrite": "Allow saves to replace an existing player preset.",
     "/drums/partialfills": "Automatic lifts on or off.",
     "/drums/partialfills/phrase": "Lift phrase length in bars (1-32, default 4).",
-    "/drums/partialfills/recipes": "Lift recipes: \"factory\" or a custom list."
+    "/drums/partialfills/recipes": "Lift recipes: \"factory\" or a custom list.",
+    "/drums/newsong/recall": "What a new song recalls for each player: \"kit\" or \"preset\".",
+    "/drums/newsong/kit": "Drum kit a new song starts with, by name.",
+    "/drums/newsong/preset": "Player preset a new song starts with, by name."
    }
   },
   {
@@ -1047,7 +1051,8 @@
     "/drums/export/pills/dragout": "Export pills as a drag-out clip; reads back the file path.",
     "/drums/song/pillmidi/ex": "Pill MIDI note layout: 1 = Larry Seyer Drums note layout, 0 = standard drum note layout.",
     "/drums/export/timeline/audio": "Export the song as audio: \"path|options\".",
-    "/drums/export/timeline/audio/measured": "Loudness and peak of the last audio export."
+    "/drums/export/timeline/audio/measured": "Loudness and peak of the last audio export.",
+    "/drums/import/progress": "Progress of a running style import or Generate Again; send \"cancel\" to stop it and leave the style unchanged."
    }
   },
   {
@@ -1237,7 +1242,10 @@
     "/drums/ui/alert/input": "Type into an alert.",
     "/drums/ui/alert/confirm": "Answer an alert.",
     "/drums/ui/alert/text": "Alert text.",
-    "/drums/ui/alert/state": "Alert status."
+    "/drums/ui/alert/state": "Alert status.",
+    "/drums/ui/presets/player/share": "Drive Share for player presets and the window a shared player preset opens to.",
+    "/drums/ui/settings/newsong/state": "New Song settings as shown.",
+    "/drums/ui/settings/newsong/menu": "Open or close a menu in the New Song settings."
    }
   },
   {
