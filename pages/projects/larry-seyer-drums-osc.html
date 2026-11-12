@@ -77,7 +77,7 @@
     <section class="section" id="osc">
       <div class="container">
         <h1>Larry Seyer Drums OSC Reference</h1>
-        <p class="mb-md">Larry Seyer Drums has a complete OSC (Open Sound Control) implementation for controlling virtually every aspect of its operation from another app, a control surface, a script or another computer. This page lists all 1538 commands. <a href="larry-seyer-drums.html">Back to Larry Seyer Drums</a>.</p>
+        <p class="mb-md">Larry Seyer Drums has a complete OSC (Open Sound Control) implementation for controlling virtually every aspect of its operation from another app, a control surface, a script or another computer. This page lists all 1548 commands. <a href="larry-seyer-drums.html">Back to Larry Seyer Drums</a>.</p>
 
         <h2 id="osc-connecting">Connecting</h2>
         <ul class="features">
@@ -205,7 +205,8 @@
             <tr><td><code>/drums/midi/bankselectmode</code></td><td>int</td><td>Set / read</td><td>Bank Select mode: 0 = CC 0 value is the bank, 1 = standard.</td></tr>
             <tr><td><code>/drums/midi/pilltrigger</code></td><td>int</td><td>Set / read</td><td>Press remote pill-trigger button 0-3, as CC 101-104 would.</td></tr>
             <tr><td><code>/drums/midi/pillpresses</code></td><td>string</td><td>Read</td><td>Counts of incoming pill-trigger presses.</td></tr>
-            <tr><td><code>/drums/midi/fadercc</code></td><td>string</td><td>Set / read</td><td>Assign mixer faders to MIDI CCs on channel 10.</td></tr>
+            <tr><td><code>/drums/midi/fadercc</code></td><td>string</td><td>Set / read</td><td>Assign mixer faders to MIDI CCs on the MIDI control channel.</td></tr>
+            <tr><td><code>/drums/midi/controlchannel</code></td><td>int</td><td>Set / read</td><td>MIDI control channel (1-16, default 10) for Quick Pick notes, the all-lanes lift, global CCs and learned mixer faders.</td></tr>
           </tbody>
         </table>
         </div>
@@ -995,6 +996,9 @@
             <tr><td><code>/drums/partialfills</code></td><td>int</td><td>Set / read</td><td>Automatic lifts on or off.</td></tr>
             <tr><td><code>/drums/partialfills/phrase</code></td><td>int</td><td>Set / read</td><td>Lift phrase length in bars (1-32, default 4).</td></tr>
             <tr><td><code>/drums/partialfills/recipes</code></td><td>string</td><td>Set / read</td><td>Lift recipes: "factory" or a custom list.</td></tr>
+            <tr><td><code>/drums/newsong/recall</code></td><td>string</td><td>Set / read</td><td>What a new song recalls for each player: "kit" or "preset".</td></tr>
+            <tr><td><code>/drums/newsong/kit</code></td><td>string</td><td>Set / read</td><td>Drum kit a new song starts with, by name.</td></tr>
+            <tr><td><code>/drums/newsong/preset</code></td><td>string</td><td>Set / read</td><td>Player preset a new song starts with, by name.</td></tr>
           </tbody>
         </table>
         </div>
@@ -1031,6 +1035,7 @@
             <tr><td><code>/drums/song/pillmidi/ex</code></td><td>int</td><td>Set / read</td><td>Pill MIDI note layout: 1 = Larry Seyer Drums note layout, 0 = standard drum note layout.</td></tr>
             <tr><td><code>/drums/export/timeline/audio</code></td><td>string</td><td>Set / read</td><td>Export the song as audio: "path|options".</td></tr>
             <tr><td><code>/drums/export/timeline/audio/measured</code></td><td>string</td><td>Read</td><td>Loudness and peak of the last audio export.</td></tr>
+            <tr><td><code>/drums/import/progress</code></td><td>string</td><td>Set / read</td><td>Progress of a running style import or Generate Again; send "cancel" to stop it and leave the style unchanged.</td></tr>
           </tbody>
         </table>
         </div>
@@ -1102,6 +1107,7 @@
             <tr><td><code>/drums/action/presets.pattern_save_as</code></td><td>Presets</td><td>Save Pattern As.</td></tr>
             <tr><td><code>/drums/action/presets.player_save</code></td><td>Presets</td><td>Save Player Preset.</td></tr>
             <tr><td><code>/drums/action/presets.player_save_as</code></td><td>Presets</td><td>Save Player Preset As.</td></tr>
+            <tr><td><code>/drums/action/presets.player_share</code></td><td>Presets</td><td>Share Player Preset.</td></tr>
             <tr><td><code>/drums/action/presets.sounds_save</code></td><td>Presets</td><td>Save Sounds Preset.</td></tr>
             <tr><td><code>/drums/action/presets.sounds_save_as</code></td><td>Presets</td><td>Save Sounds Preset As.</td></tr>
             <tr><td><code>/drums/action/song.combine_pills</code></td><td>Song</td><td>Combine Selected Pills.</td></tr>
@@ -1319,6 +1325,9 @@
             <tr><td><code>/drums/ui/alert/confirm</code></td><td>int</td><td>Set / read</td><td>Answer an alert.</td></tr>
             <tr><td><code>/drums/ui/alert/text</code></td><td>string</td><td>Read</td><td>Alert text.</td></tr>
             <tr><td><code>/drums/ui/alert/state</code></td><td>string</td><td>Read</td><td>Alert status.</td></tr>
+            <tr><td><code>/drums/ui/presets/player/share</code></td><td>string</td><td>Set / read</td><td>Drive Share for player presets and the window a shared player preset opens to.</td></tr>
+            <tr><td><code>/drums/ui/settings/newsong/state</code></td><td>string</td><td>Read</td><td>New Song settings as shown.</td></tr>
+            <tr><td><code>/drums/ui/settings/newsong/menu</code></td><td>string</td><td>Send</td><td>Open or close a menu in the New Song settings.</td></tr>
           </tbody>
         </table>
         </div>
