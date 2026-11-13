@@ -744,7 +744,10 @@
     "/drums/midi/pilltrigger": "Press remote pill-trigger button 0-3, as CC 101-104 would.",
     "/drums/midi/pillpresses": "Counts of incoming pill-trigger presses.",
     "/drums/midi/fadercc": "Assign mixer faders to MIDI CCs on the MIDI control channel.",
-    "/drums/midi/controlchannel": "MIDI control channel (1-16, default 10) for Quick Pick notes, the all-lanes lift, global CCs and learned mixer faders."
+    "/drums/midi/controlchannel": "MIDI control channel (1-16, default 16) for Quick Pick notes, the all-lanes lift, global CCs and learned mixer faders.",
+    "/drums/midi/inputlayout": "Drum map incoming notes are read in: 0 = GM, 1 = EX, 2 = E-Kit.",
+    "/drums/midi/lastnote": "The last incoming note that played a drum, after the MIDI Input Layout read it.",
+    "/drums/midi/controlchannel/player": "The player (1-4) whose own channel is the control channel, or 0 when it is no player's channel."
    }
   },
   {
@@ -900,7 +903,22 @@
     "/drums/song/editor/note/remove": "Remove the note nearest \"row,beat\".",
     "/drums/song/editor/note/clear": "Remove every note.",
     "/drums/song/editor/toggleatcursor": "Add or remove the note at the cursor.",
-    "/drums/song/editor/group": "Fold or unfold an instrument group (0 kick to 5 other)."
+    "/drums/song/editor/group": "Fold or unfold an instrument group (0 kick to 5 other).",
+    "/drums/song/editor/record": "The open pill editor's Record button: 1 arms recording on its pill, 0 ends the take and keeps the notes.",
+    "/drums/song/editor/record/countin": "Bars counted in before a take: 0 or 1.",
+    "/drums/song/editor/record/from": "MIDI channel a take records from: 0 = all channels, else 1-16.",
+    "/drums/song/editor/record/playquantized": "Play a take back quantized to the grid (1) or as performed (0).",
+    "/drums/song/editor/record/state": "The open editor's take: off, count-in or recording, with its pass, count-in beat and number of recorded notes.",
+    "/drums/song/editor/record/notes": "Every recorded note in the open editor: drum, where it was played, where it is heard, velocity and hi-hat position.",
+    "/drums/song/editor/record/layout": "Positions of the open editor's Record controls.",
+    "/drums/song/editor/record/panel": "Open (1) or shut (0) the recording settings panel under Record's arrow in the open editor.",
+    "/drums/song/editor/donemenu": "The rows of the open editor's Done menu.",
+    "/drums/song/editor/saveaspattern": "Save the open editor's pattern, as you hear it, as a new saved pattern with this name; the editor stays open.",
+    "/drums/song/editor/saveasstyle": "Save the open editor's pattern as the Verse of a new style with this name and generate its other sections and fills.",
+    "/drums/song/editor/undo": "Undo one step in the open pill editor.",
+    "/drums/song/editor/redo": "Redo one step in the open pill editor.",
+    "/drums/record/arm": "Arm MIDI recording on a pill (\"lane bar count\", 0-based), or \"off\" to end the take; reads back ok or why it was rejected.",
+    "/drums/record/engine": "The engine's recording state: off, count-in or recording, with its pass, count-in beat and note counts."
    }
   },
   {
@@ -1052,7 +1070,8 @@
     "/drums/song/pillmidi/ex": "Pill MIDI note layout: 1 = Larry Seyer Drums note layout, 0 = standard drum note layout.",
     "/drums/export/timeline/audio": "Export the song as audio: \"path|options\".",
     "/drums/export/timeline/audio/measured": "Loudness and peak of the last audio export.",
-    "/drums/import/progress": "Progress of a running style import or Generate Again; send \"cancel\" to stop it and leave the style unchanged."
+    "/drums/import/progress": "Progress of a running style import or Generate Again; send \"cancel\" to stop it and leave the style unchanged.",
+    "/drums/library/style/generateagain": "Run Generate Again on one of your own styles (folder name): a new Intro, Chorus, Bridge and 64 fills from its Verse, which is never touched. Reads back its progress."
    }
   },
   {
@@ -1245,7 +1264,8 @@
     "/drums/ui/alert/state": "Alert status.",
     "/drums/ui/presets/player/share": "Drive Share for player presets and the window a shared player preset opens to.",
     "/drums/ui/settings/newsong/state": "New Song settings as shown.",
-    "/drums/ui/settings/newsong/menu": "Open or close a menu in the New Song settings."
+    "/drums/ui/settings/newsong/menu": "Open or close a menu in the New Song settings.",
+    "/drums/ui/song/conductor/tap": "Tap a time signature change's tag to open its panel (bar number)."
    }
   },
   {
