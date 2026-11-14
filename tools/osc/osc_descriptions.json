@@ -90,7 +90,9 @@
     "output/synth/enabled": "Play this player through the drum synth.",
     "output/midiLevel": "MIDI output level (percent).",
     "output/samplerLevel": "Sampler output level (percent).",
-    "output/synthLevel": "Synth output level (percent)."
+    "output/synthLevel": "Synth output level (percent).",
+    "fill/force": "Make the player's next fill a named fill; \"none\" cancels.",
+    "fill/drawn": "The fill the player drew last."
    }
   },
   {
@@ -640,7 +642,9 @@
     "name": "The pill's name.",
     "beatLength": "Length in counted beats.",
     "beats": "Length in counted beats under the meter in force.",
-    "storedLevel/<0-6>": "Stored response for global energy level 0-6."
+    "storedLevel/<0-6>": "Stored response for global energy level 0-6.",
+    "swing": "The pill's own swing (percent), or \"off\" to follow its energy level.",
+    "offset": "The pill's own timing offset (beats, positive rushes), or \"off\" to follow its energy level."
    }
   },
   {
@@ -762,7 +766,10 @@
     "/drums/audio/output/none": "Close the audio output (1) or reopen it (0).",
     "/drums/audio/nodeviceclock": "1 when no audio device is open and the internal clock drives the engine.",
     "/drums/app/outputmode": "Output mode: 0 = automatic, 1 = stereo, 2 = multi-output.",
-    "/drums/app/buffersize": "Audio buffer size (standalone app)."
+    "/drums/app/buffersize": "Audio buffer size (standalone app).",
+    "/drums/audio/input/device": "Choose the audio input Timecode listens on, by name.",
+    "/drums/audio/input/devices": "Available audio input devices.",
+    "/drums/audio/output/notice": "The Audio Device status line when a chosen device did not answer, naming where the sound went instead."
    }
   },
   {
@@ -819,7 +826,8 @@
     "/drums/song/grid/state": "Song grid status.",
     "/drums/song/grid/find": "Open song search.",
     "/drums/song/track/<1-4>/loopanchor": "Where the lane's loop is anchored.",
-    "/drums/song/editcursorbar": "Edit cursor bar."
+    "/drums/song/editcursorbar": "Edit cursor bar.",
+    "/drums/song/armedpill": "The pill armed to play next, as \"lane,pill\", or empty when none is armed."
    }
   },
   {
@@ -1011,7 +1019,13 @@
     "/drums/appsettings/presets": "Saved app setups, and the last save or load result.",
     "/drums/appsettings/save": "Save the current app setup under a name.",
     "/drums/appsettings/load": "Load a saved app setup.",
-    "/drums/appsettings/current": "App setup in use, and whether it has changed."
+    "/drums/appsettings/current": "App setup in use, and whether it has changed.",
+    "/drums/quickpick/beat/save": "Save the current beat into Quick Pick beat slot 1-10.",
+    "/drums/quickpick/preset/save": "Save the current player preset into Quick Pick preset slot 1-10.",
+    "/drums/quickpick/beat/restore": "Return Quick Pick beat slot 1-10 to its factory beat.",
+    "/drums/quickpick/preset/restore": "Return Quick Pick preset slot 1-10 to its factory preset.",
+    "/drums/quickpick/slots": "What each Quick Pick slot holds, factory or yours.",
+    "/drums/quickpick/savenames": "The names a beat or preset save would give right now."
    }
   },
   {
@@ -1071,7 +1085,9 @@
     "/drums/export/timeline/audio": "Export the song as audio: \"path|options\".",
     "/drums/export/timeline/audio/measured": "Loudness and peak of the last audio export.",
     "/drums/import/progress": "Progress of a running style import or Generate Again; send \"cancel\" to stop it and leave the style unchanged.",
-    "/drums/library/style/generateagain": "Run Generate Again on one of your own styles (folder name): a new Intro, Chorus, Bridge and 64 fills from its Verse, which is never touched. Reads back its progress."
+    "/drums/library/style/generateagain": "Run Generate Again on one of your own styles (folder name): a new Intro, Chorus, Bridge and 64 fills from its Verse, which is never touched. Reads back its progress.",
+    "/drums/export/everything": "Save an Everything backup of your library to a path.",
+    "/drums/export/state": "Report of the last export started over OSC."
    }
   },
   {
