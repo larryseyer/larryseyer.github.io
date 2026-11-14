@@ -77,7 +77,7 @@
     <section class="section" id="osc">
       <div class="container">
         <h1>Larry Seyer Drums OSC Reference</h1>
-        <p class="mb-md">Larry Seyer Drums has a complete OSC (Open Sound Control) implementation for controlling virtually every aspect of its operation from another app, a control surface, a script or another computer. This page lists all 1568 commands. <a href="larry-seyer-drums.html">Back to Larry Seyer Drums</a>.</p>
+        <p class="mb-md">Larry Seyer Drums has a complete OSC (Open Sound Control) implementation for controlling virtually every aspect of its operation from another app, a control surface, a script or another computer. This page lists all 1584 commands. <a href="larry-seyer-drums.html">Back to Larry Seyer Drums</a>.</p>
 
         <h2 id="osc-connecting">Connecting</h2>
         <ul class="features">
@@ -227,6 +227,9 @@
             <tr><td><code>/drums/audio/nodeviceclock</code></td><td>0/1</td><td>Read</td><td>1 when no audio device is open and the internal clock drives the engine.</td></tr>
             <tr><td><code>/drums/app/outputmode</code></td><td>int</td><td>Set / read</td><td>Output mode: 0 = automatic, 1 = stereo, 2 = multi-output.</td></tr>
             <tr><td><code>/drums/app/buffersize</code></td><td>int</td><td>Set / read</td><td>Audio buffer size (standalone app).</td></tr>
+            <tr><td><code>/drums/audio/input/device</code></td><td>string</td><td>Set / read</td><td>Choose the audio input Timecode listens on, by name.</td></tr>
+            <tr><td><code>/drums/audio/input/devices</code></td><td>string</td><td>Read</td><td>Available audio input devices.</td></tr>
+            <tr><td><code>/drums/audio/output/notice</code></td><td>string</td><td>Read</td><td>The Audio Device status line when a chosen device did not answer, naming where the sound went instead.</td></tr>
           </tbody>
         </table>
         </div>
@@ -322,6 +325,8 @@
             <tr><td><code>output/midiLevel</code></td><td>float</td><td>Set / read</td><td>MIDI output level (percent).</td></tr>
             <tr><td><code>output/samplerLevel</code></td><td>float</td><td>Set / read</td><td>Sampler output level (percent).</td></tr>
             <tr><td><code>output/synthLevel</code></td><td>float</td><td>Set / read</td><td>Synth output level (percent).</td></tr>
+            <tr><td><code>fill/force</code></td><td>string</td><td>Set / read</td><td>Make the player&rsquo;s next fill a named fill; "none" cancels.</td></tr>
+            <tr><td><code>fill/drawn</code></td><td>string</td><td>Read</td><td>The fill the player drew last.</td></tr>
           </tbody>
         </table>
         </div>
@@ -429,6 +434,7 @@
             <tr><td><code>/drums/song/grid/find</code></td><td>&mdash;</td><td>Send</td><td>Open song search.</td></tr>
             <tr><td><code>/drums/song/track/&lt;1-4&gt;/loopanchor</code></td><td>string</td><td>Read</td><td>Where the lane&rsquo;s loop is anchored.</td></tr>
             <tr><td><code>/drums/song/editcursorbar</code></td><td>int</td><td>Set / read</td><td>Edit cursor bar.</td></tr>
+            <tr><td><code>/drums/song/armedpill</code></td><td>string</td><td>Read</td><td>The pill armed to play next, as "lane,pill", or empty when none is armed.</td></tr>
           </tbody>
         </table>
         </div>
@@ -493,13 +499,15 @@
             <tr><td><code>geom</code></td><td>string</td><td>Read</td><td>Automation: the pill&rsquo;s screen position.</td></tr>
             <tr><td><code>meter</code></td><td>string</td><td>Read</td><td>The pill&rsquo;s time signature.</td></tr>
             <tr><td><code>remove</code></td><td>&mdash;</td><td>Send</td><td>Delete the pill.</td></tr>
-            <tr><td><code>energy</code></td><td>int</td><td>Read</td><td>Energy level the pill is playing.</td></tr>
+            <tr><td><code>energy</code></td><td>int</td><td>Set / read</td><td>Energy level the pill is playing.</td></tr>
             <tr><td><code>energy/stored</code></td><td>int</td><td>Read</td><td>Stored energy response for the current global energy.</td></tr>
             <tr><td><code>regrid</code></td><td>int</td><td>Set / read</td><td>Re-fit the pill to the grid.</td></tr>
             <tr><td><code>name</code></td><td>string</td><td>Set / read</td><td>The pill&rsquo;s name.</td></tr>
             <tr><td><code>beatLength</code></td><td>int</td><td>Set / read</td><td>Length in counted beats.</td></tr>
             <tr><td><code>beats</code></td><td>int</td><td>Read</td><td>Length in counted beats under the meter in force.</td></tr>
             <tr><td><code>storedLevel/&lt;0-6&gt;</code></td><td>int</td><td>Set / read</td><td>Stored response for global energy level 0-6.</td></tr>
+            <tr><td><code>swing</code></td><td>string</td><td>Set / read</td><td>The pill&rsquo;s own swing (percent), or "off" to follow its energy level.</td></tr>
+            <tr><td><code>offset</code></td><td>string</td><td>Set / read</td><td>The pill&rsquo;s own timing offset (beats, positive rushes), or "off" to follow its energy level.</td></tr>
           </tbody>
         </table>
         </div>
@@ -991,6 +999,12 @@
             <tr><td><code>/drums/appsettings/save</code></td><td>string</td><td>Set / read</td><td>Save the current app setup under a name.</td></tr>
             <tr><td><code>/drums/appsettings/load</code></td><td>string</td><td>Set / read</td><td>Load a saved app setup.</td></tr>
             <tr><td><code>/drums/appsettings/current</code></td><td>string</td><td>Read</td><td>App setup in use, and whether it has changed.</td></tr>
+            <tr><td><code>/drums/quickpick/beat/save</code></td><td>int</td><td>Send</td><td>Save the current beat into Quick Pick beat slot 1-10.</td></tr>
+            <tr><td><code>/drums/quickpick/preset/save</code></td><td>int</td><td>Send</td><td>Save the current player preset into Quick Pick preset slot 1-10.</td></tr>
+            <tr><td><code>/drums/quickpick/beat/restore</code></td><td>int</td><td>Send</td><td>Return Quick Pick beat slot 1-10 to its factory beat.</td></tr>
+            <tr><td><code>/drums/quickpick/preset/restore</code></td><td>int</td><td>Send</td><td>Return Quick Pick preset slot 1-10 to its factory preset.</td></tr>
+            <tr><td><code>/drums/quickpick/slots</code></td><td>string</td><td>Read</td><td>What each Quick Pick slot holds, factory or yours.</td></tr>
+            <tr><td><code>/drums/quickpick/savenames</code></td><td>string</td><td>Read</td><td>The names a beat or preset save would give right now.</td></tr>
           </tbody>
         </table>
         </div>
@@ -1055,6 +1069,8 @@
             <tr><td><code>/drums/export/timeline/audio/measured</code></td><td>string</td><td>Read</td><td>Loudness and peak of the last audio export.</td></tr>
             <tr><td><code>/drums/import/progress</code></td><td>string</td><td>Set / read</td><td>Progress of a running style import or Generate Again; send "cancel" to stop it and leave the style unchanged.</td></tr>
             <tr><td><code>/drums/library/style/generateagain</code></td><td>string</td><td>Set / read</td><td>Run Generate Again on one of your own styles (folder name): a new Intro, Chorus, Bridge and 64 fills from its Verse, which is never touched. Reads back its progress.</td></tr>
+            <tr><td><code>/drums/export/everything</code></td><td>string</td><td>Set / read</td><td>Save an Everything backup of your library to a path.</td></tr>
+            <tr><td><code>/drums/export/state</code></td><td>string</td><td>Read</td><td>Report of the last export started over OSC.</td></tr>
           </tbody>
         </table>
         </div>
