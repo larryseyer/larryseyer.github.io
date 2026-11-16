@@ -77,7 +77,7 @@
     <section class="section" id="osc">
       <div class="container">
         <h1>Larry Seyer Drums OSC Reference</h1>
-        <p class="mb-md">Larry Seyer Drums has a complete OSC (Open Sound Control) implementation for controlling virtually every aspect of its operation from another app, a control surface, a script or another computer. This page lists all 1584 commands. <a href="larry-seyer-drums.html">Back to Larry Seyer Drums</a>.</p>
+        <p class="mb-md">Larry Seyer Drums has a complete OSC (Open Sound Control) implementation for controlling virtually every aspect of its operation from another app, a control surface, a script or another computer. This page lists all 1597 commands. <a href="larry-seyer-drums.html">Back to Larry Seyer Drums</a>.</p>
 
         <h2 id="osc-connecting">Connecting</h2>
         <ul class="features">
@@ -200,6 +200,7 @@
             <tr><td><code>/drums/midi/output/device</code></td><td>string</td><td>Set / read</td><td>Choose the MIDI output by name.</td></tr>
             <tr><td><code>/drums/midi/virtualports/state</code></td><td>string</td><td>Read</td><td>Status of the virtual MIDI ports.</td></tr>
             <tr><td><code>/drums/midi/pcchannel</code></td><td>int</td><td>Set / read</td><td>MIDI channel for Program Change and Bank Select.</td></tr>
+            <tr><td><code>/drums/midi/lastprogramchange</code></td><td>string</td><td>Read</td><td>The last Program Change received and what became of it.</td></tr>
             <tr><td><code>/drums/midi/activity</code></td><td>string</td><td>Read</td><td>Counts of incoming program, bank and transport messages.</td></tr>
             <tr><td><code>/drums/midi/notechannelmask</code></td><td>int</td><td>Set / read</td><td>Bit mask of MIDI channels allowed to play drum elements.</td></tr>
             <tr><td><code>/drums/midi/bankselectmode</code></td><td>int</td><td>Set / read</td><td>Bank Select mode: 0 = CC 0 value is the bank, 1 = standard.</td></tr>
@@ -432,6 +433,7 @@
             <tr><td><code>/drums/song/grid/tap</code></td><td>int</td><td>Set / read</td><td>Tap a slot in the open song grid.</td></tr>
             <tr><td><code>/drums/song/grid/state</code></td><td>string</td><td>Read</td><td>Song grid status.</td></tr>
             <tr><td><code>/drums/song/grid/find</code></td><td>&mdash;</td><td>Send</td><td>Open song search.</td></tr>
+            <tr><td><code>/drums/song/grid/bankmenu</code></td><td>int</td><td>Set / read</td><td>Choose a row of the song grid&rsquo;s bank menu: add, rename, delete or browse a bank.</td></tr>
             <tr><td><code>/drums/song/track/&lt;1-4&gt;/loopanchor</code></td><td>string</td><td>Read</td><td>Where the lane&rsquo;s loop is anchored.</td></tr>
             <tr><td><code>/drums/song/editcursorbar</code></td><td>int</td><td>Set / read</td><td>Edit cursor bar.</td></tr>
             <tr><td><code>/drums/song/armedpill</code></td><td>string</td><td>Read</td><td>The pill armed to play next, as "lane,pill", or empty when none is armed.</td></tr>
@@ -1024,6 +1026,7 @@
             <tr><td><code>/drums/settings/morph/drum/&lt;drum&gt;</code></td><td>int</td><td>Set / read</td><td>Morphing for one drum on or off. &lt;drum&gt; is one of: bells, china, crash1, crash2, hihat, ride1, ride2, sidestick, snare, splash, tom1, tom2, tom3, tom4.</td></tr>
             <tr><td><code>/drums/settings/strikelean</code></td><td>int</td><td>Set / read</td><td>1 = vary each hit, 0 = exact recordings.</td></tr>
             <tr><td><code>/drums/settings/ignorepcwhileplaying</code></td><td>int 0/1</td><td>Set / read</td><td>Ignore Program Change while playing.</td></tr>
+            <tr><td><code>/drums/settings/acceptprogramchanges</code></td><td>int 0/1</td><td>Set / read</td><td>Accept Program Changes on or off.</td></tr>
             <tr><td><code>/drums/settings/playerpresetoverwrite</code></td><td>int 0/1</td><td>Set / read</td><td>Allow saves to replace an existing player preset.</td></tr>
             <tr><td><code>/drums/partialfills</code></td><td>int</td><td>Set / read</td><td>Automatic lifts on or off.</td></tr>
             <tr><td><code>/drums/partialfills/phrase</code></td><td>int</td><td>Set / read</td><td>Lift phrase length in bars (1-32, default 4).</td></tr>
@@ -1042,6 +1045,7 @@
           <tbody>
             <tr><td><code>/drums/song/loadfile</code></td><td>string</td><td>Set / read</td><td>Load a song from a file path.</td></tr>
             <tr><td><code>/drums/ui/export/song</code></td><td>string</td><td>Set / read</td><td>Export the current song to a file path.</td></tr>
+            <tr><td><code>/drums/ui/export/kit</code></td><td>string</td><td>Set / read</td><td>Export the selected player&rsquo;s current kit, unsaved edits included, to a file path.</td></tr>
             <tr><td><code>/drums/ui/import/song</code></td><td>string</td><td>Set / read</td><td>Import a song file.</td></tr>
             <tr><td><code>/drums/import/category</code></td><td>string</td><td>Set / read</td><td>Import one category: "category|mode|path".</td></tr>
             <tr><td><code>/drums/import/programchange</code></td><td>string</td><td>Set / read</td><td>Import program changes: "scope|mode|path".</td></tr>
@@ -1070,6 +1074,9 @@
             <tr><td><code>/drums/import/progress</code></td><td>string</td><td>Set / read</td><td>Progress of a running style import or Generate Again; send "cancel" to stop it and leave the style unchanged.</td></tr>
             <tr><td><code>/drums/library/style/generateagain</code></td><td>string</td><td>Set / read</td><td>Run Generate Again on one of your own styles (folder name): a new Intro, Chorus, Bridge and 64 fills from its Verse, which is never touched. Reads back its progress.</td></tr>
             <tr><td><code>/drums/export/everything</code></td><td>string</td><td>Set / read</td><td>Save an Everything backup of your library to a path.</td></tr>
+            <tr><td><code>/drums/export/energy</code></td><td>string</td><td>Set / read</td><td>Export an energy level (this, all or 0-6) to a path.</td></tr>
+            <tr><td><code>/drums/import/energy</code></td><td>string</td><td>Set / read</td><td>Import an energy level (this, all or 0-6) from a path.</td></tr>
+            <tr><td><code>/drums/library/job/state</code></td><td>string</td><td>Read</td><td>Whether a backup, restore or style generation is running (idle or busy), and which changes it refused meanwhile.</td></tr>
             <tr><td><code>/drums/export/state</code></td><td>string</td><td>Read</td><td>Report of the last export started over OSC.</td></tr>
           </tbody>
         </table>
@@ -1225,6 +1232,10 @@
             <tr><td><code>/drums/ui/licenses/document</code></td><td>int</td><td>Set / read</td><td>Show a license document by index.</td></tr>
             <tr><td><code>/drums/ui/settings/midioutput/state</code></td><td>string</td><td>Read</td><td>MIDI output settings as shown.</td></tr>
             <tr><td><code>/drums/ui/settings/midiinput/state</code></td><td>string</td><td>Read</td><td>MIDI input settings as shown.</td></tr>
+            <tr><td><code>/drums/ui/settings/midichannels/state</code></td><td>string</td><td>Read</td><td>MIDI Input Channels settings as shown.</td></tr>
+            <tr><td><code>/drums/ui/settings/midichannels/menu</code></td><td>string</td><td>Send</td><td>Open or close a channel picker in the MIDI Input Channels settings.</td></tr>
+            <tr><td><code>/drums/ui/settings/recall/state</code></td><td>string</td><td>Read</td><td>Song Recall&rsquo;s Program Change Channel row as shown.</td></tr>
+            <tr><td><code>/drums/ui/settings/recall/channellink</code></td><td>&mdash;</td><td>Send</td><td>Jump from Song Recall to the MIDI Input Channels settings.</td></tr>
             <tr><td><code>/drums/ui/settings/syncoffsets/state</code></td><td>string</td><td>Read</td><td>Sync offset settings as shown.</td></tr>
             <tr><td><code>/drums/ui/settings/click/state</code></td><td>string</td><td>Read</td><td>Click settings as shown.</td></tr>
             <tr><td><code>/drums/ui/settings/click/menu</code></td><td>string</td><td>Send</td><td>Open a menu in the click settings.</td></tr>
@@ -1280,6 +1291,7 @@
             <tr><td><code>/drums/ui/energyeditor/scroll/drag</code></td><td>int</td><td>Set / read</td><td>Scroll the energy editor by dragging.</td></tr>
             <tr><td><code>/drums/ui/energy/tap</code></td><td>int</td><td>Set / read</td><td>Tap an energy level button.</td></tr>
             <tr><td><code>/drums/ui/energy/levelmenu</code></td><td>int</td><td>Send</td><td>Open an energy level&rsquo;s menu.</td></tr>
+            <tr><td><code>/drums/ui/energy/thislevel</code></td><td>int</td><td>Read</td><td>The energy level that This Level means right now (0-6).</td></tr>
             <tr><td><code>/drums/ui/spectrum/fullscreen</code></td><td>int</td><td>Set / read</td><td>Full-screen spectrum analyzer off or on.</td></tr>
             <tr><td><code>/drums/ui/reverb/browser/open</code></td><td>int</td><td>Set / read</td><td>Close (0) or open (1) the reverb browser.</td></tr>
             <tr><td><code>/drums/ui/reverb/browser/geom</code></td><td>string</td><td>Read</td><td>Automation: reverb browser layout.</td></tr>
@@ -1335,6 +1347,7 @@
             <tr><td><code>/drums/ui/importexport/forcesize</code></td><td>int</td><td>Set / read</td><td>Force an import/export window size.</td></tr>
             <tr><td><code>/drums/ui/importexport/group</code></td><td>string</td><td>Set / read</td><td>Open an import/export group.</td></tr>
             <tr><td><code>/drums/ui/importexport/tap</code></td><td>string</td><td>Set / read</td><td>Tap an import/export item.</td></tr>
+            <tr><td><code>/drums/ui/importexport/reveal</code></td><td>string</td><td>Set / read</td><td>Scroll an import/export list so a row is in view.</td></tr>
             <tr><td><code>/drums/ui/menu/tap</code></td><td>int</td><td>Send</td><td>Tap a menu row.</td></tr>
             <tr><td><code>/drums/ui/menu/tapflash</code></td><td>int</td><td>Send</td><td>Tap a menu row with its highlight.</td></tr>
             <tr><td><code>/drums/ui/menu/flashrow</code></td><td>int</td><td>Read</td><td>Highlighted menu row (-1 when none).</td></tr>
