@@ -77,7 +77,7 @@
     <section class="section" id="osc">
       <div class="container">
         <h1>Larry Seyer Drums OSC Reference</h1>
-        <p class="mb-md">Larry Seyer Drums has a complete OSC (Open Sound Control) implementation for controlling virtually every aspect of its operation from another app, a control surface, a script or another computer. This page lists all 1597 commands. <a href="larry-seyer-drums.html">Back to Larry Seyer Drums</a>.</p>
+        <p class="mb-md">Larry Seyer Drums has a complete OSC (Open Sound Control) implementation for controlling virtually every aspect of its operation from another app, a control surface, a script or another computer. This page lists all 1629 commands. <a href="larry-seyer-drums.html">Back to Larry Seyer Drums</a>.</p>
 
         <h2 id="osc-connecting">Connecting</h2>
         <ul class="features">
@@ -211,6 +211,8 @@
             <tr><td><code>/drums/midi/inputlayout</code></td><td>int</td><td>Set / read</td><td>Drum map incoming notes are read in: 0 = GM, 1 = EX, 2 = E-Kit.</td></tr>
             <tr><td><code>/drums/midi/lastnote</code></td><td>string</td><td>Read</td><td>The last incoming note that played a drum, after the MIDI Input Layout read it.</td></tr>
             <tr><td><code>/drums/midi/controlchannel/player</code></td><td>int</td><td>Read</td><td>The player (1-4) whose own channel is the control channel, or 0 when it is no player&rsquo;s channel.</td></tr>
+            <tr><td><code>/drums/midi/cc&lt;cc&gt;/held</code></td><td>int</td><td>Read</td><td>Which MIDI channels are holding this trigger CC&rsquo;s press latch (one bit per channel).</td></tr>
+            <tr><td><code>/drums/midi/triggerlatches/release</code></td><td>&mdash;</td><td>Send</td><td>Release every trigger CC&rsquo;s press latch on every channel.</td></tr>
           </tbody>
         </table>
         </div>
@@ -287,6 +289,7 @@
             <tr><td><code>outputlevel</code></td><td>float</td><td>Set / read</td><td>Output level (percent).</td></tr>
             <tr><td><code>outputbus</code></td><td>int</td><td>Set / read</td><td>Output pair the player is routed to.</td></tr>
             <tr><td><code>midichannel</code></td><td>int</td><td>Set / read</td><td>MIDI channel (1-16).</td></tr>
+            <tr><td><code>midi/live</code></td><td>string</td><td>Read</td><td>Hi-hat position, mod wheel, pitch wheel and sustain (CC 64) last received over MIDI.</td></tr>
             <tr><td><code>meter/level</code></td><td>float</td><td>Read</td><td>Current level.</td></tr>
             <tr><td><code>meter/peak</code></td><td>float</td><td>Read</td><td>Current peak.</td></tr>
             <tr><td><code>meter/voicecount</code></td><td>int</td><td>Read</td><td>Voices playing.</td></tr>
@@ -294,6 +297,7 @@
             <tr><td><code>meter/lufs</code></td><td>float</td><td>Read</td><td>Loudness (LUFS).</td></tr>
             <tr><td><code>meter/gainreduction</code></td><td>float</td><td>Read</td><td>Gain reduction (dB).</td></tr>
             <tr><td><code>fillactive</code></td><td>0/1</td><td>Read</td><td>1 while a fill is playing.</td></tr>
+            <tr><td><code>fillstate</code></td><td>int</td><td>Read</td><td>What the Fill button shows: 0 off, 1 a fill playing, 2 drum solo, 3 armed.</td></tr>
             <tr><td><code>morph/build</code></td><td>string</td><td>Read</td><td>Status of the kit&rsquo;s morph build.</td></tr>
             <tr><td><code>kit/path</code></td><td>string</td><td>Read</td><td>File path of the loaded kit.</td></tr>
             <tr><td><code>kit/snapshot</code></td><td>string</td><td>Read</td><td>File path of the kit preset in use.</td></tr>
@@ -433,7 +437,11 @@
             <tr><td><code>/drums/song/grid/tap</code></td><td>int</td><td>Set / read</td><td>Tap a slot in the open song grid.</td></tr>
             <tr><td><code>/drums/song/grid/state</code></td><td>string</td><td>Read</td><td>Song grid status.</td></tr>
             <tr><td><code>/drums/song/grid/find</code></td><td>&mdash;</td><td>Send</td><td>Open song search.</td></tr>
+            <tr><td><code>/drums/song/grid/fromfile</code></td><td>string</td><td>Set / read</td><td>Bring a song file into the song grid (From File), then choose its slot.</td></tr>
             <tr><td><code>/drums/song/grid/bankmenu</code></td><td>int</td><td>Set / read</td><td>Choose a row of the song grid&rsquo;s bank menu: add, rename, delete or browse a bank.</td></tr>
+            <tr><td><code>/drums/song/grid/hold</code></td><td>int</td><td>Set / read</td><td>Hold a slot in the open song grid to open its menu.</td></tr>
+            <tr><td><code>/drums/song/grid/header</code></td><td>string</td><td>Read</td><td>The open song grid&rsquo;s header controls.</td></tr>
+            <tr><td><code>/drums/song/grid/done</code></td><td>&mdash;</td><td>Send</td><td>Press Done on the open song grid (cancels a song waiting for its slot).</td></tr>
             <tr><td><code>/drums/song/track/&lt;1-4&gt;/loopanchor</code></td><td>string</td><td>Read</td><td>Where the lane&rsquo;s loop is anchored.</td></tr>
             <tr><td><code>/drums/song/editcursorbar</code></td><td>int</td><td>Set / read</td><td>Edit cursor bar.</td></tr>
             <tr><td><code>/drums/song/armedpill</code></td><td>string</td><td>Read</td><td>The pill armed to play next, as "lane,pill", or empty when none is armed.</td></tr>
@@ -1179,6 +1187,7 @@
             <tr><td><code>/drums/action/song.pill_energy_excited</code></td><td>Song</td><td>Pill Energy Excited.</td></tr>
             <tr><td><code>/drums/action/song.pill_energy_normal</code></td><td>Song</td><td>Pill Energy Normal.</td></tr>
             <tr><td><code>/drums/action/song.pill_energy_relaxed</code></td><td>Song</td><td>Pill Energy Relaxed.</td></tr>
+            <tr><td><code>/drums/action/song.rename</code></td><td>Song</td><td>Rename Song.</td></tr>
             <tr><td><code>/drums/action/song.rename_pill</code></td><td>Song</td><td>Rename Selected Pill.</td></tr>
             <tr><td><code>/drums/action/song.ripple_delete</code></td><td>Song</td><td>Delete and Close the Gap.</td></tr>
             <tr><td><code>/drums/action/song.ripple_insert</code></td><td>Song</td><td>Insert Space and Open the Gap.</td></tr>
@@ -1268,6 +1277,7 @@
             <tr><td><code>/drums/ui/mixer/select/bus</code></td><td>int</td><td>Set / read</td><td>Select a player bus.</td></tr>
             <tr><td><code>/drums/ui/mixer/select/send</code></td><td>int</td><td>Set / read</td><td>Select an effect return.</td></tr>
             <tr><td><code>/drums/ui/mixer/select/master</code></td><td>int</td><td>Set / read</td><td>Select the master strip.</td></tr>
+            <tr><td><code>/drums/ui/mixer/selectchip</code></td><td>string</td><td>Read</td><td>Mixer multi-select chip status (shown or not, and how many are selected).</td></tr>
             <tr><td><code>/drums/ui/mixer/scroll</code></td><td>int</td><td>Set / read</td><td>Scroll the mixer strips.</td></tr>
             <tr><td><code>/drums/ui/mixer/param</code></td><td>string</td><td>Set / read</td><td>Move a control on a channel: "channel name value" (linked channels follow).</td></tr>
             <tr><td><code>/drums/ui/mixer/eq</code></td><td>string</td><td>Set / read</td><td>Edit the EQ editor.</td></tr>
@@ -1292,6 +1302,10 @@
             <tr><td><code>/drums/ui/energy/tap</code></td><td>int</td><td>Set / read</td><td>Tap an energy level button.</td></tr>
             <tr><td><code>/drums/ui/energy/levelmenu</code></td><td>int</td><td>Send</td><td>Open an energy level&rsquo;s menu.</td></tr>
             <tr><td><code>/drums/ui/energy/thislevel</code></td><td>int</td><td>Read</td><td>The energy level that This Level means right now (0-6).</td></tr>
+            <tr><td><code>/drums/ui/energy/colour</code></td><td>int</td><td>Send</td><td>Open an energy level&rsquo;s color picker (0 Asleep to 6).</td></tr>
+            <tr><td><code>/drums/ui/energy/colour/state</code></td><td>string</td><td>Read</td><td>Energy level color picker status.</td></tr>
+            <tr><td><code>/drums/ui/energy/colour/pick</code></td><td>int</td><td>Send</td><td>Pick a swatch in the energy level color picker (0-29, or -1 for the factory color).</td></tr>
+            <tr><td><code>/drums/ui/energy/colour/close</code></td><td>&mdash;</td><td>Send</td><td>Close the energy level color picker.</td></tr>
             <tr><td><code>/drums/ui/spectrum/fullscreen</code></td><td>int</td><td>Set / read</td><td>Full-screen spectrum analyzer off or on.</td></tr>
             <tr><td><code>/drums/ui/reverb/browser/open</code></td><td>int</td><td>Set / read</td><td>Close (0) or open (1) the reverb browser.</td></tr>
             <tr><td><code>/drums/ui/reverb/browser/geom</code></td><td>string</td><td>Read</td><td>Automation: reverb browser layout.</td></tr>
@@ -1317,6 +1331,7 @@
             <tr><td><code>/drums/ui/song/pill/styletap</code></td><td>int</td><td>Send</td><td>Click a pill&rsquo;s pattern name.</td></tr>
             <tr><td><code>/drums/ui/song/conductor/popup</code></td><td>int</td><td>Send</td><td>Right-click a time signature change.</td></tr>
             <tr><td><code>/drums/ui/song/lane/popup</code></td><td>int</td><td>Send</td><td>Right-click empty lane space (lane*1000 + bar).</td></tr>
+            <tr><td><code>/drums/ui/song/label</code></td><td>string</td><td>Read</td><td>The song name as shown in the top bar.</td></tr>
             <tr><td><code>/drums/ui/export/audio</code></td><td>string</td><td>Set / read</td><td>Drive the audio export dialog.</td></tr>
             <tr><td><code>/drums/ui/sounds/compact</code></td><td>string</td><td>Set / read</td><td>Compact sounds view actions.</td></tr>
             <tr><td><code>/drums/ui/sounds/changesample/compact</code></td><td>string</td><td>Set / read</td><td>Compact change-sample actions.</td></tr>
@@ -1348,11 +1363,18 @@
             <tr><td><code>/drums/ui/importexport/group</code></td><td>string</td><td>Set / read</td><td>Open an import/export group.</td></tr>
             <tr><td><code>/drums/ui/importexport/tap</code></td><td>string</td><td>Set / read</td><td>Tap an import/export item.</td></tr>
             <tr><td><code>/drums/ui/importexport/reveal</code></td><td>string</td><td>Set / read</td><td>Scroll an import/export list so a row is in view.</td></tr>
+            <tr><td><code>/drums/ui/importexport/part</code></td><td>string</td><td>Set / read</td><td>Tick, untick or open a part in Export/Import Everything&rsquo;s parts list.</td></tr>
+            <tr><td><code>/drums/ui/importexport/action</code></td><td>string</td><td>Set / read</td><td>Press the open Export/Import Everything step&rsquo;s action (choose a destination, or Restore).</td></tr>
+            <tr><td><code>/drums/ui/importexport/backup</code></td><td>string</td><td>Set / read</td><td>Open Import Everything&rsquo;s parts step for a backup file (add to, merge or replace).</td></tr>
             <tr><td><code>/drums/ui/menu/tap</code></td><td>int</td><td>Send</td><td>Tap a menu row.</td></tr>
             <tr><td><code>/drums/ui/menu/tapflash</code></td><td>int</td><td>Send</td><td>Tap a menu row with its highlight.</td></tr>
             <tr><td><code>/drums/ui/menu/flashrow</code></td><td>int</td><td>Read</td><td>Highlighted menu row (-1 when none).</td></tr>
             <tr><td><code>/drums/ui/menu/dismiss</code></td><td>&mdash;</td><td>Send</td><td>Close the open menu.</td></tr>
             <tr><td><code>/drums/ui/menu/rows</code></td><td>int</td><td>Read</td><td>Number of visible menu rows.</td></tr>
+            <tr><td><code>/drums/ui/menu/rename</code></td><td>string</td><td>Read</td><td>Status of the open menu&rsquo;s in-place rename field.</td></tr>
+            <tr><td><code>/drums/ui/menu/rename/type</code></td><td>string</td><td>Set / read</td><td>Type into the menu&rsquo;s in-place rename field.</td></tr>
+            <tr><td><code>/drums/ui/menu/rename/commit</code></td><td>&mdash;</td><td>Send</td><td>Finish the menu&rsquo;s in-place rename (Return).</td></tr>
+            <tr><td><code>/drums/ui/menu/rename/cancel</code></td><td>&mdash;</td><td>Send</td><td>Cancel the menu&rsquo;s in-place rename (Esc).</td></tr>
             <tr><td><code>/drums/ui/menu/labels</code></td><td>string</td><td>Read</td><td>Visible menu rows.</td></tr>
             <tr><td><code>/drums/ui/menu/markers</code></td><td>string</td><td>Read</td><td>Menu row check marks.</td></tr>
             <tr><td><code>/drums/ui/menu/chips</code></td><td>string</td><td>Read</td><td>Menu tabs.</td></tr>
@@ -1361,6 +1383,7 @@
             <tr><td><code>/drums/ui/menu/songresults</code></td><td>string</td><td>Read</td><td>Song search results.</td></tr>
             <tr><td><code>/drums/ui/menu/searchfocus</code></td><td>0/1</td><td>Read</td><td>1 while the menu search field has focus.</td></tr>
             <tr><td><code>/drums/ui/menu/search</code></td><td>string</td><td>Set / read</td><td>Type into the menu search field.</td></tr>
+            <tr><td><code>/drums/ui/menu/hold</code></td><td>int</td><td>Send</td><td>Hold a row of the open menu: a song row turns into a rename field, a preset row opens Rename/Delete.</td></tr>
             <tr><td><code>/drums/ui/sync/picker</code></td><td>&mdash;</td><td>Send</td><td>Open the sync source picker.</td></tr>
             <tr><td><code>/drums/ui/sync/source</code></td><td>string</td><td>Set / read</td><td>Pick a sync source by its label.</td></tr>
             <tr><td><code>/drums/ui/morph/chip</code></td><td>string</td><td>Read</td><td>Morph indicator text.</td></tr>
@@ -1372,11 +1395,18 @@
             <tr><td><code>/drums/ui/alert/input</code></td><td>string</td><td>Set / read</td><td>Type into an alert.</td></tr>
             <tr><td><code>/drums/ui/alert/confirm</code></td><td>int</td><td>Set / read</td><td>Answer an alert.</td></tr>
             <tr><td><code>/drums/ui/alert/text</code></td><td>string</td><td>Read</td><td>Alert text.</td></tr>
+            <tr><td><code>/drums/ui/alert/title</code></td><td>string</td><td>Read</td><td>Title of the top alert on screen.</td></tr>
             <tr><td><code>/drums/ui/alert/state</code></td><td>string</td><td>Read</td><td>Alert status.</td></tr>
             <tr><td><code>/drums/ui/presets/player/share</code></td><td>string</td><td>Set / read</td><td>Drive Share for player presets and the window a shared player preset opens to.</td></tr>
             <tr><td><code>/drums/ui/settings/newsong/state</code></td><td>string</td><td>Read</td><td>New Song settings as shown.</td></tr>
             <tr><td><code>/drums/ui/settings/newsong/menu</code></td><td>string</td><td>Send</td><td>Open or close a menu in the New Song settings.</td></tr>
             <tr><td><code>/drums/ui/song/conductor/tap</code></td><td>int</td><td>Send</td><td>Tap a time signature change&rsquo;s tag to open its panel (bar number).</td></tr>
+            <tr><td><code>/drums/ui/song/rename</code></td><td>&mdash;</td><td>Send</td><td>Start renaming the current song in place.</td></tr>
+            <tr><td><code>/drums/ui/song/rename/state</code></td><td>string</td><td>Read</td><td>Status of the song&rsquo;s in-place rename field.</td></tr>
+            <tr><td><code>/drums/ui/song/rename/type</code></td><td>string</td><td>Set / read</td><td>Type into the song&rsquo;s in-place rename field.</td></tr>
+            <tr><td><code>/drums/ui/song/rename/commit</code></td><td>&mdash;</td><td>Send</td><td>Finish renaming the song (Return).</td></tr>
+            <tr><td><code>/drums/ui/song/rename/cancel</code></td><td>&mdash;</td><td>Send</td><td>Cancel renaming the song (Esc).</td></tr>
+            <tr><td><code>/drums/ui/song/readout/hold</code></td><td>&mdash;</td><td>Send</td><td>Hold the tab row&rsquo;s song name to rename it in place.</td></tr>
           </tbody>
         </table>
         </div>
@@ -1407,6 +1437,7 @@
             <tr><td><code>/drums/hoststate/size</code></td><td>int</td><td>Read</td><td>Size of the captured state (bytes).</td></tr>
             <tr><td><code>/drums/hoststate/hostsave</code></td><td>int</td><td>Send</td><td>Simulate a host save request.</td></tr>
             <tr><td><code>/drums/hoststate/anchor</code></td><td>string</td><td>Read</td><td>Bank and slot the live song belongs to.</td></tr>
+            <tr><td><code>/drums/hoststate/freed</code></td><td>string</td><td>Read</td><td>Bank and slot the live song was freed from by a delete, if any.</td></tr>
             <tr><td><code>/drums/screenshot</code></td><td>string</td><td>Send</td><td>Save a screenshot of the window under a name.</td></tr>
             <tr><td><code>/drums/screenshot/done</code></td><td>string</td><td>Reply</td><td>Reply: screenshot saved.</td></tr>
             <tr><td><code>/drums/screenshot/error</code></td><td>string</td><td>Reply</td><td>Reply: screenshot failed.</td></tr>
