@@ -77,7 +77,7 @@
     <section class="section" id="osc">
       <div class="container">
         <h1>Larry Seyer Drums OSC Reference</h1>
-        <p class="mb-md">Larry Seyer Drums has a complete OSC (Open Sound Control) implementation for controlling virtually every aspect of its operation from another app, a control surface, a script or another computer. This page lists all 1629 commands. <a href="larry-seyer-drums.html">Back to Larry Seyer Drums</a>.</p>
+        <p class="mb-md">Larry Seyer Drums has a complete OSC (Open Sound Control) implementation for controlling virtually every aspect of its operation from another app, a control surface, a script or another computer. This page lists all 1652 commands. <a href="larry-seyer-drums.html">Back to Larry Seyer Drums</a>.</p>
 
         <h2 id="osc-connecting">Connecting</h2>
         <ul class="features">
@@ -201,6 +201,7 @@
             <tr><td><code>/drums/midi/virtualports/state</code></td><td>string</td><td>Read</td><td>Status of the virtual MIDI ports.</td></tr>
             <tr><td><code>/drums/midi/pcchannel</code></td><td>int</td><td>Set / read</td><td>MIDI channel for Program Change and Bank Select.</td></tr>
             <tr><td><code>/drums/midi/lastprogramchange</code></td><td>string</td><td>Read</td><td>The last Program Change received and what became of it.</td></tr>
+            <tr><td><code>/drums/song/recall/notice</code></td><td>string</td><td>Read</td><td>The last song recall that could not reach the bank it named, so the playing song kept playing ("none" if there has been none).</td></tr>
             <tr><td><code>/drums/midi/activity</code></td><td>string</td><td>Read</td><td>Counts of incoming program, bank and transport messages.</td></tr>
             <tr><td><code>/drums/midi/notechannelmask</code></td><td>int</td><td>Set / read</td><td>Bit mask of MIDI channels allowed to play drum elements.</td></tr>
             <tr><td><code>/drums/midi/bankselectmode</code></td><td>int</td><td>Set / read</td><td>Bank Select mode: 0 = CC 0 value is the bank, 1 = standard.</td></tr>
@@ -478,6 +479,9 @@
             <tr><td><code>/drums/song/select/timerange</code></td><td>string</td><td>Read</td><td>Selected time range.</td></tr>
             <tr><td><code>/drums/song/select/blankspan</code></td><td>string</td><td>Read</td><td>Selected blank span.</td></tr>
             <tr><td><code>/drums/song/selection/combine</code></td><td>string</td><td>Set / read</td><td>Combine the selected pills.</td></tr>
+            <tr><td><code>/drums/song/selection/mute</code></td><td>int 0/1</td><td>Set / read</td><td>Mute (1) or unmute (0) every selected pill as one undo step; reads 1 when every selected pill is muted.</td></tr>
+            <tr><td><code>/drums/song/selection/mute/toggle</code></td><td>&mdash;</td><td>Send</td><td>Mute the selected pills, or unmute them all if every one is already muted.</td></tr>
+            <tr><td><code>/drums/song/selection/mute/state</code></td><td>string</td><td>Read</td><td>Mute status of the selection: how many pills are selected and how many are muted.</td></tr>
             <tr><td><code>/drums/song/shake</code></td><td>&mdash;</td><td>Send</td><td>Ask to clear the song (as shaking the device does).</td></tr>
             <tr><td><code>/drums/song/undo</code></td><td>string</td><td>Set / read</td><td>Undo.</td></tr>
             <tr><td><code>/drums/song/redo</code></td><td>string</td><td>Set / read</td><td>Redo.</td></tr>
@@ -501,6 +505,9 @@
             <tr><td><code>loop</code></td><td>int 0/1</td><td>Set / read</td><td>Loop the pill.</td></tr>
             <tr><td><code>preFill</code></td><td>int 0/1</td><td>Set / read</td><td>Play a fill before the pill.</td></tr>
             <tr><td><code>lastFill</code></td><td>int 0/1</td><td>Set / read</td><td>Play a fill in the pill&rsquo;s last bar.</td></tr>
+            <tr><td><code>mute</code></td><td>int 0/1</td><td>Set / read</td><td>Mute the pill.</td></tr>
+            <tr><td><code>mute/toggle</code></td><td>&mdash;</td><td>Send</td><td>Toggle the pill&rsquo;s mute as one undo step.</td></tr>
+            <tr><td><code>leftEdge</code></td><td>int</td><td>Set / read</td><td>Move the pill&rsquo;s start to a bar, keeping its end where it is; notes stay on the song bars they played on.</td></tr>
             <tr><td><code>move</code></td><td>int</td><td>Set / read</td><td>Move the pill to a bar.</td></tr>
             <tr><td><code>pattern</code></td><td>string</td><td>Read</td><td>What the pill contains.</td></tr>
             <tr><td><code>resize</code></td><td>int</td><td>Set / read</td><td>Set the pill&rsquo;s length in bars.</td></tr>
@@ -531,6 +538,7 @@
             <tr><td><code>/drums/song/editor/close</code></td><td>int 0/1</td><td>Set / read</td><td>Close the editor.</td></tr>
             <tr><td><code>/drums/song/editor/done</code></td><td>&mdash;</td><td>Send</td><td>Press Done (commit and close).</td></tr>
             <tr><td><code>/drums/song/editor/state</code></td><td>string</td><td>Read</td><td>Editor status.</td></tr>
+            <tr><td><code>/drums/song/editor/touchareas</code></td><td>string</td><td>Read</td><td>Automation: the pill editor header&rsquo;s controls, each drawn box and its touch area.</td></tr>
             <tr><td><code>/drums/song/editor/length</code></td><td>int</td><td>Set / read</td><td>Pattern length in bars.</td></tr>
             <tr><td><code>/drums/song/editor/feel</code></td><td>string</td><td>Read</td><td>The pill&rsquo;s own feel settings.</td></tr>
             <tr><td><code>/drums/song/editor/feel/energy</code></td><td>int</td><td>Set / read</td><td>The pill&rsquo;s energy level 0-6.</td></tr>
@@ -1036,6 +1044,7 @@
             <tr><td><code>/drums/settings/ignorepcwhileplaying</code></td><td>int 0/1</td><td>Set / read</td><td>Ignore Program Change while playing.</td></tr>
             <tr><td><code>/drums/settings/acceptprogramchanges</code></td><td>int 0/1</td><td>Set / read</td><td>Accept Program Changes on or off.</td></tr>
             <tr><td><code>/drums/settings/playerpresetoverwrite</code></td><td>int 0/1</td><td>Set / read</td><td>Allow saves to replace an existing player preset.</td></tr>
+            <tr><td><code>/drums/settings/playerpresetrecallsmaster</code></td><td>int 0/1</td><td>Set / read</td><td>Also Load Master Fader, Effects and Trim: 1 = recalling a player preset also brings back the master it saved, 0 = the master stays as it is.</td></tr>
             <tr><td><code>/drums/partialfills</code></td><td>int</td><td>Set / read</td><td>Automatic lifts on or off.</td></tr>
             <tr><td><code>/drums/partialfills/phrase</code></td><td>int</td><td>Set / read</td><td>Lift phrase length in bars (1-32, default 4).</td></tr>
             <tr><td><code>/drums/partialfills/recipes</code></td><td>string</td><td>Set / read</td><td>Lift recipes: "factory" or a custom list.</td></tr>
@@ -1054,6 +1063,7 @@
             <tr><td><code>/drums/song/loadfile</code></td><td>string</td><td>Set / read</td><td>Load a song from a file path.</td></tr>
             <tr><td><code>/drums/ui/export/song</code></td><td>string</td><td>Set / read</td><td>Export the current song to a file path.</td></tr>
             <tr><td><code>/drums/ui/export/kit</code></td><td>string</td><td>Set / read</td><td>Export the selected player&rsquo;s current kit, unsaved edits included, to a file path.</td></tr>
+            <tr><td><code>/drums/ui/export/category</code></td><td>string</td><td>Set / read</td><td>Export the current Player, Pattern, Mixer, Channel, EQ, Compressor or Session settings to a file: "Label|path". Reads back the last result.</td></tr>
             <tr><td><code>/drums/ui/import/song</code></td><td>string</td><td>Set / read</td><td>Import a song file.</td></tr>
             <tr><td><code>/drums/import/category</code></td><td>string</td><td>Set / read</td><td>Import one category: "category|mode|path".</td></tr>
             <tr><td><code>/drums/import/programchange</code></td><td>string</td><td>Set / read</td><td>Import program changes: "scope|mode|path".</td></tr>
@@ -1067,6 +1077,7 @@
             <tr><td><code>/drums/import/style/quantize</code></td><td>string</td><td>Set / read</td><td>Quantize on or off.</td></tr>
             <tr><td><code>/drums/import/style/checknotes</code></td><td>int</td><td>Set / read</td><td>Press Check Notes.</td></tr>
             <tr><td><code>/drums/import/style/confirm</code></td><td>string</td><td>Set / read</td><td>Generate or cancel.</td></tr>
+            <tr><td><code>/drums/import/style/scroll</code></td><td>string</td><td>Set / read</td><td>Scroll the style import controls by a number of points when the card is too short to show them all.</td></tr>
             <tr><td><code>/drums/import/notemap/state</code></td><td>string</td><td>Read</td><td>Note map sheet status.</td></tr>
             <tr><td><code>/drums/import/notemap/assign</code></td><td>string</td><td>Set / read</td><td>Map a note: "fileNote|drumNote".</td></tr>
             <tr><td><code>/drums/import/notemap/name</code></td><td>string</td><td>Set / read</td><td>Note map name.</td></tr>
@@ -1077,6 +1088,7 @@
             <tr><td><code>/drums/export/pills/midi</code></td><td>string</td><td>Set / read</td><td>Export pills as MIDI: "path|pills".</td></tr>
             <tr><td><code>/drums/export/pills/dragout</code></td><td>string</td><td>Set / read</td><td>Export pills as a drag-out clip; reads back the file path.</td></tr>
             <tr><td><code>/drums/song/pillmidi/ex</code></td><td>int</td><td>Set / read</td><td>Pill MIDI note layout: 1 = Larry Seyer Drums note layout, 0 = standard drum note layout.</td></tr>
+            <tr><td><code>/drums/song/pillmidi/ex/clear</code></td><td>int</td><td>Send</td><td>Forget the saved pill MIDI note layout choice so the default applies again.</td></tr>
             <tr><td><code>/drums/export/timeline/audio</code></td><td>string</td><td>Set / read</td><td>Export the song as audio: "path|options".</td></tr>
             <tr><td><code>/drums/export/timeline/audio/measured</code></td><td>string</td><td>Read</td><td>Loudness and peak of the last audio export.</td></tr>
             <tr><td><code>/drums/import/progress</code></td><td>string</td><td>Set / read</td><td>Progress of a running style import or Generate Again; send "cancel" to stop it and leave the style unchanged.</td></tr>
@@ -1155,6 +1167,7 @@
             <tr><td><code>/drums/action/presets.mixer_save_as</code></td><td>Presets</td><td>Save Mixer Preset As.</td></tr>
             <tr><td><code>/drums/action/presets.pattern_new</code></td><td>Presets</td><td>New Pattern.</td></tr>
             <tr><td><code>/drums/action/presets.pattern_save_as</code></td><td>Presets</td><td>Save Pattern As.</td></tr>
+            <tr><td><code>/drums/action/presets.player_recalls_master</code></td><td>Presets</td><td>Also Load Master With Player Presets.</td></tr>
             <tr><td><code>/drums/action/presets.player_save</code></td><td>Presets</td><td>Save Player Preset.</td></tr>
             <tr><td><code>/drums/action/presets.player_save_as</code></td><td>Presets</td><td>Save Player Preset As.</td></tr>
             <tr><td><code>/drums/action/presets.player_share</code></td><td>Presets</td><td>Share Player Preset.</td></tr>
@@ -1168,6 +1181,7 @@
             <tr><td><code>/drums/action/song.duplicate_pill</code></td><td>Song</td><td>Duplicate Selected Pill.</td></tr>
             <tr><td><code>/drums/action/song.export</code></td><td>Song</td><td>Export Song.</td></tr>
             <tr><td><code>/drums/action/song.export_midi</code></td><td>Song</td><td>Export Song MIDI.</td></tr>
+            <tr><td><code>/drums/action/song.export_window</code></td><td>Song</td><td>Export.</td></tr>
             <tr><td><code>/drums/action/song.find</code></td><td>Song</td><td>Find Song.</td></tr>
             <tr><td><code>/drums/action/song.import</code></td><td>Song</td><td>Import.</td></tr>
             <tr><td><code>/drums/action/song.insert_measures</code></td><td>Song</td><td>Insert Measures at Edit Cursor.</td></tr>
@@ -1204,6 +1218,7 @@
             <tr><td><code>/drums/action/song.time_sel_start</code></td><td>Song</td><td>Set Time Selection Start.</td></tr>
             <tr><td><code>/drums/action/song.toggle_pill_last_fill</code></td><td>Song</td><td>Toggle Selected Pill Post-fill.</td></tr>
             <tr><td><code>/drums/action/song.toggle_pill_loop</code></td><td>Song</td><td>Toggle Selected Pill Loop.</td></tr>
+            <tr><td><code>/drums/action/song.toggle_pill_mute</code></td><td>Song</td><td>Toggle Selected Pill Mute.</td></tr>
             <tr><td><code>/drums/action/song.toggle_pill_pre_fill</code></td><td>Song</td><td>Toggle Selected Pill Pre-fill.</td></tr>
             <tr><td><code>/drums/action/song.transport_nudge_back</code></td><td>Song</td><td>Rewind a Little Bit.</td></tr>
             <tr><td><code>/drums/action/song.zoom_in</code></td><td>Song</td><td>Zoom In.</td></tr>
@@ -1266,6 +1281,10 @@
             <tr><td><code>/drums/ui/keyboardshortcuts/search</code></td><td>string</td><td>Set / read</td><td>Search the keyboard shortcuts.</td></tr>
             <tr><td><code>/drums/ui/keyboardshortcuts/reveal</code></td><td>string</td><td>Set / read</td><td>Scroll the keyboard shortcuts to an action or group.</td></tr>
             <tr><td><code>/drums/ui/keyboard/simulate</code></td><td>int</td><td>Set / read</td><td>Simulate the on-screen keyboard.</td></tr>
+            <tr><td><code>/drums/ui/save/state</code></td><td>string</td><td>Read</td><td>Automation: the song save notice as drawn (hidden, saving, saved or not saved, and why).</td></tr>
+            <tr><td><code>/drums/ui/save/dismiss</code></td><td>int</td><td>Send</td><td>Close a red Not Saved notice, as a tap does.</td></tr>
+            <tr><td><code>/drums/ui/keyboard/focus</code></td><td>string</td><td>Read</td><td>Automation: what holds the keyboard: none, editor, inside or elsewhere.</td></tr>
+            <tr><td><code>/drums/ui/keyboard/tabsclick</code></td><td>int</td><td>Send</td><td>Automation: take the keyboard away as a host does, then click the page tabs once.</td></tr>
             <tr><td><code>/drums/ui/mixer/subtab</code></td><td>string</td><td>Set / read</td><td>Mixer sub-tab: panwid, sends, eq, cmp or level.</td></tr>
             <tr><td><code>/drums/ui/mixer/selection</code></td><td>string</td><td>Read</td><td>Mixer selection.</td></tr>
             <tr><td><code>/drums/ui/mixer/compact</code></td><td>int</td><td>Set / read</td><td>Compact mixer channel view.</td></tr>
@@ -1306,6 +1325,7 @@
             <tr><td><code>/drums/ui/energy/colour/state</code></td><td>string</td><td>Read</td><td>Energy level color picker status.</td></tr>
             <tr><td><code>/drums/ui/energy/colour/pick</code></td><td>int</td><td>Send</td><td>Pick a swatch in the energy level color picker (0-29, or -1 for the factory color).</td></tr>
             <tr><td><code>/drums/ui/energy/colour/close</code></td><td>&mdash;</td><td>Send</td><td>Close the energy level color picker.</td></tr>
+            <tr><td><code>/drums/ui/energy/labels</code></td><td>string</td><td>Read</td><td>Automation: the energy row&rsquo;s seven names as drawn, with each button&rsquo;s box, font size and line wrapping.</td></tr>
             <tr><td><code>/drums/ui/spectrum/fullscreen</code></td><td>int</td><td>Set / read</td><td>Full-screen spectrum analyzer off or on.</td></tr>
             <tr><td><code>/drums/ui/reverb/browser/open</code></td><td>int</td><td>Set / read</td><td>Close (0) or open (1) the reverb browser.</td></tr>
             <tr><td><code>/drums/ui/reverb/browser/geom</code></td><td>string</td><td>Read</td><td>Automation: reverb browser layout.</td></tr>

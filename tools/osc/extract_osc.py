@@ -252,6 +252,15 @@ class Resolver:
                 # skip the definition itself
                 if not callee.is_lambda and f is callee.file and m.start() <= callee.open <= m.end() + 400 and abs(m.start() - callee.start) < 400:
                     continue
+                # skip the definition header of another overload of the same name,
+                # and calls inside the callee's own body (overload forwarding or
+                # recursion adds no new argument values and would loop)
+                if not callee.is_lambda and any(
+                        d.name == callee.name and not d.is_lambda and d.start <= m.start() < d.open
+                        for d in f.callables):
+                    continue
+                if not callee.is_lambda and f is callee.file and callee.open < m.start() < callee.close:
+                    continue
                 po = m.end() - 1
                 pc = match_close(f.code, po, '(', ')')
                 args = split_args(f.text[po + 1:pc])
