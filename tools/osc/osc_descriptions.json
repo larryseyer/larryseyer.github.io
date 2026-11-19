@@ -97,7 +97,8 @@
     "output/samplerLevel": "Sampler output level (percent).",
     "output/synthLevel": "Synth output level (percent).",
     "fill/force": "Make the player's next fill a named fill; \"none\" cancels.",
-    "fill/drawn": "The fill the player drew last."
+    "fill/drawn": "The fill the player drew last.",
+    "kit/edited": "The player's edited kit: edited=0, or edited=1 with the number of assigned slots and each sampled slot's file name."
    }
   },
   {
@@ -652,7 +653,8 @@
     "beats": "Length in counted beats under the meter in force.",
     "storedLevel/<0-6>": "Stored response for global energy level 0-6.",
     "swing": "The pill's own swing (percent), or \"off\" to follow its energy level.",
-    "offset": "The pill's own timing offset (beats, positive rushes), or \"off\" to follow its energy level."
+    "offset": "The pill's own timing offset (beats, positive rushes), or \"off\" to follow its energy level.",
+    "contentOffset": "How many bars before the pill's start its music begins, after a left-edge trim, Split or remove time (negative after growing it from the left)."
    }
   },
   {
@@ -758,12 +760,14 @@
     "/drums/midi/pilltrigger": "Press remote pill-trigger button 0-3, as CC 101-104 would.",
     "/drums/midi/pillpresses": "Counts of incoming pill-trigger presses.",
     "/drums/midi/fadercc": "Assign mixer faders to MIDI CCs on the MIDI control channel.",
-    "/drums/midi/controlchannel": "MIDI control channel (1-16, default 16) for Quick Pick notes, the all-lanes lift, global CCs and learned mixer faders.",
+    "/drums/midi/controlchannel": "MIDI control channel (1-16, default 16) for the all-lanes lift, global CCs and learned mixer faders.",
     "/drums/midi/inputlayout": "Drum map incoming notes are read in: 0 = GM, 1 = EX, 2 = E-Kit.",
     "/drums/midi/lastnote": "The last incoming note that played a drum, after the MIDI Input Layout read it.",
     "/drums/midi/controlchannel/player": "The player (1-4) whose own channel is the control channel, or 0 when it is no player's channel.",
     "/drums/midi/cc<cc>/held": "Which MIDI channels are holding this trigger CC's press latch (one bit per channel).",
-    "/drums/midi/triggerlatches/release": "Release every trigger CC's press latch on every channel."
+    "/drums/midi/triggerlatches/release": "Release every trigger CC's press latch on every channel.",
+    "/drums/midi/quickpickchannel": "Quick Pick channel: 0 = Off (the default) or 1-16. Notes 36-45 on it choose a beat and 46-55 a player preset; they play no drums.",
+    "/drums/midi/quickpickchannel/player": "The player (1-4) set to the Quick Pick channel, which then stops hearing notes from it, or 0 when none is or the channel is Off."
    }
   },
   {
@@ -947,7 +951,8 @@
     "/drums/song/editor/undo": "Undo one step in the open pill editor.",
     "/drums/song/editor/redo": "Redo one step in the open pill editor.",
     "/drums/record/arm": "Arm MIDI recording on a pill (\"lane bar count\", 0-based), or \"off\" to end the take; reads back ok or why it was rejected.",
-    "/drums/record/engine": "The engine's recording state: off, count-in or recording, with its pass, count-in beat and note counts."
+    "/drums/record/engine": "The engine's recording state: off, count-in or recording, with its pass, count-in beat and note counts.",
+    "/drums/song/editor/cancel": "Press Cancel: put the pill back as it was when the editor opened, as one undo step, and close."
    }
   },
   {
@@ -1145,7 +1150,8 @@
     "/drums/keymap/export": "Export shortcuts to a file path.",
     "/drums/keymap/import": "Import shortcuts from a file path.",
     "/drums/keymap/status": "Result of the last shortcut change.",
-    "/drums/player/solo_preview_held": "Hold (1) or release (0) Solo In Front for the selected player."
+    "/drums/player/solo_preview_held": "Hold (1) or release (0) Solo In Front for the selected player.",
+    "/drums/keybinding/scheme/line": "The line shown under the Scheme picker for the shortcut scheme in use."
    }
   },
   {
@@ -1343,7 +1349,9 @@
     "/drums/ui/song/rename/type": "Type into the song's in-place rename field.",
     "/drums/ui/song/rename/commit": "Finish renaming the song (Return).",
     "/drums/ui/song/rename/cancel": "Cancel renaming the song (Esc).",
-    "/drums/ui/song/readout/hold": "Hold the tab row's song name to rename it in place."
+    "/drums/ui/song/readout/hold": "Hold the tab row's song name to rename it in place.",
+    "/drums/ui/quickpick/beat": "Tap beat slot 1-10 on the full Quick Pick screen, as a finger does (only while that screen is open).",
+    "/drums/ui/quickpick/preset": "Tap player preset slot 1-10 on the full Quick Pick screen, as a finger does, so the kit shows it is loading before it loads (only while that screen is open)."
    }
   },
   {

@@ -77,7 +77,7 @@
     <section class="section" id="osc">
       <div class="container">
         <h1>Larry Seyer Drums OSC Reference</h1>
-        <p class="mb-md">Larry Seyer Drums has a complete OSC (Open Sound Control) implementation for controlling virtually every aspect of its operation from another app, a control surface, a script or another computer. This page lists all 1652 commands. <a href="larry-seyer-drums.html">Back to Larry Seyer Drums</a>.</p>
+        <p class="mb-md">Larry Seyer Drums has a complete OSC (Open Sound Control) implementation for controlling virtually every aspect of its operation from another app, a control surface, a script or another computer. This page lists all 1662 commands. <a href="larry-seyer-drums.html">Back to Larry Seyer Drums</a>.</p>
 
         <h2 id="osc-connecting">Connecting</h2>
         <ul class="features">
@@ -208,12 +208,14 @@
             <tr><td><code>/drums/midi/pilltrigger</code></td><td>int</td><td>Set / read</td><td>Press remote pill-trigger button 0-3, as CC 101-104 would.</td></tr>
             <tr><td><code>/drums/midi/pillpresses</code></td><td>string</td><td>Read</td><td>Counts of incoming pill-trigger presses.</td></tr>
             <tr><td><code>/drums/midi/fadercc</code></td><td>string</td><td>Set / read</td><td>Assign mixer faders to MIDI CCs on the MIDI control channel.</td></tr>
-            <tr><td><code>/drums/midi/controlchannel</code></td><td>int</td><td>Set / read</td><td>MIDI control channel (1-16, default 16) for Quick Pick notes, the all-lanes lift, global CCs and learned mixer faders.</td></tr>
+            <tr><td><code>/drums/midi/controlchannel</code></td><td>int</td><td>Set / read</td><td>MIDI control channel (1-16, default 16) for the all-lanes lift, global CCs and learned mixer faders.</td></tr>
             <tr><td><code>/drums/midi/inputlayout</code></td><td>int</td><td>Set / read</td><td>Drum map incoming notes are read in: 0 = GM, 1 = EX, 2 = E-Kit.</td></tr>
             <tr><td><code>/drums/midi/lastnote</code></td><td>string</td><td>Read</td><td>The last incoming note that played a drum, after the MIDI Input Layout read it.</td></tr>
             <tr><td><code>/drums/midi/controlchannel/player</code></td><td>int</td><td>Read</td><td>The player (1-4) whose own channel is the control channel, or 0 when it is no player&rsquo;s channel.</td></tr>
             <tr><td><code>/drums/midi/cc&lt;cc&gt;/held</code></td><td>int</td><td>Read</td><td>Which MIDI channels are holding this trigger CC&rsquo;s press latch (one bit per channel).</td></tr>
             <tr><td><code>/drums/midi/triggerlatches/release</code></td><td>&mdash;</td><td>Send</td><td>Release every trigger CC&rsquo;s press latch on every channel.</td></tr>
+            <tr><td><code>/drums/midi/quickpickchannel</code></td><td>int</td><td>Set / read</td><td>Quick Pick channel: 0 = Off (the default) or 1-16. Notes 36-45 on it choose a beat and 46-55 a player preset; they play no drums.</td></tr>
+            <tr><td><code>/drums/midi/quickpickchannel/player</code></td><td>int</td><td>Read</td><td>The player (1-4) set to the Quick Pick channel, which then stops hearing notes from it, or 0 when none is or the channel is Off.</td></tr>
           </tbody>
         </table>
         </div>
@@ -333,6 +335,7 @@
             <tr><td><code>output/synthLevel</code></td><td>float</td><td>Set / read</td><td>Synth output level (percent).</td></tr>
             <tr><td><code>fill/force</code></td><td>string</td><td>Set / read</td><td>Make the player&rsquo;s next fill a named fill; "none" cancels.</td></tr>
             <tr><td><code>fill/drawn</code></td><td>string</td><td>Read</td><td>The fill the player drew last.</td></tr>
+            <tr><td><code>kit/edited</code></td><td>string</td><td>Read</td><td>The player&rsquo;s edited kit: edited=0, or edited=1 with the number of assigned slots and each sampled slot&rsquo;s file name.</td></tr>
           </tbody>
         </table>
         </div>
@@ -525,6 +528,7 @@
             <tr><td><code>storedLevel/&lt;0-6&gt;</code></td><td>int</td><td>Set / read</td><td>Stored response for global energy level 0-6.</td></tr>
             <tr><td><code>swing</code></td><td>string</td><td>Set / read</td><td>The pill&rsquo;s own swing (percent), or "off" to follow its energy level.</td></tr>
             <tr><td><code>offset</code></td><td>string</td><td>Set / read</td><td>The pill&rsquo;s own timing offset (beats, positive rushes), or "off" to follow its energy level.</td></tr>
+            <tr><td><code>contentOffset</code></td><td>int</td><td>Read</td><td>How many bars before the pill&rsquo;s start its music begins, after a left-edge trim, Split or remove time (negative after growing it from the left).</td></tr>
           </tbody>
         </table>
         </div>
@@ -589,6 +593,7 @@
             <tr><td><code>/drums/song/editor/redo</code></td><td>&mdash;</td><td>Send</td><td>Redo one step in the open pill editor.</td></tr>
             <tr><td><code>/drums/record/arm</code></td><td>string</td><td>Set / read</td><td>Arm MIDI recording on a pill ("lane bar count", 0-based), or "off" to end the take; reads back ok or why it was rejected.</td></tr>
             <tr><td><code>/drums/record/engine</code></td><td>string</td><td>Read</td><td>The engine&rsquo;s recording state: off, count-in or recording, with its pass, count-in beat and note counts.</td></tr>
+            <tr><td><code>/drums/song/editor/cancel</code></td><td>&mdash;</td><td>Send</td><td>Press Cancel: put the pill back as it was when the editor opened, as one undo step, and close.</td></tr>
           </tbody>
         </table>
         </div>
@@ -1114,6 +1119,7 @@
             <tr><td><code>/drums/keymap/import</code></td><td>string</td><td>Set / read</td><td>Import shortcuts from a file path.</td></tr>
             <tr><td><code>/drums/keymap/status</code></td><td>string</td><td>Read</td><td>Result of the last shortcut change.</td></tr>
             <tr><td><code>/drums/player/solo_preview_held</code></td><td>int 0/1</td><td>Set / read</td><td>Hold (1) or release (0) Solo In Front for the selected player.</td></tr>
+            <tr><td><code>/drums/keybinding/scheme/line</code></td><td>string</td><td>Read</td><td>The line shown under the Scheme picker for the shortcut scheme in use.</td></tr>
           </tbody>
         </table>
         </div>
@@ -1149,6 +1155,7 @@
             <tr><td><code>/drums/action/pattern.notes_up_octave</code></td><td>Pattern Editor</td><td>Nudge Notes Up an Octave.</td></tr>
             <tr><td><code>/drums/action/pattern.notes_up_semitone</code></td><td>Pattern Editor</td><td>Nudge Notes Up a Semitone.</td></tr>
             <tr><td><code>/drums/action/pattern.notes_zoom_to_selection</code></td><td>Pattern Editor</td><td>Zoom to Selected Notes.</td></tr>
+            <tr><td><code>/drums/action/pattern.record</code></td><td>Pattern Editor</td><td>Record.</td></tr>
             <tr><td><code>/drums/action/pattern.toggle_visible</code></td><td>Pattern Editor</td><td>Toggle Pattern Editor Visible.</td></tr>
             <tr><td><code>/drums/action/pattern.zoom_in_h</code></td><td>Pattern Editor</td><td>Zoom In Horizontally.</td></tr>
             <tr><td><code>/drums/action/pattern.zoom_in_v</code></td><td>Pattern Editor</td><td>Zoom In Vertically.</td></tr>
@@ -1427,6 +1434,8 @@
             <tr><td><code>/drums/ui/song/rename/commit</code></td><td>&mdash;</td><td>Send</td><td>Finish renaming the song (Return).</td></tr>
             <tr><td><code>/drums/ui/song/rename/cancel</code></td><td>&mdash;</td><td>Send</td><td>Cancel renaming the song (Esc).</td></tr>
             <tr><td><code>/drums/ui/song/readout/hold</code></td><td>&mdash;</td><td>Send</td><td>Hold the tab row&rsquo;s song name to rename it in place.</td></tr>
+            <tr><td><code>/drums/ui/quickpick/beat</code></td><td>int</td><td>Send</td><td>Tap beat slot 1-10 on the full Quick Pick screen, as a finger does (only while that screen is open).</td></tr>
+            <tr><td><code>/drums/ui/quickpick/preset</code></td><td>int</td><td>Send</td><td>Tap player preset slot 1-10 on the full Quick Pick screen, as a finger does, so the kit shows it is loading before it loads (only while that screen is open).</td></tr>
           </tbody>
         </table>
         </div>
