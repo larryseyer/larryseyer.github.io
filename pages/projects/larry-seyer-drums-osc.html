@@ -77,7 +77,7 @@
     <section class="section" id="osc">
       <div class="container">
         <h1>Larry Seyer Drums OSC Reference</h1>
-        <p class="mb-md">Larry Seyer Drums has a complete OSC (Open Sound Control) implementation for controlling virtually every aspect of its operation from another app, a control surface, a script or another computer. This page lists all 1662 commands. <a href="larry-seyer-drums.html">Back to Larry Seyer Drums</a>.</p>
+        <p class="mb-md">Larry Seyer Drums has a complete OSC (Open Sound Control) implementation for controlling virtually every aspect of its operation from another app, a control surface, a script or another computer. This page lists all 1672 commands. <a href="larry-seyer-drums.html">Back to Larry Seyer Drums</a>.</p>
 
         <h2 id="osc-connecting">Connecting</h2>
         <ul class="features">
@@ -336,6 +336,8 @@
             <tr><td><code>fill/force</code></td><td>string</td><td>Set / read</td><td>Make the player&rsquo;s next fill a named fill; "none" cancels.</td></tr>
             <tr><td><code>fill/drawn</code></td><td>string</td><td>Read</td><td>The fill the player drew last.</td></tr>
             <tr><td><code>kit/edited</code></td><td>string</td><td>Read</td><td>The player&rsquo;s edited kit: edited=0, or edited=1 with the number of assigned slots and each sampled slot&rsquo;s file name.</td></tr>
+            <tr><td><code>userpattern</code></td><td>string</td><td>Read</td><td>File name of the User Pattern the player is on (empty on a built-in pattern).</td></tr>
+            <tr><td><code>solobuild</code></td><td>float</td><td>Read</td><td>How far the drum solo has built, 0 to 1 (0 with no solo).</td></tr>
           </tbody>
         </table>
         </div>
@@ -1103,6 +1105,11 @@
             <tr><td><code>/drums/import/energy</code></td><td>string</td><td>Set / read</td><td>Import an energy level (this, all or 0-6) from a path.</td></tr>
             <tr><td><code>/drums/library/job/state</code></td><td>string</td><td>Read</td><td>Whether a backup, restore or style generation is running (idle or busy), and which changes it refused meanwhile.</td></tr>
             <tr><td><code>/drums/export/state</code></td><td>string</td><td>Read</td><td>Report of the last export started over OSC.</td></tr>
+            <tr><td><code>/drums/ui/import/openfile</code></td><td>string</td><td>Set / read</td><td>Open a file by path as a double-click would: the Import window opens at that file&rsquo;s step. Reads back the Import window&rsquo;s state.</td></tr>
+            <tr><td><code>/drums/library/userpatterns</code></td><td>string</td><td>Read</td><td>Your User Patterns: how many there are and their names.</td></tr>
+            <tr><td><code>/drums/ui/export/pattern</code></td><td>string</td><td>Set / read</td><td>Export a pattern to a file path: "path" for the selected player&rsquo;s pattern, or "name|path" for a User Pattern. Reads back the result.</td></tr>
+            <tr><td><code>/drums/settings/export/fadeout</code></td><td>float</td><td>Set / read</td><td>Fade-out at the end of an audio export with the Auto tail, in seconds (0-10).</td></tr>
+            <tr><td><code>/drums/settings/export/fadeout/clear</code></td><td>int</td><td>Send</td><td>Put the audio export fade-out back to its default (1 second).</td></tr>
           </tbody>
         </table>
         </div>
@@ -1436,6 +1443,9 @@
             <tr><td><code>/drums/ui/song/readout/hold</code></td><td>&mdash;</td><td>Send</td><td>Hold the tab row&rsquo;s song name to rename it in place.</td></tr>
             <tr><td><code>/drums/ui/quickpick/beat</code></td><td>int</td><td>Send</td><td>Tap beat slot 1-10 on the full Quick Pick screen, as a finger does (only while that screen is open).</td></tr>
             <tr><td><code>/drums/ui/quickpick/preset</code></td><td>int</td><td>Send</td><td>Tap player preset slot 1-10 on the full Quick Pick screen, as a finger does, so the kit shows it is loading before it loads (only while that screen is open).</td></tr>
+            <tr><td><code>/drums/ui/loadoverlay/frames</code></td><td>int</td><td>Read</td><td>Diagnostic: screen refreshes between the loading screen appearing and the last load starting (-1 before the first load).</td></tr>
+            <tr><td><code>/drums/ui/menu/chip/hold</code></td><td>int</td><td>Send</td><td>Hold a menu bar by number; on a song menu bank bar this opens its name for renaming.</td></tr>
+            <tr><td><code>/drums/ui/sync/geom</code></td><td>string</td><td>Read</td><td>Diagnostic: where the sync source tag is drawn, the label it shows and the widths that chose it.</td></tr>
           </tbody>
         </table>
         </div>

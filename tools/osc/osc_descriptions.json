@@ -98,7 +98,9 @@
     "output/synthLevel": "Synth output level (percent).",
     "fill/force": "Make the player's next fill a named fill; \"none\" cancels.",
     "fill/drawn": "The fill the player drew last.",
-    "kit/edited": "The player's edited kit: edited=0, or edited=1 with the number of assigned slots and each sampled slot's file name."
+    "kit/edited": "The player's edited kit: edited=0, or edited=1 with the number of assigned slots and each sampled slot's file name.",
+    "userpattern": "File name of the User Pattern the player is on (empty on a built-in pattern).",
+    "solobuild": "How far the drum solo has built, 0 to 1 (0 with no solo)."
    }
   },
   {
@@ -1122,7 +1124,12 @@
     "/drums/export/energy": "Export an energy level (this, all or 0-6) to a path.",
     "/drums/import/energy": "Import an energy level (this, all or 0-6) from a path.",
     "/drums/library/job/state": "Whether a backup, restore or style generation is running (idle or busy), and which changes it refused meanwhile.",
-    "/drums/export/state": "Report of the last export started over OSC."
+    "/drums/export/state": "Report of the last export started over OSC.",
+    "/drums/ui/import/openfile": "Open a file by path as a double-click would: the Import window opens at that file's step. Reads back the Import window's state.",
+    "/drums/library/userpatterns": "Your User Patterns: how many there are and their names.",
+    "/drums/ui/export/pattern": "Export a pattern to a file path: \"path\" for the selected player's pattern, or \"name|path\" for a User Pattern. Reads back the result.",
+    "/drums/settings/export/fadeout": "Fade-out at the end of an audio export with the Auto tail, in seconds (0-10).",
+    "/drums/settings/export/fadeout/clear": "Put the audio export fade-out back to its default (1 second)."
    }
   },
   {
@@ -1351,7 +1358,10 @@
     "/drums/ui/song/rename/cancel": "Cancel renaming the song (Esc).",
     "/drums/ui/song/readout/hold": "Hold the tab row's song name to rename it in place.",
     "/drums/ui/quickpick/beat": "Tap beat slot 1-10 on the full Quick Pick screen, as a finger does (only while that screen is open).",
-    "/drums/ui/quickpick/preset": "Tap player preset slot 1-10 on the full Quick Pick screen, as a finger does, so the kit shows it is loading before it loads (only while that screen is open)."
+    "/drums/ui/quickpick/preset": "Tap player preset slot 1-10 on the full Quick Pick screen, as a finger does, so the kit shows it is loading before it loads (only while that screen is open).",
+    "/drums/ui/loadoverlay/frames": "Diagnostic: screen refreshes between the loading screen appearing and the last load starting (-1 before the first load).",
+    "/drums/ui/menu/chip/hold": "Hold a menu bar by number; on a song menu bank bar this opens its name for renaming.",
+    "/drums/ui/sync/geom": "Diagnostic: where the sync source tag is drawn, the label it shows and the widths that chose it."
    }
   },
   {
