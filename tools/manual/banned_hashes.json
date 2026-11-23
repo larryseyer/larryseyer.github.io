@@ -1,0 +1,6 @@
+{
+  "_about": "These are sha256(lowercase text)[:16] of terms the manual must not use. The names themselves are not stored in this repo. For this manual, only a retired product name is hashed; third-party host, format, and product names are allowed here by an approved exception. The build script also warns on a price-like token (a currency sign followed by a number). Add a hash with: python3 -c \"import hashlib;print(hashlib.sha256('word'.lower().encode()).hexdigest()[:16])\"",
+  "hashes": {
+    "4991c47202960c57": "retired product name"
+  }
+}

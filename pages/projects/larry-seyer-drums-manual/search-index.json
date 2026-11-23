@@ -1,0 +1,256 @@
+{
+  "pages": [
+    {
+      "id": "index",
+      "title": "Beta Tester Guide",
+      "url": "index.html",
+      "number": 0,
+      "summary": "A temporary user manual for Larry Seyer Drums beta testers, until the tutorial videos are ready.",
+      "sections": [
+        {
+          "id": "",
+          "title": "Beta Tester Guide",
+          "text": "This temporary guide is for people testing Larry Seyer Drums. It will stay here until the tutorial videos are ready to take its place. Chapters are listed below; several are still stubs, clearly marked, and will be filled in as the approved text arrives. Use the sidebar to jump between chapters, or search from any page. You can also print a chapter: the site navigation is hidden on the printed page. This guide is not a store and does not include a download of the app."
+        }
+      ]
+    },
+    {
+      "id": "welcome",
+      "title": "Welcome & what's in this beta",
+      "url": "welcome.html",
+      "number": 1,
+      "summary": "What this temporary guide covers, and what you will find in this beta.",
+      "sections": [
+        {
+          "id": "",
+          "title": "Welcome & what's in this beta",
+          "text": "Content coming soon. This chapter is a stub so the manual’s layout, navigation and search can be built and previewed. The approved text will replace this placeholder; leave placeholder: true in the front matter until then."
+        }
+      ]
+    },
+    {
+      "id": "first-launch",
+      "title": "First launch & getting sound",
+      "url": "first-launch.html",
+      "number": 2,
+      "summary": "Opening Larry Seyer Drums for the first time and hearing sound.",
+      "sections": [
+        {
+          "id": "",
+          "title": "First launch & getting sound",
+          "text": "Content coming soon. This chapter is a stub so the manual’s layout, navigation and search can be built and previewed. The approved text will replace this placeholder; leave placeholder: true in the front matter until then."
+        }
+      ]
+    },
+    {
+      "id": "quick-pick",
+      "title": "Quick Pick & your first groove",
+      "url": "quick-pick.html",
+      "number": 3,
+      "summary": "Using Quick Pick to choose a beat and a player, and playing your first groove.",
+      "sections": [
+        {
+          "id": "",
+          "title": "Quick Pick & your first groove",
+          "text": "Content coming soon. This chapter is a stub so the manual’s layout, navigation and search can be built and previewed. The approved text will replace this placeholder; leave placeholder: true in the front matter until then."
+        }
+      ]
+    },
+    {
+      "id": "players",
+      "title": "Players",
+      "url": "players.html",
+      "number": 4,
+      "summary": "The four independent players, and how each one holds its own kit and part.",
+      "sections": [
+        {
+          "id": "",
+          "title": "Players",
+          "text": "Content coming soon. This chapter is a stub so the manual’s layout, navigation and search can be built and previewed. The approved text will replace this placeholder; leave placeholder: true in the front matter until then."
+        }
+      ]
+    },
+    {
+      "id": "energy-levels",
+      "title": "Energy levels",
+      "url": "energy-levels.html",
+      "number": 5,
+      "summary": "How energy levels change what a player plays, without rewriting the part.",
+      "sections": [
+        {
+          "id": "",
+          "title": "Energy levels",
+          "text": "Content coming soon. This chapter is a stub so the manual’s layout, navigation and search can be built and previewed. The approved text will replace this placeholder; leave placeholder: true in the front matter until then."
+        }
+      ]
+    },
+    {
+      "id": "songs-banks-set-lists",
+      "title": "Songs, banks & set lists",
+      "url": "songs-banks-set-lists.html",
+      "number": 6,
+      "summary": "Building a song from patterns, and organizing banks and set lists.",
+      "sections": [
+        {
+          "id": "",
+          "title": "Songs, banks & set lists",
+          "text": "Content coming soon. This chapter is a stub so the manual’s layout, navigation and search can be built and previewed. The approved text will replace this placeholder; leave placeholder: true in the front matter until then."
+        }
+      ]
+    },
+    {
+      "id": "pattern-editor",
+      "title": "Pattern Editor",
+      "url": "pattern-editor.html",
+      "number": 7,
+      "summary": "Editing a pattern: notes, feels, fills, flams, accents, and related tools.",
+      "sections": [
+        {
+          "id": "",
+          "title": "Pattern Editor",
+          "text": "Content coming soon. This chapter is a stub so the manual’s layout, navigation and search can be built and previewed. The approved text will replace this placeholder; leave placeholder: true in the front matter until then."
+        }
+      ]
+    },
+    {
+      "id": "grooves",
+      "title": "Grooves",
+      "url": "grooves.html",
+      "number": 8,
+      "summary": "Choosing and shaping grooves, and how they sit in a song.",
+      "sections": [
+        {
+          "id": "",
+          "title": "Grooves",
+          "text": "Content coming soon. This chapter is a stub so the manual’s layout, navigation and search can be built and previewed. The approved text will replace this placeholder; leave placeholder: true in the front matter until then."
+        }
+      ]
+    },
+    {
+      "id": "sounds",
+      "title": "Sounds",
+      "url": "sounds.html",
+      "number": 9,
+      "summary": "Kits, voices, and how to audition and assign sounds to a player.",
+      "sections": [
+        {
+          "id": "",
+          "title": "Sounds",
+          "text": "Content coming soon. This chapter is a stub so the manual’s layout, navigation and search can be built and previewed. The approved text will replace this placeholder; leave placeholder: true in the front matter until then."
+        }
+      ]
+    },
+    {
+      "id": "mixer-fx-outputs",
+      "title": "Mixer, FX & outputs",
+      "url": "mixer-fx-outputs.html",
+      "number": 10,
+      "summary": "The mixer, built-in effects, and routing to stereo or individual outputs.",
+      "sections": [
+        {
+          "id": "",
+          "title": "Mixer, FX & outputs",
+          "text": "Content coming soon. This chapter is a stub so the manual’s layout, navigation and search can be built and previewed. The approved text will replace this placeholder; leave placeholder: true in the front matter until then."
+        }
+      ]
+    },
+    {
+      "id": "tempo-sync-midi-osc",
+      "title": "Tempo, sync, MIDI & OSC",
+      "url": "tempo-sync-midi-osc.html",
+      "number": 11,
+      "summary": "Tempo, Ableton Link, MIDI, and OSC control.",
+      "sections": [
+        {
+          "id": "",
+          "title": "Tempo, sync, MIDI & OSC",
+          "text": "Content coming soon. This chapter is a stub so the manual’s layout, navigation and search can be built and previewed. The approved text will replace this placeholder; leave placeholder: true in the front matter until then."
+        }
+      ]
+    },
+    {
+      "id": "plugin-in-your-host",
+      "title": "Using the plug-in in your host (stereo vs multi-out)",
+      "url": "plugin-in-your-host.html",
+      "number": 12,
+      "summary": "Running Larry Seyer Drums as a plug-in (including AUv3), in stereo or multi-out.",
+      "sections": [
+        {
+          "id": "",
+          "title": "Using the plug-in in your host (stereo vs multi-out)",
+          "text": "Content coming soon. This chapter is a stub so the manual’s layout, navigation and search can be built and previewed. The approved text will replace this placeholder; leave placeholder: true in the front matter until then."
+        }
+      ]
+    },
+    {
+      "id": "iphone-ipad-tips",
+      "title": "iPhone & iPad tips",
+      "url": "iphone-ipad-tips.html",
+      "number": 13,
+      "summary": "Tips for using Larry Seyer Drums on iPhone and iPad.",
+      "sections": [
+        {
+          "id": "",
+          "title": "iPhone & iPad tips",
+          "text": "Content coming soon. This chapter is a stub so the manual’s layout, navigation and search can be built and previewed. The approved text will replace this placeholder; leave placeholder: true in the front matter until then."
+        }
+      ]
+    },
+    {
+      "id": "keyboard-shortcuts",
+      "title": "Keyboard shortcuts",
+      "url": "keyboard-shortcuts.html",
+      "number": 14,
+      "summary": "Keyboard shortcuts in Larry Seyer Drums.",
+      "sections": [
+        {
+          "id": "",
+          "title": "Keyboard shortcuts",
+          "text": "Content coming soon. This chapter is a stub so the manual’s layout, navigation and search can be built and previewed. The approved text will replace this placeholder; leave placeholder: true in the front matter until then."
+        }
+      ]
+    },
+    {
+      "id": "saving-import-export-backups",
+      "title": "Saving, import/export & backups",
+      "url": "saving-import-export-backups.html",
+      "number": 15,
+      "summary": "Saving your work, importing and exporting, and making backups.",
+      "sections": [
+        {
+          "id": "",
+          "title": "Saving, import/export & backups",
+          "text": "Content coming soon. This chapter is a stub so the manual’s layout, navigation and search can be built and previewed. The approved text will replace this placeholder; leave placeholder: true in the front matter until then."
+        }
+      ]
+    },
+    {
+      "id": "known-gaps",
+      "title": "Known gaps in this beta",
+      "url": "known-gaps.html",
+      "number": 16,
+      "summary": "Things that are incomplete, missing, or still changing in this beta.",
+      "sections": [
+        {
+          "id": "",
+          "title": "Known gaps in this beta",
+          "text": "Content coming soon. This chapter is a stub so the manual’s layout, navigation and search can be built and previewed. The approved text will replace this placeholder; leave placeholder: true in the front matter until then."
+        }
+      ]
+    },
+    {
+      "id": "reporting-problems",
+      "title": "Reporting problems",
+      "url": "reporting-problems.html",
+      "number": 17,
+      "summary": "How to report a problem you find while testing.",
+      "sections": [
+        {
+          "id": "",
+          "title": "Reporting problems",
+          "text": "Content coming soon. This chapter is a stub so the manual’s layout, navigation and search can be built and previewed. The approved text will replace this placeholder; leave placeholder: true in the front matter until then."
+        }
+      ]
+    }
+  ]
+}
