@@ -17,9 +17,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="noindex, nofollow">
-  <meta name="description" content="Editing a pattern: notes, feels, fills, flams, accents, and related tools.">
-  <meta property="og:title" content="Pattern Editor - Larry Seyer Drums">
-  <meta property="og:description" content="Editing a pattern: notes, feels, fills, flams, accents, and related tools.">
+  <meta name="description" content="Edit notes, velocity, feel, and record into a pill.">
+  <meta property="og:title" content="The Pattern Editor - Larry Seyer Drums">
+  <meta property="og:description" content="Edit notes, velocity, feel, and record into a pill.">
   <meta property="og:image" content="https://larryseyer.com/images/projects/larry-seyer-drums-logo-black-1200.png?v=20261109">
   <meta property="og:image:alt" content="Larry Seyer Drums logo">
   <meta property="og:url" content="https://larryseyer.com/pages/projects/larry-seyer-drums-manual/pattern-editor.html">
@@ -27,7 +27,7 @@
   <meta name="twitter:card" content="summary">
   <meta name="twitter:image" content="https://larryseyer.com/images/projects/larry-seyer-drums-logo-black-1200.png?v=20261109">
   <meta name="twitter:image:alt" content="Larry Seyer Drums logo">
-  <title>Pattern Editor - Larry Seyer Drums</title>
+  <title>The Pattern Editor - Larry Seyer Drums</title>
   <link rel="canonical" href="https://larryseyer.com/pages/projects/larry-seyer-drums-manual/pattern-editor.html">
   <link rel="stylesheet" href="../../../css/style.css">
   <link rel="stylesheet" href="manual.css">
@@ -68,36 +68,69 @@
         <nav aria-label="Guide contents">
           <ul class="manual-toc">
             <li><a href="index.html">Contents</a></li>
-            <li><a href="welcome.html"><span class="manual-toc-num">01</span>Welcome &amp; what&rsquo;s in this beta</a></li>
-            <li><a href="first-launch.html"><span class="manual-toc-num">02</span>First launch &amp; getting sound</a></li>
-            <li><a href="quick-pick.html"><span class="manual-toc-num">03</span>Quick Pick &amp; your first groove</a></li>
+            <li><a href="welcome.html"><span class="manual-toc-num">01</span>Welcome</a></li>
+            <li><a href="getting-started.html"><span class="manual-toc-num">02</span>Getting Started and Getting Sound</a></li>
+            <li><a href="quick-pick-and-first-groove.html"><span class="manual-toc-num">03</span>Quick Pick and Your First Groove</a></li>
             <li><a href="players.html"><span class="manual-toc-num">04</span>Players</a></li>
-            <li><a href="energy-levels.html"><span class="manual-toc-num">05</span>Energy levels</a></li>
-            <li><a href="songs-banks-set-lists.html"><span class="manual-toc-num">06</span>Songs, banks &amp; set lists</a></li>
-            <li><a href="pattern-editor.html" aria-current="page"><span class="manual-toc-num">07</span>Pattern Editor</a></li>
-            <li><a href="grooves.html"><span class="manual-toc-num">08</span>Grooves</a></li>
-            <li><a href="sounds.html"><span class="manual-toc-num">09</span>Sounds</a></li>
-            <li><a href="mixer-fx-outputs.html"><span class="manual-toc-num">10</span>Mixer, FX &amp; outputs</a></li>
-            <li><a href="tempo-sync-midi-osc.html"><span class="manual-toc-num">11</span>Tempo, sync, MIDI &amp; OSC</a></li>
-            <li><a href="plugin-in-your-host.html"><span class="manual-toc-num">12</span>Using the plug-in in your host (stereo vs multi-out)</a></li>
-            <li><a href="iphone-ipad-tips.html"><span class="manual-toc-num">13</span>iPhone &amp; iPad tips</a></li>
-            <li><a href="keyboard-shortcuts.html"><span class="manual-toc-num">14</span>Keyboard shortcuts</a></li>
-            <li><a href="saving-import-export-backups.html"><span class="manual-toc-num">15</span>Saving, import/export &amp; backups</a></li>
-            <li><a href="known-gaps.html"><span class="manual-toc-num">16</span>Known gaps in this beta</a></li>
-            <li><a href="reporting-problems.html"><span class="manual-toc-num">17</span>Reporting problems</a></li>
+            <li><a href="energy.html"><span class="manual-toc-num">05</span>Energy and Feel</a></li>
+            <li><a href="songs.html"><span class="manual-toc-num">06</span>Songs: Arranging</a></li>
+            <li><a href="pattern-editor.html" aria-current="page"><span class="manual-toc-num">07</span>The Pattern Editor</a><ul class="manual-toc-sections">
+<li><a href="#opening-a-pill-and-making-a-change">Opening a pill and making a change</a></li>
+<li><a href="#rows-velocity-and-feel">Rows, velocity and feel</a></li>
+<li><a href="#recording-into-a-pill">Recording into a pill</a></li>
+<li><a href="#saving-a-pattern-or-a-new-style">Saving a pattern or a new style</a></li>
+</ul></li>
+            <li><a href="bringing-in-grooves.html"><span class="manual-toc-num">08</span>Bringing in Grooves</a></li>
+            <li><a href="sounds.html"><span class="manual-toc-num">09</span>Sounds and a Feature Called Morph</a></li>
+            <li><a href="mixer-and-effects.html"><span class="manual-toc-num">10</span>Mixer and Effects</a></li>
+            <li><a href="tempo-sync-and-midi.html"><span class="manual-toc-num">11</span>Tempo, Sync and MIDI</a></li>
+            <li><a href="using-the-plugin.html"><span class="manual-toc-num">12</span>Using the Plug-in in a Host</a></li>
+            <li><a href="iphone-and-ipad.html"><span class="manual-toc-num">13</span>iPhone and iPad</a></li>
+            <li><a href="keyboard-shortcuts.html"><span class="manual-toc-num">14</span>Keyboard Shortcuts</a></li>
+            <li><a href="saving-and-backups.html"><span class="manual-toc-num">15</span>Saving and Backups</a></li>
+            <li><a href="known-gaps.html"><span class="manual-toc-num">16</span>Known Gaps in This Beta</a></li>
+            <li><a href="how-to-report-problems.html"><span class="manual-toc-num">17</span>How to Report Problems</a></li>
           </ul>
         </nav>
       </aside>
     <article class="manual-article" id="manual-content">
 <p class="manual-back"><a href="index.html">&larr; All chapters</a> · <a href="../larry-seyer-drums.html">Larry Seyer Drums</a></p>
 <p class="kicker">Chapter 07 · Beta tester guide</p>
-<h1>Pattern Editor</h1>
+<h1>The Pattern Editor</h1>
 <aside class="manual-notice" role="note"><p class="kicker">Beta</p><p>This is a temporary guide for Larry Seyer Drums beta testers, until the tutorial videos are ready. Details may change as the beta continues.</p></aside>
-<aside class="manual-placeholder" role="status"><p class="kicker">Content coming soon</p><p>This chapter is a stub so the manual&rsquo;s layout, navigation and search can be previewed. Approved text will replace this placeholder.</p></aside>
 <div class="manual-content">
-<blockquote><p><strong>Content coming soon.</strong> This chapter is a stub so the manual&rsquo;s layout, navigation and search can be built and previewed. The approved text will replace this placeholder; leave <code>placeholder: true</code> in the front matter until then.</p></blockquote>
+<blockquote><p><strong>Draft for Larry&rsquo;s review — not published.</strong> Temporary quick-start for TestFlight testers until the tutorial videos are ready. App version <strong>0.94.0</strong>.</p></blockquote>
+<h2 id="opening-a-pill-and-making-a-change"><a class="manual-heading-anchor" href="#opening-a-pill-and-making-a-change">Opening a pill and making a change</a><button type="button" class="manual-copy-link" data-anchor="opening-a-pill-and-making-a-change" aria-label="Copy link to this section">#</button></h2>
+<p>Open the Pattern Editor by double-tapping a pill or a phrase tab, or with Command+P.</p>
+<p>The editor works on a private copy:</p>
+<ul><li><strong>Done</strong> keeps the edits in the Song.</li><li><strong>Save</strong> (the Song) makes them permanent.</li><li><strong>Cancel</strong> backs out.</li></ul>
+<p>Those three are separate on purpose. Done is not the same as Save.</p>
+<p>The header stays live, so you can hop between sections from inside the editor. The grid is the pattern: tap to add or remove a hit. With a mouse, a click selects and a second click removes.</p>
+<p>If the transport is stopped, you hear an audition of what you just did. If it&rsquo;s playing, the loop plays your edit.</p>
+<p>You can zoom with pinch, Command+wheel, or the − / + buttons, and fit the pattern to the width. Follow keeps the view with the playhead. The Tab key hides and shows the editor.</p>
+<p>A good first edit: add a few ghost notes to the snare on Busy Beat One&rsquo;s Verse.</p>
+<blockquote><p><strong>Screenshot needed:</strong> The Pattern Editor open on the Busy Beat One Verse, with the velocity lane visible and a couple of snare ghost notes selected.</p></blockquote>
+<h2 id="rows-velocity-and-feel"><a class="manual-heading-anchor" href="#rows-velocity-and-feel">Rows, velocity and feel</a><button type="button" class="manual-copy-link" data-anchor="rows-velocity-and-feel" aria-label="Copy link to this section">#</button></h2>
+<p><strong>Used</strong> and <strong>All</strong> views group rows as Kick, Snare, Hats, Toms, Cymbals and Other. You can add a drum with +. An amber articulation dot marks extra detail, and “N notes not shown” tells you when something is hidden.</p>
+<p>Tapping a row name cycles mute and solo. S then M clears them all. Silenced hits turn grey. A row mute or solo also covers fills. Press and hold a row name twice for Remove from pattern and Reassign to… — a useful trick is to solo the hat, then reassign it to the ride.</p>
+<p>The <strong>velocity lane</strong> can be resized from its grab bar. Press and hold a row name to select a whole drum. Box-select by holding on an empty spot and dragging. You can delete, copy to the next bar, or deselect. Velocity dragging has REL and ABS modes; REL keeps a ceiling so your ghost notes can stay ghost notes while you lift the kicks a little.</p>
+<p>Each pill also has a <strong>Feel</strong> row: Energy (with a pencil into the Energy Profile editor), Swing 0–100%, Offset (rush or drag), and Speed from 1/4x to 4x. On a narrow screen these fold into chips.</p>
+<p>Snap sets the grid resolution. <strong>Quantize</strong> (Command+Option+Q) can do selected notes or the whole pill, with Grid, Strength, Swing and Catch. It moves timing only, not velocity.</p>
+<p>A few of the new quantize tools are still under my A/B listening, so if something about quantize feels off, please tell me.</p>
+<p>Time signature is 1–15 over 2, 4, 8 or 16. Changing the numerator re-counts the pill. Length can be 1 to 256 measures. There&rsquo;s also Regrid to Triplet.</p>
+<h2 id="recording-into-a-pill"><a class="manual-heading-anchor" href="#recording-into-a-pill">Recording into a pill</a><button type="button" class="manual-copy-link" data-anchor="recording-into-a-pill" aria-label="Copy link to this section">#</button></h2>
+<p>You can play a part in from a kit, pads or a keyboard.</p>
+<p>Set this up first: MIDI input switched on for the port, the player&rsquo;s channel, and <strong>Input</strong> layout (GM, EX or E-Kit). Then press <strong>Record</strong> (R) to arm the open pill. You&rsquo;ll see a counter, a red outline, and four settings: <strong>Count-in</strong> (0 or 1 bar), <strong>Input</strong> layout, <strong>Record From</strong> (All Channels or 1–16), and <strong>Play Quantized</strong>.</p>
+<p>Takes add pass after pass while the pill loops. On an overdub, the louder hit is kept. Play Quantized lays the grid over your timing.</p>
+<p>Undo a take is different from Cancel on the editor. Done keeps the take in the Song; Save makes it permanent.</p>
+<p>On iPhone you&rsquo;ll need a MIDI keyboard or pads. Recording from the iOS app while it&rsquo;s attached to an AUv3 is still being retested, so if that path misbehaves, I want to hear about it.</p>
+<h2 id="saving-a-pattern-or-a-new-style"><a class="manual-heading-anchor" href="#saving-a-pattern-or-a-new-style">Saving a pattern or a new style</a><button type="button" class="manual-copy-link" data-anchor="saving-a-pattern-or-a-new-style" aria-label="Copy link to this section">#</button></h2>
+<p>The Done menu offers <strong>Save as New Pattern…</strong> and <strong>Save as New Style…</strong>. You can also use Pattern Presets → New or Save As.</p>
+<p>A new style is generated with an Intro, Chorus, Bridge and fills from your Verse. The song has to be stopped for that save. There&rsquo;s more on generation in the next chapter.</p>
+<hr>
+<p><a href="songs.html">Previous: Songs: Arranging</a> · <a href="index.html">Index</a> · <a href="bringing-in-grooves.html">Next: Bringing in Grooves</a></p>
 </div>
-<nav class="manual-pager" aria-label="Chapter"><a rel="prev" href="songs-banks-set-lists.html"><span class="manual-pager-dir">Previous</span><span>06 Songs, banks &amp; set lists</span></a><a rel="next" href="grooves.html"><span class="manual-pager-dir">Next</span><span>08 Grooves</span></a></nav>
+<nav class="manual-pager" aria-label="Chapter"><a rel="prev" href="songs.html"><span class="manual-pager-dir">Previous</span><span>06 Songs: Arranging</span></a><a rel="next" href="bringing-in-grooves.html"><span class="manual-pager-dir">Next</span><span>08 Bringing in Grooves</span></a></nav>
     </article>
   </div>
   <!-- Footer -->

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--
+  GENERATED FILE. Do not edit by hand.
+  Regenerate with: python3 tools/manual/build_manual.py
+  Source Markdown lives in tools/manual/content/.
+-->
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TS207FNV53"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-TS207FNV53');
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="description" content="The AUv3 plug-in, stereo versus multi-out, and how to work in a host.">
+  <meta property="og:title" content="Using the Plug-in in a Host - Larry Seyer Drums">
+  <meta property="og:description" content="The AUv3 plug-in, stereo versus multi-out, and how to work in a host.">
+  <meta property="og:image" content="https://larryseyer.com/images/projects/larry-seyer-drums-logo-black-1200.png?v=20261109">
+  <meta property="og:image:alt" content="Larry Seyer Drums logo">
+  <meta property="og:url" content="https://larryseyer.com/pages/projects/larry-seyer-drums-manual/using-the-plugin.html">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:image" content="https://larryseyer.com/images/projects/larry-seyer-drums-logo-black-1200.png?v=20261109">
+  <meta name="twitter:image:alt" content="Larry Seyer Drums logo">
+  <title>Using the Plug-in in a Host - Larry Seyer Drums</title>
+  <link rel="canonical" href="https://larryseyer.com/pages/projects/larry-seyer-drums-manual/using-the-plugin.html">
+  <link rel="stylesheet" href="../../../css/style.css">
+  <link rel="stylesheet" href="manual.css">
+  <link rel="icon" type="image/x-icon" href="../../../favicon.ico">
+  <link rel="apple-touch-icon" href="../../../images/projects/larry-seyer-drums-touch-icon.png?v=20261109">
+</head>
+<body class="manual">
+  <a class="skip-link" href="#manual-content">Skip to content</a>
+  <!-- Header -->
+  <header class="header">
+    <div class="container">
+      <a href="../../../index.html" class="logo">Larry Seyer</a>
+      <button class="nav-toggle" aria-label="Toggle navigation">&#9776;</button>
+      <nav class="nav">
+        <a href="../../work.html">Work</a>
+        <a href="../../clients.html">Clients</a>
+        <a href="../../work.html#press">Press</a>
+        <a href="../../projects.html" class="active">Projects</a>
+        <a href="../../music.html">Music</a>
+        <a href="../../live.html">Live</a>
+        <a href="../../kits.html">Drum Kits</a>
+        <a href="../../connect.html">Connect</a>
+      </nav>
+    </div>
+  </header>
+  <div class="manual-backdrop"></div>
+  <div class="manual-shell">
+    <button type="button" class="manual-toc-toggle" aria-controls="manual-toc" aria-expanded="false">Contents</button>
+      <aside class="manual-sidebar" id="manual-toc">
+        <p class="manual-sidebar__label">This guide</p>
+        <form class="manual-search" role="search" data-index="search-index.json" action="#" method="get">
+          <label class="visually-hidden" for="manual-q" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)">Search this guide</label>
+          <input id="manual-q" type="search" name="q" placeholder="Search this guide" autocomplete="off">
+          <div class="manual-search-status" role="status" aria-live="polite"></div>
+          <ul class="manual-search-results is-idle"></ul>
+          <p class="manual-search-empty" hidden></p>
+        </form>
+        <nav aria-label="Guide contents">
+          <ul class="manual-toc">
+            <li><a href="index.html">Contents</a></li>
+            <li><a href="welcome.html"><span class="manual-toc-num">01</span>Welcome</a></li>
+            <li><a href="getting-started.html"><span class="manual-toc-num">02</span>Getting Started and Getting Sound</a></li>
+            <li><a href="quick-pick-and-first-groove.html"><span class="manual-toc-num">03</span>Quick Pick and Your First Groove</a></li>
+            <li><a href="players.html"><span class="manual-toc-num">04</span>Players</a></li>
+            <li><a href="energy.html"><span class="manual-toc-num">05</span>Energy and Feel</a></li>
+            <li><a href="songs.html"><span class="manual-toc-num">06</span>Songs: Arranging</a></li>
+            <li><a href="pattern-editor.html"><span class="manual-toc-num">07</span>The Pattern Editor</a></li>
+            <li><a href="bringing-in-grooves.html"><span class="manual-toc-num">08</span>Bringing in Grooves</a></li>
+            <li><a href="sounds.html"><span class="manual-toc-num">09</span>Sounds and a Feature Called Morph</a></li>
+            <li><a href="mixer-and-effects.html"><span class="manual-toc-num">10</span>Mixer and Effects</a></li>
+            <li><a href="tempo-sync-and-midi.html"><span class="manual-toc-num">11</span>Tempo, Sync and MIDI</a></li>
+            <li><a href="using-the-plugin.html" aria-current="page"><span class="manual-toc-num">12</span>Using the Plug-in in a Host</a><ul class="manual-toc-sections">
+<li><a href="#what-this-beta-gives-you">What this beta gives you</a></li>
+<li><a href="#what-changes-inside-a-host">What changes inside a host</a></li>
+<li><a href="#three-ways-to-work">Three ways to work</a></li>
+<li><a href="#stereo-and-multi-out">Stereo and multi-out</a></li>
+<li class="manual-toc-h3"><a href="#on-a-mac-plug-in-today">On a Mac plug-in, today</a></li>
+<li class="manual-toc-h3"><a href="#on-iphone-and-ipad">On iPhone and iPad</a></li>
+<li><a href="#the-auv3-on-iphone-and-ipad">The AUv3 on iPhone and iPad</a></li>
+</ul></li>
+            <li><a href="iphone-and-ipad.html"><span class="manual-toc-num">13</span>iPhone and iPad</a></li>
+            <li><a href="keyboard-shortcuts.html"><span class="manual-toc-num">14</span>Keyboard Shortcuts</a></li>
+            <li><a href="saving-and-backups.html"><span class="manual-toc-num">15</span>Saving and Backups</a></li>
+            <li><a href="known-gaps.html"><span class="manual-toc-num">16</span>Known Gaps in This Beta</a></li>
+            <li><a href="how-to-report-problems.html"><span class="manual-toc-num">17</span>How to Report Problems</a></li>
+          </ul>
+        </nav>
+      </aside>
+    <article class="manual-article" id="manual-content">
+<p class="manual-back"><a href="index.html">&larr; All chapters</a> · <a href="../larry-seyer-drums.html">Larry Seyer Drums</a></p>
+<p class="kicker">Chapter 12 · Beta tester guide</p>
+<h1>Using the Plug-in in a Host</h1>
+<aside class="manual-notice" role="note"><p class="kicker">Beta</p><p>This is a temporary guide for Larry Seyer Drums beta testers, until the tutorial videos are ready. Details may change as the beta continues.</p></aside>
+<div class="manual-content">
+<blockquote><p><strong>Draft for Larry&rsquo;s review — not published.</strong> Temporary quick-start for TestFlight testers until the tutorial videos are ready. App version <strong>0.94.0</strong>.</p></blockquote>
+<h2 id="what-this-beta-gives-you"><a class="manual-heading-anchor" href="#what-this-beta-gives-you">What this beta gives you</a><button type="button" class="manual-copy-link" data-anchor="what-this-beta-gives-you" aria-label="Copy link to this section">#</button></h2>
+<p>In this TestFlight build, the plug-in is the <strong>AUv3</strong> that comes with the app.</p>
+<ul><li>On Mac, hosts see the AUv3 after you have opened the app once.</li><li>On iPhone and iPad, the same app is both the standalone instrument and the AUv3.</li></ul>
+<p>VST3, CLAP and the installer AU plug-in are <strong>not</strong> in this TestFlight build. If your usual host is expecting one of those formats, use a host that loads AUv3, or use the standalone app.</p>
+<p>Hosts list the plug-in as an instrument. Logic Pro files Audio Units under the maker name <strong>Automagic Art</strong> (that&rsquo;s my company name). Look for Larry Seyer Drums there.</p>
+<blockquote><p><strong>Screenshot needed:</strong> A host&rsquo;s plug-in list showing Larry Seyer Drums under Automagic Art, with the format (AUv3) visible. Note the host and version when the shot is taken.</p></blockquote>
+<h2 id="what-changes-inside-a-host"><a class="manual-heading-anchor" href="#what-changes-inside-a-host">What changes inside a host</a><button type="button" class="manual-copy-link" data-anchor="what-changes-inside-a-host" aria-label="Copy link to this section">#</button></h2>
+<p>The editor is the same full app: the top bar, all four pages, and the transport. A few things are different:</p>
+<ul><li>The <strong>host owns the audio device and MIDI routing</strong>, so there is no audio-device page and no “Larry Seyer Drums IN/OUT” ports.</li><li>There&rsquo;s a fifth clock source, <strong>HOST</strong>. Host Sync is the default in a plug-in: play, stop, position and tempo all come from the host. The sync source belongs to the device, not the project, so each plug-in instance opens on the source you last chose in a plug-in.</li><li>Keyboard shortcuts work once you click in the plug-in window. Some hosts need their “send all keys to the plug-in” option turned on.</li><li>There are no host automation lanes, by design. Control the app from MIDI on a track instead (fills, lifts, mute/solo, Program Change, and MIDI Learn on mixer faders).</li></ul>
+<p><strong>Saving:</strong> Larry Seyer Drums remembers your songs, and your recording program remembers which song. The project stores the song&rsquo;s bank and slot, plus a safety copy. Larry Seyer Drums&rsquo; own <strong>Save</strong> is still what makes an edit permanent. A new instance starts from the shared working session.</p>
+<p>Logic Pro and GarageBand run plug-ins in a sandbox. In those hosts, Larry Seyer Drums keeps its own working session. Songs, kits and presets are shared as normal.</p>
+<h2 id="three-ways-to-work"><a class="manual-heading-anchor" href="#three-ways-to-work">Three ways to work</a><button type="button" class="manual-copy-link" data-anchor="three-ways-to-work" aria-label="Copy link to this section">#</button></h2>
+<p>You can use as much or as little of the app&rsquo;s own song side as you want.</p>
+<p><strong>1. As a drum sound module.</strong> Your host&rsquo;s MIDI plays Larry Seyer Drums&rsquo; kits.</p>
+<ul><li>Start a <strong>New Song</strong> with no pills. With no pill, the app plays nothing on its own.</li><li>Set <strong>MIDI Input Layout</strong> to GM (or EX, if that&rsquo;s what you&rsquo;re sending). Check it; older settings may still open on EX.</li><li>Each player listens on its own channel (Player 1 on 1 through Player 4 on 4 by default), so four tracks can play four kits.</li><li>The control channel and the Program Change channel (both 16 by default) never play drums.</li></ul>
+<p><strong>2. Using Larry Seyer Drums&rsquo; own Songs, following the host.</strong></p>
+<ul><li>Leave Host Sync on. Pills, energy, fills and lifts play in time with the host, from any bar, at the host&rsquo;s tempo.</li></ul>
+<p><strong>3. Both.</strong> Larry Seyer Drums writes the part, and the host keeps it — by recording the plug-in&rsquo;s MIDI output, or by exporting or dragging a MIDI file onto a track, then playing that track back as a sound module. Set Input Layout to match the file: EX for EX, GM for GM.</p>
+<p>You can also mix the ways: for example, a Busy Beat One song on Player 1, with extra crash accents coming from a MIDI track on the same channel.</p>
+<p>A simple worked example: draw a short two-bar groove in the host (kick, snare, hats, a crash, a small tom fill), play it through Player 1 in stereo, then set up multi-out and listen to the drums on separate tracks.</p>
+<h2 id="stereo-and-multi-out"><a class="manual-heading-anchor" href="#stereo-and-multi-out">Stereo and multi-out</a><button type="button" class="manual-copy-link" data-anchor="stereo-and-multi-out" aria-label="Copy link to this section">#</button></h2>
+<p>A plug-in does not invent outputs. The host learns the output list when it loads the plug-in, and it enables the pairs it will actually read. You turn on more outputs <strong>in the host</strong>, which then prepares the plug-in again.</p>
+<p>Once those pairs are enabled:</p>
+<ul><li><strong>Auto</strong> is meant to use the host&rsquo;s enabled outputs, and to stay on the main stereo pair when the host hasn&rsquo;t enabled more. In <strong>0.94.0, Auto in a plug-in still stays on the main pair</strong> even if the host has enabled more outputs. For separate outputs in this beta, use <strong>Force Multi-Out</strong>.</li><li><strong>Force Multi-Out</strong> uses the enabled outputs.</li><li><strong>Force Stereo</strong> is always the main pair.</li></ul>
+<p><strong>Rescan Outputs</strong> is a standalone-app button. It asks the audio device again. It is not a plug-in step — except for one current-build workaround below.</p>
+<h3 id="on-a-mac-plug-in-today"><a class="manual-heading-anchor" href="#on-a-mac-plug-in-today">On a Mac plug-in, today</a><button type="button" class="manual-copy-link" data-anchor="on-a-mac-plug-in-today" aria-label="Copy link to this section">#</button></h3>
+<p>The intended behaviour is that Force Multi-Out starts using the enabled outputs the moment you pick it. In the current build, a plug-in that&rsquo;s <strong>already running</strong> may stay on the stereo mix after you choose Force Multi-Out.</p>
+<p><strong>Until that is fixed:</strong> choose <strong>Force Multi-Out</strong>, then press <strong>Rescan Outputs</strong>, or reload the plug-in in the host. If Force Multi-Out was already saved when the plug-in loaded, it should use the enabled pairs from the start.</p>
+<h3 id="on-iphone-and-ipad"><a class="manual-heading-anchor" href="#on-iphone-and-ipad">On iPhone and iPad</a><button type="button" class="manual-copy-link" data-anchor="on-iphone-and-ipad" aria-label="Copy link to this section">#</button></h3>
+<p>On the iPhone and iPad AUv3, the host only learns the output list at load. <strong>Force Multi-Out takes effect the next time the host loads the plug-in.</strong> Reload it. Rescan Outputs does not change the list here.</p>
+<p>Stereo is the default on iPhone and iPad. AUM can route the extra outputs. GarageBand is expected to stay stereo only.</p>
+<p>Output names in the host are defaults, not fixed destinations. Drum strips default to their own pair. <strong>FX returns default to the main pair</strong>, so assign them if you want them on their own tracks. All four players&rsquo; kicks sum on one pair, so per-drum multi-out does not, by itself, give each player its own kick track.</p>
+<p>On a per-drum route, each strip&rsquo;s own processing is included, and the player volume is applied, but the sound <strong>bypasses the player bus and master processing</strong>.</p>
+<p><figure><img src="images/s21-app-settings-outputs.png" alt="App Settings Outputs section, showing Routing Mode, active output pairs and Rescan Outputs" title="Routing Mode is Auto (Recommended) in this picture, with Rescan Outputs underneath. Force Multi-Out is the other choice in that same Routing Mode menu."><figcaption>Routing Mode is Auto (Recommended) in this picture, with Rescan Outputs underneath. Force Multi-Out is the other choice in that same Routing Mode menu.</figcaption></figure></p>
+<blockquote><p><strong>Screenshot needed (optional, live host):</strong> A host mixer after multi-out is enabled, with kick, snare and hats arriving on separate tracks. Note the host, version, and whether Rescan Outputs or a reload was needed.</p></blockquote>
+<h2 id="the-auv3-on-iphone-and-ipad"><a class="manual-heading-anchor" href="#the-auv3-on-iphone-and-ipad">The AUv3 on iPhone and iPad</a><button type="button" class="manual-copy-link" data-anchor="the-auv3-on-iphone-and-ipad" aria-label="Copy link to this section">#</button></h2>
+<p>Load Larry Seyer Drums as an instrument in a host such as GarageBand or AUM. The README also names Quantiloop Pro and Loopy Pro. After an install, reload the host slot: switch away, let it load, then switch back.</p>
+<p>The plug-in window itself is <strong>Quick Pick</strong> — the twenty buttons, sized to the host&rsquo;s window — plus <strong>Open full Larry Seyer Drums</strong> and a status line that says <strong>Playing</strong> or <strong>Editing in Larry Seyer Drums</strong>. There is no Play button in that window. The host&rsquo;s transport runs it, with Host Sync by default.</p>
+<p><strong>Open full Larry Seyer Drums</strong> attaches the app to the playing AUv3, and the app shows “Editing in host” with the bank and slot. If that doesn&rsquo;t appear, there&rsquo;s a “Tap to edit in Larry Seyer Drums” notification, or you can open the app by hand when notifications are off. Show yourself the way back to the host before you&rsquo;re in the middle of a session.</p>
+<p>Saving: the host&rsquo;s Save also writes the current Song into its bank slot, with three exceptions. After a Quick Pick choice it writes nothing until a slot is loaded or saved again; a <strong>locked</strong> slot is left alone; and a song that never came from a slot (unslotted) writes nothing.</p>
+<p>The AUv3 can&rsquo;t present file pickers, so import and export of files happen in the standalone app.</p>
+<p>The AUv3 shares the device with the host and any other plug-ins, and it makes the same power check as the app. Extra SeyerComps may fall back to Simple Comp, and tape and extra reverbs may be held back. Keep effects light on iPhone. The Quick Pick plug-in window has no load meter, so use the host&rsquo;s CPU display if it has one, or open the full app and watch the meter there.</p>
+<p>Attached editing and recording on iOS are still being retested. If “Open full Larry Seyer Drums” or recording into a pill while attached misbehaves, that&rsquo;s a high-value report.</p>
+<hr>
+<p><a href="tempo-sync-and-midi.html">Previous: Tempo, Sync and MIDI</a> · <a href="index.html">Index</a> · <a href="iphone-and-ipad.html">Next: iPhone and iPad</a></p>
+</div>
+<nav class="manual-pager" aria-label="Chapter"><a rel="prev" href="tempo-sync-and-midi.html"><span class="manual-pager-dir">Previous</span><span>11 Tempo, Sync and MIDI</span></a><a rel="next" href="iphone-and-ipad.html"><span class="manual-pager-dir">Next</span><span>13 iPhone and iPad</span></a></nav>
+    </article>
+  </div>
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; <span id="year">2025</span> Larry Seyer. All rights reserved.</p>
+      <div class="social-links">
+        <a href="/pages/press.html">Press kit</a>
+        <a href="https://github.com/larryseyer" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="https://www.youtube.com/@larryseyer" target="_blank" rel="noopener noreferrer">YouTube</a>
+        <a href="https://www.facebook.com/LarrySeyerOfficialPage" target="_blank" rel="noopener noreferrer">Facebook</a>
+        <a href="https://rumble.com/c/larryseyer" target="_blank" rel="noopener noreferrer">Rumble</a>
+        <a href="https://open.spotify.com/artist/43rLqZlw7co7eyccfN9zRj" target="_blank" rel="noopener noreferrer">Spotify</a>
+        <a href="https://music.apple.com/us/artist/larry-seyer/20363332" target="_blank" rel="noopener noreferrer">Apple Music</a>
+        <a href="https://music.amazon.com/artists/B00137FA36/larry-seyer" target="_blank" rel="noopener noreferrer">Amazon Music</a>
+        <a href="https://music.youtube.com/@larryseyer" target="_blank" rel="noopener noreferrer">YouTube Music</a>
+        <a href="https://suno.com/@larryseyer?page=songs" target="_blank" rel="noopener noreferrer">Suno</a>
+        <a href="https://www.linkedin.com/in/larryseyer" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../../../js/main.js"></script>
+  <script src="manual.js"></script>
+
+</body>
+</html>

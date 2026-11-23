@@ -2,57 +2,137 @@
   "pages": [
     {
       "id": "index",
-      "title": "Beta Tester Guide",
+      "title": "Larry Seyer Drums: Beta Tester Quick-Start Guide",
       "url": "index.html",
       "number": 0,
-      "summary": "A temporary user manual for Larry Seyer Drums beta testers, until the tutorial videos are ready.",
+      "summary": "Temporary quick-start for TestFlight testers until the tutorial videos are ready.",
       "sections": [
         {
           "id": "",
-          "title": "Beta Tester Guide",
-          "text": "This temporary guide is for people testing Larry Seyer Drums. It will stay here until the tutorial videos are ready to take its place. Chapters are listed below; several are still stubs, clearly marked, and will be filled in as the approved text arrives. Use the sidebar to jump between chapters, or search from any page. You can also print a chapter: the site navigation is hidden on the printed page. This guide is not a store and does not include a download of the app."
+          "title": "Larry Seyer Drums: Beta Tester Quick-Start Guide",
+          "text": "Draft for Larry’s review — not published. Temporary quick-start for TestFlight testers until the tutorial videos are ready. App version 0.94.0 . For testers of version 0.94.0. This is a temporary guide to use until the full tutorial video series is finished. It is a draft. Please send notes to Larry before it is posted. I recorded the complete Larry Seyer Acoustic Drum Library. Pat Mastelotto played the drums. Thank you for helping me test the app."
+        },
+        {
+          "id": "how-to-use-this-guide",
+          "title": "How to use this guide",
+          "text": "Read Welcome and Getting Started first, then try Quick Pick and Your First Groove . After that you can jump to any chapter. Each chapter is written so you can try the feature the same day you open it. A later website version may add search and a sidebar. In this draft, use the table of contents below and the Previous / Index / Next links at the end of each chapter."
+        },
+        {
+          "id": "table-of-contents",
+          "title": "Table of contents",
+          "text": "Welcome — what Larry Seyer Drums is, and what this beta includes Getting Started and Getting Sound — first launch, the top bar, and a “No sound?” checklist Quick Pick and Your First Groove — play in seconds, then build and save a short arrangement Players — the four player cards, presets, Fill, Solo and Lock Energy and Feel — the seven energy levels, and how a pattern changes without changing the notes Songs: Arranging — pills, the pill pool, fills, lifts, banks and playing live The Pattern Editor — edit notes, velocity, feel, and record into a pill Bringing in Grooves — import a MIDI file and generate a style Sounds and a Feature Called Morph — kits, Morph, and building your own kit (the Sounds page may still change) Mixer and Effects — the mixer, EQ, compression, reverb, delay, tape and export Tempo, Sync and MIDI — the clock, Ableton Link, playing and controlling the app from MIDI Using the Plug-in in a Host — the AUv3 plug-in, stereo versus multi-out, and how to work in a host iPhone and iPad — layouts, device power, and the load meter Keyboard Shortcuts — the essentials, including an external keyboard on iPhone and iPad Saving and Backups — Save versus Save As, banks, import and export Known Gaps in This Beta — what is unfinished, provisional or not in this build How to Report Problems — what to send me, and the contact form to use for now Most of the Mac and iPad-portrait pictures are now in the chapters, captured from the installed standalone app on a Mac in portrait. A few still need a physical iPhone or iPad, a DAW host, or another pass in the app; those places still say Screenshot needed ."
+        },
+        {
+          "id": "whats-in-this-testflight-beta",
+          "title": "What’s in this TestFlight beta",
+          "text": "This TestFlight build is fully unlocked . You do not need a trial, a purchase, or a serial number. That’s on purpose, so you can test the whole app. This beta covers: the standalone app on Mac, iPad and iPhone the AUv3 plug-in that comes with that app, for use in a host VST3, CLAP and the installer version of the AU plug-in are not in this TestFlight build. Draft for Larry’s review. Written Monday, November 23, 2026, from the approved tutorial outline and a read-only check of the 0.94.0 source. Screenshots were captured the same day from the installed tester build (version 0.93.6) in portrait. Not sent to testers and not posted."
         }
       ]
     },
     {
       "id": "welcome",
-      "title": "Welcome & what's in this beta",
+      "title": "Welcome",
       "url": "welcome.html",
       "number": 1,
-      "summary": "What this temporary guide covers, and what you will find in this beta.",
+      "summary": "What Larry Seyer Drums is, and what this beta includes.",
       "sections": [
         {
           "id": "",
-          "title": "Welcome & what's in this beta",
-          "text": "Content coming soon. This chapter is a stub so the manual’s layout, navigation and search can be built and previewed. The approved text will replace this placeholder; leave placeholder: true in the front matter until then."
+          "title": "Welcome",
+          "text": "Draft for Larry’s review — not published. Temporary quick-start for TestFlight testers until the tutorial videos are ready. App version 0.94.0 ."
+        },
+        {
+          "id": "thank-you-for-testing",
+          "title": "Thank you for testing",
+          "text": "I’m Larry Seyer. Thank you for trying Larry Seyer Drums while it is still a beta. This guide is a stand-in for the tutorial videos I’m still making. It is meant to get you playing quickly, show you where the main features live, and warn you about a few things that are unfinished in this build. It is not the finished teaching series. When those videos are ready, they will be the standard way people learn the app. If something in here doesn’t match what you see on screen, trust the app in front of you and tell me . Version 0.94.0 is the build this guide was written against."
+        },
+        {
+          "id": "what-larry-seyer-drums-is",
+          "title": "What Larry Seyer Drums is",
+          "text": "Larry Seyer Drums is a complete drum instrument — I call it The Drum DAW — built around real drumming. You can run up to four players at once. Each player has its own kit, its own part, and its own mix, and they all share one transport. You can write and arrange a song inside the app, play the sounds live from pads or an e-kit, or load the app as a plug-in inside a host and let that host run the session. The sounds come from the complete Larry Seyer Acoustic Drum Library. Pat Mastelotto played the drums, and I recorded them. A feature called Morph blends neighboring recordings so no two hits sound exactly alike. “Seyer” is pronounced Sire . Player 1 on Busy Beat One, Dry Clean Stick 3, energy Alert, transport playing"
+        },
+        {
+          "id": "whats-in-this-beta",
+          "title": "What’s in this beta",
+          "text": "This TestFlight build is fully unlocked . You will not go through a trial, a purchase or an unlock step. That’s deliberate, so you can test the whole app. You can use: the standalone app on Mac, iPad and iPhone the AUv3 plug-in that comes with that app, inside a compatible host The full sound library is already in the app. Nothing else downloads later, and it plays offline. Windows and Linux versions come later. They are not part of this beta."
+        },
+        {
+          "id": "whats-not-in-this-beta",
+          "title": "What’s not in this beta",
+          "text": "A short list, so you don’t go looking for something that isn’t here yet: VST3, CLAP and the installer AU plug-in are not in this TestFlight build. This beta is the standalone app plus AUv3. There is no trial or purchase flow to test. This build is already unlocked. Kit Packs are planned for summer 2027. They are not available yet. The Sounds page may still change. The chapter on kits and Morph is written from the current app, and I’ve marked it as provisional. A few other unfinished items are collected in Known Gaps in This Beta ."
+        },
+        {
+          "id": "how-the-app-is-organized",
+          "title": "How the app is organized",
+          "text": "Four main pages sit along the top: Players , Songs , Sounds and Mixer . Players is the front of the instrument: four cards, energy, and the transport. Songs is where you arrange a groove on a timeline. Sounds is where you choose and shape kits. Mixer is the console and the effects. Quick Pick is a separate first screen, so you can play a great groove before you learn any of that. The Pattern Editor opens from a song pill when you want to change the notes themselves. App Settings, keyboard shortcuts, import and export all live in the three-dot menu ."
+        },
+        {
+          "id": "if-you-only-have-a-few-minutes",
+          "title": "If you only have a few minutes",
+          "text": "Open the app and play something from Quick Pick. Try Busy Beat One . Close Quick Pick and press Play on the Players page so you can see the cards move. If you hear nothing, use the “No sound?” checklist . When you’re ready, build a short song in Your first groove and save it. Then come back and read whatever chapter matches what you want to try next. Index · Next: Getting Started and Getting Sound"
         }
       ]
     },
     {
-      "id": "first-launch",
-      "title": "First launch & getting sound",
-      "url": "first-launch.html",
+      "id": "getting-started",
+      "title": "Getting Started and Getting Sound",
+      "url": "getting-started.html",
       "number": 2,
-      "summary": "Opening Larry Seyer Drums for the first time and hearing sound.",
+      "summary": "First launch, the top bar, and a No sound? checklist.",
       "sections": [
         {
           "id": "",
-          "title": "First launch & getting sound",
-          "text": "Content coming soon. This chapter is a stub so the manual’s layout, navigation and search can be built and previewed. The approved text will replace this placeholder; leave placeholder: true in the front matter until then."
+          "title": "Getting Started and Getting Sound",
+          "text": "Draft for Larry’s review — not published. Temporary quick-start for TestFlight testers until the tutorial videos are ready. App version 0.94.0 ."
+        },
+        {
+          "id": "first-launch",
+          "title": "First launch",
+          "text": "On a fresh launch you’ll see a short splash, then Quick Pick . That’s the first screen on purpose: you can be hearing drums in a few seconds, before you learn the rest of the app. Pick a beat on one side and a player preset on the other, then press Play if it isn’t already playing. Busy Beat One (labelled Busy Beat 1 in the list) is the example I’ll use throughout this guide. When you’re ready for the full app, close Quick Pick. You’ll land on the Players page. Next time you open the standalone app, it comes back to the last song slot you were in. Quick Pick is always one tap away from the three-dot menu, or from the Q key if you have a keyboard. The iOS AUv3 plug-in window opens on Quick Pick. That’s covered in Using the Plug-in in a Host . Quick Pick with Busy Beat 1 · Verse and Beefy Rod Kit selected"
+        },
+        {
+          "id": "the-top-bar",
+          "title": "The top bar",
+          "text": "The top bar is the same idea on every device, with a slightly tighter layout on an upright iPhone. Here’s what you’ll use all the time: Play / Stop and the DSP load meter beside it. The meter climbs from green toward red as the device works harder, and it flashes red after a dropout. On iPhone and iPad, watch this when you add effects. See iPhone and iPad . The MORPH chip. It only reports the state of a feature called Morph: On, Off or Building. It isn’t the place you turn Morph on and off. That lives in App Settings, and in the Sounds chapter. Tempo , from 30 to 300 BPM, with a lock and a source tag such as INT. A closed lock means the app is following a clock (for example Ableton Link or a host). An open lock means you own the tempo. The play position as bar.beat , and the beat progress bar for the selected player’s pattern. The master meter . Tap it to switch between dB and LUFS. Tap the spectrum to open the full-screen master. The inbound MIDI light, which flashes when notes or controls are arriving. The current song readout, shown as bank:slot and name, with the song stepper. On an upright iPhone the top bar is tighter. You still get Play, the DSP meter with the MIDI light, tempo plus the lock, the song block and the spectrum. There is no MORPH chip or master meter in that compact bar, and you’ll see a compact position and clock line instead. In landscape it becomes a slim bar. The four page tabs — Players, Songs, Sounds, Mixer — sit in this area, along with the phrase tabs (five song sections at a time). Tap a phrase tab to jump. A beat arc on the playing tab shows you where you are. The energy row sits with the players: Asleep, Chilled, Relaxed, Normal, Alert, Excited, Energetic. That’s a later chapter. You can already tap it and hear the groove change. Mac top bar in portrait: Play, MORPH, tempo locked to INT, DSP load, song readout and page tabs Screenshot needed: The upright iPhone top bar, so testers can see how it differs."
+        },
+        {
+          "id": "the-three-dot-menu",
+          "title": "The three-dot menu",
+          "text": "The three-dot menu is the front door for almost everything that isn’t on the page in front of you: About, Quick Pick, App Settings, Keyboard Shortcuts, then the preset groups (Song, Player Presets, Pattern Presets, Sounds Presets, Mixer Presets, Channel Presets), then Import and Export. The menu opens on the group for the page you’re on. A command that doesn’t apply is left out, not greyed off. Save appears only on items you created yourself. Save As is how you make your own copy. I’ll come back to saving in Saving and Backups . The short version is: Save is what makes an edit permanent."
+        },
+        {
+          "id": "getting-sound-the-first-time",
+          "title": "Getting sound the first time",
+          "text": "In the standalone app, sound should come out of the device’s default output. If you need to pick a different interface, open the three-dot menu → App Settings → Audio . Output Device can be set to System Default, which follows the computer’s output, or to a specific interface. Set the sample rate and buffer size to something your device is happy with. On iPhone and iPad, buffer size is 128 to 1024. Test Output is there if you want a quick confirmation that audio is reaching the device. If you’re inside a host, the host owns the audio device. There is no audio-device page in the plug-in. Make sure the host track is enabled and its output is going somewhere you can hear."
+        },
+        {
+          "id": "no-sound-checklist",
+          "title": "No sound? checklist",
+          "text": "Work down this list, in order. It solves almost every silent first launch. Is the transport playing? Press Play. If you’re in a host, press Play in the host — the plug-in follows the host by default. Is there something to play? On the Songs page, a player only makes sound from the arrangement when a pill covers the playhead. An empty New Song is silent until you place a pill or send it notes from outside. Quick Pick always has a beat ready. Is the player switched on? On the card, tap the player number to turn it on if it’s off. A slash on the badge means that player is off. Are the MIDI channel and Input Layout right? If you’re sending notes from pads, an e-kit or a host, the player has to be listening on that channel, and MIDI Input Layout (in App Settings, and next to Record in the Pattern Editor) has to match what you’re sending: GM, EX or E-Kit. A fresh install starts on GM. If nothing is arriving, check the inbound MIDI light in the top bar. Is something muted or soloed? Check Mute and Solo on the player card, mute on a pill, and Mute or Solo on mixer strips. If any strip is soloed, the others are dimmed. Where is the output going? In the standalone app, confirm the audio device. In a host, confirm the track output and, if you turned on multi-out, that those extra outputs are actually enabled in the host and routed to something you can hear. See Using the Plug-in in a Host . If it’s still silent after that, send me a report with your device, system version, and whether you were in the standalone app or a host. How to Report Problems lists what to include. Previous: Welcome · Index · Next: Quick Pick and Your First Groove"
         }
       ]
     },
     {
-      "id": "quick-pick",
-      "title": "Quick Pick & your first groove",
-      "url": "quick-pick.html",
+      "id": "quick-pick-and-first-groove",
+      "title": "Quick Pick and Your First Groove",
+      "url": "quick-pick-and-first-groove.html",
       "number": 3,
-      "summary": "Using Quick Pick to choose a beat and a player, and playing your first groove.",
+      "summary": "Play in seconds, then build and save a short arrangement.",
       "sections": [
         {
           "id": "",
-          "title": "Quick Pick & your first groove",
-          "text": "Content coming soon. This chapter is a stub so the manual’s layout, navigation and search can be built and previewed. The approved text will replace this placeholder; leave placeholder: true in the front matter until then."
+          "title": "Quick Pick and Your First Groove",
+          "text": "Draft for Larry’s review — not published. Temporary quick-start for TestFlight testers until the tutorial videos are ready. App version 0.94.0 ."
+        },
+        {
+          "id": "quick-pick-playing-in-seconds",
+          "title": "Quick Pick: playing in seconds",
+          "text": "Quick Pick is the first screen after the splash, and it’s the fastest way to hear the instrument. Choose a beat, choose a player preset, and you’re playing. There are ten beats and ten player presets, so you have a hundred pairings. The beats are: Basic Beat Buyoun Push Beat Busy Beat 1 (this is Busy Beat One , the example I use throughout) 60’s Soul Shuffle Push Waltz Straight 1 Waltz Swing 1 Latin Beat Shuffle Each one plays as its Verse. Choosing a preset loads its kit. While that happens, the button says “Loading kit…”. Quick Pick remembers the last pair you chose and the tempo you played it at. The remembered pair is only highlighted until you choose it again. That’s different from a Song you have saved. You can reopen Quick Pick from the three-dot menu or with the Q key. Close takes you to the full app. If you have a MIDI controller, there is a Quick Pick MIDI channel so you can change slots from any screen. To save your own beat or preset into a slot, right-click or press and hold, then choose “Save … here” or “Restore factory …”. A note on names: the final ten player presets are still being finished, so some labels you see in this beta may still be placeholders (for example “Player”, “VelMods” or “Reverb”). The beats themselves are in place, including Busy Beat One. On iPhone and iPad the layout follows the screen: in portrait, beats are on the left and presets on the right; in landscape, beats are the top row and presets are the bottom row. The heading over the presets may say Kits on screen. Those are the player presets. The iOS AUv3 window opens on Quick Pick. See Using the Plug-in in a Host . Quick Pick with Busy Beat 1 · Verse and Beefy Rod Kit selected Screenshot needed: Quick Pick on an iPhone in portrait, same selection, so the side-by-side layout is clear."
+        },
+        {
+          "id": "your-first-groove-from-an-empty-song",
+          "title": "Your first groove from an empty song",
+          "text": "Once you’ve heard Quick Pick, try building a short song of your own. This is the first thing I want every tester to do. From the three-dot menu, choose New Song . You’ll get Player 1 on, 120 BPM, energy at Normal, and an empty timeline. Open the Songs page. You’ll see Player 1’s pill row, and on the side (or nearby, depending on the device) the pill pool — the pile of phrases you can drag in. In the pill pool, pick the style Busy Beat 1 in Player 1’s column. Drag an Intro , then a Verse , a Chorus , another Verse , and a Bridge onto Player 1’s pill row. The first pill on an empty lane starts at bar 1 and sets the tempo from the style. After that, a pill lands where you drop it. Gaps are allowed; a gap is silence for that player. Press Play and listen. Tap a phrase tab to jump to a section. Turn on Post-Fill on the Verse (the bottom-right corner of the pill) and listen to the fill into the next section. Change one pill’s energy and hear how the same notes feel different. Use Save As… to put the song into a bank slot and give it a name. Save is what makes an edit permanent. If you only close the editor or switch songs without saving, you can lose the work you just did. When you want a quick thrill, play the same arrangement at Chilled , then at Energetic , using the energy row. On a Mac or iPad you drag with the mouse or trackpad (or a finger on iPad). On iPhone, press and drag. An upright iPhone shows a timeline per player; in compact landscape you’ll use the P1–P4 launcher. Busy Beat 1 120 on Player 1, playing. The green triangle is the edit cursor; the yellow line is the play cursor. You’ll find the rest of the arranger — pill corners, lifts, banks, launching sections live — in Songs: Arranging . Previous: Getting Started and Getting Sound · Index · Next: Players"
         }
       ]
     },
@@ -61,194 +141,484 @@
       "title": "Players",
       "url": "players.html",
       "number": 4,
-      "summary": "The four independent players, and how each one holds its own kit and part.",
+      "summary": "The four player cards, presets, Fill, Solo and Lock.",
       "sections": [
         {
           "id": "",
           "title": "Players",
-          "text": "Content coming soon. This chapter is a stub so the manual’s layout, navigation and search can be built and previewed. The approved text will replace this placeholder; leave placeholder: true in the front matter until then."
+          "text": "Draft for Larry’s review — not published. Temporary quick-start for TestFlight testers until the tutorial videos are ready. App version 0.94.0 ."
+        },
+        {
+          "id": "the-player-card",
+          "title": "The player card",
+          "text": "The Players page is four cards, one for each drummer. You can show them as a 2×2 grid, four across, or a compact strip. You select a player by tapping its level meter on the card. Tap the meter again to unselect it. When no player is selected, the energy row belongs to the whole song. When one is selected, energy changes can be aimed at that player. A selected card gets a white ring on its badge. Each card has: A badge with the player number. It’s on or off. Off shows a slash; tap the number to turn the player on. Player Preset , MODE (Drums in this version — there’s no mode menu in 1.0), Kit , Energy , and Pill (a readout; it says “No pattern yet” until that player has a pill). A volume knob with a dB readout and a peak/LUFS meter. This is also the level meter you tap to select the player. A groove row with beat dots, the time signature and Swing. The iPhone card does not have this row; on iPhone, set Swing in the Energy Profile editor instead. Mute , Solo , Fill and Lock . A voice meter along the bottom edge of the card. The card is a remote control. It shows the same state you’ll see on the Songs, Sounds and Energy views. On a Mac or iPad you can set a player’s colour with C, or assign random colours with Option+C. Those keys are not on iPhone unless an external keyboard is attached. Tap the level meter to select a player. Player 1 is on Dry Clean Stick 3, energy Alert, pill Verse."
+        },
+        {
+          "id": "playing-the-card-live",
+          "title": "Playing the card live",
+          "text": "Fill plays a fill from the next beat to the bar line. If you press it in the last beat of the bar, you get the whole next bar. The button blinks slowly until the fill starts. Repeated manual presses chain fills together. A manual press does not replace a Song fill that is already armed or playing. Fills follow the pill’s feel and energy. The factory Asleep energy level is silent, so it plays no fill. “Asleep” isn’t a hard-wired mute: if you edit that level so it makes sound, fills can play, and if you edit any level to full silence, fills are suppressed. Drum solo: double-click Fill, or press and hold it. The button flashes fast. A Song fill that arrives during the solo raises the solo’s build. To end the solo, press Fill again. That latch is a different thing from Lock. Mute affects only that player. Solo is additive — you can solo more than one player. On a Mac or iPad keyboard, hold Ctrl+S for Solo In Front: you hear that one player while the key is down."
+        },
+        {
+          "id": "lock",
+          "title": "Lock",
+          "text": "Lock freezes the player’s preset, mode, kit, energy, pill and swing. It also disables the card’s volume knob and the Fill / solo gestures on the card. Mute and Solo stay live after you lock, so you can still bring a player in or out during a performance. A MIDI Fill (control change 21 on that player’s channel) still triggers a fill, even when the card’s Fill button does not. If you’re setting up for a gig, lock only after you’ve confirmed Mute, Solo and any MIDI fill control still do what you need."
+        },
+        {
+          "id": "player-presets",
+          "title": "Player presets",
+          "text": "A player preset is one tap that brings back a complete player sound and mix. It restores the kit, the channel strips, the sends, EQ, compressor, bus tape, and that player’s reverb and delay returns. It restores sound and mix, and leaves Energy alone. Energy stays with the song. The picker is grouped as Stick, Mallet, Rod, Combo, Synths and User Player Presets. A green check marks the current preset. There is a tick box, Also Load Master Fader, Effects and Trim (“Every Player Hears It”). It’s one switch for the whole app. When it’s on, loading one player’s preset also changes the master that every player goes through, so you’ll hear that change on the other players too. Save versus Save As works the way it does everywhere: Save is for your own items; Save As makes a new one. The name on the card belongs to the song. It stays “Default” until you load or save, and a rename follows everywhere. You can share a preset as a .drums-bundle and open it on another device. As I mentioned in Quick Pick, some factory preset names in this beta may still be placeholders. Screenshot needed: The player-preset accordion open on a card, with one preset checked, Busy Beat One audible in the description if the UI shows the kit name."
+        },
+        {
+          "id": "four-drummers-at-once",
+          "title": "Four drummers at once",
+          "text": "Turn on Players 2, 3 and 4 from their badges. Each player gets its own column in the pill pool, its own style and its own pill row on the Songs page, plus its own kit, mixer and returns. The four players share one conductor — the song’s meter and tempo — but each can have its own pattern meter. That’s a deeper topic in the Songs chapter; for a first test, keep everyone in 4/4 and give each player a different part. A good first stack: Busy Beat One on Player 1 with a Stick kit, a second player on a Rod kit adding a ride or tom part (that’s the Rod sound itself, not brushes), and a third player on a half-time feel. Mute, solo and volume let you bring them in and out. On a keyboard, the arrow keys move to the previous or next player. On an iPhone in compact landscape, the cards become a strip and you open a player’s lane when you need it. Screenshot needed: Four players on, with Player 1 on Busy Beat One and at least one more player showing a different kit or part. Previous: Quick Pick and Your First Groove · Index · Next: Energy and Feel"
         }
       ]
     },
     {
-      "id": "energy-levels",
-      "title": "Energy levels",
-      "url": "energy-levels.html",
+      "id": "energy",
+      "title": "Energy and Feel",
+      "url": "energy.html",
       "number": 5,
-      "summary": "How energy levels change what a player plays, without rewriting the part.",
+      "summary": "The seven energy levels, and how a pattern changes without changing the notes.",
       "sections": [
         {
           "id": "",
-          "title": "Energy levels",
-          "text": "Content coming soon. This chapter is a stub so the manual’s layout, navigation and search can be built and previewed. The approved text will replace this placeholder; leave placeholder: true in the front matter until then."
+          "title": "Energy and Feel",
+          "text": "Draft for Larry’s review — not published. Temporary quick-start for TestFlight testers until the tutorial videos are ready. App version 0.94.0 ."
+        },
+        {
+          "id": "the-seven-energy-levels",
+          "title": "The seven energy levels",
+          "text": "Energy is how a drummer leans into a part without you rewriting the notes. The row is: Asleep · Chilled · Relaxed · Normal · Alert · Excited · Energetic Try the same eight bars of Busy Beat One at Chilled, then Normal, then Energetic. The pattern stays the same. The playing does not. The factory Asleep level is silent, but the name isn’t a hard-wired mute. If you edit Asleep so it makes sound, it will play. If you edit any level down to full silence, fills are suppressed on that level, just as they are on factory Asleep. Screenshot needed: The energy row with Normal lit, Busy Beat One playing, no player selected, so the row is clearly acting on the whole song."
+        },
+        {
+          "id": "who-the-row-belongs-to",
+          "title": "Who the row belongs to",
+          "text": "With no player selected , the row sets the song’s global energy. Each pill still uses the level stored for it. A tempo offset on a level applies only when the app owns the clock — not when it’s following a host or Ableton Link. With a player selected (tap that player’s level meter), a tap on the row reaches every pill that player already has. Each pill remembers its own answer for that level, so a per-pill choice you made on the Songs page survives. A deliberate re-tap of the level that’s already lit resets the pills in scope so they follow it again. If you’ve made one pill an exception, leave, come back, and re-tap to clear that exception. With nobody selected, a tap moves the global level and every unlocked player’s own level. A locked player keeps its level. A per-player tap never moves the song’s tempo. You can also set a single pill’s energy from the pill’s menu or from the Energy field on the card. Keys 1 through 7 set the selected pill’s energy when a keyboard is attached. There’s an Accessibility switch, Show Energy-Modulated BPM During Playback , if you want to see the offset tempo while it plays."
+        },
+        {
+          "id": "the-energy-profile-editor",
+          "title": "The Energy Profile editor",
+          "text": "Double-tap a level, or use the pencil in the Pattern Editor, to open the editor. A Reset to Factory chip is right there if you want the stock behaviour back. Who you’re editing follows the card selection: all players, or the one player you’ve selected. The editor is an accordion: Tempo Offset , Swing and Drums , with one section open at a time. Closed headers still show their values. Tempo Offset runs from −20% to +20%, and only when the app is the sync master. Swing is 0–100%, and can swing 8ths, 16ths, 32nds or quarters. Double-click a control to reset it. This is different from a pill’s Triplet feel, and different from compound counting such as 6/8 in 2 or in 3. Fills follow the feel. Pattern controls let you change what the drums do at this level: snare mode (Pattern, Stick, Snare, Rimshot), hi-hat mode (Pattern, HiHat — play the ride as a closed hat — or Ride — play the hat on the ride), and the backbeat crash. A useful experiment: turn Busy Beat One’s Excited level into a ride-driven, rimshot chorus feel, then switch between Normal and Excited. Energy definitions belong to the Song . Editing them changes this song, not a global default. A New Song starts from the factory levels. To reuse a set of levels, export or import them (Import/Export → Energy) or copy them into another song. Each level button has a menu for Rename (up to 40 characters), Colour, Copy Settings, Paste Settings, Paste Settings to All Levels, and Reset to Factory. Screenshot needed: The Energy Profile editor open on Excited, with the Drums section visible and Busy Beat One as the song. There’s more depth here — kick, snare, hat, toms and cymbals each have their own shaping, including a feature called Morph on the toms, and a way to send a cymbal to Bells. The tutorial videos will go drum by drum. For testing, the row plus the editor is enough to find problems and hear whether energy feels right. Previous: Players · Index · Next: Songs: Arranging"
         }
       ]
     },
     {
-      "id": "songs-banks-set-lists",
-      "title": "Songs, banks & set lists",
-      "url": "songs-banks-set-lists.html",
+      "id": "songs",
+      "title": "Songs: Arranging",
+      "url": "songs.html",
       "number": 6,
-      "summary": "Building a song from patterns, and organizing banks and set lists.",
+      "summary": "Pills, the pill pool, fills, lifts, banks and playing live.",
       "sections": [
         {
           "id": "",
-          "title": "Songs, banks & set lists",
-          "text": "Content coming soon. This chapter is a stub so the manual’s layout, navigation and search can be built and previewed. The approved text will replace this placeholder; leave placeholder: true in the front matter until then."
+          "title": "Songs: Arranging",
+          "text": "Draft for Larry’s review — not published. Temporary quick-start for TestFlight testers until the tutorial videos are ready. App version 0.94.0 ."
+        },
+        {
+          "id": "a-tour-of-the-songs-page",
+          "title": "A tour of the Songs page",
+          "text": "The Songs page is the arranger. Four player pill rows (P1 through P4) run as timelines. Beside them is the pill pool : one column per player, showing that player’s mode and style. Blank 120 is a silent style for building from nothing. Along the ruler you’ll find Click , Undo , Redo and + (a new blank pattern). The edit cursor is the green triangle. The play cursor is the yellow line. Under the bar ruler is the meter and tempo strip. Follow-scrolling keeps the playhead in view while you play; if you scroll yourself, your scroll wins. You can zoom with pinch, the scroll wheel, or Z and Shift+Z on a keyboard. With nothing selected in a pool column, you’re browsing styles. With a pill selected, changing the column restyles that pill. You can mix styles in one song. Tap a pill’s bar count to type a new length, and use the section-name picker to rename it. On iPhone the page has three useful layouts: upright (a timeline per player), landscape, and a compact P1–P4 launcher. The green triangle on the ruler is the edit cursor. The yellow line is the play cursor."
+        },
+        {
+          "id": "placing-moving-and-resizing-pills",
+          "title": "Placing, moving and resizing pills",
+          "text": "Drag from the pill pool onto a player’s row. Pills snap to bars. The first pill on an empty lane starts at bar 1. After that, a pill lands exactly where you drop it. Gaps are legal. If you leave space, that space plays silence for that player. If pills collide: the dropped pill keeps its landing. An earlier pill it overlaps is clipped back to the drop point. Later pills it overlaps ripple forward. Move pills by dragging, or nudge them with the left and right arrow keys. The same landing rules apply. You can resize in three ways: drag a single edge; type a new length (that numeric length stops at the next pill); or resize a group from the edge, which has its own adjacency rules. Delete or Backspace removes a pill. Double-click an empty gap to select it, then Command+Delete (or the matching menu item) closes the gap."
+        },
+        {
+          "id": "pill-corners",
+          "title": "Pill corners",
+          "text": "Each pill has four corners and a mute: Top left: the bar count. Top right: Loop. On Player 1, the whole song repeats that section. On Players 2 through 4, only that pill loops. Bottom left: Pre-Fill. On the first pill, this adds a pre-roll bar. That’s different from the count-in you get when recording into the Pattern Editor. Bottom right: Post-Fill. Top centre: Mute. A muted pill sends no MIDI and exports silent. Fills follow the pill’s energy and feel. The fill tint on a pill is not the same indication as the card’s manual Fill button. On a keyboard: L for loop, P for pre-fill, F for post-fill, and Command+M for mute. A good test: loop the Busy Beat One Chorus, then release it into a Post-Fill. One caution for testers: a few factory styles still have fills I’m A/B’ing. Please don’t use Rock 130 , Rock Shuffle 125 , Pretty Shuffle or Texas Blues Jam 115 as your fill examples for now. Busy Beat One is the safe choice. Busy Beat 1 120 Chorus. The four corners are the bar count and Loop at the top, Pre-Fill and Post-Fill at the bottom. Post-Fill is not turned on in this picture."
+        },
+        {
+          "id": "the-pill-menu-and-working-with-many-pills",
+          "title": "The pill menu and working with many pills",
+          "text": "Right-click a pill, or press and hold it, for the pill menu: Edit, Mute, Move, Copy, Duplicate, Paste, Split (Option+S), Delete, Delete with Ripple, Rename (Command+R), Export MIDI, Energy Levels, Feel (As Written or Triplet), Playback Speed (1/4x to 4x — the pill keeps its length), and Colour (Shift+C). You can rubber-band a group of pills, or Select All Pills (Command+A). The multi-select menu can mute, move, copy, duplicate, paste, combine, delete, rename or export the group. Combine (Command+G) joins pills when the app is willing; it will decline when that wouldn’t make sense. You can also insert measures at the edit cursor (Command+I) and work with a time selection. Undo and Redo are one history for the whole app."
+        },
+        {
+          "id": "meter-tempo-and-lifts",
+          "title": "Meter, tempo and lifts",
+          "text": "Meter tags live in their own strip under the ruler. Long-press or right-click to insert a meter or set a tempo. Double-tap bar 1’s tag to type the opening meter. When the app is a plug-in on Host Sync, it takes the host’s tempo map instead. A lift is a small drummer pickup into the next bar. Double-tap the ruler to place one (you’ll see a caret). A lift is played on the groove’s own voice and follows the pill’s energy. You can’t place a lift before bar 1, and a pattern with no snare or stick won’t play one. App Settings has Auto Lifts if you want them generated on a phrase length, with a short recipe for what the lift plays. From a controller, control change 18 places a lift. Try Busy Beat One with Auto Lifts every four bars, then compare that with a couple of hand-placed lifts."
+        },
+        {
+          "id": "playing-a-song-live",
+          "title": "Playing a song live",
+          "text": "When the transport is stopped, tapping a pill or a phrase tab jumps there. When it’s playing, the tap is armed — a white ring blinks — and the jump happens according to Launch Quantization : Immediate, Next Beat, Next Bar, or End of Pill. Tap again for the end of the bar; tap the playing pill to cancel. Auto Fill on Pill Change can throw a fill as you jump. You can loop a section until you’re ready, then release it. Stop returns both cursors to the start of the current pill. On iPhone, the phrase tabs are the main live surface."
+        },
+        {
+          "id": "songs-banks-and-set-lists",
+          "title": "Songs, banks and set lists",
+          "text": "Songs live in banks of slots 0 through 99 . The slot number is also the Program Change number, so a controller can recall a song by that number. From the Song menu you can New, Save, Save As, Rename, Load, Export and Delete. The bank grid is one column of a hundred slots; tap to load or save. A per-slot menu includes Lock — a locked slot has a badge and can’t be saved over or deleted. You can have up to 127 banks. Use the previous/next arrows, the add-bank button, and the bank menu (jump, add, rename, delete). The song stepper only steps to occupied slots and never wraps across banks. Tap the name for the bank list; hold the name to rename the song in place. Find Song (Command+F on Mac and iPad) searches across banks. At startup, the standalone app reopens the last slot you were in. A good test: make a new bank, put three short songs in it, and step through them while the app is playing. Previous: Energy and Feel · Index · Next: The Pattern Editor"
         }
       ]
     },
     {
       "id": "pattern-editor",
-      "title": "Pattern Editor",
+      "title": "The Pattern Editor",
       "url": "pattern-editor.html",
       "number": 7,
-      "summary": "Editing a pattern: notes, feels, fills, flams, accents, and related tools.",
+      "summary": "Edit notes, velocity, feel, and record into a pill.",
       "sections": [
         {
           "id": "",
-          "title": "Pattern Editor",
-          "text": "Content coming soon. This chapter is a stub so the manual’s layout, navigation and search can be built and previewed. The approved text will replace this placeholder; leave placeholder: true in the front matter until then."
+          "title": "The Pattern Editor",
+          "text": "Draft for Larry’s review — not published. Temporary quick-start for TestFlight testers until the tutorial videos are ready. App version 0.94.0 ."
+        },
+        {
+          "id": "opening-a-pill-and-making-a-change",
+          "title": "Opening a pill and making a change",
+          "text": "Open the Pattern Editor by double-tapping a pill or a phrase tab, or with Command+P. The editor works on a private copy: Done keeps the edits in the Song. Save (the Song) makes them permanent. Cancel backs out. Those three are separate on purpose. Done is not the same as Save. The header stays live, so you can hop between sections from inside the editor. The grid is the pattern: tap to add or remove a hit. With a mouse, a click selects and a second click removes. If the transport is stopped, you hear an audition of what you just did. If it’s playing, the loop plays your edit. You can zoom with pinch, Command+wheel, or the − / + buttons, and fit the pattern to the width. Follow keeps the view with the playhead. The Tab key hides and shows the editor. A good first edit: add a few ghost notes to the snare on Busy Beat One’s Verse. Screenshot needed: The Pattern Editor open on the Busy Beat One Verse, with the velocity lane visible and a couple of snare ghost notes selected."
+        },
+        {
+          "id": "rows-velocity-and-feel",
+          "title": "Rows, velocity and feel",
+          "text": "Used and All views group rows as Kick, Snare, Hats, Toms, Cymbals and Other. You can add a drum with +. An amber articulation dot marks extra detail, and “N notes not shown” tells you when something is hidden. Tapping a row name cycles mute and solo. S then M clears them all. Silenced hits turn grey. A row mute or solo also covers fills. Press and hold a row name twice for Remove from pattern and Reassign to… — a useful trick is to solo the hat, then reassign it to the ride. The velocity lane can be resized from its grab bar. Press and hold a row name to select a whole drum. Box-select by holding on an empty spot and dragging. You can delete, copy to the next bar, or deselect. Velocity dragging has REL and ABS modes; REL keeps a ceiling so your ghost notes can stay ghost notes while you lift the kicks a little. Each pill also has a Feel row: Energy (with a pencil into the Energy Profile editor), Swing 0–100%, Offset (rush or drag), and Speed from 1/4x to 4x. On a narrow screen these fold into chips. Snap sets the grid resolution. Quantize (Command+Option+Q) can do selected notes or the whole pill, with Grid, Strength, Swing and Catch. It moves timing only, not velocity. A few of the new quantize tools are still under my A/B listening, so if something about quantize feels off, please tell me. Time signature is 1–15 over 2, 4, 8 or 16. Changing the numerator re-counts the pill. Length can be 1 to 256 measures. There’s also Regrid to Triplet."
+        },
+        {
+          "id": "recording-into-a-pill",
+          "title": "Recording into a pill",
+          "text": "You can play a part in from a kit, pads or a keyboard. Set this up first: MIDI input switched on for the port, the player’s channel, and Input layout (GM, EX or E-Kit). Then press Record (R) to arm the open pill. You’ll see a counter, a red outline, and four settings: Count-in (0 or 1 bar), Input layout, Record From (All Channels or 1–16), and Play Quantized . Takes add pass after pass while the pill loops. On an overdub, the louder hit is kept. Play Quantized lays the grid over your timing. Undo a take is different from Cancel on the editor. Done keeps the take in the Song; Save makes it permanent. On iPhone you’ll need a MIDI keyboard or pads. Recording from the iOS app while it’s attached to an AUv3 is still being retested, so if that path misbehaves, I want to hear about it."
+        },
+        {
+          "id": "saving-a-pattern-or-a-new-style",
+          "title": "Saving a pattern or a new style",
+          "text": "The Done menu offers Save as New Pattern… and Save as New Style… . You can also use Pattern Presets → New or Save As. A new style is generated with an Intro, Chorus, Bridge and fills from your Verse. The song has to be stopped for that save. There’s more on generation in the next chapter. Previous: Songs: Arranging · Index · Next: Bringing in Grooves"
         }
       ]
     },
     {
-      "id": "grooves",
-      "title": "Grooves",
-      "url": "grooves.html",
+      "id": "bringing-in-grooves",
+      "title": "Bringing in Grooves",
+      "url": "bringing-in-grooves.html",
       "number": 8,
-      "summary": "Choosing and shaping grooves, and how they sit in a song.",
+      "summary": "Import a MIDI file and generate a style.",
       "sections": [
         {
           "id": "",
-          "title": "Grooves",
-          "text": "Content coming soon. This chapter is a stub so the manual’s layout, navigation and search can be built and previewed. The approved text will replace this placeholder; leave placeholder: true in the front matter until then."
+          "title": "Bringing in Grooves",
+          "text": "Draft for Larry’s review — not published. Temporary quick-start for TestFlight testers until the tutorial videos are ready. App version 0.94.0 ."
+        },
+        {
+          "id": "import-a-midi-file-and-generate-a-style",
+          "title": "Import a MIDI file and generate a style",
+          "text": "You can turn a drum MIDI file into a playable Larry Seyer Drums style. Open Import → MIDI File . Choose how to read it: EX (Larry Seyer Drums’ own notes) or General MIDI . If the file came from another product, use Assign this file’s drums . You’ll get a row per note, a drum menu, an audition speaker, and saved note maps. The app will tell you if some notes were left out, for example “3 of 14 notes left out.” Name the style. The “Saved as” preview appends the tempo. Set Feel to Auto, Straight or Triplet, and Quantize on or off. Import it as a Verse. Watch Generation Progress . The app writes an Intro, Chorus, Bridge and fills from your Verse, on this device — nothing is sent off the machine. If you don’t like the generated parts, use Generate Again . You can also drag a MIDI file straight onto a pill row or a pool column on a Mac. On iPhone and iPad, import from the Files app. Dragging is still being retested, so if a drag doesn’t take, use the Import window and tell me."
+        },
+        {
+          "id": "rules-worth-knowing",
+          "title": "Rules worth knowing",
+          "text": "Channel 10 is preferred when it’s present. Otherwise the file’s own channels are used. It is not “channel 10 only.” If the file has no tempo marking, the import uses 120 BPM. Very long files are capped. Generation needs the transport stopped . Cancel leaves no partial style. Repeated names are numbered. A failed import leaves the source file alone. The app will show you how many fills it generated. I don’t quote a library-wide fill count here, because the number you should trust is the one on screen. A good test: import a groove you actually play, listen to the generated Chorus and fills, then generate again and compare. Screenshot needed: The MIDI import window, mid-assignment or on the name-and-feel step, with a file loaded. No need to show a third-party product name on the file itself. Previous: The Pattern Editor · Index · Next: Sounds and a Feature Called Morph"
         }
       ]
     },
     {
       "id": "sounds",
-      "title": "Sounds",
+      "title": "Sounds and a Feature Called Morph",
       "url": "sounds.html",
       "number": 9,
-      "summary": "Kits, voices, and how to audition and assign sounds to a player.",
+      "summary": "Kits, Morph, and building your own kit. The Sounds page may still change.",
       "sections": [
         {
           "id": "",
-          "title": "Sounds",
-          "text": "Content coming soon. This chapter is a stub so the manual’s layout, navigation and search can be built and previewed. The approved text will replace this placeholder; leave placeholder: true in the front matter until then."
+          "title": "Sounds and a Feature Called Morph",
+          "text": "Draft for Larry’s review — not published. Temporary quick-start for TestFlight testers until the tutorial videos are ready. App version 0.94.0 . Provisional chapter. I still plan to rethink the Sounds page once the rest of the app has settled, and some of the synth kits are still waiting on my ear. What follows is how the page works in 0.94.0. If the screen in front of you looks different, the screen is right — please tell me, and use what you see."
+        },
+        {
+          "id": "choosing-a-kit",
+          "title": "Choosing a kit",
+          "text": "Open the Sounds page, or use the Kit field on a player card. Kits are grouped by striker: Stick , Rod , Mallet , Synths and Combo . “Combo” means a kit that mixes those sources. Step through kits with the ‹ › buttons, or open the chooser, which is split into Factory and User. While a kit loads, you’ll see “Loading kit…”. Tap a pad to hear it and to select it. The 6×6 pad grid lights up as the pattern plays. A good listen: put Busy Beat One on a Stick kit, then a Rod kit, then a Mallet kit. Kits are built by swapping sounds from the supplied library. Larry Seyer Drums does not import your audio samples. The one exception is the click, which can load an audio file. A shared kit or player preset carries settings, not the sample recordings themselves. Provisional: the Sounds page may still change. Stick kit, pads lighting with the groove."
+        },
+        {
+          "id": "a-feature-called-morph",
+          "title": "A feature called Morph",
+          "text": "A feature called Morph blends neighboring recordings so no two hits sound exactly alike. The MORPH chip in the top bar only reports the state: On, Off or Building. Tap it to see which drums are morphing. You don’t switch Morph from the chip. The controls live in App Settings → Morph , with four modes: Automatic (recommended). It turns itself off when the machine doesn’t have room. Always On Always Off Random There’s a drums checklist by group: Snare and toms, Hi-hat, Cymbals. The kick always plays plain samples. Strike Lean is either “Vary each hit” or “Exact recordings.” After you change kits you may see “Building the morph for the new kit.” What actually morphs depends on the device. Computers morph snare, side-stick, toms, hi-hat and cymbals. iPhone and iPad morph snare, side-stick and toms. An upright iPhone hides the MORPH chip; Morph still runs from App Settings. A clear test: a snare roll with Morph off, then on. Morph Mode is Automatic (recommended). The kick always plays its plain samples."
+        },
+        {
+          "id": "building-your-own-kit",
+          "title": "Building your own kit",
+          "text": "Edit a kit from the Sounds page. The Edit workspace has a name, Save / Save As, and a SOUND | TUNE inspector. Each piece can come from Synth, Stick, Mallet, Rod or Combo. A snare brings its rims and crushes with it; the side-stick is separate. You can mix sources in one kit. Your saved kit lands under User Kits . Save versus Save As works as usual; Save leaves the Edit workspace. You can delete, export and import a user kit. A kit is not the same thing as a player preset. A kit is the sounds. A player preset is the sounds plus that player’s mix. On iPad and Mac you can drag a sound onto a pad. On iPhone, use Browse and the Edit screen. The TUNE side has six sliders: Tune, Volume, Attack, Decay, Sustain and Release. Tune and Volume act on the whole instrument; the envelope is per articulation. Deeper editors sit behind the menu button: a sample editor (waveform, pan, hold, and an Output Bus chooser) and a synth voice editor. A small, useful test: tune the Busy Beat One snare down a semitone and shorten its decay."
+        },
+        {
+          "id": "the-synth-machines",
+          "title": "The synth machines",
+          "text": "The Synths tab has machines 1 through 9 (S1–S9 on a narrow phone). One tap loads a whole machine kit. You can also build a hybrid kit, for example a synth kick under sampled drums. Synth 3 is being corrected in this beta, and the other synth kits are still waiting on my listening pass. If a synth kit sounds wrong, it may already be on my list — but I still want the report, especially if it misbehaves, not just if it doesn’t sound like a record yet. Previous: Bringing in Grooves · Index · Next: Mixer and Effects"
         }
       ]
     },
     {
-      "id": "mixer-fx-outputs",
-      "title": "Mixer, FX & outputs",
-      "url": "mixer-fx-outputs.html",
+      "id": "mixer-and-effects",
+      "title": "Mixer and Effects",
+      "url": "mixer-and-effects.html",
       "number": 10,
-      "summary": "The mixer, built-in effects, and routing to stereo or individual outputs.",
+      "summary": "The mixer, EQ, compression, reverb, delay, tape and export.",
       "sections": [
         {
           "id": "",
-          "title": "Mixer, FX & outputs",
-          "text": "Content coming soon. This chapter is a stub so the manual’s layout, navigation and search can be built and previewed. The approved text will replace this placeholder; leave placeholder: true in the front matter until then."
+          "title": "Mixer and Effects",
+          "text": "Draft for Larry’s review — not published. Temporary quick-start for TestFlight testers until the tutorial videos are ready. App version 0.94.0 ."
+        },
+        {
+          "id": "the-mixer",
+          "title": "The mixer",
+          "text": "Open the Mixer page, or press M. It follows the selected player; tabs at the top switch players. You’re always looking at one player’s console at a time. The strips are Kick, Snare, Side Stick, Hats, Tom 1–4, Crash 1–2, Ride 1, Bell 1, Ride 2, Bell 2, Splash and China, then the returns, the player bus, and the master. Each drum or return strip has a fader, Pan, Width, four sends, Mute and Solo, a peak/LUFS meter, and an output picker . Solo dims the M of every other strip. The output picker is an assignment: each drum strip defaults to its own pair, and that only matters when you’re on a multi-out route. Output names you see in a host are defaults, not fixed destinations. FX returns default to the main pair, so if you want them on their own tracks you have to assign them. Channel detail tabs are Pan/Width, Sends, EQ, Compressor and Level. You can drag the split between the strips and the detail panel. The master spectrum can go full screen. On iPhone in compact landscape you’ll get a single row of channel buttons with M and S. If a return or strip is dimmed with “Not enough power,” that’s the device’s effect budget, not a fault. See iPhone and iPad . Watch the DSP load meter beside Play. Player 1 · Kick, meters moving. The open detail tab here is Pan/Width; EQ and CMP are the neighbouring tabs."
+        },
+        {
+          "id": "linked-edits-and-midi-learn",
+          "title": "Linked edits and MIDI Learn",
+          "text": "You can select several strips at once (drums, returns or buses — never the Master). When you move a control, the others keep their offsets. On/off controls set the whole selection. A channel that hits the end of travel stops and catches up later. Learn MIDI is on mixer faders in this build. Right-click a strip, or press and hold its name band. A fader binds to a control change on the control channel. Several faders can share a change, and you can bind a group at once. Clear MIDI Binding removes it. There isn’t a wider MIDI Learn pane in this beta — just the faders."
+        },
+        {
+          "id": "seyereq-seyercomp-reverb-delay-and-tape",
+          "title": "SeyerEQ, SeyerComp, reverb, delay and tape",
+          "text": "Each channel can have SeyerEQ — up to 32 bands, with shape, slope, frequency, gain and Q, plus stereo placement (L/R and M/S) and several processing modes. There’s an analyzer, dynamic EQ, and EQ presets. SeyerComp is the compressor. There’s also Simple Comp . Which one you get depends on what the device can afford; both default to off. If the device has reached its SeyerComp capacity, a compressor you switch on runs as Simple Comp and says so on the panel. SeyerComp has a Morph dial across eight voices (Clean, FET, Opto1, Opto2, VarMu1, VarMu2, VarMu3, Combo). That’s the compressor’s own Morph, not the drum-sample feature called Morph. Reverb and delay live on the returns. They have their own Morph, Time/Tone and Output groups, and you can save a default with the song. Extra reverb returns the device can’t afford show “Not enough power.” One player’s reverbs always run. SeyerTape can sit on the master and on player buses. On a Mac, tape is always available. On iPhone and iPad it depends on device power. The panel will say “This device is not fast enough for the tape” or “This device runs the tape on the master bus only.” On some devices master tape isn’t granted automatically, but you may still be able to switch it on if the song is light enough. A clean test: Busy Beat One dry, then with a short room, then a hall, letting each tail finish; then, on a machine that can afford it, 15 ips tape with a tape stop at the end."
+        },
+        {
+          "id": "the-master-outputs-and-audio-export",
+          "title": "The master, outputs and audio export",
+          "text": "The master strip has trim, a limiter, and mixer presets for recalling a whole board. Outputs are in App Settings → Outputs. Routing Mode is Auto (Recommended), Force Stereo, or Force Multi-Out. Rescan Outputs asks the audio device again in the standalone app. That’s enough for a stereo mix in the app. If you’re using the plug-in and you want separate outputs, read Using the Plug-in in a Host before you change the mode. The steps in a host are a little different, and this beta still has one extra step on a running Mac plug-in. Audio export is Export → Audio. You can render the master mix, a player, all players as stems, a player bus, or all buses. Player sources always render as separate stems. Formats include WAV and AIFF at 16, 24 or 32-bit float, FLAC up to 24-bit, and OGG. You can export the whole song or selected pills. “Marked section” is not ready in this build, so you won’t find a working marked-region export yet. A few honest limits: A player stem is that player’s bus with its returns, before the master. Summed stems need not equal the master mix, because the master has its own processing. The click is never exported. Export renders the arrangement. It does not record live input. On a computer you choose a stems folder. On iOS, a multi-file share sheet is used. Previous: Sounds and a Feature Called Morph · Index · Next: Tempo, Sync and MIDI"
         }
       ]
     },
     {
-      "id": "tempo-sync-midi-osc",
-      "title": "Tempo, sync, MIDI & OSC",
-      "url": "tempo-sync-midi-osc.html",
+      "id": "tempo-sync-and-midi",
+      "title": "Tempo, Sync and MIDI",
+      "url": "tempo-sync-and-midi.html",
       "number": 11,
-      "summary": "Tempo, Ableton Link, MIDI, and OSC control.",
+      "summary": "The clock, Ableton Link, and playing or controlling the app from MIDI.",
       "sections": [
         {
           "id": "",
-          "title": "Tempo, sync, MIDI & OSC",
-          "text": "Content coming soon. This chapter is a stub so the manual’s layout, navigation and search can be built and previewed. The approved text will replace this placeholder; leave placeholder: true in the front matter until then."
+          "title": "Tempo, Sync and MIDI",
+          "text": "Draft for Larry’s review — not published. Temporary quick-start for TestFlight testers until the tutorial videos are ready. App version 0.94.0 ."
+        },
+        {
+          "id": "tempo-the-click-and-who-owns-the-clock",
+          "title": "Tempo, the click and who owns the clock",
+          "text": "Tempo can be tapped (it starts averaging from the third tap, using the last four), typed if you hold the control, or dragged. The range is 30 to 300 BPM. The ` key also taps tempo. The padlock next to tempo is the clock. An open lock means you set the tempo. A closed lock means the app is following a clock. Shift+P sets the clock source. The sources you’ll see are INT , M-OUT , HOST (plug-in only), M-IN , Ableton Link and SMPTE . An energy level’s tempo offset applies only when the app owns the clock. The click has a button on the Songs ruler, and a full page in App Settings → Click: beat-1 and other-beat sounds, Load Audio File, Level, Output, and Listen to one bar. Count-in for recording is separate from a first-pill Pre-Fill."
+        },
+        {
+          "id": "syncing-including-ableton-link",
+          "title": "Syncing, including Ableton Link",
+          "text": "Ableton Link is how you lock tempo and phase with other apps and devices on the same network. Always use the full name; the source tag reads ABLETON LINK. Ableton Link shares tempo and phase. Start/stop sync is a separate option , so turning on Ableton Link does not by itself start and stop the other device. The first time you use it, iOS will ask for local network access. macOS 15 and later asks the Mac app too. Please allow it, or Link can’t find the session. You can also sync with MIDI Clock in and out (with Song Position Pointer), Host Sync inside a plug-in, and SMPTE timecode from the audio input. SMPTE follows position at Larry Seyer Drums’ own tempo; the timecode itself doesn’t carry a tempo map. Microphone permission is required for SMPTE. Each sync path has an offset in App Settings, ±500 ms, which you can adjust by ear while playing. A plus value puts this app ahead. A good test: two devices on Ableton Link, both playing Busy Beat One, locked together. Ableton Link is one of the clock sources. Internal is still selected in this picture. After you choose Ableton Link, start/stop sync is a separate option in App Settings."
+        },
+        {
+          "id": "playing-the-sounds-from-pads-an-e-kit-or-a-keyboard",
+          "title": "Playing the sounds from pads, an e-kit or a keyboard",
+          "text": "You don’t need a pattern at all. Incoming notes can play the selected kit directly. Switch on the MIDI input (per-port switches on iOS; Audio settings on a computer). Set MIDI Input Channels so the right channels can trigger drums, and set the control channel. Set MIDI Input Layout to GM , EX or E-Kit . A fresh install starts on GM. If your settings are older, you may open on EX — check it. Notes play every player assigned to that channel. By default that’s Player 1 on channel 1 through Player 4 on channel 4. Notes on the control channel, the Program Change channel or the Quick Pick channel never play drums. The hi-hat pedal is control change 64. The mod wheel (control change 1) is special: the first time a player hears it, it takes over that player’s hi-hat openness for the rest of the song. It isn’t passed through to the sampler as a generic modulation. You can pair a Bluetooth MIDI device from the app. In the standalone app, the virtual “Larry Seyer Drums IN” and “OUT” ports are available. A port can’t be both input and output, and the app ignores its own notes coming back, so you don’t get a feedback loop. Watch the inbound MIDI light in the top bar. If it doesn’t flash, the notes aren’t arriving."
+        },
+        {
+          "id": "controlling-the-app-from-midi",
+          "title": "Controlling the app from MIDI",
+          "text": "Program Change recalls song slots 0–99 in the active bank. On a player’s own channel, control change 21 is Fill, 18 is Lift, and 70/71 are mute and solo. Mixer faders can be learned, as described in the Mixer chapter. There’s a much fuller control table for people who are wiring a show. If you’re doing that in this beta and you need the complete map, ask me and I’ll get it to you; I don’t want to turn this quick-start into a MIDI implementation chart."
+        },
+        {
+          "id": "midi-out-and-a-word-about-osc",
+          "title": "MIDI out, and a word about OSC",
+          "text": "The app can send its players’ notes out to another instrument, and you can export a MIDI file as EX (Larry Seyer Drums’ own map) or GM (the closest General MIDI drum sounds). Use EX when you want the notes to come back as the same drums. A GM file is a translation; for example, some toms land on the closest GM tom, not always the same identity. In a host, the host is what routes MIDI out. OSC is also available if you want to control the app from another device or script. It’s in App Settings → OSC Control, enabled by default, on port 9100 (replies go to the next port). That’s enough to know it exists. If you’re testing OSC and you need the command list, ask me for it rather than guessing at addresses. Previous: Mixer and Effects · Index · Next: Using the Plug-in in a Host"
         }
       ]
     },
     {
-      "id": "plugin-in-your-host",
-      "title": "Using the plug-in in your host (stereo vs multi-out)",
-      "url": "plugin-in-your-host.html",
+      "id": "using-the-plugin",
+      "title": "Using the Plug-in in a Host",
+      "url": "using-the-plugin.html",
       "number": 12,
-      "summary": "Running Larry Seyer Drums as a plug-in (including AUv3), in stereo or multi-out.",
+      "summary": "The AUv3 plug-in, stereo versus multi-out, and how to work in a host.",
       "sections": [
         {
           "id": "",
-          "title": "Using the plug-in in your host (stereo vs multi-out)",
-          "text": "Content coming soon. This chapter is a stub so the manual’s layout, navigation and search can be built and previewed. The approved text will replace this placeholder; leave placeholder: true in the front matter until then."
+          "title": "Using the Plug-in in a Host",
+          "text": "Draft for Larry’s review — not published. Temporary quick-start for TestFlight testers until the tutorial videos are ready. App version 0.94.0 ."
+        },
+        {
+          "id": "what-this-beta-gives-you",
+          "title": "What this beta gives you",
+          "text": "In this TestFlight build, the plug-in is the AUv3 that comes with the app. On Mac, hosts see the AUv3 after you have opened the app once. On iPhone and iPad, the same app is both the standalone instrument and the AUv3. VST3, CLAP and the installer AU plug-in are not in this TestFlight build. If your usual host is expecting one of those formats, use a host that loads AUv3, or use the standalone app. Hosts list the plug-in as an instrument. Logic Pro files Audio Units under the maker name Automagic Art (that’s my company name). Look for Larry Seyer Drums there. Screenshot needed: A host’s plug-in list showing Larry Seyer Drums under Automagic Art, with the format (AUv3) visible. Note the host and version when the shot is taken."
+        },
+        {
+          "id": "what-changes-inside-a-host",
+          "title": "What changes inside a host",
+          "text": "The editor is the same full app: the top bar, all four pages, and the transport. A few things are different: The host owns the audio device and MIDI routing , so there is no audio-device page and no “Larry Seyer Drums IN/OUT” ports. There’s a fifth clock source, HOST . Host Sync is the default in a plug-in: play, stop, position and tempo all come from the host. The sync source belongs to the device, not the project, so each plug-in instance opens on the source you last chose in a plug-in. Keyboard shortcuts work once you click in the plug-in window. Some hosts need their “send all keys to the plug-in” option turned on. There are no host automation lanes, by design. Control the app from MIDI on a track instead (fills, lifts, mute/solo, Program Change, and MIDI Learn on mixer faders). Saving: Larry Seyer Drums remembers your songs, and your recording program remembers which song. The project stores the song’s bank and slot, plus a safety copy. Larry Seyer Drums’ own Save is still what makes an edit permanent. A new instance starts from the shared working session. Logic Pro and GarageBand run plug-ins in a sandbox. In those hosts, Larry Seyer Drums keeps its own working session. Songs, kits and presets are shared as normal."
+        },
+        {
+          "id": "three-ways-to-work",
+          "title": "Three ways to work",
+          "text": "You can use as much or as little of the app’s own song side as you want. 1. As a drum sound module. Your host’s MIDI plays Larry Seyer Drums’ kits. Start a New Song with no pills. With no pill, the app plays nothing on its own. Set MIDI Input Layout to GM (or EX, if that’s what you’re sending). Check it; older settings may still open on EX. Each player listens on its own channel (Player 1 on 1 through Player 4 on 4 by default), so four tracks can play four kits. The control channel and the Program Change channel (both 16 by default) never play drums. 2. Using Larry Seyer Drums’ own Songs, following the host. Leave Host Sync on. Pills, energy, fills and lifts play in time with the host, from any bar, at the host’s tempo. 3. Both. Larry Seyer Drums writes the part, and the host keeps it — by recording the plug-in’s MIDI output, or by exporting or dragging a MIDI file onto a track, then playing that track back as a sound module. Set Input Layout to match the file: EX for EX, GM for GM. You can also mix the ways: for example, a Busy Beat One song on Player 1, with extra crash accents coming from a MIDI track on the same channel. A simple worked example: draw a short two-bar groove in the host (kick, snare, hats, a crash, a small tom fill), play it through Player 1 in stereo, then set up multi-out and listen to the drums on separate tracks."
+        },
+        {
+          "id": "stereo-and-multi-out",
+          "title": "Stereo and multi-out",
+          "text": "A plug-in does not invent outputs. The host learns the output list when it loads the plug-in, and it enables the pairs it will actually read. You turn on more outputs in the host , which then prepares the plug-in again. Once those pairs are enabled: Auto is meant to use the host’s enabled outputs, and to stay on the main stereo pair when the host hasn’t enabled more. In 0.94.0, Auto in a plug-in still stays on the main pair even if the host has enabled more outputs. For separate outputs in this beta, use Force Multi-Out . Force Multi-Out uses the enabled outputs. Force Stereo is always the main pair. Rescan Outputs is a standalone-app button. It asks the audio device again. It is not a plug-in step — except for one current-build workaround below."
+        },
+        {
+          "id": "on-a-mac-plug-in-today",
+          "title": "On a Mac plug-in, today",
+          "text": "The intended behaviour is that Force Multi-Out starts using the enabled outputs the moment you pick it. In the current build, a plug-in that’s already running may stay on the stereo mix after you choose Force Multi-Out. Until that is fixed: choose Force Multi-Out , then press Rescan Outputs , or reload the plug-in in the host. If Force Multi-Out was already saved when the plug-in loaded, it should use the enabled pairs from the start."
+        },
+        {
+          "id": "on-iphone-and-ipad",
+          "title": "On iPhone and iPad",
+          "text": "On the iPhone and iPad AUv3, the host only learns the output list at load. Force Multi-Out takes effect the next time the host loads the plug-in. Reload it. Rescan Outputs does not change the list here. Stereo is the default on iPhone and iPad. AUM can route the extra outputs. GarageBand is expected to stay stereo only. Output names in the host are defaults, not fixed destinations. Drum strips default to their own pair. FX returns default to the main pair , so assign them if you want them on their own tracks. All four players’ kicks sum on one pair, so per-drum multi-out does not, by itself, give each player its own kick track. On a per-drum route, each strip’s own processing is included, and the player volume is applied, but the sound bypasses the player bus and master processing . Routing Mode is Auto (Recommended) in this picture, with Rescan Outputs underneath. Force Multi-Out is the other choice in that same Routing Mode menu. Screenshot needed (optional, live host): A host mixer after multi-out is enabled, with kick, snare and hats arriving on separate tracks. Note the host, version, and whether Rescan Outputs or a reload was needed."
+        },
+        {
+          "id": "the-auv3-on-iphone-and-ipad",
+          "title": "The AUv3 on iPhone and iPad",
+          "text": "Load Larry Seyer Drums as an instrument in a host such as GarageBand or AUM. The README also names Quantiloop Pro and Loopy Pro. After an install, reload the host slot: switch away, let it load, then switch back. The plug-in window itself is Quick Pick — the twenty buttons, sized to the host’s window — plus Open full Larry Seyer Drums and a status line that says Playing or Editing in Larry Seyer Drums . There is no Play button in that window. The host’s transport runs it, with Host Sync by default. Open full Larry Seyer Drums attaches the app to the playing AUv3, and the app shows “Editing in host” with the bank and slot. If that doesn’t appear, there’s a “Tap to edit in Larry Seyer Drums” notification, or you can open the app by hand when notifications are off. Show yourself the way back to the host before you’re in the middle of a session. Saving: the host’s Save also writes the current Song into its bank slot, with three exceptions. After a Quick Pick choice it writes nothing until a slot is loaded or saved again; a locked slot is left alone; and a song that never came from a slot (unslotted) writes nothing. The AUv3 can’t present file pickers, so import and export of files happen in the standalone app. The AUv3 shares the device with the host and any other plug-ins, and it makes the same power check as the app. Extra SeyerComps may fall back to Simple Comp, and tape and extra reverbs may be held back. Keep effects light on iPhone. The Quick Pick plug-in window has no load meter, so use the host’s CPU display if it has one, or open the full app and watch the meter there. Attached editing and recording on iOS are still being retested. If “Open full Larry Seyer Drums” or recording into a pill while attached misbehaves, that’s a high-value report. Previous: Tempo, Sync and MIDI · Index · Next: iPhone and iPad"
         }
       ]
     },
     {
-      "id": "iphone-ipad-tips",
-      "title": "iPhone & iPad tips",
-      "url": "iphone-ipad-tips.html",
+      "id": "iphone-and-ipad",
+      "title": "iPhone and iPad",
+      "url": "iphone-and-ipad.html",
       "number": 13,
-      "summary": "Tips for using Larry Seyer Drums on iPhone and iPad.",
+      "summary": "Layouts, device power, and the load meter.",
       "sections": [
         {
           "id": "",
-          "title": "iPhone & iPad tips",
-          "text": "Content coming soon. This chapter is a stub so the manual’s layout, navigation and search can be built and previewed. The approved text will replace this placeholder; leave placeholder: true in the front matter until then."
+          "title": "iPhone and iPad",
+          "text": "Draft for Larry’s review — not published. Temporary quick-start for TestFlight testers until the tutorial videos are ready. App version 0.94.0 . On iPhone and iPad, Larry Seyer Drums is one app that is both the standalone instrument and the AUv3 plug-in. This chapter is about using the app itself on those devices. Using it inside a host is in Using the Plug-in in a Host ."
+        },
+        {
+          "id": "layouts-and-everyday-gestures",
+          "title": "Layouts and everyday gestures",
+          "text": "The app rotates with the device. The Players, Songs, Sounds and Mixer pages each have a tighter layout in portrait and a wider one in landscape. On an iPhone in compact landscape, player cards can fold down to a strip, and the Songs page can use a P1–P4 launcher instead of four full timelines. A few iOS niceties that testers should try: Shake to undo , and haptics. Shake-to-undo during playback is an Accessibility option. Lock Screen play and stop controls. Audio can play on top of other apps — the audio session mixes with them. Bluetooth MIDI and wired MIDI both work from the standalone app. Buffer size on the iOS Audio page is 128 to 1024. Folding-phone layouts are supported in the code, but I have not presented them as verified on real hardware. If you’re on a folding phone and something looks wrong, that’s useful to know. Screenshot needed: The Players page on an iPhone in portrait, and again in landscape, so the two layouts can be compared. Screenshot needed: The Songs page on an iPhone in the compact P1–P4 launcher layout."
+        },
+        {
+          "id": "device-power-and-the-load-meter",
+          "title": "Device power and the load meter",
+          "text": "Most iPhones have limited processing power, and Larry Seyer Drums can use a lot of it. Multiple compressors, tape, reverbs and Morph all cost processing. The app still works. How many effects you can run at once depends on the device, not on a missing feature. When audio starts, and again when the sample rate or buffer size changes, the app measures what this device can afford. There is no model list. On iPhone and iPad it grants effects in this order: The first SeyerComp (always) Tape on the master Up to five SeyerComps in all Tape on the four player buses The other players’ reverbs If a step doesn’t fit, it is skipped, and the next cheaper one is still tried. What you’ll see when a device is full: SeyerComp past the limit runs as Simple Comp , and the panel says “Simple Comp is running because this device has reached its SeyerComp capacity.” Tape shows “This device is not fast enough for the tape” or “This device runs the tape on the master bus only.” On some devices master tape isn’t granted, but you may still switch it on if the song is light enough. Reverb returns the device can’t afford are dimmed with “Not enough power.” One player’s reverbs always run. The DSP load meter beside Play is the thing to watch. It climbs from green toward red as load nears the limit, and it flashes red after a dropout. On a Mac the same check runs, tape is always available, and everything normally fits. These budgets were calibrated on an older-phone class of device and are still marked provisional in the code, so if your iPhone or iPad feels over-limited or under-protected, please include the model, iOS version, sample rate and buffer size in the report. Screenshot needed: The top bar on an iPhone with the DSP load meter visible, preferably after several effects have been added so the meter is no longer sitting in the quiet green range. Screenshot needed: A compressor or tape or reverb panel showing one of the “not enough power” or Simple Comp messages, on a real device."
+        },
+        {
+          "id": "external-keyboards",
+          "title": "External keyboards",
+          "text": "An iPhone or iPad with a USB or Bluetooth keyboard uses the same shortcuts as the Mac. See Keyboard Shortcuts for the essentials and for a few iOS exceptions (function keys, non-US number-row chords, and a couple of keys the system keeps for itself). Previous: Using the Plug-in in a Host · Index · Next: Keyboard Shortcuts"
         }
       ]
     },
     {
       "id": "keyboard-shortcuts",
-      "title": "Keyboard shortcuts",
+      "title": "Keyboard Shortcuts",
       "url": "keyboard-shortcuts.html",
       "number": 14,
-      "summary": "Keyboard shortcuts in Larry Seyer Drums.",
+      "summary": "The essentials, including an external keyboard on iPhone and iPad.",
       "sections": [
         {
           "id": "",
-          "title": "Keyboard shortcuts",
-          "text": "Content coming soon. This chapter is a stub so the manual’s layout, navigation and search can be built and previewed. The approved text will replace this placeholder; leave placeholder: true in the front matter until then."
+          "title": "Keyboard Shortcuts",
+          "text": "Draft for Larry’s review — not published. Temporary quick-start for TestFlight testers until the tutorial videos are ready. App version 0.94.0 ."
+        },
+        {
+          "id": "opening-the-shortcuts-window",
+          "title": "Opening the shortcuts window",
+          "text": "Open Keyboard Shortcuts from the three-dot menu, or press K . The window is grouped and searchable. It is its own window, not a page inside App Settings. You can choose a scheme (the Larry Seyer Drums scheme, or DAW 1 through DAW 6), rebind a key, reset shortcuts, and import or export a shortcut set. The same keys work on a Mac, in a plug-in (once the plug-in window has keyboard focus), and on an iPhone or iPad with a hardware keyboard. Menu rows show their shortcut only while a keyboard is connected. In an iOS host, the AUv3 window is Quick Pick and the host normally keeps the keyboard, so learn and use shortcuts in the full app. Screenshot needed: The Keyboard Shortcuts window open on the Larry Seyer Drums scheme, with the search field and a few transport or song keys visible."
+        },
+        {
+          "id": "the-essentials",
+          "title": "The essentials",
+          "text": "These are from the default Larry Seyer Drums scheme in 0.94.0: Key What it does Space Play / Stop Command+S Save Command+Shift+S Save As (this is Command+Option+S in the DAW 1 scheme) Option+S Split (this is S in the DAW 1 scheme) Command+G Combine Command+I Insert Measures 1–7 Set the selected pill’s energy L, P, F Loop, Pre-Fill, Post-Fill Tab Show or hide the Pattern Editor M Mixer Q Quick Pick Home / End Jump in the timeline Command+P Pattern Editor Command+F Find Song (Mac and iPad) Command+Shift+S is Save As in the default scheme. If you’ve switched to DAW 1, that scheme moves Save As to Command+Option+S, because S on its own is Split. Click in a plug-in window before you type, and check whether the host has a “send all keys to the plug-in” option."
+        },
+        {
+          "id": "iphone-and-ipad-with-an-external-keyboard",
+          "title": "iPhone and iPad with an external keyboard",
+          "text": "A USB or Bluetooth keyboard on iPhone or iPad uses the same catalog and the same handlers as the Mac. Held keys (for example Solo In Front) work. Function keys F1–F12 are accepted when the keyboard actually sends them. A few things may not work, and they’re worth confirming on the device you’re testing: Shift+number chords (for example Command+Option+Shift+1–7, the preset Save As keys) are matched through the US number row. On another keyboard layout they may not fire. Function-key chords (F3, F9, F10, Shift+F3, Command+F3) need a keyboard that sends function keys. Many iPad and iPhone keyboards have no function row. Chords iOS keeps for itself never reach the app. The default scheme avoids them. Two alternate-scheme keys collide: Command+Shift+Tab (DAW 1’s second Pattern Editor key, which is the app switcher on iPad) and Command+Option+D (DAW 6 Ripple Delete, which is the iPad Dock). Some keyboards have no Escape key. Escape closes what’s in front; use the iPadOS substitute on the device if your keyboard doesn’t have one. If you find a shortcut that should work and doesn’t, please include the keyboard model and layout, the device, and the scheme you were on. Previous: iPhone and iPad · Index · Next: Saving and Backups"
         }
       ]
     },
     {
-      "id": "saving-import-export-backups",
-      "title": "Saving, import/export & backups",
-      "url": "saving-import-export-backups.html",
+      "id": "saving-and-backups",
+      "title": "Saving and Backups",
+      "url": "saving-and-backups.html",
       "number": 15,
-      "summary": "Saving your work, importing and exporting, and making backups.",
+      "summary": "Save versus Save As, banks, import and export.",
       "sections": [
         {
           "id": "",
-          "title": "Saving, import/export & backups",
-          "text": "Content coming soon. This chapter is a stub so the manual’s layout, navigation and search can be built and previewed. The approved text will replace this placeholder; leave placeholder: true in the front matter until then."
+          "title": "Saving and Backups",
+          "text": "Draft for Larry’s review — not published. Temporary quick-start for TestFlight testers until the tutorial videos are ready. App version 0.94.0 ."
+        },
+        {
+          "id": "save-is-what-makes-an-edit-permanent",
+          "title": "Save is what makes an edit permanent",
+          "text": "This is the rule I want every tester to remember. You can do a lot of work in a Song, in the Pattern Editor, or on a kit, and still lose it if you never save. Save writes the current item, and only appears on things you created. Save As… makes a new named copy and is how you put a song into a bank slot. Done in the Pattern Editor keeps edits in the Song, but the Song still needs Save to make them permanent. Cancel backs out of the editor copy. Names have to be unique, and the app applies Title Case. File pickers reopen at the folder you last used. On iPhone, the song block replaces the stepper in portrait. Hold the song name to rename it in place."
+        },
+        {
+          "id": "banks-and-slots",
+          "title": "Banks and slots",
+          "text": "Songs are stored in banks of slots 0–99. Use Save As to write into a slot. Lock a slot if you don’t want it overwritten or deleted. The standalone app reopens the last slot at startup. There’s more on stepping, finding, and building a set list in Songs: Arranging ."
+        },
+        {
+          "id": "import-export-and-a-full-backup",
+          "title": "Import, export and a full backup",
+          "text": "The three-dot menu’s Import and Export windows are grouped: Backup (Everything) — a .drums-backup Project — Song, Program Change This Bank / All Banks, Timeline Sounds — Player, Kit, Pattern, MIDI File Mixing — mixer, channel, EQ, compressor, reverb, delay Utility — Energy, App Settings, Keyboard Shortcuts Audio You can Add To, Merge or Replace . Back up before any Replace, and before Reset to Factory Defaults. Reset offers Back Up & Reset; use it. Always back up first. You can open a file straight into Import by double-clicking it on a Mac, or by opening it from the Files app on iPhone or iPad. What actually travels: A shared preset or backup carries settings, never sample recordings . The library itself is already in the app. Imported UserPatterns travel only with the export that includes them. A Song file does not automatically bring every dependency with it. Missing content shows a labelled placeholder. Re-import the missing piece to recover it. The AUv3 can’t present file pickers, so do file import and export from the standalone app. On iOS, you’ll use Files and the share sheet. Moving a backup to another device with AirDrop or Files is a good test if you have two devices. Screenshot needed: The Export window open on Backup (Everything), showing the parts list. Screenshot needed: A successful backup or restore in progress, or the confirmation after a restore onto a second device."
+        },
+        {
+          "id": "settings-that-stay-on-the-machine",
+          "title": "Settings that stay on the machine",
+          "text": "App Settings has its own presets (for example Stage and Studio). Some settings live on the device and are not inside a Song: audio device, a lot of MIDI and sync setup, accessibility, and so on. Export App Settings if you want those on another machine. On the desktop app (not a sandboxed store build), there is also a Local Storage Folder setting. Window Layout presets are desktop only. Haptics and shake-to-undo are iOS only. If you ever need to start clean, use Reset to Factory Defaults — and take the backup it offers before you confirm. Previous: Keyboard Shortcuts · Index · Next: Known Gaps in This Beta"
         }
       ]
     },
     {
       "id": "known-gaps",
-      "title": "Known gaps in this beta",
+      "title": "Known Gaps in This Beta",
       "url": "known-gaps.html",
       "number": 16,
-      "summary": "Things that are incomplete, missing, or still changing in this beta.",
+      "summary": "What is unfinished, provisional, or not in this build.",
       "sections": [
         {
           "id": "",
-          "title": "Known gaps in this beta",
-          "text": "Content coming soon. This chapter is a stub so the manual’s layout, navigation and search can be built and previewed. The approved text will replace this placeholder; leave placeholder: true in the front matter until then."
+          "title": "Known Gaps in This Beta",
+          "text": "Draft for Larry’s review — not published. Temporary quick-start for TestFlight testers until the tutorial videos are ready. App version 0.94.0 . This is the honest list of things I don’t want you to treat as surprises or as bugs you have to rediscover. If you hit something that isn’t on this list, please report it ."
+        },
+        {
+          "id": "not-in-this-testflight-build",
+          "title": "Not in this TestFlight build",
+          "text": "VST3, CLAP and the installer AU plug-in are not included. This beta is the standalone app on Mac, iPad and iPhone, plus the AUv3 plug-in. Windows and Linux come later. There is no native AAX build for Pro Tools. Kit Packs are planned for summer 2027 and are not available yet. There is no trial or purchase flow to test. This TestFlight build is fully unlocked, on purpose. Sync Folder (a shared-folder sync in App Settings → Storage) is hidden in this build. “Marked section” in audio export is not ready. Sharing one song from the bank grid is planned, not in this build. A full REAPER-style multi-select (Command-click toggling, keyboard cut and copy of pills) is planned, not in this build. MIDI Learn is on mixer faders only. There is no global bindings pane, and you can’t learn arbitrary controls yet. Some bigger sync ideas (a companion plug-in, bidirectional folder sync) are parked and not in this beta."
+        },
+        {
+          "id": "in-the-build-but-provisional-or-unfinished",
+          "title": "In the build, but provisional or unfinished",
+          "text": "The Sounds page may change. Kits, Morph and the synth machines work, but the page is not frozen. Synth 3 is being corrected, and the other synth kits are still waiting on my listening pass. Plugin Auto routing. In a plug-in, Auto is meant to use extra outputs once the host has enabled them. In 0.94.0 it still keeps the mix on the main stereo pair. Use Force Multi-Out for separate outputs. See Using the Plug-in in a Host . Force Multi-Out on a running Mac plug-in may stay stereo until you press Rescan Outputs or reload the plug-in. On iPhone and iPad, reload the plug-in in the host; Rescan Outputs does not apply the change there. Player preset names may still be placeholders (for example “Player”, “VelMods”, “Reverb”). The final ten presets are still being finished. Quantize has new tools I’m still A/B’ing. If it feels wrong, tell me. Please avoid using Rock 130 , Rock Shuffle 125 , Pretty Shuffle and Texas Blues Jam 115 as fill examples; those fills are still in A/B. Use Busy Beat One . Device power budgets on iPhone and iPad are calibrated and still marked provisional in the code. The messages and the load meter are real; the exact limits may still move. Recording into a pill from the iOS app while it is attached to an AUv3, and some attached-editing paths, are still being retested. Dragging MIDI files onto a pill row or pool column is still being retested. Use Import → MIDI File if a drag doesn’t take. Host-specific steps (Logic Pro, REAPER, Ableton Live, Cubase, Studio One, Bitwig, GarageBand, AUM and others) have not all been demonstrated end-to-end for the finished tutorials. If a named host behaves unexpectedly, that report is especially useful — please include the host name, version and plug-in format."
+        },
+        {
+          "id": "things-that-can-look-like-bugs-but-are-how-it-works",
+          "title": "Things that can look like bugs, but are how it works",
+          "text": "Save is what makes an edit permanent. Done in an editor is not the same as Save. Gaps on a pill row are legal and play silence for that player. Factory Asleep is silent, so it plays no fill. The name itself is not a mute; an edited level can change that. Lock freezes preset, kit, energy, pill and swing, and it disables the card’s volume and Fill gestures. Mute and Solo stay live, and a MIDI Fill still works. A player preset leaves Energy alone. It restores sound and mix only. Ableton Link shares tempo and phase. Start/stop sync is a separate option. Output names in a host are defaults, not fixed destinations. FX returns default to the main pair. Per-drum multi-out sums all four players’ kicks on one pair, and it bypasses player-bus and master processing. Summed stems need not equal the master mix , because the master has its own processing. The click is never exported. Quick Pick’s remembered pair is not the same thing as a Song you saved. A feature called Morph is controlled in App Settings, not from the MORPH chip. The chip only reports On, Off or Building. The kick does not morph. On the Sounds page, a pad labelled in a way that looks like “Chime” may not be the same thing as the Chime row. If a chime or bell comes out somewhere unexpected, tell me, and mention whether you struck a pad, played a pattern, or used Energy’s Bells choice. Previous: Saving and Backups · Index · Next: How to Report Problems"
         }
       ]
     },
     {
-      "id": "reporting-problems",
-      "title": "Reporting problems",
-      "url": "reporting-problems.html",
+      "id": "how-to-report-problems",
+      "title": "How to Report Problems",
+      "url": "how-to-report-problems.html",
       "number": 17,
-      "summary": "How to report a problem you find while testing.",
+      "summary": "How to send a report using the contact link on larryseyer.com.",
       "sections": [
         {
           "id": "",
-          "title": "Reporting problems",
-          "text": "Content coming soon. This chapter is a stub so the manual’s layout, navigation and search can be built and previewed. The approved text will replace this placeholder; leave placeholder: true in the front matter until then."
+          "title": "How to Report Problems",
+          "text": "Draft for Larry’s review — not published. Temporary quick-start for TestFlight testers until the tutorial videos are ready. App version 0.94.0 . If something is wrong, confusing, or different from this guide, I want to hear it. This beta is how we find those things before the tutorial videos — and the release — are finished."
+        },
+        {
+          "id": "how-to-send-a-report",
+          "title": "How to send a report",
+          "text": "For now, please send bug reports using the contact form on my website: larryseyer.com/pages/connect.html#contact That form goes straight to my inbox. Please put “Larry Seyer Drums beta” in the message so I can find it quickly. In the next build there will be an in-app Submit Bug Report link. Until that lands, the contact page is the way to reach me."
+        },
+        {
+          "id": "what-to-include",
+          "title": "What to include",
+          "text": "The more of this you can give me, the faster I can reproduce it: What you were trying to do , in one or two sentences. What happened , and what you expected instead. Where you were: standalone app, or a plug-in inside a host. If it was a host, the host’s name and version, and the plug-in format (in this beta that’s AUv3). The device and system: for example “iPhone 15, iOS 18.x” or “Mac, macOS 15.x, this processor.” Larry Seyer Drums version (this TestFlight build, as shown in About). Steps to reproduce , starting from Quick Pick when you can. Busy Beat One is a helpful starting point because I’ll try it the same way. A screenshot or a short screen recording if the problem is visual or musical. If there was a message on screen, include the exact wording (“Not enough power,” “Simple Comp is running…,” and so on). Whether it happens every time , or only once in a while. Anything you already tried (Rescan Outputs, reloading the plug-in, a different buffer size, another output device). If the app dropped audio, note what the DSP load meter was doing, which effects were on, and how many players were playing. If the problem is “no sound,” walk through the “No sound?” checklist first and tell me which step didn’t fix it."
+        },
+        {
+          "id": "what-is-probably-not-a-new-bug",
+          "title": "What is probably not a new bug",
+          "text": "Please still write in if you’re unsure — I’d rather have a duplicate than a miss — but check Known Gaps in This Beta first. In particular, the Force Multi-Out rescan/reload step, Auto staying stereo in a plug-in, device-power messages, placeholder preset names, and features listed as not in this build are already known."
+        },
+        {
+          "id": "thank-you",
+          "title": "Thank you",
+          "text": "Pat Mastelotto played the drums in the complete Larry Seyer Acoustic Drum Library, and I recorded them. You’re hearing that work, and you’re helping me make the instrument around it solid. I’m grateful you’re here for the beta. The tutorial videos will take over from this guide when they’re ready. Until then, this is the map. Previous: Known Gaps in This Beta · Index"
         }
       ]
     }
