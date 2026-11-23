@@ -12,9 +12,7 @@ Python dependencies; the Markdown converter is in this file.
 Chapter titles are read from each file's front matter (or its first
 # heading). They are never hardcoded here.
 
-These pages are unpublished: they carry noindex and must not be linked
-from existing site pages until the approved text is in and a publish
-is explicitly requested. Nothing is ever pushed by this script.
+Nothing is ever pushed by this script.
 """
 from __future__ import annotations
 
@@ -814,7 +812,6 @@ def page_head(title: str, description: str, canonical: str) -> str:
   </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="robots" content="noindex, nofollow">
   <meta name="description" content="{html.escape(re.sub(r'<[^>]+>', '', desc), quote=True)}">
   <meta property="og:title" content="{html.escape(re.sub(r'<[^>]+>', '', shown), quote=True)}">
   <meta property="og:description" content="{html.escape(re.sub(r'<[^>]+>', '', desc), quote=True)}">
