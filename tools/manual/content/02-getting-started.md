@@ -19,7 +19,7 @@ You can also reopen Quick Pick from the three-dot menu, or with the Q key if you
 
 A plug-in window in a Mac or desktop host opens on the full app pages, not on Quick Pick. The compact AUv3 window on iPhone and iPad *is* a Quick Pick view, with **Open full Larry Seyer Drums** to attach the app -- that's covered in [Using the Plug-in in a Host](12-using-the-plugin.md).
 
-![Quick Pick on a Mac in portrait, with Busy Beat One and a player preset selected](images/s02-quick-pick.png "Quick Pick with Busy Beat 1 · Verse and Beefy Rod Kit selected")
+![Quick Pick with Pretty Shuffle and Dry selected, and the Edit in Full App button](images/s02-quick-pick.png "Quick Pick with Pretty Shuffle and Dry selected, plus Edit in Full App")
 
 
 ## The top bar

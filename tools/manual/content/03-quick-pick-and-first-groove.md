@@ -55,7 +55,7 @@ On iPhone and iPad the layout follows the screen: in portrait, beats are on the 
 
 A Mac or desktop plug-in window opens on the full app pages, not on this screen. The compact AUv3 window on iPhone and iPad *is* a Quick Pick view; see [Using the Plug-in in a Host](12-using-the-plugin.md).
 
-![Quick Pick on a Mac in portrait, with Busy Beat One and a player preset selected](images/s02-quick-pick.png "Quick Pick with Busy Beat 1 · Verse and Beefy Rod Kit selected")
+![Quick Pick with Pretty Shuffle and Dry selected, and the Edit in Full App button](images/s02-quick-pick.png "Quick Pick with Pretty Shuffle and Dry selected, plus Edit in Full App")
 
 > **Screenshot needed:** Quick Pick on an iPhone in portrait, same selection, so the side-by-side layout is clear.
 
