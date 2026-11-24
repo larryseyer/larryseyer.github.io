@@ -64,7 +64,7 @@ Save versus Save As works the way it does everywhere: Save is for your own items
 
 You can share a preset as a `.drums-bundle` and open it on another device.
 
-> **Screenshot needed:** The player-preset accordion open on a card, with one preset checked, Busy Beat One audible in the description if the UI shows the kit name.
+> **Screenshot needed:** The player-preset accordion open on a card, with one preset checked, Pretty Shuffle audible in the description if the UI shows the song or kit name.
 
 ## Four drummers at once
 
@@ -72,11 +72,11 @@ Turn on Players 2, 3 and 4 from their badges. Each player gets its own column in
 
 The four players share **one conductor** — the song's meter and tempo — but each can have its own pattern meter. That's a deeper topic in the Songs chapter; for a first test, keep everyone in 4/4 and give each player a different part.
 
-A good first stack: Busy Beat on Player 1 with a Stick kit, a second player on a **Rod** kit adding a ride or tom part (that's the Rod sound itself, not brushes), and a third player on a half-time feel. Mute, solo and volume let you bring them in and out. On a keyboard, the arrow keys move to the previous or next player.
+A good first stack: Pretty Shuffle on Player 1 with **Dry** (a Stick kit), a second player on a **Rod** kit adding a ride or tom part (that's the Rod sound itself, not brushes), and a third player on a half-time feel. Mute, solo and volume let you bring them in and out. On a keyboard, the arrow keys move to the previous or next player.
 
 On an iPhone in compact landscape, the cards become a strip and you open a player's lane when you need it.
 
-> **Screenshot needed:** Four players on, with Player 1 on Busy Beat One and at least one more player showing a different kit or part.
+> **Screenshot needed:** Four players on, with Player 1 on Pretty Shuffle and at least one more player showing a different kit or part.
 
 ---
 

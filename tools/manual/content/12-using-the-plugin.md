@@ -48,7 +48,7 @@ You can use as much or as little of the app's own song side as you want.
 
 **3. Both.** Larry Seyer Drums writes the part, and the host keeps it — by recording the plug-in's MIDI output, or by exporting or dragging a MIDI file onto a track, then playing that track back as a sound module. Set Input Layout to match the file: EX for EX, GM for GM.
 
-You can also mix the ways: for example, a Busy Beat song on Player 1, with extra crash accents coming from a MIDI track on the same channel.
+You can also mix the ways: for example, a Pretty Shuffle song on Player 1, with extra crash accents coming from a MIDI track on the same channel.
 
 A simple worked example: draw a short two-bar groove in the host (kick, snare, hats, a crash, a small tom fill), play it through Player 1 in stereo, then set up multi-out and listen to the drums on separate tracks.
 

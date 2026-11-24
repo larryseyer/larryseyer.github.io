@@ -11,11 +11,11 @@ Energy is how a drummer leans into a part without you rewriting the notes. The r
 
 **Asleep · Chilled · Relaxed · Normal · Alert · Excited · Energetic**
 
-Try the same eight bars of Busy Beat at Chilled, then Normal, then Energetic. The pattern stays the same. The playing does not.
+Try the same eight bars of Pretty Shuffle at Chilled, then Normal, then Energetic. The pattern stays the same. The playing does not.
 
 The factory **Asleep** level is silent, but the name isn't a hard-wired mute. If you edit Asleep so it makes sound, it will play. If you edit any level down to full silence, fills are suppressed on that level, just as they are on factory Asleep.
 
-> **Screenshot needed:** The energy row with Normal lit, Busy Beat One playing, no player selected, so the row is clearly acting on the whole song.
+> **Screenshot needed:** The energy row with Normal lit, Pretty Shuffle playing, no player selected, so the row is clearly acting on the whole song.
 
 ## Who the row belongs to
 
@@ -40,11 +40,11 @@ The editor is an accordion: **Tempo Offset**, **Swing** and **Drums**, with one 
 - **Swing** is 0–100%, and can swing 8ths, 16ths, 32nds or quarters. Double-click a control to reset it. This is different from a pill's Triplet feel, and different from compound counting such as 6/8 in 2 or in 3. Fills follow the feel.
 - **Pattern controls** let you change what the drums do at this level: snare mode (Pattern, Stick, Snare, Rimshot), hi-hat mode (Pattern, HiHat — play the ride as a closed hat — or Ride — play the hat on the ride), and the backbeat crash.
 
-A useful experiment: turn Busy Beat's Excited level into a ride-driven, rimshot chorus feel, then switch between Normal and Excited.
+A useful experiment: turn Pretty Shuffle's Excited level into a ride-driven, rimshot chorus feel, then switch between Normal and Excited.
 
 Energy definitions **belong to the Song**. Editing them changes this song, not a global default. A New Song starts from the factory levels. To reuse a set of levels, export or import them (Import/Export → Energy) or copy them into another song. Each level button has a menu for Rename (up to 40 characters), Colour, Copy Settings, Paste Settings, Paste Settings to All Levels, and Reset to Factory.
 
-> **Screenshot needed:** The Energy Profile editor open on Excited, with the Drums section visible and Busy Beat One as the song.
+> **Screenshot needed:** The Energy Profile editor open on Excited, with the Drums section visible and Pretty Shuffle as the song.
 
 There's more depth here — kick, snare, hat, toms and cymbals each have their own shaping, including a feature called Morph on the toms, and a way to send a cymbal to Bells. The tutorial videos will go drum by drum. For testing, the row plus the editor is enough to find problems and hear whether energy feels right.
 

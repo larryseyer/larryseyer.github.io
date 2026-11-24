@@ -15,7 +15,7 @@ Kits are grouped by striker: **Stick**, **Rod**, **Mallet**, **Synths** and **Co
 
 While a kit loads, you'll see “Loading kit…”. Tap a pad to hear it and to select it. The 6×6 pad grid lights up as the pattern plays.
 
-A good listen: put Busy Beat on a Stick kit, then a Rod kit, then a Mallet kit.
+A good listen: put Pretty Shuffle on a Stick kit, then a Rod kit, then a Mallet kit.
 
 Kits are built by swapping sounds from the supplied library. Larry Seyer Drums does not import your audio samples. The one exception is the click, which can load an audio file. A shared kit or player preset carries settings, not the sample recordings themselves.
 
@@ -58,7 +58,7 @@ On iPad and Mac you can drag a sound onto a pad. On iPhone, use Browse and the E
 
 The TUNE side has six sliders: Tune, Volume, Attack, Decay, Sustain and Release. Tune and Volume act on the whole instrument; the envelope is per articulation. Deeper editors sit behind the menu button: a sample editor (waveform, pan, hold, and an **Output Bus** chooser) and a synth voice editor.
 
-A small, useful test: tune the Busy Beat snare down a semitone and shorten its decay.
+A small, useful test: tune the Pretty Shuffle snare down a semitone and shorten its decay.
 
 ## The synth machines
 

@@ -76,8 +76,8 @@ App Settings, keyboard shortcuts, import and export, and a way back to Quick Pic
 
 ## If you only have a few minutes
 
-1. Open the standalone app. After the splash, Quick Pick appears. Try a beat -- **Busy Beat** is a good one -- and a kit, and listen.
-2. Press **Edit in Full App**. You'll land on the Players page, with that groove as a song you can already edit.
+1. Open the standalone app. After the splash, Quick Pick appears with **Pretty Shuffle** and **Dry** already highlighted. Listen to that pairing, or tap another beat and kit if you want.
+2. Press **Edit in Full App**. You'll land on the Players page, with that groove as a song you can already edit (named **Pretty Shuffle** if you kept the default).
 3. If you hear nothing, use the [“No sound?” checklist](02-getting-started.md#no-sound-checklist).
 4. When you're ready to build something of your own, go to [Your first groove](03-quick-pick-and-first-groove.md#build-your-own-song) and drag pills onto the timeline. You are not limited to what Quick Pick offers.
 

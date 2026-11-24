@@ -50,7 +50,7 @@ Fills follow the pill's energy and feel. The fill tint on a pill is not the same
 
 On a keyboard: L for loop, P for pre-fill, F for post-fill, and Command+M for mute.
 
-A good test: loop the Busy Beat Chorus, then release it into a Post-Fill.
+A good test: loop the Pretty Shuffle Chorus, then release it into a Post-Fill.
 
 ![Close-up of a Chorus pill on Busy Beat One, with the four corner controls visible](images/s13-pill-corners.png "Busy Beat 1 120 Chorus. The four corners are the bar count and Loop at the top, Pre-Fill and Post-Fill at the bottom. Post-Fill is not turned on in this picture.")
 
@@ -71,7 +71,7 @@ A **lift** is a small drummer pickup into the next bar. Double-tap the ruler to 
 
 App Settings has **Auto Lifts** if you want them generated on a phrase length, with a short recipe for what the lift plays. From a controller, control change 18 places a lift.
 
-Try Busy Beat with Auto Lifts every four bars, then compare that with a couple of hand-placed lifts.
+Try Pretty Shuffle with Auto Lifts every four bars, then compare that with a couple of hand-placed lifts.
 
 ## Playing a song live
 

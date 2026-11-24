@@ -28,7 +28,7 @@ The more of this you can give me, the faster I can reproduce it:
 3. **Where you were:** standalone app, or a plug-in inside a host. If it was a host, the host's name and version, and the plug-in format (in this beta that's AUv3).
 4. **The device and system:** for example “iPhone 15, iOS 18.x” or “Mac, macOS 15.x, this processor.”
 5. **Larry Seyer Drums version** (this TestFlight build, as shown in About -- it will look like 0.97.x, with the last number going up on each bug-fix build).
-6. **Steps to reproduce**, starting from Quick Pick when you can. Busy Beat is a helpful starting point because I'll try it the same way.
+6. **Steps to reproduce**, starting from Quick Pick when you can. Pretty Shuffle with Dry is a helpful starting point because I'll try it the same way.
 7. **A screenshot or a short screen recording** if the problem is visual or musical. If there was a message on screen, include the exact wording (“Not enough power,” “Simple Comp is running…,” and so on).
 8. **Whether it happens every time**, or only once in a while.
 9. Anything you already tried (Rescan Outputs, reloading the plug-in, a different buffer size, another output device).

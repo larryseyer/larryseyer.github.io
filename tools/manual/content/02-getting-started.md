@@ -9,9 +9,9 @@ summary: "First launch, the top bar, and a No sound? checklist."
 
 On a fresh launch of the **standalone** app you'll see a short splash, then **Quick Pick**. That's the first screen on purpose: you can be hearing drums in a few seconds, before you learn the rest of the app.
 
-You'll see **Beats** on one side and **Kits** on the other (those are player presets). A fresh installation highlights **Pretty Shuffle** and **Dry**. Tap a beat and a kit to hear that pairing. **Busy Beat** is the example I'll use in later chapters; the list labels it **Busy Beat**.
+You'll see **Beats** on one side and **Kits** on the other (those are player presets). A fresh installation highlights **Pretty Shuffle** and **Dry**. Tap a beat and a kit to hear that pairing. **Pretty Shuffle** with **Dry** is the example I'll use in later chapters.
 
-When you're ready for the full app, press **Edit in Full App**. You'll land on the **Players** page, and you can edit whatever you choose from there -- players, the song, kits, the mixer, or a new song of your own. You are not limited to the Quick Pick list.
+When you're ready for the full app, press **Edit in Full App**. You'll land on the **Players** page, and you can edit whatever you choose from there -- players, the song, kits, the mixer, or a new song of your own. If you kept the default pairing, the song is named **Pretty Shuffle**. You are not limited to the Quick Pick list.
 
 Next time you open the standalone app, Quick Pick appears again as long as **Show Quick Pick at startup** is on -- that's the default. Testers can turn it off. Open the three-dot menu, choose **App Settings**, and in the **Quick Pick** section switch off **Show Quick Pick at startup**. After that, the app opens on the last song instead of Quick Pick. Quick Pick stays in the three-dot menu, and you can turn the switch back on at any time.
 

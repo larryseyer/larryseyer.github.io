@@ -23,9 +23,9 @@ If the transport is stopped, you hear an audition of what you just did. If it's 
 
 You can zoom with pinch, Command+wheel, or the − / + buttons, and fit the pattern to the width. Follow keeps the view with the playhead. The Tab key hides and shows the editor.
 
-A good first edit: add a few ghost notes to the snare on Busy Beat's Verse.
+A good first edit: add a few ghost notes to the snare on Pretty Shuffle's Verse.
 
-> **Screenshot needed:** The Pattern Editor open on the Busy Beat One Verse, with the velocity lane visible and a couple of snare ghost notes selected.
+> **Screenshot needed:** The Pattern Editor open on the Pretty Shuffle Verse, with the velocity lane visible and a couple of snare ghost notes selected.
 
 ## Rows, velocity and feel
 

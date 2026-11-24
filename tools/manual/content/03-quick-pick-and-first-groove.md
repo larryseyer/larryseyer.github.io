@@ -16,8 +16,8 @@ The factory beats, as they appear on screen, are:
 - Basic
 - Buyoun
 - Push
-- Busy Beat (the example I use throughout)
-- Pretty Shuffle
+- Busy Beat
+- Pretty Shuffle (the example I use throughout)
 - Shuffle Push
 - Waltz
 - Waltz Swing
@@ -39,11 +39,11 @@ The factory kits are:
 
 A fresh installation highlights **Pretty Shuffle** and **Dry**. Each factory beat plays as its Verse. Choosing a kit loads that player preset's sound. While it loads, the kit slot shows “Loading kit…” and the footer reads “Loading” plus the kit name.
 
-The footer otherwise shows the selected beat and kit, joined with a plus sign -- for example, “Busy Beat + Dry”.
+The footer otherwise shows the selected beat and kit, joined with a plus sign -- for example, “Pretty Shuffle + Dry”.
 
 Quick Pick remembers the last pair you chose and the tempo you played it at. When you come back, that pair is highlighted. Highlighting it is not the same thing as a Song you have saved.
 
-The button in the header is **Edit in Full App**. Press it when you're ready to leave Quick Pick. You land on the **Players** page, and from there you can edit anything in the full app: the players, the arrangement, the kit, the mixer, or a brand-new song. If **Show Quick Pick at startup** is on (that's the default; testers can turn it off in the three-dot menu, under **App Settings** → **Quick Pick**), the app also turns your current Quick Pick pair into a song you can edit: it is named after the beat, Player 1 has one looping pill, and Players 2 through 4 start empty. You can add more pills, change kits, or throw that song away and start another.
+The button in the header is **Edit in Full App**. Press it when you're ready to leave Quick Pick. You land on the **Players** page, and from there you can edit anything in the full app: the players, the arrangement, the kit, the mixer, or a brand-new song. If **Show Quick Pick at startup** is on (that's the default; testers can turn it off in the three-dot menu, under **App Settings** → **Quick Pick**), the app also turns your current Quick Pick pair into a song you can edit: it is named after the beat (so **Pretty Shuffle** if you kept the default), Player 1 has one looping pill, and Players 2 through 4 start empty. You can add more pills, change kits, or throw that song away and start another.
 
 You can reopen Quick Pick from the three-dot menu, or with the Q key in the default Larry Seyer Drums key scheme.
 
@@ -67,7 +67,7 @@ Once you've heard Quick Pick and pressed **Edit in Full App**, try this:
 
 1. Open the three-dot menu, open the **Song** group, and choose **New**. A dialog titled **New Song?** appears. It says you are starting an empty song, and that only unsaved changes to the current song are lost. Press **New**.
 2. Open the **Songs** page. The timeline lanes are empty. Across them you'll see the hint **Drag a section from below onto a lane**. Below the lanes (or nearby, depending on the device) is the **pill pool**: one column per player, with phrases you can drag in. After New Song, the pool starts on the **Blank 120** style, which is a silent style for building from nothing.
-3. In Player 1's column, pick a style you want to play -- **Busy Beat** is a good first try. (In the pool, style folders may still show a tempo in the name, such as Busy Beat 1 120.)
+3. In Player 1's column, pick a style you want to play -- **Pretty Shuffle** is a good first try. (In the pool, style folders may still show a tempo in the name, such as Pretty Shuffle 120.)
 4. Drag an **Intro**, then a **Verse**, a **Chorus**, another **Verse**, and a **Bridge** onto Player 1's pill row. The first pill on an empty lane starts at bar 1 and can set the tempo from that style. After that, a pill lands where you drop it. Gaps are allowed; a gap is silence for that player.
 5. Press **Play** and listen. Tap a phrase tab to jump to a section.
 6. Turn on **Post-Fill** on the Verse (the bottom-right corner of the pill) and listen to the fill into the next section.
