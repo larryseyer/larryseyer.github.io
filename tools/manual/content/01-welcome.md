@@ -13,6 +13,8 @@ This guide is a stand-in for the tutorial videos I'm still making. It is meant t
 
 If something in here doesn't match what you see on screen, trust the app in front of you and [tell me](17-how-to-report-problems.md). Version **0.94.0** is the build this guide was written against.
 
+Please send feedback by Monday, December 7.
+
 ## What Larry Seyer Drums is
 
 Larry Seyer Drums is a complete drum instrument — I call it The Drum DAW — built around real drumming.

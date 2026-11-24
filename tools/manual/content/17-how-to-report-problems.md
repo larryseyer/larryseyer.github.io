@@ -1,21 +1,23 @@
 ---
 title: "How to Report Problems"
-summary: "How to send a report using the contact link on larryseyer.com."
+summary: "How to send a report from Submit Bug Report in the three-dot menu, with the website contact link as a backup."
 ---
 
 > **Draft for Larry's review — not published.** Temporary quick-start for TestFlight testers until the tutorial videos are ready. App version **0.94.0**.
 
 If something is wrong, confusing, or different from this guide, I want to hear it. This beta is how we find those things before the tutorial videos — and the release — are finished.
 
+Please send feedback by Monday, December 7.
+
 ## How to send a report
 
-For now, please send bug reports using the contact form on my website:
+Please send bug reports with **Submit Bug Report** in the app's three-dot menu.
+
+If you can't use that, the contact form on my website is a backup:
 
 [larryseyer.com/pages/connect.html#contact](https://larryseyer.com/pages/connect.html#contact)
 
 That form goes straight to my inbox. Please put “Larry Seyer Drums beta” in the message so I can find it quickly.
-
-In the next build there will be an in-app **Submit Bug Report** link. Until that lands, the contact page is the way to reach me.
 
 ## What to include
 

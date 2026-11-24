@@ -44,7 +44,7 @@
         {
           "id": "thank-you-for-testing",
           "title": "Thank you for testing",
-          "text": "I’m Larry Seyer. Thank you for trying Larry Seyer Drums while it is still a beta. This guide is a stand-in for the tutorial videos I’m still making. It is meant to get you playing quickly, show you where the main features live, and warn you about a few things that are unfinished in this build. It is not the finished teaching series. When those videos are ready, they will be the standard way people learn the app. If something in here doesn’t match what you see on screen, trust the app in front of you and tell me . Version 0.94.0 is the build this guide was written against."
+          "text": "I’m Larry Seyer. Thank you for trying Larry Seyer Drums while it is still a beta. This guide is a stand-in for the tutorial videos I’m still making. It is meant to get you playing quickly, show you where the main features live, and warn you about a few things that are unfinished in this build. It is not the finished teaching series. When those videos are ready, they will be the standard way people learn the app. If something in here doesn’t match what you see on screen, trust the app in front of you and tell me . Version 0.94.0 is the build this guide was written against. Please send feedback by Monday, December 7."
         },
         {
           "id": "what-larry-seyer-drums-is",
@@ -593,17 +593,17 @@
       "title": "How to Report Problems",
       "url": "how-to-report-problems.html",
       "number": 17,
-      "summary": "How to send a report using the contact link on larryseyer.com.",
+      "summary": "How to send a report from Submit Bug Report in the three-dot menu, with the website contact link as a backup.",
       "sections": [
         {
           "id": "",
           "title": "How to Report Problems",
-          "text": "Draft for Larry’s review — not published. Temporary quick-start for TestFlight testers until the tutorial videos are ready. App version 0.94.0 . If something is wrong, confusing, or different from this guide, I want to hear it. This beta is how we find those things before the tutorial videos — and the release — are finished."
+          "text": "Draft for Larry’s review — not published. Temporary quick-start for TestFlight testers until the tutorial videos are ready. App version 0.94.0 . If something is wrong, confusing, or different from this guide, I want to hear it. This beta is how we find those things before the tutorial videos — and the release — are finished. Please send feedback by Monday, December 7."
         },
         {
           "id": "how-to-send-a-report",
           "title": "How to send a report",
-          "text": "For now, please send bug reports using the contact form on my website: larryseyer.com/pages/connect.html#contact That form goes straight to my inbox. Please put “Larry Seyer Drums beta” in the message so I can find it quickly. In the next build there will be an in-app Submit Bug Report link. Until that lands, the contact page is the way to reach me."
+          "text": "Please send bug reports with Submit Bug Report in the app’s three-dot menu. If you can’t use that, the contact form on my website is a backup: larryseyer.com/pages/connect.html#contact That form goes straight to my inbox. Please put “Larry Seyer Drums beta” in the message so I can find it quickly."
         },
         {
           "id": "what-to-include",
