@@ -57,7 +57,7 @@ A short list, so you don't go looking for something that isn't here yet:
 
 When you open the standalone app, a short splash is followed by **Quick Pick**. That is the first screen on purpose. You see a list of **Beats**, a list of **Kits** (those are player presets), and a button labelled **Edit in Full App**. The header reads “Quick Pick is free forever” when the window is wide enough, or “Quick Pick” when it isn't. The line at the bottom shows the beat and kit you have selected, joined with a plus sign.
 
-A fresh installation highlights **Pretty Shuffle** and **Dry**. You can tap any beat and any kit -- there are ten of each, so a hundred pairings -- and hear that combination. Quick Pick remembers the last pair you chose and the tempo you played it at.
+A fresh installation highlights **Pretty Shuffle** and **Dry**. Beats and Kits are separate choices. Change one and the other stays put, so any of the 10 beats works with any of the 10 kits, for 100 combinations. You can tap any beat and any kit and hear that pairing. Quick Pick remembers the last pair you chose and the tempo you played it at.
 
 **Edit in Full App** leaves Quick Pick and takes you to the **Players** page, where you can edit whatever you want. You are not limited to the ten Quick Pick beats. On the **Songs** page you can add more phrases, start a new empty song, and drag sections onto the timeline. See [Quick Pick and Your First Groove](03-quick-pick-and-first-groove.md).
 

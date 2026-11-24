@@ -9,7 +9,7 @@ summary: "Play in seconds, open the full app, then build your own song."
 
 In the standalone app, Quick Pick is the first screen after the splash, and it's the fastest way to hear the instrument. Choose a beat, choose a kit, and you're playing.
 
-The heading over the left (or top) list is **Beats**. The heading over the other list is **Kits** -- those are player presets. There are ten of each, so you have a hundred pairings.
+The heading over the left (or top) list is **Beats**. The heading over the other list is **Kits** -- those are player presets. Beats and Kits are separate choices. Change one and the other stays put, so any of the 10 beats works with any of the 10 kits, for 100 combinations.
 
 The factory beats, as they appear on screen, are:
 
