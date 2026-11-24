@@ -44,7 +44,9 @@ The **energy row** sits with the players: Asleep, Chilled, Relaxed, Normal, Aler
 
 ![Mac top bar showing Play, the MORPH chip, tempo with the lock, the DSP load meter, the Pretty Shuffle song readout and the four page tabs](images/s03-top-bar-mac.png "Mac top bar in portrait: Play, MORPH, tempo locked to INT, DSP load, Pretty Shuffle in the song readout, and page tabs")
 
-> **Screenshot needed:** The upright iPhone top bar, so testers can see how it differs.
+The iPad top bar matches that Mac screenshot.
+
+![Upright iPhone top bar showing Play, the DSP meter, tempo with the lock, a compact position and clock line, the Pretty Shuffle song readout and the four page tabs](images/s05-iphone-top-bar.png "Upright iPhone top bar: Play, DSP meter, 120 locked to INT, compact 1.3 · INT line, Pretty Shuffle in the song readout, and page tabs. There is no MORPH chip or master meter.")
 
 ## The three-dot menu
 

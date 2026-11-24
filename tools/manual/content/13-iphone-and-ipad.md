@@ -7,6 +7,8 @@ summary: "Layouts, device power, and the load meter."
 
 On iPhone and iPad, Larry Seyer Drums is one app that is both the standalone instrument and the AUv3 plug-in. This chapter is about using the app itself on those devices. Using it inside a host is in [Using the Plug-in in a Host](12-using-the-plugin.md).
 
+iPad layouts match the Mac screenshots in the rest of this guide. The pictures here are the iPhone layouts.
+
 ## Layouts and everyday gestures
 
 The app rotates with the device. The Players, Songs, Sounds and Mixer pages each have a tighter layout in portrait and a wider one in landscape. On an iPhone in compact landscape, player cards can fold down to a strip, and the Songs page can use a P1–P4 launcher instead of four full timelines.
@@ -21,7 +23,9 @@ A few iOS niceties that testers should try:
 
 Folding-phone layouts are supported in the code, but I have not presented them as verified on real hardware. If you're on a folding phone and something looks wrong, that's useful to know.
 
-> **Screenshot needed:** The Players page on an iPhone in portrait, and again in landscape, so the two layouts can be compared.
+![Players page in iPhone portrait, with Pretty Shuffle on Player 1](images/s24-iphone-players-portrait.png "iPhone portrait layout: compact top bar, energy row, and a 2×2 player grid. Player 1 is on Pretty Shuffle with Dry Cleaner Stick, energy Normal, pill Verse.")
+
+> **Screenshot needed:** The Players page on an iPhone in landscape, so the two layouts can be compared.
 >
 > **Screenshot needed:** The Songs page on an iPhone in the compact P1–P4 launcher layout.
 
@@ -51,8 +55,8 @@ On a Mac the same check runs, tape is always available, and everything normally 
 
 These budgets were calibrated on an older-phone class of device and are still marked provisional in the code, so if your iPhone or iPad feels over-limited or under-protected, please include the model, iOS version, sample rate and buffer size in the report.
 
-> **Screenshot needed:** The top bar on an iPhone with the DSP load meter visible, preferably after several effects have been added so the meter is no longer sitting in the quiet green range.
->
+![Upright iPhone top bar with the DSP load meter beside Play](images/s05-iphone-top-bar.png "The DSP load meter is the slim bar beside Play. In this picture the load is still in the quiet green range (captured from the iPhone layout preset on a Mac).")
+
 > **Screenshot needed:** A compressor or tape or reverb panel showing one of the “not enough power” or Simple Comp messages, on a real device.
 
 ## External keyboards

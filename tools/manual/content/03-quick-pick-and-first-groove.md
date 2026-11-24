@@ -51,7 +51,7 @@ If you have a MIDI controller, there is a Quick Pick MIDI channel so you can cha
 
 To save your own beat or kit into a slot, right-click or press and hold. If a Drums pattern is playing, you'll see “Save” plus that name plus “here”. If you've already replaced a factory slot, you can also “Restore factory beat” or “Restore factory preset”. Saving over a slot you already saved yourself asks “Replace slot …?” first.
 
-On iPhone and iPad the layout follows the screen: in portrait, beats are on the left and kits on the right; in landscape, beats are the top row and kits are the bottom row.
+On an iPad, Quick Pick uses the same layout as the Mac screenshot below. On an iPhone the layout follows the screen: in portrait, beats are on the left and kits on the right; in landscape, beats are the top row and kits are the bottom row.
 
 A Mac or desktop plug-in window opens on the full app pages, not on this screen. The compact AUv3 window on iPhone and iPad *is* a Quick Pick view; see [Using the Plug-in in a Host](12-using-the-plugin.md).
 
