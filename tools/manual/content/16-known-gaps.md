@@ -27,7 +27,6 @@ This is the honest list of things I don't want you to treat as surprises or as b
 - **Plugin Auto routing.** In a plug-in, Auto is meant to use extra outputs once the host has enabled them. In this beta it still keeps the mix on the main stereo pair. Use **Force Multi-Out** for separate outputs. See [Using the Plug-in in a Host](12-using-the-plugin.md).
 - **Force Multi-Out on a running Mac plug-in** may stay stereo until you press **Rescan Outputs** or reload the plug-in. On iPhone and iPad, reload the plug-in in the host; Rescan Outputs does not apply the change there.
 - **Quantize** has new tools I'm still A/B'ing. If it feels wrong, tell me.
-- Please avoid using **Rock 130**, **Rock Shuffle 125**, **Pretty Shuffle** and **Texas Blues Jam 115** as fill examples; those fills are still in A/B. Use **Busy Beat**.
 - **Device power budgets** on iPhone and iPad are calibrated and still marked provisional in the code. The messages and the load meter are real; the exact limits may still move.
 - **Recording into a pill** from the iOS app while it is attached to an AUv3, and some attached-editing paths, are still being retested.
 - **Dragging MIDI files** onto a pill row or pool column is still being retested. Use Import → MIDI File if a drag doesn't take.

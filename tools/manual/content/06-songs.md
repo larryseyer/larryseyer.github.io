@@ -52,8 +52,6 @@ On a keyboard: L for loop, P for pre-fill, F for post-fill, and Command+M for mu
 
 A good test: loop the Busy Beat Chorus, then release it into a Post-Fill.
 
-One caution for testers: a few factory styles still have fills I'm A/B'ing. Please don't use **Rock 130**, **Rock Shuffle 125**, **Pretty Shuffle** or **Texas Blues Jam 115** as your fill examples for now. Busy Beat is the safe choice.
-
 ![Close-up of a Chorus pill on Busy Beat One, with the four corner controls visible](images/s13-pill-corners.png "Busy Beat 1 120 Chorus. The four corners are the bar count and Loop at the top, Pre-Fill and Post-Fill at the bottom. Post-Fill is not turned on in this picture.")
 
 
@@ -91,7 +89,7 @@ From the three-dot menu's **Song** group you can New, Save, Save As, Rename, Loa
 
 You can have up to 127 banks. Use the previous/next arrows, the add-bank button, and the bank menu (jump, add, rename, delete). The song stepper only steps to occupied slots and never wraps across banks. Tap the name for the bank list; hold the name to rename the song in place. **Find Song** (Command+F on Mac and iPad) searches across banks.
 
-The standalone app still remembers the last slot you were in, but that is not the first thing you see. If **Show Quick Pick at startup** is on (the default), Quick Pick opens first; **Edit in Full App** then puts you in the full app with the Quick Pick song, unless you turned that switch off, in which case the last song opens instead.
+The standalone app still remembers the last slot you were in, but that is not the first thing you see. If **Show Quick Pick at startup** is on (the default), Quick Pick opens first; **Edit in Full App** then puts you in the full app with the Quick Pick song. Testers can turn that switch off in the three-dot menu, under **App Settings** → **Quick Pick**; the app then opens on the last song instead.
 
 A good test: make a new bank, put three short songs in it, and step through them while the app is playing.
 

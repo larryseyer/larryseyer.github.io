@@ -43,7 +43,7 @@ The footer otherwise shows the selected beat and kit, joined with a plus sign --
 
 Quick Pick remembers the last pair you chose and the tempo you played it at. When you come back, that pair is highlighted. Highlighting it is not the same thing as a Song you have saved.
 
-The button in the header is **Edit in Full App**. Press it when you're ready to leave Quick Pick. You land on the **Players** page, and from there you can edit anything in the full app: the players, the arrangement, the kit, the mixer, or a brand-new song. If **Show Quick Pick at startup** is on (that's the default), the app also turns your current Quick Pick pair into a song you can edit: it is named after the beat, Player 1 has one looping pill, and Players 2 through 4 start empty. You can add more pills, change kits, or throw that song away and start another.
+The button in the header is **Edit in Full App**. Press it when you're ready to leave Quick Pick. You land on the **Players** page, and from there you can edit anything in the full app: the players, the arrangement, the kit, the mixer, or a brand-new song. If **Show Quick Pick at startup** is on (that's the default; testers can turn it off in the three-dot menu, under **App Settings** → **Quick Pick**), the app also turns your current Quick Pick pair into a song you can edit: it is named after the beat, Player 1 has one looping pill, and Players 2 through 4 start empty. You can add more pills, change kits, or throw that song away and start another.
 
 You can reopen Quick Pick from the three-dot menu, or with the Q key in the default Larry Seyer Drums key scheme.
 

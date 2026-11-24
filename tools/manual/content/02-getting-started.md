@@ -13,7 +13,7 @@ You'll see **Beats** on one side and **Kits** on the other (those are player pre
 
 When you're ready for the full app, press **Edit in Full App**. You'll land on the **Players** page, and you can edit whatever you choose from there -- players, the song, kits, the mixer, or a new song of your own. You are not limited to the Quick Pick list.
 
-Next time you open the standalone app, Quick Pick appears again as long as **Show Quick Pick at startup** is on. That switch lives in App Settings, and it is on unless you turn it off. If you turn it off, the app opens on the last song instead of Quick Pick.
+Next time you open the standalone app, Quick Pick appears again as long as **Show Quick Pick at startup** is on -- that's the default. Testers can turn it off. Open the three-dot menu, choose **App Settings**, and in the **Quick Pick** section switch off **Show Quick Pick at startup**. After that, the app opens on the last song instead of Quick Pick. Quick Pick stays in the three-dot menu, and you can turn the switch back on at any time.
 
 You can also reopen Quick Pick from the three-dot menu, or with the Q key if you have a keyboard and you're using the default Larry Seyer Drums key scheme.
 

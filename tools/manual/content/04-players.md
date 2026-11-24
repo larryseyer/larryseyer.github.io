@@ -7,14 +7,14 @@ summary: "The four player cards, presets, Fill, Solo and Lock."
 
 ## The player card
 
-The Players page is four cards, one for each drummer. You can show them as a 2×2 grid, four across, or a compact strip.
+The Players page is four cards, one for each drummer. You can show them as a 2×2 grid, four across, or a compact strip. In this beta, all four players and all patterns are available -- nothing here is locked or held back for testers.
 
 **You select a player by tapping its level meter** on the card. Tap the meter again to unselect it. When no player is selected, the energy row belongs to the whole song. When one is selected, energy changes can be aimed at that player. A selected card gets a white ring on its badge.
 
 Each card has:
 
 - A **badge** with the player number. It's on or off. Off shows a slash; tap the number to turn the player on.
-- **Player Preset**, **MODE** (Drums in this version — there's no mode menu in 1.0), **Kit**, **Energy**, and **Pill** (a readout; it says “No pattern yet” until that player has a pill).
+- **Player Preset**, **MODE**, **Kit**, **Energy**, and **Pill** (a readout; it says “No pattern yet” until that player has a pill).
 - A **volume** knob with a dB readout and a peak/LUFS meter. This is also the level meter you tap to select the player.
 - A **groove row** with beat dots, the time signature and Swing. The iPhone card does not have this row; on iPhone, set Swing in the Energy Profile editor instead.
 - **Mute**, **Solo**, **Fill** and **Lock**.

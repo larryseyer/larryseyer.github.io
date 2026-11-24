@@ -5,6 +5,8 @@ summary: "Temporary quick-start for TestFlight testers until the tutorial videos
 
 > Temporary quick-start for TestFlight testers until the tutorial videos are ready.
 
+**For testers of version 0.97.x.** The last number goes up with each bug-fix build.
+
 I recorded the complete Larry Seyer Acoustic Drum Library. Pat Mastelotto played the drums. Thank you for helping me test the app.
 
 ## How to use this guide
@@ -37,7 +39,7 @@ Most of the Mac and iPad-portrait pictures are now in the chapters, captured fro
 
 ## What's in this TestFlight beta
 
-This TestFlight build is **fully unlocked**. You do not need a trial, a purchase, or a serial number. That's on purpose, so you can test the whole app.
+This TestFlight build is **fully unlocked**. You do not need a trial, a purchase, or a serial number. That's on purpose, so you can test the whole app. All four players and all patterns are available; nothing in those areas is held back for testers.
 
 This beta covers:
 

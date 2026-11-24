@@ -11,6 +11,8 @@ I'm Larry Seyer. Thank you for trying Larry Seyer Drums while it is still a beta
 
 This guide is a stand-in for the tutorial videos I'm still making. It is meant to get you playing quickly, show you where the main features live, and warn you about a few things that are unfinished in this build. It is not the finished teaching series. When those videos are ready, they will be the standard way people learn the app.
 
+This guide is for version **0.97.x**. The last number goes up with each bug-fix build, so About may show 0.97.0, 0.97.1, and so on.
+
 If something in here doesn't match what you see on screen, trust the app in front of you and [tell me](17-how-to-report-problems.md).
 
 Please send feedback by Monday, December 7.
@@ -30,7 +32,7 @@ The sounds come from the complete Larry Seyer Acoustic Drum Library. Pat Mastelo
 
 ## What's in this beta
 
-This TestFlight build is **fully unlocked**. You will not go through a trial, a purchase or an unlock step. That's deliberate, so you can test the whole app.
+This TestFlight build is **fully unlocked**. You will not go through a trial, a purchase or an unlock step. That's deliberate, so you can test the whole app. All four players and all patterns are available -- nothing in the pattern library or on the player cards is locked, limited or held back for testers.
 
 You can use:
 
