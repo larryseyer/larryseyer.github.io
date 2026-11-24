@@ -25,9 +25,9 @@ Folding-phone layouts are supported in the code, but I have not presented them a
 
 ![Players page in iPhone portrait, with Pretty Shuffle on Player 1](images/s24-iphone-players-portrait.png "iPhone portrait layout: compact top bar, energy row, and a 2×2 player grid. Player 1 is on Pretty Shuffle with Dry Cleaner Stick, energy Normal, pill Verse.")
 
-> **Screenshot needed:** The Players page on an iPhone in landscape, so the two layouts can be compared.
->
-> **Screenshot needed:** The Songs page on an iPhone in the compact P1–P4 launcher layout.
+![Players page in iPhone landscape, with four compact player cards in a strip](images/s25-iphone-players-landscape.png "iPhone landscape layout: a slim top bar, the energy row, and four compact player cards in a strip.")
+
+![Songs page on an iPhone in the compact P1–P4 launcher layout](images/s26-iphone-songs-compact.png "The compact landscape Songs launcher, with P1 through P4 as large buttons.")
 
 ## Device power and the load meter
 

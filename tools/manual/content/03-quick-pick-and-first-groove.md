@@ -57,7 +57,7 @@ A Mac or desktop plug-in window opens on the full app pages, not on this screen.
 
 ![Quick Pick with Pretty Shuffle and Dry selected, and the Edit in Full App button](images/s02-quick-pick.png "Quick Pick with Pretty Shuffle and Dry selected, plus Edit in Full App")
 
-> **Screenshot needed:** Quick Pick on an iPhone in portrait, same selection, so the side-by-side layout is clear.
+![Quick Pick on an iPhone in portrait, with Pretty Shuffle and Dry selected side by side](images/s23-iphone-quick-pick.png "iPhone portrait Quick Pick: beats on the left, kits on the right, Pretty Shuffle and Dry selected, and Edit in Full App.")
 
 ## Build your own song
 
