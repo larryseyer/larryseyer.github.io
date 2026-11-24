@@ -133,4 +133,5 @@ Markdown are stripped and will not appear on the page.
 - `content/`: source Markdown and images.
 - Generated output (committed, but regenerate after Markdown changes):
   `pages/projects/larry-seyer-drums-manual/*.html`, `search-index.json`.
-- Hand-written, not generated: `manual.css`, `manual.js` in that same folder.
+- Source CSS and JS (edited here, copied into the output folder by the build):
+  `tools/manual/manual.css`, `tools/manual/manual.js`.

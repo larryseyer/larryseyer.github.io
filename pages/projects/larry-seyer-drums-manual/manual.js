@@ -1,3 +1,4 @@
+/* Source file. Copied to the manual pages by tools/manual/build_manual.py. */
 /* Larry Seyer Drums beta tester manual: search, copy-link, mobile contents. */
 (function (root) {
   'use strict';
@@ -145,7 +146,9 @@
       body.classList.toggle('manual-toc-open', open);
       if (toggle) {
         toggle.setAttribute('aria-expanded', String(open));
-        toggle.textContent = open ? 'Close contents' : 'Contents';
+        var label = toggle.querySelector('.manual-toc-toggle__label');
+        if (label) label.textContent = open ? 'Close contents' : 'Contents';
+        else toggle.textContent = open ? 'Close contents' : 'Contents';
       }
     }
     if (toggle && sidebar) {

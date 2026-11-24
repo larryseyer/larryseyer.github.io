@@ -1,3 +1,4 @@
+/* Source file. Copied to the manual pages by tools/manual/build_manual.py. */
 /* Larry Seyer Drums beta tester manual.
    Scoped to .manual so these rules cannot restyle the rest of the site.
    Tokens come from css/style.css. */
@@ -36,17 +37,6 @@
 
 .manual-toc-toggle {
   display: none;
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--color-text);
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-radius: 3px;
-  padding: 0.55rem 0.8rem;
-  cursor: pointer;
-  margin-bottom: 1rem;
 }
 
 .manual-sidebar {
@@ -380,10 +370,45 @@
     grid-template-columns: 1fr;
     padding-top: 1rem;
   }
-  .manual-toc-toggle { display: inline-block; }
+  .manual-toc-toggle {
+    --manual-toc-bar-height: 3.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    position: sticky;
+    top: var(--header-height);
+    z-index: 1100;
+    box-sizing: border-box;
+    width: 100%;
+    min-height: var(--manual-toc-bar-height);
+    margin: 0;
+    padding: 0.75rem 1rem;
+    border: 0;
+    border-bottom: 1px solid rgba(22, 19, 12, 0.25);
+    border-radius: 0;
+    background: var(--color-accent);
+    color: #16130c;
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+  .manual-toc-toggle:hover,
+  .manual-toc-toggle:focus-visible {
+    background: var(--color-accent-hover);
+    color: #16130c;
+  }
+  .manual-toc-toggle__icon {
+    font-size: 1.2rem;
+    letter-spacing: 0;
+    line-height: 1;
+  }
   .manual-sidebar {
     position: fixed;
-    top: var(--header-height);
+    top: calc(var(--header-height) + var(--manual-toc-bar-height, 3.25rem));
     left: 0;
     bottom: 0;
     width: min(22rem, 92vw);
@@ -399,7 +424,7 @@
   .manual-backdrop {
     display: block;
     position: fixed;
-    inset: var(--header-height) 0 0 0;
+    inset: calc(var(--header-height) + var(--manual-toc-bar-height, 3.25rem)) 0 0 0;
     background: rgba(0, 0, 0, 0.45);
     z-index: 1190;
     opacity: 0;

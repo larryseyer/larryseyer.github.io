@@ -837,9 +837,12 @@ def wrap_page(head: str, sidebar: str, article: str) -> str:
         head + '<body class="manual">\n'
         '  <a class="skip-link" href="#manual-content">Skip to content</a>\n'
         + HEADER
+        + '  <button type="button" class="manual-toc-toggle" aria-controls="manual-toc" aria-expanded="false">\n'
+        + '    <span class="manual-toc-toggle__icon" aria-hidden="true">&#9776;</span>\n'
+        + '    <span class="manual-toc-toggle__label">Contents</span>\n'
+        + '  </button>\n'
         + '  <div class="manual-backdrop"></div>\n'
         + '  <div class="manual-shell">\n'
-        + '    <button type="button" class="manual-toc-toggle" aria-controls="manual-toc" aria-expanded="false">Contents</button>\n'
         + sidebar + '\n'
         + '    <article class="manual-article" id="manual-content">\n'
         + article
@@ -920,6 +923,19 @@ def build_search_index(index: Chapter, chapters: list) -> dict:
     return {'pages': pages}
 
 
+def copy_assets(out_dir: str) -> int:
+    """Copy hand-maintained CSS and JS from this folder into the output dir."""
+    count = 0
+    os.makedirs(out_dir, exist_ok=True)
+    for name in ('manual.css', 'manual.js'):
+        src = os.path.join(HERE, name)
+        if not os.path.isfile(src):
+            continue
+        shutil.copy2(src, os.path.join(out_dir, name))
+        count += 1
+    return count
+
+
 def copy_images(src_dir: str, out_dir: str) -> int:
     src = os.path.join(src_dir, 'images')
     dest = os.path.join(out_dir, 'images')
@@ -943,7 +959,6 @@ def write_pages(out_dir: str, index: Chapter, chapters: list, search_index: dict
     if check_only:
         return written
     os.makedirs(out_dir, exist_ok=True)
-    # Preserve hand-written assets already in the output folder.
     pages = [(index, index_article(index, chapters))]
     for ch in chapters:
         pages.append((ch, chapter_article(ch, chapters)))
@@ -1036,6 +1051,7 @@ def main() -> int:
 
     written = write_pages(out, index, chapters, search_index, check_only=args.check)
     nimg = 0 if args.check else copy_images(src, out)
+    nassets = 0 if args.check else copy_assets(out)
 
     if args.check:
         print('check ok: %d chapters, %d warnings' % (len(chapters), len(warnings)), file=sys.stderr)
@@ -1044,6 +1060,8 @@ def main() -> int:
             print('wrote %s' % path, file=sys.stderr)
         if nimg:
             print('copied %d image(s)' % nimg, file=sys.stderr)
+        if nassets:
+            print('copied %d asset(s)' % nassets, file=sys.stderr)
         print('built %d chapters, %d warnings' % (len(chapters), len(warnings)), file=sys.stderr)
 
     if warnings and (args.strict or args.check):
