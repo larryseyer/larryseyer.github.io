@@ -19,7 +19,7 @@ On iPhone in compact landscape you'll get a single row of channel buttons with M
 
 If a return or strip is dimmed with **“Not enough power,”** that's the device's effect budget, not a fault. See [iPhone and iPad](13-iphone-and-ipad.md). Watch the DSP load meter beside Play.
 
-![Mixer with Player 1 selected and Busy Beat One playing, faders and meters live, Pan/Width detail open](images/s18-mixer-eq-or-comp.png "Player 1 · Kick, meters moving. The open detail tab here is Pan/Width; EQ and CMP are the neighbouring tabs.")
+![Mixer with Player 1 selected and Pretty Shuffle playing, faders and meters live, Pan/Width detail open](images/s18-mixer-eq-or-comp.png "Player 1 · Kick, meters moving while Pretty Shuffle plays. The open detail tab here is Pan/Width; EQ and CMP are the neighbouring tabs.")
 
 
 ## Linked edits and MIDI Learn

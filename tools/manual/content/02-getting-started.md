@@ -42,7 +42,7 @@ The four **page tabs** — Players, Songs, Sounds, Mixer — sit in this area, a
 
 The **energy row** sits with the players: Asleep, Chilled, Relaxed, Normal, Alert, Excited, Energetic. That's a later chapter. You can already tap it and hear the groove change.
 
-![Mac top bar showing Play, the MORPH chip, tempo with the lock, the DSP load meter, the song readout and the four page tabs](images/s03-top-bar-mac.png "Mac top bar in portrait: Play, MORPH, tempo locked to INT, DSP load, song readout and page tabs")
+![Mac top bar showing Play, the MORPH chip, tempo with the lock, the DSP load meter, the Pretty Shuffle song readout and the four page tabs](images/s03-top-bar-mac.png "Mac top bar in portrait: Play, MORPH, tempo locked to INT, DSP load, Pretty Shuffle in the song readout, and page tabs")
 
 > **Screenshot needed:** The upright iPhone top bar, so testers can see how it differs.
 

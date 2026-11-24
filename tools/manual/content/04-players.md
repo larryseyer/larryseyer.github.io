@@ -24,7 +24,7 @@ The card is a remote control. It shows the same state you'll see on the Songs, S
 
 On a Mac or iPad you can set a player's colour with C, or assign random colours with Option+C. Those keys are not on iPhone unless an external keyboard is attached.
 
-![Close-up of the Player 1 card with the level meter along the right edge](images/s07-player-card-level-meter.png "Tap the level meter to select a player. Player 1 is on Dry Clean Stick 3, energy Alert, pill Verse.")
+![Close-up of the Player 1 card with the level meter along the right edge](images/s07-player-card-level-meter.png "Tap the level meter to select a player. Player 1 is on Dry Cleaner Stick, energy Normal, pill Verse.")
 
 
 ## Playing the card live
@@ -64,7 +64,7 @@ Save versus Save As works the way it does everywhere: Save is for your own items
 
 You can share a preset as a `.drums-bundle` and open it on another device.
 
-> **Screenshot needed:** The player-preset accordion open on a card, with one preset checked, Pretty Shuffle audible in the description if the UI shows the song or kit name.
+![Player Preset accordion open on Player 1](images/s08-player-preset-accordion.png "The Player Preset accordion on Player 1, with Also Load Master Fader, Effects and Trim ticked. The card shows the Dry preset.")
 
 ## Four drummers at once
 
@@ -76,7 +76,7 @@ A good first stack: Pretty Shuffle on Player 1 with **Dry** (a Stick kit), a sec
 
 On an iPhone in compact landscape, the cards become a strip and you open a player's lane when you need it.
 
-> **Screenshot needed:** Four players on, with Player 1 on Pretty Shuffle and at least one more player showing a different kit or part.
+![Four players on, with Player 1 on Pretty Shuffle and Player 2 on a Rod kit](images/s10-four-players-pretty-shuffle.png "Player 1 is on Pretty Shuffle with Dry (Dry Cleaner Stick). Player 2 is on Piano Room Rod.")
 
 ---
 

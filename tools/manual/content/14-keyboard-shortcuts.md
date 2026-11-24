@@ -15,7 +15,7 @@ The same keys work on a Mac, in a plug-in (once the plug-in window has keyboard 
 
 In an iOS host, the AUv3 window is Quick Pick and the host normally keeps the keyboard, so learn and use shortcuts in the full app.
 
-> **Screenshot needed:** The Keyboard Shortcuts window open on the Larry Seyer Drums scheme, with the search field and a few transport or song keys visible.
+![Keyboard Shortcuts window open on the Larry Seyer Drums scheme, with the search field and transport and song keys visible](images/s20-keyboard-shortcuts.png "The Keyboard Shortcuts window on the Larry Seyer Drums scheme, with Search and the transport and song keys visible.")
 
 ## The essentials
 

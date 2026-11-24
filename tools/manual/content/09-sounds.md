@@ -19,7 +19,7 @@ A good listen: put Pretty Shuffle on a Stick kit, then a Rod kit, then a Mallet 
 
 Kits are built by swapping sounds from the supplied library. Larry Seyer Drums does not import your audio samples. The one exception is the click, which can load an audio file. A shared kit or player preset carries settings, not the sample recordings themselves.
 
-![Sounds page on the Stick tab, Dry Clean Stick 3, pads lit while Busy Beat One plays](images/s16-sounds-page-stick-kit.png "Provisional: the Sounds page may still change. Stick kit, pads lighting with the groove.")
+![Sounds page on the Stick tab, Dry Cleaner Stick, pads lit while Pretty Shuffle plays](images/s16-sounds-page-stick-kit.png "Stick tab, Dry Cleaner Stick, pads lighting while Pretty Shuffle plays.")
 
 
 ## A feature called Morph
@@ -57,6 +57,8 @@ A kit is not the same thing as a player preset. A kit is the sounds. A player pr
 On iPad and Mac you can drag a sound onto a pad. On iPhone, use Browse and the Edit screen.
 
 The TUNE side has six sliders: Tune, Volume, Attack, Decay, Sustain and Release. Tune and Volume act on the whole instrument; the envelope is per articulation. Deeper editors sit behind the menu button: a sample editor (waveform, pan, hold, and an **Output Bus** chooser) and a synth voice editor.
+
+![Kit editor Tune view on Dry Cleaner Stick, with Pitch, Volume, Attack, Decay, Sustain and Release](images/s15-sounds-kit-editor.png "The TUNE inspector on Kick, Dry Cleaner Stick, while Pretty Shuffle plays.")
 
 A small, useful test: tune the Pretty Shuffle snare down a semitone and shorten its decay.
 

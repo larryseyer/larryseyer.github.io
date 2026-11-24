@@ -47,8 +47,8 @@ What actually travels:
 
 The AUv3 can't present file pickers, so do file import and export from the standalone app. On iOS, you'll use Files and the share sheet. Moving a backup to another device with AirDrop or Files is a good test if you have two devices.
 
-> **Screenshot needed:** The Export window open on Backup (Everything), showing the parts list.
->
+![Export window open on Backup (Everything), showing the parts list](images/s22-export-backup-everything.png "Backup (Everything) with the parts list ticked, and Choose destination at the bottom.")
+
 > **Screenshot needed:** A successful backup or restore in progress, or the confirmation after a restore onto a second device.
 
 ## Settings that stay on the machine

@@ -19,7 +19,7 @@ With nothing selected in a pool column, you're browsing styles. With a pill sele
 
 On iPhone the page has three useful layouts: upright (a timeline per player), landscape, and a compact P1–P4 launcher.
 
-![Songs page with Busy Beat One on Player 1, Intro through Bridge placed, green edit cursor and yellow play cursor](images/s12-songs-page-cursors.png "The green triangle on the ruler is the edit cursor. The yellow line is the play cursor.")
+![Songs page with Pretty Shuffle on Player 1, Intro through Bridge placed, and the yellow play cursor](images/s12-songs-page-cursors.png "Pretty Shuffle sections on Player 1, from Intro through Bridge. The yellow line is the play cursor.")
 
 
 ## Placing, moving and resizing pills
@@ -52,7 +52,7 @@ On a keyboard: L for loop, P for pre-fill, F for post-fill, and Command+M for mu
 
 A good test: loop the Pretty Shuffle Chorus, then release it into a Post-Fill.
 
-![Close-up of a Chorus pill on Busy Beat One, with the four corner controls visible](images/s13-pill-corners.png "Busy Beat 1 120 Chorus. The four corners are the bar count and Loop at the top, Pre-Fill and Post-Fill at the bottom. Post-Fill is not turned on in this picture.")
+![Close-up of a Chorus pill on Pretty Shuffle, with the four corner controls visible](images/s13-pill-corners.png "Pretty Shuffle 120 Chorus. The four corners are the bar count and Loop at the top, Pre-Fill and Post-Fill at the bottom. Post-Fill is not turned on in this picture.")
 
 
 ## The pill menu and working with many pills

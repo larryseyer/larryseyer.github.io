@@ -35,7 +35,7 @@ Use the search box and the sidebar, or the Previous / Index / Next links at the 
 16. [Known Gaps in This Beta](16-known-gaps.md) — what is unfinished, provisional or not in this build
 17. [How to Report Problems](17-how-to-report-problems.md) — what to send me, and the contact form to use for now
 
-Most of the Mac and iPad-portrait pictures are now in the chapters, captured from the installed standalone app on a Mac in portrait. A few still need a physical iPhone or iPad, a DAW host, or another pass in the app; those places still say **Screenshot needed**.
+Most of the Mac and iPad-portrait pictures in the chapters were captured from the current standalone app on a Mac in portrait. A few still need a physical iPhone or iPad, a DAW host, or a second device; those places still say **Screenshot needed**.
 
 ## What's in this TestFlight beta
 

@@ -25,7 +25,7 @@ You can zoom with pinch, Command+wheel, or the − / + buttons, and fit the patt
 
 A good first edit: add a few ghost notes to the snare on Pretty Shuffle's Verse.
 
-> **Screenshot needed:** The Pattern Editor open on the Pretty Shuffle Verse, with the velocity lane visible and a couple of snare ghost notes selected.
+![Pattern Editor open on the Pretty Shuffle Verse, with the velocity lane visible and two snare ghost notes selected](images/s14-pattern-editor-verse.png "Pretty Shuffle Verse in the Pattern Editor. The velocity lane is visible, and two snare ghost notes are selected.")
 
 ## Rows, velocity and feel
 

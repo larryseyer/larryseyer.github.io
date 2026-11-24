@@ -27,7 +27,7 @@ The sounds come from the complete Larry Seyer Acoustic Drum Library. Pat Mastelo
 
 “Seyer” is pronounced *Sire*.
 
-![Players page with Busy Beat One playing on Player 1, energy row and top bar visible](images/s01-players-page-busy-beat-one.png "Player 1 on Busy Beat One, Dry Clean Stick 3, energy Alert, transport playing")
+![Players page with Pretty Shuffle playing on Player 1, energy row and top bar visible](images/s01-players-page-pretty-shuffle.png "Player 1 on Pretty Shuffle, Dry Cleaner Stick, energy Normal, transport playing")
 
 
 ## What's in this beta

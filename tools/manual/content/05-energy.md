@@ -15,7 +15,7 @@ Try the same eight bars of Pretty Shuffle at Chilled, then Normal, then Energeti
 
 The factory **Asleep** level is silent, but the name isn't a hard-wired mute. If you edit Asleep so it makes sound, it will play. If you edit any level down to full silence, fills are suppressed on that level, just as they are on factory Asleep.
 
-> **Screenshot needed:** The energy row with Normal lit, Pretty Shuffle playing, no player selected, so the row is clearly acting on the whole song.
+![Energy row with Normal lit, Pretty Shuffle playing, and no player selected](images/s04-energy-row-normal-pretty-shuffle.png "Normal is lit on the energy row, with no player selected, so the row is acting on the whole Pretty Shuffle song.")
 
 ## Who the row belongs to
 
@@ -44,7 +44,7 @@ A useful experiment: turn Pretty Shuffle's Excited level into a ride-driven, rim
 
 Energy definitions **belong to the Song**. Editing them changes this song, not a global default. A New Song starts from the factory levels. To reuse a set of levels, export or import them (Import/Export → Energy) or copy them into another song. Each level button has a menu for Rename (up to 40 characters), Colour, Copy Settings, Paste Settings, Paste Settings to All Levels, and Reset to Factory.
 
-> **Screenshot needed:** The Energy Profile editor open on Excited, with the Drums section visible and Pretty Shuffle as the song.
+![Energy Profile editor open on Excited, with the Drums section visible](images/s09-energy-editor-excited-drums.png "The Energy Profile editor on Excited, Drums section open, Pretty Shuffle in the song readout.")
 
 There's more depth here — kick, snare, hat, toms and cymbals each have their own shaping, including a feature called Morph on the toms, and a way to send a cymbal to Bells. The tutorial videos will go drum by drum. For testing, the row plus the editor is enough to find problems and hear whether energy feels right.
 
