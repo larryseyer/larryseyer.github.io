@@ -27,7 +27,13 @@ The sounds come from the complete Larry Seyer Acoustic Drum Library. Pat Mastelo
 
 “Seyer” is pronounced *Sire*.
 
+::: mac
 ![Players page with Pretty Shuffle playing on Player 1, energy row and top bar visible](images/s01-players-page-pretty-shuffle.png "Player 1 on Pretty Shuffle, Dry Cleaner Stick, energy Normal, transport playing")
+:::
+
+::: iphone
+![Players page in iPhone portrait, with Pretty Shuffle on Player 1](images/s24-iphone-players-portrait.png "iPhone portrait layout: compact top bar, energy row, and a 2×2 player grid. Player 1 is on Pretty Shuffle with Dry Cleaner Stick, energy Normal, pill Verse.")
+:::
 
 
 ## What's in this beta

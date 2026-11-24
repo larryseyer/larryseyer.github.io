@@ -1,5 +1,5 @@
 /* Source file. Copied to the manual pages by tools/manual/build_manual.py. */
-/* Larry Seyer Drums beta tester manual: search, copy-link, mobile contents. */
+/* Larry Seyer Drums beta tester manual: search, copy-link, mobile contents, device switch. */
 (function (root) {
   'use strict';
 
@@ -161,6 +161,35 @@
       });
       sidebar.querySelectorAll('a').forEach(function (a) {
         a.addEventListener('click', function () { setToc(false); });
+      });
+    }
+
+    var deviceKey = 'lsd-manual-device';
+    var deviceSwitch = document.querySelector('.manual-device-switch');
+    function currentDevice() {
+      var value = document.documentElement.getAttribute('data-manual-device');
+      if (value === 'iphone' || value === 'mac') return value;
+      try { value = localStorage.getItem(deviceKey); } catch (e) { value = null; }
+      if (value === 'iphone' || value === 'mac') return value;
+      var phone = /iPhone|iPod/i.test(navigator.userAgent || '');
+      var narrow = window.matchMedia && window.matchMedia('(max-width: 600px)').matches;
+      return (phone || narrow) ? 'iphone' : 'mac';
+    }
+    function setDevice(value) {
+      if (value !== 'iphone' && value !== 'mac') return;
+      document.documentElement.setAttribute('data-manual-device', value);
+      try { localStorage.setItem(deviceKey, value); } catch (e) {}
+      if (!deviceSwitch) return;
+      deviceSwitch.querySelectorAll('[data-device]').forEach(function (btn) {
+        btn.setAttribute('aria-pressed', String(btn.getAttribute('data-device') === value));
+      });
+    }
+    if (deviceSwitch) {
+      setDevice(currentDevice());
+      deviceSwitch.querySelectorAll('[data-device]').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          setDevice(btn.getAttribute('data-device'));
+        });
       });
     }
 

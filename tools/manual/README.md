@@ -15,18 +15,14 @@ converter lives in `build_manual.py`.
 
 ## Local preview
 
-From the repository root, on the `beta-manual-template` branch:
+From the repository root:
 
     python3 -m http.server 8000
 
 Then open http://localhost:8000/pages/projects/larry-seyer-drums-manual/
 
-The files are also at:
-
-    /Users/larryseyer/larryseyer.github.io/pages/projects/larry-seyer-drums-manual/index.html
-
-These pages are marked `noindex` and are not linked from any existing site
-page until the approved text is in and someone is asked to publish.
+To preview the device-switch work before it is on `main`, check out the
+`device-toggle` branch first, then run that server command.
 
 ## Markdown conventions (for chapter authors)
 
@@ -103,6 +99,34 @@ titles may be typed straight (`what's`); the builder turns them into `&rsquo;`.
 - Alt text should describe the image; the builder warns if it is empty.
 - The build copies this folder to `pages/projects/larry-seyer-drums-manual/images/`.
 - Paths that climb out of the content folder (`../...`) are rejected.
+
+### Device-specific blocks
+
+A single manual covers iPhone and Mac (iPad uses the Mac layout). Use a
+fenced device block when a screenshot, a step, or a short paragraph applies
+to only one of those views. Shared text stays outside the fences.
+
+    ::: iphone
+    ![Upright iPhone top bar](images/s05-iphone-top-bar.png "Upright iPhone top bar.")
+    :::
+
+    ::: mac
+    ![Mac top bar](images/s03-top-bar-mac.png "Mac top bar. The iPad top bar matches.")
+    :::
+
+- The opening line is `::: iphone` or `::: mac` (Mac also stands for iPad).
+- Close the block with a line that is only `:::`.
+- You can put ordinary Markdown inside: paragraphs, lists, images, and so on.
+- On the built page, a switch at the top labelled **iPhone** / **Mac & iPad**
+  shows one variant at a time. The choice is remembered in `localStorage`.
+  It defaults to iPhone on phone-size screens or an iPhone user agent, and
+  to Mac & iPad otherwise.
+- Without JavaScript, and in print, both variants are shown, each labelled
+  **On iPhone** or **On Mac and iPad**.
+- Search and the contents page include both variants.
+
+Do not put shared instructions inside a device fence. Leave a **Screenshot
+needed** note in place when the picture is still missing.
 
 ### Site wording
 

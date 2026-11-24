@@ -7,7 +7,7 @@ summary: "Layouts, device power, and the load meter."
 
 On iPhone and iPad, Larry Seyer Drums is one app that is both the standalone instrument and the AUv3 plug-in. This chapter is about using the app itself on those devices. Using it inside a host is in [Using the Plug-in in a Host](12-using-the-plugin.md).
 
-iPad layouts match the Mac screenshots in the rest of this guide. The pictures here are the iPhone layouts.
+iPad layouts match the Mac screenshots in the rest of this guide. Use the **iPhone / Mac & iPad** switch at the top of other chapters to see the matching pictures. This chapter stays on the iPhone and iPad details, and the pictures here are the iPhone layouts.
 
 ## Layouts and everyday gestures
 

@@ -19,7 +19,13 @@ You can also reopen Quick Pick from the three-dot menu, or with the Q key if you
 
 A plug-in window in a Mac or desktop host opens on the full app pages, not on Quick Pick. The compact AUv3 window on iPhone and iPad *is* a Quick Pick view, with **Open full Larry Seyer Drums** to attach the app -- that's covered in [Using the Plug-in in a Host](12-using-the-plugin.md).
 
+::: mac
 ![Quick Pick with Pretty Shuffle and Dry selected, and the Edit in Full App button](images/s02-quick-pick.png "Quick Pick with Pretty Shuffle and Dry selected, plus Edit in Full App")
+:::
+
+::: iphone
+![Quick Pick on an iPhone in portrait, with Pretty Shuffle and Dry selected side by side](images/s23-iphone-quick-pick.png "iPhone portrait Quick Pick: beats on the left, kits on the right, Pretty Shuffle and Dry selected, and Edit in Full App.")
+:::
 
 
 ## The top bar
@@ -36,17 +42,21 @@ Here's what you'll use all the time:
 - The inbound **MIDI** light, which flashes when notes or controls are arriving.
 - The **current song** readout, shown as bank:slot and name, with the song stepper.
 
-On an upright iPhone the top bar is tighter. You still get Play, the DSP meter with the MIDI light, tempo plus the lock, the song block and the spectrum. There is no MORPH chip or master meter in that compact bar, and you'll see a compact position and clock line instead. In landscape it becomes a slim bar.
-
 The four **page tabs** — Players, Songs, Sounds, Mixer — sit in this area, along with the **phrase tabs** (five song sections at a time). Tap a phrase tab to jump. A beat arc on the playing tab shows you where you are.
 
 The **energy row** sits with the players: Asleep, Chilled, Relaxed, Normal, Alert, Excited, Energetic. That's a later chapter. You can already tap it and hear the groove change.
 
+::: iphone
+On an upright iPhone the top bar is tighter. You still get Play, the DSP meter with the MIDI light, tempo plus the lock, the song block and the spectrum. There is no MORPH chip or master meter in that compact bar, and you'll see a compact position and clock line instead. In landscape it becomes a slim bar.
+
+![Upright iPhone top bar showing Play, the DSP meter, tempo with the lock, a compact position and clock line, the Pretty Shuffle song readout and the four page tabs](images/s05-iphone-top-bar.png "Upright iPhone top bar: Play, DSP meter, 120 locked to INT, compact 1.3 · INT line, Pretty Shuffle in the song readout, and page tabs. There is no MORPH chip or master meter.")
+:::
+
+::: mac
 ![Mac top bar showing Play, the MORPH chip, tempo with the lock, the DSP load meter, the Pretty Shuffle song readout and the four page tabs](images/s03-top-bar-mac.png "Mac top bar in portrait: Play, MORPH, tempo locked to INT, DSP load, Pretty Shuffle in the song readout, and page tabs")
 
 The iPad top bar matches that Mac screenshot.
-
-![Upright iPhone top bar showing Play, the DSP meter, tempo with the lock, a compact position and clock line, the Pretty Shuffle song readout and the four page tabs](images/s05-iphone-top-bar.png "Upright iPhone top bar: Play, DSP meter, 120 locked to INT, compact 1.3 · INT line, Pretty Shuffle in the song readout, and page tabs. There is no MORPH chip or master meter.")
+:::
 
 ## The three-dot menu
 

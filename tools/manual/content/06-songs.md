@@ -17,9 +17,15 @@ Follow-scrolling keeps the playhead in view while you play; if you scroll yourse
 
 With nothing selected in a pool column, you're browsing styles. With a pill selected, changing the column restyles that pill. You can mix styles in one song. Tap a pill's bar count to type a new length, and use the section-name picker to rename it.
 
+::: iphone
 On iPhone the page has three useful layouts: upright (a timeline per player), landscape, and a compact P1–P4 launcher.
 
+![Songs page on an iPhone in the compact P1–P4 launcher layout](images/s26-iphone-songs-compact.png "The compact landscape Songs launcher, with P1 through P4 as large buttons.")
+:::
+
+::: mac
 ![Songs page with Pretty Shuffle on Player 1, Intro through Bridge placed, and the yellow play cursor](images/s12-songs-page-cursors.png "Pretty Shuffle sections on Player 1, from Intro through Bridge. The yellow line is the play cursor.")
+:::
 
 
 ## Placing, moving and resizing pills

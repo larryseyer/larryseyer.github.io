@@ -74,9 +74,15 @@ The four players share **one conductor** — the song's meter and tempo — but 
 
 A good first stack: Pretty Shuffle on Player 1 with **Dry** (a Stick kit), a second player on a **Rod** kit adding a ride or tom part (that's the Rod sound itself, not brushes), and a third player on a half-time feel. Mute, solo and volume let you bring them in and out. On a keyboard, the arrow keys move to the previous or next player.
 
+::: iphone
 On an iPhone in compact landscape, the cards become a strip and you open a player's lane when you need it.
 
+![Players page in iPhone landscape, with four compact player cards in a strip](images/s25-iphone-players-landscape.png "iPhone landscape layout: a slim top bar, the energy row, and four compact player cards in a strip.")
+:::
+
+::: mac
 ![Four players on, with Player 1 on Pretty Shuffle and Player 2 on a Rod kit](images/s10-four-players-pretty-shuffle.png "Player 1 is on Pretty Shuffle with Dry (Dry Cleaner Stick). Player 2 is on Piano Room Rod.")
+:::
 
 ---
 

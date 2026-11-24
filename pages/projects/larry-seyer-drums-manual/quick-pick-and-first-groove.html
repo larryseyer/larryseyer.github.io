@@ -32,6 +32,20 @@
   <link rel="stylesheet" href="manual.css">
   <link rel="icon" type="image/x-icon" href="../../../favicon.ico">
   <link rel="apple-touch-icon" href="../../../images/projects/larry-seyer-drums-touch-icon.png?v=20261109">
+  <script>
+    (function () {
+      try {
+        var key = 'lsd-manual-device';
+        var value = localStorage.getItem(key);
+        if (value !== 'iphone' && value !== 'mac') {
+          var phone = /iPhone|iPod/i.test(navigator.userAgent || '');
+          var narrow = window.matchMedia && window.matchMedia('(max-width: 600px)').matches;
+          value = (phone || narrow) ? 'iphone' : 'mac';
+        }
+        document.documentElement.setAttribute('data-manual-device', value);
+      } catch (e) {}
+    })();
+  </script>
 </head>
 <body class="manual">
   <a class="skip-link" href="#manual-content">Skip to content</a>
@@ -98,6 +112,10 @@
 <p class="kicker">Chapter 03 · Beta tester guide</p>
 <h1>Quick Pick and Your First Groove</h1>
 <aside class="manual-notice" role="note"><p class="kicker">Beta</p><p>This is a temporary guide for Larry Seyer Drums beta testers, until the tutorial videos are ready. Details may change as the beta continues.</p></aside>
+<div class="manual-device-switch" role="group" aria-label="Device view">
+  <button type="button" class="manual-device-switch__btn" data-device="iphone" aria-pressed="false">iPhone</button>
+  <button type="button" class="manual-device-switch__btn" data-device="mac" aria-pressed="false">Mac &amp; iPad</button>
+</div>
 <div class="manual-content">
 <blockquote><p>Temporary quick-start for TestFlight testers until the tutorial videos are ready.</p></blockquote>
 <h2 id="quick-pick-playing-in-seconds"><a class="manual-heading-anchor" href="#quick-pick-playing-in-seconds">Quick Pick: playing in seconds</a><button type="button" class="manual-copy-link" data-anchor="quick-pick-playing-in-seconds" aria-label="Copy link to this section">#</button></h2>
@@ -114,10 +132,11 @@
 <p>You can reopen Quick Pick from the three-dot menu, or with the Q key in the default Larry Seyer Drums key scheme.</p>
 <p>If you have a MIDI controller, there is a Quick Pick MIDI channel so you can change slots from any screen.</p>
 <p>To save your own beat or kit into a slot, right-click or press and hold. If a Drums pattern is playing, you&rsquo;ll see “Save” plus that name plus “here”. If you&rsquo;ve already replaced a factory slot, you can also “Restore factory beat” or “Restore factory preset”. Saving over a slot you already saved yourself asks “Replace slot …?” first.</p>
-<p>On an iPad, Quick Pick uses the same layout as the Mac screenshot below. On an iPhone the layout follows the screen: in portrait, beats are on the left and kits on the right; in landscape, beats are the top row and kits are the bottom row.</p>
 <p>A Mac or desktop plug-in window opens on the full app pages, not on this screen. The compact AUv3 window on iPhone and iPad <em>is</em> a Quick Pick view; see <a href="using-the-plugin.html">Using the Plug-in in a Host</a>.</p>
-<p><figure><img src="images/s02-quick-pick.png" alt="Quick Pick with Pretty Shuffle and Dry selected, and the Edit in Full App button" title="Quick Pick with Pretty Shuffle and Dry selected, plus Edit in Full App"><figcaption>Quick Pick with Pretty Shuffle and Dry selected, plus Edit in Full App</figcaption></figure></p>
-<p><figure><img src="images/s23-iphone-quick-pick.png" alt="Quick Pick on an iPhone in portrait, with Pretty Shuffle and Dry selected side by side" title="iPhone portrait Quick Pick: beats on the left, kits on the right, Pretty Shuffle and Dry selected, and Edit in Full App."><figcaption>iPhone portrait Quick Pick: beats on the left, kits on the right, Pretty Shuffle and Dry selected, and Edit in Full App.</figcaption></figure></p>
+<div class="manual-device-block" data-device="mac"><p class="manual-device-label">On Mac and iPad</p><p>On an iPad, Quick Pick uses the same layout as the Mac screenshot below.</p>
+<p><figure><img src="images/s02-quick-pick.png" alt="Quick Pick with Pretty Shuffle and Dry selected, and the Edit in Full App button" title="Quick Pick with Pretty Shuffle and Dry selected, plus Edit in Full App"><figcaption>Quick Pick with Pretty Shuffle and Dry selected, plus Edit in Full App</figcaption></figure></p></div>
+<div class="manual-device-block" data-device="iphone"><p class="manual-device-label">On iPhone</p><p>On an iPhone the layout follows the screen: in portrait, beats are on the left and kits on the right; in landscape, beats are the top row and kits are the bottom row.</p>
+<p><figure><img src="images/s23-iphone-quick-pick.png" alt="Quick Pick on an iPhone in portrait, with Pretty Shuffle and Dry selected side by side" title="iPhone portrait Quick Pick: beats on the left, kits on the right, Pretty Shuffle and Dry selected, and Edit in Full App."><figcaption>iPhone portrait Quick Pick: beats on the left, kits on the right, Pretty Shuffle and Dry selected, and Edit in Full App.</figcaption></figure></p></div>
 <h2 id="build-your-own-song"><a class="manual-heading-anchor" href="#build-your-own-song">Build your own song</a><button type="button" class="manual-copy-link" data-anchor="build-your-own-song" aria-label="Copy link to this section">#</button></h2>
 <p>Quick Pick is only a starting point. You are not limited to those ten beats, and you don&rsquo;t have to keep the song <strong>Edit in Full App</strong> made for you. You can build a new arrangement &mdash; or start from a blank timeline &mdash; and drag pills onto the song.</p>
 <p>Once you&rsquo;ve heard Quick Pick and pressed <strong>Edit in Full App</strong>, try this:</p>

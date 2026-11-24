@@ -32,6 +32,20 @@
   <link rel="stylesheet" href="manual.css">
   <link rel="icon" type="image/x-icon" href="../../../favicon.ico">
   <link rel="apple-touch-icon" href="../../../images/projects/larry-seyer-drums-touch-icon.png?v=20261109">
+  <script>
+    (function () {
+      try {
+        var key = 'lsd-manual-device';
+        var value = localStorage.getItem(key);
+        if (value !== 'iphone' && value !== 'mac') {
+          var phone = /iPhone|iPod/i.test(navigator.userAgent || '');
+          var narrow = window.matchMedia && window.matchMedia('(max-width: 600px)').matches;
+          value = (phone || narrow) ? 'iphone' : 'mac';
+        }
+        document.documentElement.setAttribute('data-manual-device', value);
+      } catch (e) {}
+    })();
+  </script>
 </head>
 <body class="manual">
   <a class="skip-link" href="#manual-content">Skip to content</a>
@@ -98,6 +112,10 @@
 <p class="kicker">Chapter 08 · Beta tester guide</p>
 <h1>Bringing in Grooves</h1>
 <aside class="manual-notice" role="note"><p class="kicker">Beta</p><p>This is a temporary guide for Larry Seyer Drums beta testers, until the tutorial videos are ready. Details may change as the beta continues.</p></aside>
+<div class="manual-device-switch" role="group" aria-label="Device view">
+  <button type="button" class="manual-device-switch__btn" data-device="iphone" aria-pressed="false">iPhone</button>
+  <button type="button" class="manual-device-switch__btn" data-device="mac" aria-pressed="false">Mac &amp; iPad</button>
+</div>
 <div class="manual-content">
 <blockquote><p>Temporary quick-start for TestFlight testers until the tutorial videos are ready.</p></blockquote>
 <h2 id="import-a-midi-file-and-generate-a-style"><a class="manual-heading-anchor" href="#import-a-midi-file-and-generate-a-style">Import a MIDI file and generate a style</a><button type="button" class="manual-copy-link" data-anchor="import-a-midi-file-and-generate-a-style" aria-label="Copy link to this section">#</button></h2>

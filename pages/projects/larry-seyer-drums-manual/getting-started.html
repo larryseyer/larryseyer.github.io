@@ -32,6 +32,20 @@
   <link rel="stylesheet" href="manual.css">
   <link rel="icon" type="image/x-icon" href="../../../favicon.ico">
   <link rel="apple-touch-icon" href="../../../images/projects/larry-seyer-drums-touch-icon.png?v=20261109">
+  <script>
+    (function () {
+      try {
+        var key = 'lsd-manual-device';
+        var value = localStorage.getItem(key);
+        if (value !== 'iphone' && value !== 'mac') {
+          var phone = /iPhone|iPod/i.test(navigator.userAgent || '');
+          var narrow = window.matchMedia && window.matchMedia('(max-width: 600px)').matches;
+          value = (phone || narrow) ? 'iphone' : 'mac';
+        }
+        document.documentElement.setAttribute('data-manual-device', value);
+      } catch (e) {}
+    })();
+  </script>
 </head>
 <body class="manual">
   <a class="skip-link" href="#manual-content">Skip to content</a>
@@ -101,6 +115,10 @@
 <p class="kicker">Chapter 02 · Beta tester guide</p>
 <h1>Getting Started and Getting Sound</h1>
 <aside class="manual-notice" role="note"><p class="kicker">Beta</p><p>This is a temporary guide for Larry Seyer Drums beta testers, until the tutorial videos are ready. Details may change as the beta continues.</p></aside>
+<div class="manual-device-switch" role="group" aria-label="Device view">
+  <button type="button" class="manual-device-switch__btn" data-device="iphone" aria-pressed="false">iPhone</button>
+  <button type="button" class="manual-device-switch__btn" data-device="mac" aria-pressed="false">Mac &amp; iPad</button>
+</div>
 <div class="manual-content">
 <blockquote><p>Temporary quick-start for TestFlight testers until the tutorial videos are ready.</p></blockquote>
 <h2 id="first-launch"><a class="manual-heading-anchor" href="#first-launch">First launch</a><button type="button" class="manual-copy-link" data-anchor="first-launch" aria-label="Copy link to this section">#</button></h2>
@@ -110,17 +128,18 @@
 <p>Next time you open the standalone app, Quick Pick appears again as long as <strong>Show Quick Pick at startup</strong> is on &mdash; that&rsquo;s the default. Testers can turn it off. Open the three-dot menu, choose <strong>App Settings</strong>, and in the <strong>Quick Pick</strong> section switch off <strong>Show Quick Pick at startup</strong>. After that, the app opens on the last song instead of Quick Pick. Quick Pick stays in the three-dot menu, and you can turn the switch back on at any time.</p>
 <p>You can also reopen Quick Pick from the three-dot menu, or with the Q key if you have a keyboard and you&rsquo;re using the default Larry Seyer Drums key scheme.</p>
 <p>A plug-in window in a Mac or desktop host opens on the full app pages, not on Quick Pick. The compact AUv3 window on iPhone and iPad <em>is</em> a Quick Pick view, with <strong>Open full Larry Seyer Drums</strong> to attach the app &mdash; that&rsquo;s covered in <a href="using-the-plugin.html">Using the Plug-in in a Host</a>.</p>
-<p><figure><img src="images/s02-quick-pick.png" alt="Quick Pick with Pretty Shuffle and Dry selected, and the Edit in Full App button" title="Quick Pick with Pretty Shuffle and Dry selected, plus Edit in Full App"><figcaption>Quick Pick with Pretty Shuffle and Dry selected, plus Edit in Full App</figcaption></figure></p>
+<div class="manual-device-block" data-device="mac"><p class="manual-device-label">On Mac and iPad</p><p><figure><img src="images/s02-quick-pick.png" alt="Quick Pick with Pretty Shuffle and Dry selected, and the Edit in Full App button" title="Quick Pick with Pretty Shuffle and Dry selected, plus Edit in Full App"><figcaption>Quick Pick with Pretty Shuffle and Dry selected, plus Edit in Full App</figcaption></figure></p></div>
+<div class="manual-device-block" data-device="iphone"><p class="manual-device-label">On iPhone</p><p><figure><img src="images/s23-iphone-quick-pick.png" alt="Quick Pick on an iPhone in portrait, with Pretty Shuffle and Dry selected side by side" title="iPhone portrait Quick Pick: beats on the left, kits on the right, Pretty Shuffle and Dry selected, and Edit in Full App."><figcaption>iPhone portrait Quick Pick: beats on the left, kits on the right, Pretty Shuffle and Dry selected, and Edit in Full App.</figcaption></figure></p></div>
 <h2 id="the-top-bar"><a class="manual-heading-anchor" href="#the-top-bar">The top bar</a><button type="button" class="manual-copy-link" data-anchor="the-top-bar" aria-label="Copy link to this section">#</button></h2>
 <p>The top bar is the same idea on every device, with a slightly tighter layout on an upright iPhone.</p>
 <p>Here&rsquo;s what you&rsquo;ll use all the time:</p>
 <ul><li><strong>Play / Stop</strong> and the <strong>DSP load meter</strong> beside it. The meter climbs from green toward red as the device works harder, and it flashes red after a dropout. On iPhone and iPad, watch this when you add effects. See <a href="iphone-and-ipad.html">iPhone and iPad</a>.</li><li>The <strong>MORPH</strong> chip. It only reports the state of a feature called Morph: On, Off or Building. It isn&rsquo;t the place you turn Morph on and off. That lives in App Settings, and in the <a href="sounds.html">Sounds</a> chapter.</li><li><strong>Tempo</strong>, from 30 to 300 BPM, with a lock and a source tag such as INT. A closed lock means the app is following a clock (for example Ableton Link or a host). An open lock means you own the tempo.</li><li>The play position as <strong>bar.beat</strong>, and the beat progress bar for the selected player&rsquo;s pattern.</li><li>The <strong>master meter</strong>. Tap it to switch between dB and LUFS. Tap the spectrum to open the full-screen master.</li><li>The inbound <strong>MIDI</strong> light, which flashes when notes or controls are arriving.</li><li>The <strong>current song</strong> readout, shown as bank:slot and name, with the song stepper.</li></ul>
-<p>On an upright iPhone the top bar is tighter. You still get Play, the DSP meter with the MIDI light, tempo plus the lock, the song block and the spectrum. There is no MORPH chip or master meter in that compact bar, and you&rsquo;ll see a compact position and clock line instead. In landscape it becomes a slim bar.</p>
 <p>The four <strong>page tabs</strong> — Players, Songs, Sounds, Mixer — sit in this area, along with the <strong>phrase tabs</strong> (five song sections at a time). Tap a phrase tab to jump. A beat arc on the playing tab shows you where you are.</p>
 <p>The <strong>energy row</strong> sits with the players: Asleep, Chilled, Relaxed, Normal, Alert, Excited, Energetic. That&rsquo;s a later chapter. You can already tap it and hear the groove change.</p>
-<p><figure><img src="images/s03-top-bar-mac.png" alt="Mac top bar showing Play, the MORPH chip, tempo with the lock, the DSP load meter, the Pretty Shuffle song readout and the four page tabs" title="Mac top bar in portrait: Play, MORPH, tempo locked to INT, DSP load, Pretty Shuffle in the song readout, and page tabs"><figcaption>Mac top bar in portrait: Play, MORPH, tempo locked to INT, DSP load, Pretty Shuffle in the song readout, and page tabs</figcaption></figure></p>
-<p>The iPad top bar matches that Mac screenshot.</p>
-<p><figure><img src="images/s05-iphone-top-bar.png" alt="Upright iPhone top bar showing Play, the DSP meter, tempo with the lock, a compact position and clock line, the Pretty Shuffle song readout and the four page tabs" title="Upright iPhone top bar: Play, DSP meter, 120 locked to INT, compact 1.3 · INT line, Pretty Shuffle in the song readout, and page tabs. There is no MORPH chip or master meter."><figcaption>Upright iPhone top bar: Play, DSP meter, 120 locked to INT, compact 1.3 · INT line, Pretty Shuffle in the song readout, and page tabs. There is no MORPH chip or master meter.</figcaption></figure></p>
+<div class="manual-device-block" data-device="iphone"><p class="manual-device-label">On iPhone</p><p>On an upright iPhone the top bar is tighter. You still get Play, the DSP meter with the MIDI light, tempo plus the lock, the song block and the spectrum. There is no MORPH chip or master meter in that compact bar, and you&rsquo;ll see a compact position and clock line instead. In landscape it becomes a slim bar.</p>
+<p><figure><img src="images/s05-iphone-top-bar.png" alt="Upright iPhone top bar showing Play, the DSP meter, tempo with the lock, a compact position and clock line, the Pretty Shuffle song readout and the four page tabs" title="Upright iPhone top bar: Play, DSP meter, 120 locked to INT, compact 1.3 · INT line, Pretty Shuffle in the song readout, and page tabs. There is no MORPH chip or master meter."><figcaption>Upright iPhone top bar: Play, DSP meter, 120 locked to INT, compact 1.3 · INT line, Pretty Shuffle in the song readout, and page tabs. There is no MORPH chip or master meter.</figcaption></figure></p></div>
+<div class="manual-device-block" data-device="mac"><p class="manual-device-label">On Mac and iPad</p><p><figure><img src="images/s03-top-bar-mac.png" alt="Mac top bar showing Play, the MORPH chip, tempo with the lock, the DSP load meter, the Pretty Shuffle song readout and the four page tabs" title="Mac top bar in portrait: Play, MORPH, tempo locked to INT, DSP load, Pretty Shuffle in the song readout, and page tabs"><figcaption>Mac top bar in portrait: Play, MORPH, tempo locked to INT, DSP load, Pretty Shuffle in the song readout, and page tabs</figcaption></figure></p>
+<p>The iPad top bar matches that Mac screenshot.</p></div>
 <h2 id="the-three-dot-menu"><a class="manual-heading-anchor" href="#the-three-dot-menu">The three-dot menu</a><button type="button" class="manual-copy-link" data-anchor="the-three-dot-menu" aria-label="Copy link to this section">#</button></h2>
 <p>The three-dot menu is the front door for almost everything that isn&rsquo;t on the page in front of you: About, Quick Pick, App Settings, Keyboard Shortcuts, then the preset groups (Song, Player Presets, Pattern Presets, Sounds Presets, Mixer Presets, Channel Presets), then Import and Export.</p>
 <p>The menu opens on the group for the page you&rsquo;re on. A command that doesn&rsquo;t apply is left out, not greyed off. <strong>Save</strong> appears only on items you created yourself. <strong>Save As</strong> is how you make your own copy.</p>

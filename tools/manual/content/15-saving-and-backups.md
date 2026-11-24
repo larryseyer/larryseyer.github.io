@@ -16,7 +16,9 @@ This is the rule I want every tester to remember. You can do a lot of work in a 
 
 Names have to be unique, and the app applies Title Case. File pickers reopen at the folder you last used.
 
+::: iphone
 On iPhone, the song block replaces the stepper in portrait. Hold the song name to rename it in place.
+:::
 
 ## Banks and slots
 

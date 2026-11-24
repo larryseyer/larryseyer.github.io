@@ -32,6 +32,20 @@
   <link rel="stylesheet" href="manual.css">
   <link rel="icon" type="image/x-icon" href="../../../favicon.ico">
   <link rel="apple-touch-icon" href="../../../images/projects/larry-seyer-drums-touch-icon.png?v=20261109">
+  <script>
+    (function () {
+      try {
+        var key = 'lsd-manual-device';
+        var value = localStorage.getItem(key);
+        if (value !== 'iphone' && value !== 'mac') {
+          var phone = /iPhone|iPod/i.test(navigator.userAgent || '');
+          var narrow = window.matchMedia && window.matchMedia('(max-width: 600px)').matches;
+          value = (phone || narrow) ? 'iphone' : 'mac';
+        }
+        document.documentElement.setAttribute('data-manual-device', value);
+      } catch (e) {}
+    })();
+  </script>
 </head>
 <body class="manual">
   <a class="skip-link" href="#manual-content">Skip to content</a>
@@ -100,13 +114,17 @@
 <p class="kicker">Chapter 15 · Beta tester guide</p>
 <h1>Saving and Backups</h1>
 <aside class="manual-notice" role="note"><p class="kicker">Beta</p><p>This is a temporary guide for Larry Seyer Drums beta testers, until the tutorial videos are ready. Details may change as the beta continues.</p></aside>
+<div class="manual-device-switch" role="group" aria-label="Device view">
+  <button type="button" class="manual-device-switch__btn" data-device="iphone" aria-pressed="false">iPhone</button>
+  <button type="button" class="manual-device-switch__btn" data-device="mac" aria-pressed="false">Mac &amp; iPad</button>
+</div>
 <div class="manual-content">
 <blockquote><p>Temporary quick-start for TestFlight testers until the tutorial videos are ready.</p></blockquote>
 <h2 id="save-is-what-makes-an-edit-permanent"><a class="manual-heading-anchor" href="#save-is-what-makes-an-edit-permanent">Save is what makes an edit permanent</a><button type="button" class="manual-copy-link" data-anchor="save-is-what-makes-an-edit-permanent" aria-label="Copy link to this section">#</button></h2>
 <p>This is the rule I want every tester to remember. You can do a lot of work in a Song, in the Pattern Editor, or on a kit, and still lose it if you never save.</p>
 <ul><li><strong>Save</strong> writes the current item, and only appears on things you created.</li><li><strong>Save As…</strong> makes a new named copy and is how you put a song into a bank slot.</li><li><strong>Done</strong> in the Pattern Editor keeps edits in the Song, but the Song still needs Save to make them permanent.</li><li><strong>Cancel</strong> backs out of the editor copy.</li></ul>
 <p>Names have to be unique, and the app applies Title Case. File pickers reopen at the folder you last used.</p>
-<p>On iPhone, the song block replaces the stepper in portrait. Hold the song name to rename it in place.</p>
+<div class="manual-device-block" data-device="iphone"><p class="manual-device-label">On iPhone</p><p>On iPhone, the song block replaces the stepper in portrait. Hold the song name to rename it in place.</p></div>
 <h2 id="banks-and-slots"><a class="manual-heading-anchor" href="#banks-and-slots">Banks and slots</a><button type="button" class="manual-copy-link" data-anchor="banks-and-slots" aria-label="Copy link to this section">#</button></h2>
 <p>Songs are stored in banks of slots 0–99. Use Save As to write into a slot. Lock a slot if you don&rsquo;t want it overwritten or deleted. The standalone app reopens the last slot at startup.</p>
 <p>There&rsquo;s more on stepping, finding, and building a set list in <a href="songs.html">Songs: Arranging</a>.</p>

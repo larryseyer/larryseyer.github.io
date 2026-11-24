@@ -411,6 +411,43 @@ def convert_blocks(text: str, refs: dict, slugs_by_file: dict, used_ids: set,
             i += 1
             continue
 
+        dm = re.match(r'^:::\s*(iphone|mac)\s*$', stripped, re.I)
+        if dm:
+            kind = dm.group(1).lower()
+            i += 1
+            inner_lines = []
+            closed = False
+            while i < len(lines):
+                if re.match(r'^:::\s*$', lines[i].strip()):
+                    closed = True
+                    i += 1
+                    break
+                if re.match(r'^:::\s+\S+', lines[i].strip()):
+                    break
+                inner_lines.append(lines[i])
+                i += 1
+            if not closed:
+                warnings.append('%s: unclosed device block (:::%s)' % (src_name, kind))
+            inner_html, inner_heads = convert_blocks(
+                '\n'.join(inner_lines).strip(), refs, slugs_by_file, used_ids, warnings, src_name
+            )
+            headings.extend(inner_heads)
+            label = 'On iPhone' if kind == 'iphone' else 'On Mac and iPad'
+            out.append(
+                '<div class="manual-device-block" data-device="%s">'
+                '<p class="manual-device-label">%s</p>%s</div>'
+                % (kind, typography(label), inner_html)
+            )
+            continue
+
+        unknown = re.match(r'^:::\s+(\S+)', stripped)
+        if unknown:
+            warnings.append(
+                '%s: unknown device block (:::%s); use iphone or mac' % (src_name, unknown.group(1))
+            )
+            i += 1
+            continue
+
         if re.match(r'^(-{3,}|\*{3,}|_{3,})$', stripped):
             out.append('<hr>')
             i += 1
@@ -446,7 +483,7 @@ def convert_blocks(text: str, refs: dict, slugs_by_file: dict, used_ids: set,
         buf = [stripped]
         i += 1
         while i < len(lines) and lines[i].strip() and not re.match(
-            r'^(#{1,4}\s|```|(-{3,}|\*{3,}|_{3,})$|\s*[-*+]\s|\s*\d+[.)]\s|>)', lines[i]
+            r'^(#{1,4}\s|```|:::(?:\s|$)|(-{3,}|\*{3,}|_{3,})$|\s*[-*+]\s|\s*\d+[.)]\s|>)', lines[i]
         ) and not ( '|' in lines[i] and i + 1 < len(lines) and re.match(r'^\s*\|?\s*:?-{3,}', lines[i + 1])):
             buf.append(lines[i].strip())
             i += 1
@@ -828,8 +865,33 @@ def page_head(title: str, description: str, canonical: str) -> str:
   <link rel="stylesheet" href="manual.css">
   <link rel="icon" type="image/x-icon" href="../../../favicon.ico">
   <link rel="apple-touch-icon" href="{TOUCH}">
+  <script>
+    (function () {{
+      try {{
+        var key = 'lsd-manual-device';
+        var value = localStorage.getItem(key);
+        if (value !== 'iphone' && value !== 'mac') {{
+          var phone = /iPhone|iPod/i.test(navigator.userAgent || '');
+          var narrow = window.matchMedia && window.matchMedia('(max-width: 600px)').matches;
+          value = (phone || narrow) ? 'iphone' : 'mac';
+        }}
+        document.documentElement.setAttribute('data-manual-device', value);
+      }} catch (e) {{}}
+    }})();
+  </script>
 </head>
 '''
+
+
+def device_switch_html() -> str:
+    return (
+        '<div class="manual-device-switch" role="group" aria-label="Device view">\n'
+        '  <button type="button" class="manual-device-switch__btn" data-device="iphone" '
+        'aria-pressed="false">iPhone</button>\n'
+        '  <button type="button" class="manual-device-switch__btn" data-device="mac" '
+        'aria-pressed="false">Mac &amp; iPad</button>\n'
+        '</div>\n'
+    )
 
 
 def wrap_page(head: str, sidebar: str, article: str) -> str:
@@ -871,6 +933,7 @@ def index_article(index: Chapter, chapters: list) -> str:
         '<p class="kicker">Larry Seyer Drums</p>\n'
         '<h1>%s</h1>\n' % typographic_title(index.title)
         + BETA_NOTICE + '\n'
+        + device_switch_html()
         + (PLACEHOLDER_NOTICE + '\n' if index.placeholder else '')
         + ('<div class="manual-content">\n%s\n</div>\n' % body if body else '')
         + '<ol class="manual-index-list">\n' + '\n'.join(items) + '\n</ol>\n'
@@ -886,6 +949,7 @@ def chapter_article(ch: Chapter, chapters: list) -> str:
         '<p class="kicker">Chapter %02d · Beta tester guide</p>\n'
         '<h1>%s</h1>\n' % (ch.number, typographic_title(ch.title))
         + BETA_NOTICE + '\n'
+        + device_switch_html()
         + (PLACEHOLDER_NOTICE + '\n' if ch.placeholder else '')
         + '<div class="manual-content">\n%s\n</div>\n' % body
         + pager_html(chapters, ch)
@@ -1005,6 +1069,40 @@ def self_test() -> list:
     # Price / hash helpers
     if not PRICE.search('costs $99 to unlock'):
         errors.append('self-test: price regex missed $99')
+
+    device_md = (
+        '## Layout\n\n'
+        'Shared sentence.\n\n'
+        '::: iphone\n'
+        'Phone only text.\n\n'
+        '![Phone shot](images/phone.png "Phone view")\n'
+        ':::\n\n'
+        '::: mac\n'
+        'Mac and iPad only text.\n\n'
+        '![Mac shot](images/mac.png "Mac view")\n'
+        ':::\n'
+    )
+    device = convert_markdown(device_md, {}, 'self-test-device.md')
+    dhtml = device.html
+    if 'data-device="iphone"' not in dhtml or 'data-device="mac"' not in dhtml:
+        errors.append('self-test: device blocks missing: ' + dhtml[:500])
+    if 'On iPhone' not in dhtml or 'On Mac and iPad' not in dhtml:
+        errors.append('self-test: device labels missing')
+    if 'images/phone.png' not in dhtml or 'images/mac.png' not in dhtml:
+        errors.append('self-test: device images missing')
+    if 'Shared sentence.' not in dhtml:
+        errors.append('self-test: shared text dropped from device chapter')
+    # Search index must include both variants.
+    texts = ' '.join(sec['text'] for sec in device.plain_sections)
+    if 'Phone only text' not in texts or 'Mac and iPad only text' not in texts:
+        errors.append('self-test: search text missed a device variant: ' + texts)
+    if device.warnings:
+        errors.append('self-test: unexpected device warnings: ' + '; '.join(device.warnings))
+
+    bad = convert_markdown('::: watch\nnope\n:::\n', {}, 'self-test-device.md')
+    if not any('unknown device block' in w for w in bad.warnings):
+        errors.append('self-test: unknown device fence was not warned')
+
     return errors
 
 
