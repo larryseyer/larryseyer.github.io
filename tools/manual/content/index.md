@@ -3,9 +3,7 @@ title: "Larry Seyer Drums: Beta Tester Quick-Start Guide"
 summary: "Temporary quick-start for TestFlight testers until the tutorial videos are ready."
 ---
 
-> **Draft for Larry's review — not published.** Temporary quick-start for TestFlight testers until the tutorial videos are ready. App version **0.94.0**.
-
-**For testers of version 0.94.0.** This is a temporary guide to use until the full tutorial video series is finished. It is a draft. Please send notes to Larry before it is posted.
+> Temporary quick-start for TestFlight testers until the tutorial videos are ready.
 
 I recorded the complete Larry Seyer Acoustic Drum Library. Pat Mastelotto played the drums. Thank you for helping me test the app.
 
@@ -13,13 +11,13 @@ I recorded the complete Larry Seyer Acoustic Drum Library. Pat Mastelotto played
 
 Read [Welcome](01-welcome.md) and [Getting Started](02-getting-started.md) first, then try [Quick Pick and Your First Groove](03-quick-pick-and-first-groove.md). After that you can jump to any chapter. Each chapter is written so you can try the feature the same day you open it.
 
-A later website version may add search and a sidebar. In this draft, use the table of contents below and the Previous / Index / Next links at the end of each chapter.
+Use the search box and the sidebar, or the Previous / Index / Next links at the end of each chapter.
 
 ## Table of contents
 
 1. [Welcome](01-welcome.md) — what Larry Seyer Drums is, and what this beta includes
-2. [Getting Started and Getting Sound](02-getting-started.md) — first launch, the top bar, and a “No sound?” checklist
-3. [Quick Pick and Your First Groove](03-quick-pick-and-first-groove.md) — play in seconds, then build and save a short arrangement
+2. [Getting Started and Getting Sound](02-getting-started.md) — first launch, what you see, the top bar, and a “No sound?” checklist
+3. [Quick Pick and Your First Groove](03-quick-pick-and-first-groove.md) — play in seconds, open the full app, then build your own song
 4. [Players](04-players.md) — the four player cards, presets, Fill, Solo and Lock
 5. [Energy and Feel](05-energy.md) — the seven energy levels, and how a pattern changes without changing the notes
 6. [Songs: Arranging](06-songs.md) — pills, the pill pool, fills, lifts, banks and playing live
@@ -48,6 +46,3 @@ This beta covers:
 
 VST3, CLAP and the installer version of the AU plug-in are **not** in this TestFlight build.
 
----
-
-*Draft for Larry's review. Written Monday, November 23, 2026, from the approved tutorial outline and a read-only check of the 0.94.0 source. Screenshots were captured the same day from the installed tester build (version 0.93.6) in portrait. Not sent to testers and not posted.*

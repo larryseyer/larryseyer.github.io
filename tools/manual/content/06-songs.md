@@ -3,11 +3,13 @@ title: "Songs: Arranging"
 summary: "Pills, the pill pool, fills, lifts, banks and playing live."
 ---
 
-> **Draft for Larry's review — not published.** Temporary quick-start for TestFlight testers until the tutorial videos are ready. App version **0.94.0**.
+> Temporary quick-start for TestFlight testers until the tutorial videos are ready.
 
 ## A tour of the Songs page
 
-The Songs page is the arranger. Four **player pill rows** (P1 through P4) run as timelines. Beside them is the **pill pool**: one column per player, showing that player's mode and style. **Blank 120** is a silent style for building from nothing.
+The Songs page is the arranger -- this is where you build a song of your own, and where you can go beyond what Quick Pick offers. Four **player pill rows** (P1 through P4) run as timelines. Below or beside them is the **pill pool**: one column per player, showing that player's mode and style, and the section pills (**Intro**, **Verse**, **Chorus**, **Bridge**) you drag onto a lane. **Blank 120** is a silent style for building from nothing. If the timeline is empty, a faint line across the lanes says **Drag a section from below onto a lane**.
+
+You can arrive here with a Quick Pick song already on Player 1 (one looping pill, the other players empty) and add to it, or start from a blank song: three-dot menu, **Song** group, **New**, then **New** in the **New Song?** dialog.
 
 Along the ruler you'll find **Click**, **Undo**, **Redo** and **+** (a new blank pattern). The **edit cursor** is the green triangle. The **play cursor** is the yellow line. Under the bar ruler is the meter and tempo strip.
 
@@ -48,9 +50,9 @@ Fills follow the pill's energy and feel. The fill tint on a pill is not the same
 
 On a keyboard: L for loop, P for pre-fill, F for post-fill, and Command+M for mute.
 
-A good test: loop the Busy Beat One Chorus, then release it into a Post-Fill.
+A good test: loop the Busy Beat Chorus, then release it into a Post-Fill.
 
-One caution for testers: a few factory styles still have fills I'm A/B'ing. Please don't use **Rock 130**, **Rock Shuffle 125**, **Pretty Shuffle** or **Texas Blues Jam 115** as your fill examples for now. Busy Beat One is the safe choice.
+One caution for testers: a few factory styles still have fills I'm A/B'ing. Please don't use **Rock 130**, **Rock Shuffle 125**, **Pretty Shuffle** or **Texas Blues Jam 115** as your fill examples for now. Busy Beat is the safe choice.
 
 ![Close-up of a Chorus pill on Busy Beat One, with the four corner controls visible](images/s13-pill-corners.png "Busy Beat 1 120 Chorus. The four corners are the bar count and Loop at the top, Pre-Fill and Post-Fill at the bottom. Post-Fill is not turned on in this picture.")
 
@@ -71,7 +73,7 @@ A **lift** is a small drummer pickup into the next bar. Double-tap the ruler to 
 
 App Settings has **Auto Lifts** if you want them generated on a phrase length, with a short recipe for what the lift plays. From a controller, control change 18 places a lift.
 
-Try Busy Beat One with Auto Lifts every four bars, then compare that with a couple of hand-placed lifts.
+Try Busy Beat with Auto Lifts every four bars, then compare that with a couple of hand-placed lifts.
 
 ## Playing a song live
 
@@ -85,11 +87,11 @@ On iPhone, the phrase tabs are the main live surface.
 
 Songs live in **banks** of slots **0 through 99**. The slot number is also the Program Change number, so a controller can recall a song by that number.
 
-From the Song menu you can New, Save, Save As, Rename, Load, Export and Delete. The bank grid is one column of a hundred slots; tap to load or save. A per-slot menu includes **Lock** — a locked slot has a badge and can't be saved over or deleted.
+From the three-dot menu's **Song** group you can New, Save, Save As, Rename, Load, Export and Delete. The bank grid is one column of a hundred slots; tap to load or save. A per-slot menu includes **Lock** -- a locked slot has a badge and can't be saved over or deleted.
 
 You can have up to 127 banks. Use the previous/next arrows, the add-bank button, and the bank menu (jump, add, rename, delete). The song stepper only steps to occupied slots and never wraps across banks. Tap the name for the bank list; hold the name to rename the song in place. **Find Song** (Command+F on Mac and iPad) searches across banks.
 
-At startup, the standalone app reopens the last slot you were in.
+The standalone app still remembers the last slot you were in, but that is not the first thing you see. If **Show Quick Pick at startup** is on (the default), Quick Pick opens first; **Edit in Full App** then puts you in the full app with the Quick Pick song, unless you turned that switch off, in which case the last song opens instead.
 
 A good test: make a new bank, put three short songs in it, and step through them while the app is playing.
 

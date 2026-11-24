@@ -3,7 +3,7 @@ title: "Bringing in Grooves"
 summary: "Import a MIDI file and generate a style."
 ---
 
-> **Draft for Larry's review — not published.** Temporary quick-start for TestFlight testers until the tutorial videos are ready. App version **0.94.0**.
+> Temporary quick-start for TestFlight testers until the tutorial videos are ready.
 
 ## Import a MIDI file and generate a style
 

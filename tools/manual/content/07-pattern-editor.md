@@ -3,7 +3,7 @@ title: "The Pattern Editor"
 summary: "Edit notes, velocity, feel, and record into a pill."
 ---
 
-> **Draft for Larry's review — not published.** Temporary quick-start for TestFlight testers until the tutorial videos are ready. App version **0.94.0**.
+> Temporary quick-start for TestFlight testers until the tutorial videos are ready.
 
 ## Opening a pill and making a change
 
@@ -23,7 +23,7 @@ If the transport is stopped, you hear an audition of what you just did. If it's 
 
 You can zoom with pinch, Command+wheel, or the − / + buttons, and fit the pattern to the width. Follow keeps the view with the playhead. The Tab key hides and shows the editor.
 
-A good first edit: add a few ghost notes to the snare on Busy Beat One's Verse.
+A good first edit: add a few ghost notes to the snare on Busy Beat's Verse.
 
 > **Screenshot needed:** The Pattern Editor open on the Busy Beat One Verse, with the velocity lane visible and a couple of snare ghost notes selected.
 

@@ -3,7 +3,7 @@ title: "Mixer and Effects"
 summary: "The mixer, EQ, compression, reverb, delay, tape and export."
 ---
 
-> **Draft for Larry's review — not published.** Temporary quick-start for TestFlight testers until the tutorial videos are ready. App version **0.94.0**.
+> Temporary quick-start for TestFlight testers until the tutorial videos are ready.
 
 ## The mixer
 
@@ -40,7 +40,7 @@ SeyerComp has a Morph dial across eight voices (Clean, FET, Opto1, Opto2, VarMu1
 
 **SeyerTape** can sit on the master and on player buses. On a Mac, tape is always available. On iPhone and iPad it depends on device power. The panel will say “This device is not fast enough for the tape” or “This device runs the tape on the master bus only.” On some devices master tape isn't granted automatically, but you may still be able to switch it on if the song is light enough.
 
-A clean test: Busy Beat One dry, then with a short room, then a hall, letting each tail finish; then, on a machine that can afford it, 15 ips tape with a tape stop at the end.
+A clean test: Busy Beat dry, then with a short room, then a hall, letting each tail finish; then, on a machine that can afford it, 15 ips tape with a tape stop at the end.
 
 ## The master, outputs and audio export
 

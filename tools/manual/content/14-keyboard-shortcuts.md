@@ -3,7 +3,7 @@ title: "Keyboard Shortcuts"
 summary: "The essentials, including an external keyboard on iPhone and iPad."
 ---
 
-> **Draft for Larry's review — not published.** Temporary quick-start for TestFlight testers until the tutorial videos are ready. App version **0.94.0**.
+> Temporary quick-start for TestFlight testers until the tutorial videos are ready.
 
 ## Opening the shortcuts window
 
@@ -19,7 +19,7 @@ In an iOS host, the AUv3 window is Quick Pick and the host normally keeps the ke
 
 ## The essentials
 
-These are from the default **Larry Seyer Drums** scheme in 0.94.0:
+These are from the default **Larry Seyer Drums** scheme:
 
 | Key | What it does |
 |---|---|

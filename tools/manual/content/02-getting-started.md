@@ -3,17 +3,21 @@ title: "Getting Started and Getting Sound"
 summary: "First launch, the top bar, and a No sound? checklist."
 ---
 
-> **Draft for Larry's review — not published.** Temporary quick-start for TestFlight testers until the tutorial videos are ready. App version **0.94.0**.
+> Temporary quick-start for TestFlight testers until the tutorial videos are ready.
 
 ## First launch
 
-On a fresh launch you'll see a short splash, then **Quick Pick**. That's the first screen on purpose: you can be hearing drums in a few seconds, before you learn the rest of the app.
+On a fresh launch of the **standalone** app you'll see a short splash, then **Quick Pick**. That's the first screen on purpose: you can be hearing drums in a few seconds, before you learn the rest of the app.
 
-Pick a beat on one side and a player preset on the other, then press Play if it isn't already playing. **Busy Beat One** (labelled Busy Beat 1 in the list) is the example I'll use throughout this guide.
+You'll see **Beats** on one side and **Kits** on the other (those are player presets). A fresh installation highlights **Pretty Shuffle** and **Dry**. Tap a beat and a kit to hear that pairing. **Busy Beat** is the example I'll use in later chapters; the list labels it **Busy Beat**.
 
-When you're ready for the full app, close Quick Pick. You'll land on the Players page. Next time you open the standalone app, it comes back to the last song slot you were in. Quick Pick is always one tap away from the three-dot menu, or from the Q key if you have a keyboard.
+When you're ready for the full app, press **Edit in Full App**. You'll land on the **Players** page, and you can edit whatever you choose from there -- players, the song, kits, the mixer, or a new song of your own. You are not limited to the Quick Pick list.
 
-The iOS AUv3 plug-in window opens on Quick Pick. That's covered in [Using the Plug-in in a Host](12-using-the-plugin.md).
+Next time you open the standalone app, Quick Pick appears again as long as **Show Quick Pick at startup** is on. That switch lives in App Settings, and it is on unless you turn it off. If you turn it off, the app opens on the last song instead of Quick Pick.
+
+You can also reopen Quick Pick from the three-dot menu, or with the Q key if you have a keyboard and you're using the default Larry Seyer Drums key scheme.
+
+A plug-in window in a Mac or desktop host opens on the full app pages, not on Quick Pick. The compact AUv3 window on iPhone and iPad *is* a Quick Pick view, with **Open full Larry Seyer Drums** to attach the app -- that's covered in [Using the Plug-in in a Host](12-using-the-plugin.md).
 
 ![Quick Pick on a Mac in portrait, with Busy Beat One and a player preset selected](images/s02-quick-pick.png "Quick Pick with Busy Beat 1 · Verse and Beefy Rod Kit selected")
 

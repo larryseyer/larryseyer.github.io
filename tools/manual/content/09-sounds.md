@@ -3,9 +3,9 @@ title: "Sounds and a Feature Called Morph"
 summary: "Kits, Morph, and building your own kit. The Sounds page may still change."
 ---
 
-> **Draft for Larry's review — not published.** Temporary quick-start for TestFlight testers until the tutorial videos are ready. App version **0.94.0**.
+> Temporary quick-start for TestFlight testers until the tutorial videos are ready.
 
-> **Provisional chapter.** I still plan to rethink the Sounds page once the rest of the app has settled, and some of the synth kits are still waiting on my ear. What follows is how the page works in 0.94.0. If the screen in front of you looks different, the screen is right — please tell me, and use what you see.
+> **Provisional chapter.** I still plan to rethink the Sounds page once the rest of the app has settled, and some of the synth kits are still waiting on my ear. What follows is how the page works in this beta. If the screen in front of you looks different, the screen is right — please tell me, and use what you see.
 
 ## Choosing a kit
 
@@ -15,7 +15,7 @@ Kits are grouped by striker: **Stick**, **Rod**, **Mallet**, **Synths** and **Co
 
 While a kit loads, you'll see “Loading kit…”. Tap a pad to hear it and to select it. The 6×6 pad grid lights up as the pattern plays.
 
-A good listen: put Busy Beat One on a Stick kit, then a Rod kit, then a Mallet kit.
+A good listen: put Busy Beat on a Stick kit, then a Rod kit, then a Mallet kit.
 
 Kits are built by swapping sounds from the supplied library. Larry Seyer Drums does not import your audio samples. The one exception is the click, which can load an audio file. A shared kit or player preset carries settings, not the sample recordings themselves.
 
@@ -58,7 +58,7 @@ On iPad and Mac you can drag a sound onto a pad. On iPhone, use Browse and the E
 
 The TUNE side has six sliders: Tune, Volume, Attack, Decay, Sustain and Release. Tune and Volume act on the whole instrument; the envelope is per articulation. Deeper editors sit behind the menu button: a sample editor (waveform, pan, hold, and an **Output Bus** chooser) and a synth voice editor.
 
-A small, useful test: tune the Busy Beat One snare down a semitone and shorten its decay.
+A small, useful test: tune the Busy Beat snare down a semitone and shorten its decay.
 
 ## The synth machines
 

@@ -3,7 +3,7 @@ title: "iPhone and iPad"
 summary: "Layouts, device power, and the load meter."
 ---
 
-> **Draft for Larry's review — not published.** Temporary quick-start for TestFlight testers until the tutorial videos are ready. App version **0.94.0**.
+> Temporary quick-start for TestFlight testers until the tutorial videos are ready.
 
 On iPhone and iPad, Larry Seyer Drums is one app that is both the standalone instrument and the AUv3 plug-in. This chapter is about using the app itself on those devices. Using it inside a host is in [Using the Plug-in in a Host](12-using-the-plugin.md).
 

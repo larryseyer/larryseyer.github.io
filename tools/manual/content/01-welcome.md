@@ -3,7 +3,7 @@ title: "Welcome"
 summary: "What Larry Seyer Drums is, and what this beta includes."
 ---
 
-> **Draft for Larry's review — not published.** Temporary quick-start for TestFlight testers until the tutorial videos are ready. App version **0.94.0**.
+> Temporary quick-start for TestFlight testers until the tutorial videos are ready.
 
 ## Thank you for testing
 
@@ -11,7 +11,7 @@ I'm Larry Seyer. Thank you for trying Larry Seyer Drums while it is still a beta
 
 This guide is a stand-in for the tutorial videos I'm still making. It is meant to get you playing quickly, show you where the main features live, and warn you about a few things that are unfinished in this build. It is not the finished teaching series. When those videos are ready, they will be the standard way people learn the app.
 
-If something in here doesn't match what you see on screen, trust the app in front of you and [tell me](17-how-to-report-problems.md). Version **0.94.0** is the build this guide was written against.
+If something in here doesn't match what you see on screen, trust the app in front of you and [tell me](17-how-to-report-problems.md).
 
 Please send feedback by Monday, December 7.
 
@@ -53,23 +53,31 @@ A short list, so you don't go looking for something that isn't here yet:
 
 ## How the app is organized
 
-Four main pages sit along the top: **Players**, **Songs**, **Sounds** and **Mixer**.
+When you open the standalone app, a short splash is followed by **Quick Pick**. That is the first screen on purpose. You see a list of **Beats**, a list of **Kits** (those are player presets), and a button labelled **Edit in Full App**. The header reads “Quick Pick is free forever” when the window is wide enough, or “Quick Pick” when it isn't. The line at the bottom shows the beat and kit you have selected, joined with a plus sign.
+
+A fresh installation highlights **Pretty Shuffle** and **Dry**. You can tap any beat and any kit -- there are ten of each, so a hundred pairings -- and hear that combination. Quick Pick remembers the last pair you chose and the tempo you played it at.
+
+**Edit in Full App** leaves Quick Pick and takes you to the **Players** page, where you can edit whatever you want. You are not limited to the ten Quick Pick beats. On the **Songs** page you can add more phrases, start a new empty song, and drag sections onto the timeline. See [Quick Pick and Your First Groove](03-quick-pick-and-first-groove.md).
+
+Four main pages sit along the top of the full app: **Players**, **Songs**, **Sounds** and **Mixer**.
 
 - **Players** is the front of the instrument: four cards, energy, and the transport.
-- **Songs** is where you arrange a groove on a timeline.
+- **Songs** is where you arrange a groove on a timeline by placing pills (phrases) on each player's lane.
 - **Sounds** is where you choose and shape kits.
 - **Mixer** is the console and the effects.
 
-Quick Pick is a separate first screen, so you can play a great groove before you learn any of that. The Pattern Editor opens from a song pill when you want to change the notes themselves.
+The Pattern Editor opens from a song pill when you want to change the notes themselves.
 
-App Settings, keyboard shortcuts, import and export all live in the **three-dot menu**.
+A plug-in window is different: a Mac or desktop host opens the full app pages, not Quick Pick. The compact AUv3 window on iPhone and iPad is a Quick Pick view, described in [Using the Plug-in in a Host](12-using-the-plugin.md).
+
+App Settings, keyboard shortcuts, import and export, and a way back to Quick Pick, all live in the **three-dot menu**.
 
 ## If you only have a few minutes
 
-1. Open the app and play something from Quick Pick. Try **Busy Beat One**.
-2. Close Quick Pick and press Play on the Players page so you can see the cards move.
+1. Open the standalone app. After the splash, Quick Pick appears. Try a beat -- **Busy Beat** is a good one -- and a kit, and listen.
+2. Press **Edit in Full App**. You'll land on the Players page, with that groove as a song you can already edit.
 3. If you hear nothing, use the [“No sound?” checklist](02-getting-started.md#no-sound-checklist).
-4. When you're ready, build a short song in [Your first groove](03-quick-pick-and-first-groove.md#your-first-groove-from-an-empty-song) and save it.
+4. When you're ready to build something of your own, go to [Your first groove](03-quick-pick-and-first-groove.md#build-your-own-song) and drag pills onto the timeline. You are not limited to what Quick Pick offers.
 
 Then come back and read whatever chapter matches what you want to try next.
 

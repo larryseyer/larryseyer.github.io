@@ -3,7 +3,7 @@ title: "Saving and Backups"
 summary: "Save versus Save As, banks, import and export."
 ---
 
-> **Draft for Larry's review — not published.** Temporary quick-start for TestFlight testers until the tutorial videos are ready. App version **0.94.0**.
+> Temporary quick-start for TestFlight testers until the tutorial videos are ready.
 
 ## Save is what makes an edit permanent
 

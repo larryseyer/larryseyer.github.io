@@ -3,7 +3,7 @@ title: "Tempo, Sync and MIDI"
 summary: "The clock, Ableton Link, and playing or controlling the app from MIDI."
 ---
 
-> **Draft for Larry's review — not published.** Temporary quick-start for TestFlight testers until the tutorial videos are ready. App version **0.94.0**.
+> Temporary quick-start for TestFlight testers until the tutorial videos are ready.
 
 ## Tempo, the click and who owns the clock
 
@@ -27,7 +27,7 @@ You can also sync with MIDI Clock in and out (with Song Position Pointer), Host 
 
 Each sync path has an offset in App Settings, ±500 ms, which you can adjust by ear while playing. A plus value puts this app ahead.
 
-A good test: two devices on Ableton Link, both playing Busy Beat One, locked together.
+A good test: two devices on Ableton Link, both playing Busy Beat, locked together.
 
 ![Clock source menu in the top bar, listing Internal, MIDI Clock In, MIDI Clock Out, Ableton Link and SMPTE](images/s19-sync-source-ableton-link.png "Ableton Link is one of the clock sources. Internal is still selected in this picture. After you choose Ableton Link, start/stop sync is a separate option in App Settings.")
 

@@ -3,7 +3,7 @@ title: "Using the Plug-in in a Host"
 summary: "The AUv3 plug-in, stereo versus multi-out, and how to work in a host."
 ---
 
-> **Draft for Larry's review — not published.** Temporary quick-start for TestFlight testers until the tutorial videos are ready. App version **0.94.0**.
+> Temporary quick-start for TestFlight testers until the tutorial videos are ready.
 
 ## What this beta gives you
 
@@ -48,7 +48,7 @@ You can use as much or as little of the app's own song side as you want.
 
 **3. Both.** Larry Seyer Drums writes the part, and the host keeps it — by recording the plug-in's MIDI output, or by exporting or dragging a MIDI file onto a track, then playing that track back as a sound module. Set Input Layout to match the file: EX for EX, GM for GM.
 
-You can also mix the ways: for example, a Busy Beat One song on Player 1, with extra crash accents coming from a MIDI track on the same channel.
+You can also mix the ways: for example, a Busy Beat song on Player 1, with extra crash accents coming from a MIDI track on the same channel.
 
 A simple worked example: draw a short two-bar groove in the host (kick, snare, hats, a crash, a small tom fill), play it through Player 1 in stereo, then set up multi-out and listen to the drums on separate tracks.
 
@@ -58,7 +58,7 @@ A plug-in does not invent outputs. The host learns the output list when it loads
 
 Once those pairs are enabled:
 
-- **Auto** is meant to use the host's enabled outputs, and to stay on the main stereo pair when the host hasn't enabled more. In **0.94.0, Auto in a plug-in still stays on the main pair** even if the host has enabled more outputs. For separate outputs in this beta, use **Force Multi-Out**.
+- **Auto** is meant to use the host's enabled outputs, and to stay on the main stereo pair when the host hasn't enabled more. In **this beta, Auto in a plug-in still stays on the main pair** even if the host has enabled more outputs. For separate outputs in this beta, use **Force Multi-Out**.
 - **Force Multi-Out** uses the enabled outputs.
 - **Force Stereo** is always the main pair.
 
@@ -86,6 +86,9 @@ On a per-drum route, each strip's own processing is included, and the player vol
 > **Screenshot needed (optional, live host):** A host mixer after multi-out is enabled, with kick, snare and hats arriving on separate tracks. Note the host, version, and whether Rescan Outputs or a reload was needed.
 
 ## The AUv3 on iPhone and iPad
+
+A Mac or desktop host opens the full Larry Seyer Drums pages in the plug-in window, not Quick Pick. The compact window below is what you get on iPhone and iPad.
+
 
 Load Larry Seyer Drums as an instrument in a host such as GarageBand or AUM. The README also names Quantiloop Pro and Loopy Pro. After an install, reload the host slot: switch away, let it load, then switch back.
 
