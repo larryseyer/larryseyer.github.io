@@ -77,7 +77,7 @@
     <section class="section" id="osc">
       <div class="container">
         <h1>Larry Seyer Drums OSC Reference</h1>
-        <p class="mb-md">Larry Seyer Drums has a complete OSC (Open Sound Control) implementation for controlling virtually every aspect of its operation from another app, a control surface, a script or another computer. This page lists all 1672 commands. <a href="larry-seyer-drums.html">Back to Larry Seyer Drums</a>.</p>
+        <p class="mb-md">Larry Seyer Drums has a complete OSC (Open Sound Control) implementation for controlling virtually every aspect of its operation from another app, a control surface, a script or another computer. This page lists all 1676 commands. <a href="larry-seyer-drums.html">Back to Larry Seyer Drums</a>.</p>
 
         <h2 id="osc-connecting">Connecting</h2>
         <ul class="features">
@@ -316,6 +316,7 @@
             <tr><td><code>kit/resident</code></td><td>string</td><td>Read</td><td>Kit file the sampler actually has loaded.</td></tr>
             <tr><td><code>kit/capabilities</code></td><td>string</td><td>Read</td><td>Articulations the loaded kit supports.</td></tr>
             <tr><td><code>pattern/name</code></td><td>string</td><td>Read</td><td>Name of the selected pattern.</td></tr>
+            <tr><td><code>pattern/heard</code></td><td>string</td><td>Read</td><td>The pattern the player is playing right now and how many queued patterns it has taken on at a bar line.</td></tr>
             <tr><td><code>fill/capturedmiss</code></td><td>int</td><td>Read</td><td>Diagnostic: automatic fills that found no matching fill.</td></tr>
             <tr><td><code>fill/starvation</code></td><td>int</td><td>Read</td><td>Diagnostic: fill draws that came back empty.</td></tr>
             <tr><td><code>fill/capturedstyle</code></td><td>string</td><td>Read</td><td>Diagnostic: style preloaded for automatic fills.</td></tr>
@@ -1020,6 +1021,7 @@
             <tr><td><code>/drums/quickpick/state</code></td><td>string</td><td>Read</td><td>Quick Pick status.</td></tr>
             <tr><td><code>/drums/quickpick/show</code></td><td>int</td><td>Set / read</td><td>Hide (0) or show (1) the Quick Pick panel.</td></tr>
             <tr><td><code>/drums/quickpick/layout</code></td><td>string</td><td>Read</td><td>Quick Pick layout.</td></tr>
+            <tr><td><code>/drums/quickpick/startup</code></td><td>int</td><td>Set / read</td><td>Show Quick Pick at startup: 1 on, 0 off.</td></tr>
             <tr><td><code>/drums/appsettings/presets</code></td><td>string</td><td>Read</td><td>Saved app setups, and the last save or load result.</td></tr>
             <tr><td><code>/drums/appsettings/save</code></td><td>string</td><td>Set / read</td><td>Save the current app setup under a name.</td></tr>
             <tr><td><code>/drums/appsettings/load</code></td><td>string</td><td>Set / read</td><td>Load a saved app setup.</td></tr>
@@ -1259,6 +1261,7 @@
             <tr><td><code>/drums/ui/player/&lt;1-4&gt;/badge</code></td><td>string</td><td>Read</td><td>A player card&rsquo;s mute and solo badges.</td></tr>
             <tr><td><code>/drums/ui/player/preset/menu</code></td><td>int</td><td>Send</td><td>Open a player&rsquo;s preset menu.</td></tr>
             <tr><td><code>/drums/ui/player/soundkit/menu</code></td><td>int</td><td>Send</td><td>Open a player&rsquo;s sound kit menu.</td></tr>
+            <tr><td><code>/drums/ui/player/mode/menu</code></td><td>int</td><td>Send</td><td>Open a player&rsquo;s mode picker.</td></tr>
             <tr><td><code>/drums/ui/player/compact</code></td><td>string</td><td>Set / read</td><td>Compact player view actions.</td></tr>
             <tr><td><code>/drums/ui/preferences</code></td><td>int 0/1</td><td>Set / read</td><td>Close (0) or open (1) App Settings.</td></tr>
             <tr><td><code>/drums/ui/preferences/reveal</code></td><td>string</td><td>Send</td><td>Scroll App Settings to a section.</td></tr>
@@ -1443,6 +1446,7 @@
             <tr><td><code>/drums/ui/song/readout/hold</code></td><td>&mdash;</td><td>Send</td><td>Hold the tab row&rsquo;s song name to rename it in place.</td></tr>
             <tr><td><code>/drums/ui/quickpick/beat</code></td><td>int</td><td>Send</td><td>Tap beat slot 1-10 on the full Quick Pick screen, as a finger does (only while that screen is open).</td></tr>
             <tr><td><code>/drums/ui/quickpick/preset</code></td><td>int</td><td>Send</td><td>Tap player preset slot 1-10 on the full Quick Pick screen, as a finger does, so the kit shows it is loading before it loads (only while that screen is open).</td></tr>
+            <tr><td><code>/drums/ui/quickpick/fullapp</code></td><td>int</td><td>Send</td><td>Press Edit in Full App on the open full Quick Pick screen.</td></tr>
             <tr><td><code>/drums/ui/loadoverlay/frames</code></td><td>int</td><td>Read</td><td>Diagnostic: screen refreshes between the loading screen appearing and the last load starting (-1 before the first load).</td></tr>
             <tr><td><code>/drums/ui/menu/chip/hold</code></td><td>int</td><td>Send</td><td>Hold a menu bar by number; on a song menu bank bar this opens its name for renaming.</td></tr>
             <tr><td><code>/drums/ui/sync/geom</code></td><td>string</td><td>Read</td><td>Diagnostic: where the sync source tag is drawn, the label it shows and the widths that chose it.</td></tr>
