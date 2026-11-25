@@ -19,7 +19,13 @@ A good listen: put Pretty Shuffle on a Stick kit, then a Rod kit, then a Mallet 
 
 Kits are built by swapping sounds from the supplied library. Larry Seyer Drums does not import your audio samples. The one exception is the click, which can load an audio file. A shared kit or player preset carries settings, not the sample recordings themselves.
 
+::: mac
 ![Sounds page on the Stick tab, Dry Cleaner Stick, pads lit while Pretty Shuffle plays](images/s16-sounds-page-stick-kit.png "Stick tab, Dry Cleaner Stick, pads lighting while Pretty Shuffle plays.")
+:::
+
+::: iphone
+![Sounds page on an iPhone in portrait, Stick tab, Dry Cleaner Stick, pads lit while Pretty Shuffle plays](images/s33-iphone-sounds-page.png "Stick tab, Dry Cleaner Stick, pads lighting while Pretty Shuffle plays.")
+:::
 
 
 ## A feature called Morph
@@ -43,7 +49,13 @@ What actually morphs depends on the device. Computers morph snare, side-stick, t
 
 A clear test: a snare roll with Morph off, then on.
 
+::: mac
 ![App Settings Morph section with Automatic selected and the drums checklist visible](images/s17-app-settings-morph.png "Morph Mode is Automatic (recommended). The kick always plays its plain samples.")
+:::
+
+::: iphone
+![App Settings Morph section on an iPhone with Automatic selected and the drums checklist visible](images/s35-iphone-app-settings-morph.png "Morph Mode is Automatic (recommended). The kick always plays its plain samples.")
+:::
 
 
 ## Building your own kit
@@ -58,7 +70,13 @@ On iPad and Mac you can drag a sound onto a pad. On iPhone, use Browse and the E
 
 The TUNE side has six sliders: Tune, Volume, Attack, Decay, Sustain and Release. Tune and Volume act on the whole instrument; the envelope is per articulation. Deeper editors sit behind the menu button: a sample editor (waveform, pan, hold, and an **Output Bus** chooser) and a synth voice editor.
 
+::: mac
 ![Kit editor Tune view on Dry Cleaner Stick, with Pitch, Volume, Attack, Decay, Sustain and Release](images/s15-sounds-kit-editor.png "The TUNE inspector on Kick, Dry Cleaner Stick, while Pretty Shuffle plays.")
+:::
+
+::: iphone
+![Kit editor Tune view on an iPhone, Dry Cleaner Stick, with Pitch, Volume, Attack, Decay, Sustain and Release](images/s34-iphone-kit-editor.png "The TUNE inspector on Kick, Dry Cleaner Stick, in iPhone portrait.")
+:::
 
 A small, useful test: tune the Pretty Shuffle snare down a semitone and shorten its decay.
 

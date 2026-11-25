@@ -58,7 +58,13 @@ On a keyboard: L for loop, P for pre-fill, F for post-fill, and Command+M for mu
 
 A good test: loop the Pretty Shuffle Chorus, then release it into a Post-Fill.
 
+::: mac
 ![Close-up of a Chorus pill on Pretty Shuffle, with the four corner controls visible](images/s13-pill-corners.png "Pretty Shuffle 120 Chorus. The four corners are the bar count and Loop at the top, Pre-Fill and Post-Fill at the bottom. Post-Fill is not turned on in this picture.")
+:::
+
+::: iphone
+![Close-up of a Verse pill on an iPhone, with the four corner controls visible](images/s31-iphone-pill-corners.png "A Verse pill on P1 in iPhone portrait. The corners are the bar count and Loop at the top, Pre-Fill and Post-Fill at the bottom.")
+:::
 
 
 ## The pill menu and working with many pills

@@ -9,6 +9,14 @@ summary: "Import a MIDI file and generate a style."
 
 You can turn a drum MIDI file into a playable Larry Seyer Drums style.
 
+::: mac
+![Import window on a Mac, with MIDI File in the Project list](images/s42-import-window-mac.png "The Import window, opened from the three-dot menu. MIDI File sits in the Project group, under Energy.")
+:::
+
+::: iphone
+![Import window on an iPhone in portrait, with MIDI File in the Project list](images/s41-iphone-import-window.png "The Import window on iPhone. MIDI File sits in the Project group, under Energy.")
+:::
+
 1. Open **Import → MIDI File**.
 2. Choose how to read it: **EX** (Larry Seyer Drums' own notes) or **General MIDI**.
 3. If the file came from another product, use **Assign this file's drums**. You'll get a row per note, a drum menu, an audition speaker, and saved note maps. The app will tell you if some notes were left out, for example “3 of 14 notes left out.”

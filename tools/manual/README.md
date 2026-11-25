@@ -124,6 +124,13 @@ to only one of those views. Shared text stays outside the fences.
 - Without JavaScript, and in print, both variants are shown, each labelled
   **On iPhone** or **On Mac and iPad**.
 - Search and the contents page include both variants.
+- The switch is on every page. A page with no device blocks (the contents
+  page, or a text-only chapter) shows "This page is the same on iPhone, iPad
+  and Mac." under it, so the switch never looks broken.
+- Every picture belongs in a device block, with an iPhone picture and a
+  Mac & iPad picture on each page that has pictures. The build warns when a
+  picture is outside a block, or when a page has pictures for only one device
+  (`--strict` fails on it).
 
 Do not put shared instructions inside a device fence. Leave a **Screenshot
 needed** note in place when the picture is still missing.

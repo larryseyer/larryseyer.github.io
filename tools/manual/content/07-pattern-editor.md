@@ -25,7 +25,13 @@ You can zoom with pinch, Command+wheel, or the − / + buttons, and fit the patt
 
 A good first edit: add a few ghost notes to the snare on Pretty Shuffle's Verse.
 
+::: mac
 ![Pattern Editor open on the Pretty Shuffle Verse, with the velocity lane visible and two snare ghost notes selected](images/s14-pattern-editor-verse.png "Pretty Shuffle Verse in the Pattern Editor. The velocity lane is visible, and two snare ghost notes are selected.")
+:::
+
+::: iphone
+![Pattern Editor on an iPhone in portrait, open on the Pretty Shuffle Verse with the velocity lane visible](images/s32-iphone-pattern-editor.png "Pretty Shuffle Verse in the Pattern Editor on iPhone: Kick, Snare and Closed Hat rows, with the velocity lane underneath.")
+:::
 
 ## Rows, velocity and feel
 

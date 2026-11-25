@@ -419,6 +419,15 @@ html[data-manual-device="mac"] .manual-device-block[data-device="iphone"] {
 html[data-manual-device] .manual-device-label {
   display: none;
 }
+.manual-device-note {
+  display: none;
+  margin: -0.6rem 0 1.15rem;
+  font-size: 0.85rem;
+  color: var(--color-text-secondary);
+}
+html[data-manual-device] .manual-device-note {
+  display: block;
+}
 
 @media (max-width: 900px) {
   .manual-shell {
@@ -510,6 +519,7 @@ html[data-manual-device] .manual-device-label {
   .manual-copy-link,
   .manual-search,
   .manual-device-switch,
+  .manual-device-note,
   .social-links {
     display: none !important;
   }

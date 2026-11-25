@@ -13,6 +13,14 @@ Please send feedback by Monday, December 7.
 
 Please send bug reports with **Submit Bug Report** in the app's three-dot menu.
 
+::: mac
+![Three-dot menu open on a Mac, with Submit Bug Report under Keyboard Shortcuts](images/s44-three-dot-menu-mac.png "The three-dot menu at the top right. Submit Bug Report is just under Keyboard Shortcuts.")
+:::
+
+::: iphone
+![Three-dot menu open on an iPhone in portrait, with Submit Bug Report under Keyboard Shortcuts](images/s43-iphone-three-dot-menu.png "The three-dot menu on iPhone. Submit Bug Report is just under Keyboard Shortcuts.")
+:::
+
 If you can't use that, the contact form on my website is a backup:
 
 [larryseyer.com/pages/connect.html#contact](https://larryseyer.com/pages/connect.html#contact)

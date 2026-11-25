@@ -80,7 +80,13 @@ Output names in the host are defaults, not fixed destinations. Drum strips defau
 
 On a per-drum route, each strip's own processing is included, and the player volume is applied, but the sound **bypasses the player bus and master processing**.
 
+::: mac
 ![App Settings Outputs section, showing Routing Mode, active output pairs and Rescan Outputs](images/s21-app-settings-outputs.png "Routing Mode is Auto (Recommended) in this picture, with Rescan Outputs underneath. Force Multi-Out is the other choice in that same Routing Mode menu.")
+:::
+
+::: iphone
+![App Settings Outputs section on an iPhone, showing Routing Mode, active output pairs and Rescan Outputs](images/s39-iphone-app-settings-outputs.png "Routing Mode is Auto (Recommended) in this picture, with Rescan Outputs underneath, in iPhone portrait.")
+:::
 
 >
 > **Screenshot needed (optional, live host):** A host mixer after multi-out is enabled, with kick, snare and hats arriving on separate tracks. Note the host, version, and whether Rescan Outputs or a reload was needed.

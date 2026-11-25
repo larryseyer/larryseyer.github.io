@@ -883,15 +883,57 @@ def page_head(title: str, description: str, canonical: str) -> str:
 '''
 
 
-def device_switch_html() -> str:
+DEVICE_SAME_NOTE = 'This page is the same on iPhone, iPad and Mac.'
+
+
+def device_switch_html(has_device_blocks: bool = True) -> str:
+    # The switch is on every page so the reader's choice carries through the
+    # whole guide. A page with nothing to swap says so, so the switch never
+    # looks broken there.
+    note = ''
+    if not has_device_blocks:
+        note = '<p class="manual-device-note">%s</p>\n' % DEVICE_SAME_NOTE
     return (
         '<div class="manual-device-switch" role="group" aria-label="Device view">\n'
         '  <button type="button" class="manual-device-switch__btn" data-device="iphone" '
         'aria-pressed="false">iPhone</button>\n'
         '  <button type="button" class="manual-device-switch__btn" data-device="mac" '
         'aria-pressed="false">Mac &amp; iPad</button>\n'
-        '</div>\n'
+        '</div>\n' + note
     )
+
+
+def has_device_blocks(html_text: str) -> bool:
+    return 'class="manual-device-block"' in html_text
+
+
+def device_coverage_warnings(filename: str, body_md: str) -> list:
+    """Every picture should sit in an ::: iphone or ::: mac block, and a page
+    with pictures for one device should have pictures for the other, so the
+    device switch always has something to swap."""
+    warnings = []
+    inside = None
+    counts = {'iphone': 0, 'mac': 0}
+    for n, line in enumerate(body_md.splitlines(), 1):
+        s = line.strip()
+        m = re.match(r'^:::\s*(iphone|mac)\s*$', s, re.I)
+        if m:
+            inside = m.group(1).lower()
+            continue
+        if re.match(r'^:::\s*$', s):
+            inside = None
+            continue
+        if re.search(r'!\[[^\]]*\]\(', line):
+            if inside:
+                counts[inside] += 1
+            else:
+                warnings.append('%s:%d: picture is outside an ::: iphone / ::: mac block, '
+                                'so the device switch cannot swap it' % (filename, n))
+    if counts['mac'] and not counts['iphone']:
+        warnings.append('%s: has Mac & iPad pictures but no iPhone picture' % filename)
+    if counts['iphone'] and not counts['mac']:
+        warnings.append('%s: has iPhone pictures but no Mac & iPad picture' % filename)
+    return warnings
 
 
 def wrap_page(head: str, sidebar: str, article: str) -> str:
@@ -933,7 +975,7 @@ def index_article(index: Chapter, chapters: list) -> str:
         '<p class="kicker">Larry Seyer Drums</p>\n'
         '<h1>%s</h1>\n' % typographic_title(index.title)
         + BETA_NOTICE + '\n'
-        + device_switch_html()
+        + device_switch_html(has_device_blocks(body))
         + (PLACEHOLDER_NOTICE + '\n' if index.placeholder else '')
         + ('<div class="manual-content">\n%s\n</div>\n' % body if body else '')
         + '<ol class="manual-index-list">\n' + '\n'.join(items) + '\n</ol>\n'
@@ -949,7 +991,7 @@ def chapter_article(ch: Chapter, chapters: list) -> str:
         '<p class="kicker">Chapter %02d · Beta tester guide</p>\n'
         '<h1>%s</h1>\n' % (ch.number, typographic_title(ch.title))
         + BETA_NOTICE + '\n'
-        + device_switch_html()
+        + device_switch_html(has_device_blocks(body))
         + (PLACEHOLDER_NOTICE + '\n' if ch.placeholder else '')
         + '<div class="manual-content">\n%s\n</div>\n' % body
         + pager_html(chapters, ch)
@@ -1133,6 +1175,7 @@ def main() -> int:
         body = strip_comments(ch.body_md).strip('\n')
         ch.converted = convert_markdown(body, mapping, ch.filename)
         warnings.extend(ch.converted.warnings)
+        warnings.extend(device_coverage_warnings(ch.filename, body))
 
     if not chapters:
         errors.append('no chapter files found (expected NN-slug.md in %s)' % src)

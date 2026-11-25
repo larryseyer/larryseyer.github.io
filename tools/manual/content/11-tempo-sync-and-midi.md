@@ -29,7 +29,13 @@ Each sync path has an offset in App Settings, ±500 ms, which you can adjust by 
 
 A good test: two devices on Ableton Link, both playing Pretty Shuffle, locked together.
 
+::: mac
 ![Clock source menu in the top bar, listing Internal, MIDI Clock In, MIDI Clock Out, Ableton Link and SMPTE](images/s19-sync-source-ableton-link.png "Ableton Link is one of the clock sources. Internal is still selected in this picture. After you choose Ableton Link, start/stop sync is a separate option in App Settings.")
+:::
+
+::: iphone
+![Clock source menu on an iPhone, listing Internal, MIDI Clock In, MIDI Clock Out, Ableton Link and SMPTE](images/s37-iphone-sync-source.png "The same clock source menu on iPhone. Internal is selected in this picture.")
+:::
 
 
 ## Playing the sounds from pads, an e-kit or a keyboard

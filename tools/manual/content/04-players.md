@@ -24,7 +24,13 @@ The card is a remote control. It shows the same state you'll see on the Songs, S
 
 On a Mac or iPad you can set a player's colour with C, or assign random colours with Option+C. Those keys are not on iPhone unless an external keyboard is attached.
 
+::: mac
 ![Close-up of the Player 1 card with the level meter along the right edge](images/s07-player-card-level-meter.png "Tap the level meter to select a player. Player 1 is on Dry Cleaner Stick, energy Normal, pill Verse.")
+:::
+
+::: iphone
+![Player 1 card on an iPhone in portrait, with the level meter along the right edge](images/s28-iphone-player-card.png "Tap the level meter to select a player. Player 1 is on the Dry preset with Dry Cleaner Stick, energy Normal, pill Verse.")
+:::
 
 
 ## Playing the card live
@@ -64,7 +70,13 @@ Save versus Save As works the way it does everywhere: Save is for your own items
 
 You can share a preset as a `.drums-bundle` and open it on another device.
 
+::: mac
 ![Player Preset accordion open on Player 1](images/s08-player-preset-accordion.png "The Player Preset accordion on Player 1, with Also Load Master Fader, Effects and Trim ticked. The card shows the Dry preset.")
+:::
+
+::: iphone
+![Player Preset menu open on Player 1 on an iPhone](images/s29-iphone-player-preset-menu.png "The Player Preset menu on iPhone, with Also Load Master Fader, Effects and Trim ticked and the Default, Stick, Mallet, Rod, Combo and Synths groups.")
+:::
 
 ## Four drummers at once
 

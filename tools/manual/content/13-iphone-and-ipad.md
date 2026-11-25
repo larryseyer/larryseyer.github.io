@@ -7,7 +7,7 @@ summary: "Layouts, device power, and the load meter."
 
 On iPhone and iPad, Larry Seyer Drums is one app that is both the standalone instrument and the AUv3 plug-in. This chapter is about using the app itself on those devices. Using it inside a host is in [Using the Plug-in in a Host](12-using-the-plugin.md).
 
-iPad layouts match the Mac screenshots in the rest of this guide. Use the **iPhone / Mac & iPad** switch at the top of other chapters to see the matching pictures. This chapter stays on the iPhone and iPad details, and the pictures here are the iPhone layouts.
+iPad layouts match the Mac screenshots in the rest of this guide. Use the **iPhone / Mac & iPad** switch at the top of any chapter to see the matching pictures. On this page, **iPhone** shows the iPhone layouts, and **Mac & iPad** shows the iPad layouts, which are the same as the Mac.
 
 ## Layouts and everyday gestures
 
@@ -23,11 +23,19 @@ A few iOS niceties that testers should try:
 
 Folding-phone layouts are supported in the code, but I have not presented them as verified on real hardware. If you're on a folding phone and something looks wrong, that's useful to know.
 
+::: iphone
 ![Players page in iPhone portrait, with Pretty Shuffle on Player 1](images/s24-iphone-players-portrait.png "iPhone portrait layout: compact top bar, energy row, and a 2×2 player grid. Player 1 is on Pretty Shuffle with Dry Cleaner Stick, energy Normal, pill Verse.")
 
 ![Players page in iPhone landscape, with four compact player cards in a strip](images/s25-iphone-players-landscape.png "iPhone landscape layout: a slim top bar, the energy row, and four compact player cards in a strip.")
 
 ![Songs page on an iPhone in the compact P1–P4 launcher layout](images/s26-iphone-songs-compact.png "The compact landscape Songs launcher, with P1 through P4 as large buttons.")
+:::
+
+::: mac
+![Players page in the iPad and Mac layout, with Pretty Shuffle playing on Player 1](images/s01-players-page-pretty-shuffle.png "The iPad layout is the same as the Mac: full player cards in a 2×2 grid, the energy row, and the full top bar.")
+
+![Songs page in the iPad and Mac layout, with Pretty Shuffle sections on Player 1](images/s12-songs-page-cursors.png "On iPad the Songs page looks the same as on the Mac.")
+:::
 
 ## Device power and the load meter
 
@@ -55,7 +63,13 @@ On a Mac the same check runs, tape is always available, and everything normally 
 
 These budgets were calibrated on an older-phone class of device and are still marked provisional in the code, so if your iPhone or iPad feels over-limited or under-protected, please include the model, iOS version, sample rate and buffer size in the report.
 
+::: iphone
 ![Upright iPhone top bar with the DSP load meter beside Play](images/s05-iphone-top-bar.png "The DSP load meter is the slim bar beside Play. In this picture the load is still in the quiet green range (captured from the iPhone layout preset on a Mac).")
+:::
+
+::: mac
+![iPad and Mac top bar with Play, the MORPH chip and the DSP load meter](images/s03-top-bar-mac.png "On iPad and Mac the DSP load meter is the slim bar after Play and the MORPH chip, just before the tempo.")
+:::
 
 > **Screenshot needed:** A compressor or tape or reverb panel showing one of the “not enough power” or Simple Comp messages, on a real device.
 
