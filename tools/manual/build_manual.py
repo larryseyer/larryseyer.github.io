@@ -489,7 +489,50 @@ def convert_blocks(text: str, refs: dict, slugs_by_file: dict, used_ids: set,
             i += 1
         flush_para(buf)
 
-    return '\n'.join(out), headings
+    return '\n'.join(group_device_blocks(out)), headings
+
+
+DEVICE_BLOCK_START = '<div class="manual-device-block"'
+
+
+def picture_switch_html() -> str:
+    # The small switch that sits above a device-specific picture. It is the
+    # same control as the chapter switch, so manual.js keeps them all linked.
+    return (
+        '<div class="manual-device-switch manual-device-switch--inline" role="group" '
+        'aria-label="Show this picture for">'
+        '<button type="button" class="manual-device-switch__btn" data-device="iphone" '
+        'aria-pressed="false">iPhone</button>'
+        '<button type="button" class="manual-device-switch__btn" data-device="mac" '
+        'aria-pressed="false">Mac &amp; iPad</button>'
+        '</div>'
+    )
+
+
+def group_device_blocks(out: list) -> list:
+    """Wrap each run of neighbouring device blocks (an iPhone / Mac pair) in
+    one group, with a small switch above it when the run holds a picture."""
+    grouped = []
+    run = []
+
+    def flush():
+        if not run:
+            return
+        if any('<img' in item for item in run):
+            grouped.append('<div class="manual-device-group">' + picture_switch_html()
+                           + '\n' + '\n'.join(run) + '\n</div>')
+        else:
+            grouped.extend(run)
+        run.clear()
+
+    for item in out:
+        if item.startswith(DEVICE_BLOCK_START):
+            run.append(item)
+        else:
+            flush()
+            grouped.append(item)
+    flush()
+    return grouped
 
 
 def _split_row(row: str) -> list:
@@ -635,13 +678,16 @@ def convert_markdown(src: str, slugs_by_file: dict, src_name: str) -> Converted:
 
     # Plain-text sections for the search index: body text under each heading,
     # plus a lead section for content before the first heading.
-    plain_full = re.sub(r'<pre>.*?</pre>', ' ', html_out, flags=re.S)
+    # The small picture switches are controls, not reading text.
+    html_text = re.sub(r'<div class="manual-device-switch manual-device-switch--inline".*?</div>',
+                       ' ', html_out, flags=re.S)
+    plain_full = re.sub(r'<pre>.*?</pre>', ' ', html_text, flags=re.S)
     plain_full = re.sub(r'<[^>]+>', ' ', plain_full)
     plain_full = html.unescape(plain_full)
     plain_full = re.sub(r'\s+', ' ', plain_full).strip()
 
     sections = []
-    parts = re.split(r'(<h[2-4] id="[^"]+"[\s\S]*?</h[2-4]>)', html_out)
+    parts = re.split(r'(<h[2-4] id="[^"]+"[\s\S]*?</h[2-4]>)', html_text)
     sections = []
     lead = html.unescape(re.sub(r'\s+', ' ', re.sub(r'<[^>]+>', ' ', parts[0]))).strip()
     sections.append({'id': '', 'title': '', 'text': lead, 'level': 0})
@@ -1128,6 +1174,8 @@ def self_test() -> list:
     dhtml = device.html
     if 'data-device="iphone"' not in dhtml or 'data-device="mac"' not in dhtml:
         errors.append('self-test: device blocks missing: ' + dhtml[:500])
+    if dhtml.count('manual-device-group') != 1 or 'manual-device-switch--inline' not in dhtml:
+        errors.append('self-test: picture switch missing above the device pair')
     if 'On iPhone' not in dhtml or 'On Mac and iPad' not in dhtml:
         errors.append('self-test: device labels missing')
     if 'images/phone.png' not in dhtml or 'images/mac.png' not in dhtml:

@@ -419,6 +419,26 @@ html[data-manual-device="mac"] .manual-device-block[data-device="iphone"] {
 html[data-manual-device] .manual-device-label {
   display: none;
 }
+.manual-device-group {
+  margin: 1.25rem 0;
+}
+.manual-device-switch--inline {
+  margin: 0 0 0.45rem;
+  padding: 0.12rem;
+  gap: 0.12rem;
+  border-color: rgba(255, 255, 255, 0.08);
+  background: transparent;
+  opacity: 0.75;
+}
+.manual-device-switch--inline:hover,
+.manual-device-switch--inline:focus-within {
+  opacity: 1;
+}
+.manual-device-switch--inline .manual-device-switch__btn {
+  padding: 0.26rem 0.6rem;
+  font-size: 0.62rem;
+  letter-spacing: 0.06em;
+}
 .manual-device-note {
   display: none;
   margin: -0.6rem 0 1.15rem;

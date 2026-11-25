@@ -165,7 +165,9 @@
     }
 
     var deviceKey = 'lsd-manual-device';
-    var deviceSwitch = document.querySelector('.manual-device-switch');
+    // Every switch on the page: the one under the chapter title and the small
+    // ones above each device-specific picture. They all drive the same setting.
+    var deviceSwitches = document.querySelectorAll('.manual-device-switch');
     function currentDevice() {
       var value = document.documentElement.getAttribute('data-manual-device');
       if (value === 'iphone' || value === 'mac') return value;
@@ -179,16 +181,28 @@
       if (value !== 'iphone' && value !== 'mac') return;
       document.documentElement.setAttribute('data-manual-device', value);
       try { localStorage.setItem(deviceKey, value); } catch (e) {}
-      if (!deviceSwitch) return;
-      deviceSwitch.querySelectorAll('[data-device]').forEach(function (btn) {
+      document.querySelectorAll('.manual-device-switch__btn[data-device]').forEach(function (btn) {
         btn.setAttribute('aria-pressed', String(btn.getAttribute('data-device') === value));
       });
     }
-    if (deviceSwitch) {
+    if (deviceSwitches.length) {
       setDevice(currentDevice());
-      deviceSwitch.querySelectorAll('[data-device]').forEach(function (btn) {
+      document.querySelectorAll('.manual-device-switch__btn[data-device]').forEach(function (btn) {
         btn.addEventListener('click', function () {
+          // iPhone and Mac pictures differ in height, and every picture above
+          // this one swaps too. Keep the tapped switch where it was on screen.
+          var anchor = btn.closest('.manual-device-switch') || btn;
+          var before = anchor.getBoundingClientRect().top;
           setDevice(btn.getAttribute('data-device'));
+          var shift = anchor.getBoundingClientRect().top - before;
+          if (Math.abs(shift) > 1) {
+            // The site uses smooth scrolling; this correction must be instant.
+            var rootStyle = document.documentElement.style;
+            var saved = rootStyle.scrollBehavior;
+            rootStyle.scrollBehavior = 'auto';
+            window.scrollTo(window.pageXOffset, window.pageYOffset + shift);
+            rootStyle.scrollBehavior = saved;
+          }
         });
       });
     }
