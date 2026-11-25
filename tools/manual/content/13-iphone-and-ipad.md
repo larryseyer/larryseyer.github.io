@@ -71,8 +71,6 @@ These budgets were calibrated on an older-phone class of device and are still ma
 ![iPad and Mac top bar with Play, the MORPH chip and the DSP load meter](images/s03-top-bar-mac.png "On iPad and Mac the DSP load meter is the slim bar after Play and the MORPH chip, just before the tempo.")
 :::
 
-> **Screenshot needed:** A compressor or tape or reverb panel showing one of the “not enough power” or Simple Comp messages, on a real device.
-
 ## External keyboards
 
 An iPhone or iPad with a USB or Bluetooth keyboard uses the **same shortcuts** as the Mac. See [Keyboard Shortcuts](14-keyboard-shortcuts.md) for the essentials and for a few iOS exceptions (function keys, non-US number-row chords, and a couple of keys the system keeps for itself).

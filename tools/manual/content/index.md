@@ -35,7 +35,7 @@ Use the search box and the sidebar, or the Previous / Index / Next links at the 
 16. [Known Gaps in This Beta](16-known-gaps.md) — what is unfinished, provisional or not in this build
 17. [How to Report Problems](17-how-to-report-problems.md) — what to send me, and the contact form to use for now
 
-The Mac pictures also stand in for iPad, which uses the same layout. Use the **iPhone / Mac & iPad** switch at the top of each page to choose which pictures you see. A few places still need a DAW host, a MIDI import with a file loaded, a real-device power-limit message, or a second device; those still say **Screenshot needed**.
+The Mac pictures also stand in for iPad, which uses the same layout. Use the **iPhone / Mac & iPad** switch at the top of each page to choose which pictures you see.
 
 ## What's in this TestFlight beta
 

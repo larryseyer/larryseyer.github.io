@@ -39,8 +39,6 @@ You can also drag a MIDI file straight onto a pill row or a pool column on a Mac
 
 A good test: import a groove you actually play, listen to the generated Chorus and fills, then generate again and compare.
 
-> **Screenshot needed:** The MIDI import window, mid-assignment or on the name-and-feel step, with a file loaded. No need to show a third-party product name on the file itself.
-
 ---
 
 [Previous: The Pattern Editor](07-pattern-editor.md) · [Index](index.md) · [Next: Sounds and a Feature Called Morph](09-sounds.md)

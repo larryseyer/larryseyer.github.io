@@ -16,8 +16,6 @@ VST3, CLAP and the installer AU plug-in are **not** in this TestFlight build. If
 
 Hosts list the plug-in as an instrument. Logic Pro files Audio Units under the maker name **Automagic Art** (that's my company name). Look for Larry Seyer Drums there.
 
-> **Screenshot needed:** A host's plug-in list showing Larry Seyer Drums under Automagic Art, with the format (AUv3) visible. Note the host and version when the shot is taken.
-
 ## What changes inside a host
 
 The editor is the same full app: the top bar, all four pages, and the transport. A few things are different:
@@ -89,12 +87,10 @@ On a per-drum route, each strip's own processing is included, and the player vol
 :::
 
 >
-> **Screenshot needed (optional, live host):** A host mixer after multi-out is enabled, with kick, snare and hats arriving on separate tracks. Note the host, version, and whether Rescan Outputs or a reload was needed.
 
 ## The AUv3 on iPhone and iPad
 
 A Mac or desktop host opens the full Larry Seyer Drums pages in the plug-in window, not Quick Pick. The compact window below is what you get on iPhone and iPad.
-
 
 Load Larry Seyer Drums as an instrument in a host such as GarageBand or AUM. The README also names Quantiloop Pro and Loopy Pro. After an install, reload the host slot: switch away, let it load, then switch back.
 

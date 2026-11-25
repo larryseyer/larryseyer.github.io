@@ -57,8 +57,6 @@ The AUv3 can't present file pickers, so do file import and export from the stand
 ![Export window on an iPhone, open on Backup (Everything), showing the parts list](images/s40-iphone-export-backup.png "Backup (Everything) on iPhone, with the parts list ticked and Choose destination at the bottom.")
 :::
 
-> **Screenshot needed:** A successful backup or restore in progress, or the confirmation after a restore onto a second device.
-
 ## Settings that stay on the machine
 
 App Settings has its own presets (for example Stage and Studio). Some settings live on the device and are not inside a Song: audio device, a lot of MIDI and sync setup, accessibility, and so on. Export App Settings if you want those on another machine.
