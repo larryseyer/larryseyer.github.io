@@ -17,7 +17,7 @@
   </url>
   <url>
     <loc>https://larryseyer.com/pages/projects.html</loc>
-    <lastmod>2026-10-31</lastmod>
+    <lastmod>2026-11-26</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -133,6 +133,11 @@
   <url>
     <loc>https://larryseyer.com/pages/projects/midi2button.html</loc>
     <lastmod>2026-10-31</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://larryseyer.com/pages/projects/cli-speed-reader.html</loc>
+    <lastmod>2026-11-26</lastmod>
     <priority>0.7</priority>
   </url>
     <url>
